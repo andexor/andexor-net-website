@@ -1,0 +1,13 @@
+import * as React from 'react';
+
+export interface IconButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  /** Show a resting border + white fill. */
+  bordered?: boolean;
+  /** Control size. */
+  size?: 'sm' | 'md';
+  /** Icon node. */
+  children?: React.ReactNode;
+}
+
+/** Square, icon-only button. */
+export function IconButton(props: IconButtonProps): JSX.Element;

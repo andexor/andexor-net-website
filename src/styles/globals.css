@@ -1,0 +1,16 @@
+/* SPDX-License-Identifier: Apache-2.0
+ * Copyright 2026 Andexor Network, Inc.
+ * Author: Ed Jenkins <ed@andexor.net>
+ *
+ * Global stylesheet entry point. Imports design tokens (verbatim from the
+ * design system, per design/README.md: "The token CSS ... can be copied
+ * directly into production"), then self-hosted font declarations.
+ */
+@import "./tokens/colors.css";
+@import "./tokens/typography.css";
+@import "./tokens/spacing.css";
+@import "./tokens/elevation.css";
+@import "./tokens/base.css";
+@import "./components.css";
+@import "./fonts.css";
+@import "./marketing.css";

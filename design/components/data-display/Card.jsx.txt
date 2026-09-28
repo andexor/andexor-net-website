@@ -1,0 +1,13 @@
+import React from 'react';
+
+/** Surface container. Set `pad` for default padding, `hover` for lift, `ink` for dark blue. */
+export function Card({ pad = true, hover = false, ink = false, as: Tag = 'div', className = '', children, ...rest }) {
+  const cls = [
+    'an-card',
+    pad && 'an-card--pad',
+    hover && 'an-card--hover',
+    ink && 'an-card--ink',
+    className,
+  ].filter(Boolean).join(' ');
+  return <Tag className={cls} {...rest}>{children}</Tag>;
+}

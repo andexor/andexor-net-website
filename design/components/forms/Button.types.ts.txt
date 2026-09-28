@@ -1,0 +1,27 @@
+import * as React from 'react';
+
+/**
+ * Primary action control for Andexor surfaces.
+ */
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  /** Visual style. */
+  variant?: 'primary' | 'accent' | 'secondary' | 'ghost' | 'danger';
+  /** Control size. */
+  size?: 'sm' | 'md' | 'lg';
+  /** Stretch to fill the container width. */
+  block?: boolean;
+  /** Adapt secondary/ghost styling for dark (blue) surfaces. */
+  onInk?: boolean;
+  /** Icon node rendered before the label. */
+  leftIcon?: React.ReactNode;
+  /** Icon node rendered after the label. */
+  rightIcon?: React.ReactNode;
+  /** Render as a different element, e.g. "a". */
+  as?: any;
+  children?: React.ReactNode;
+}
+
+/**
+ * Primary action control for Andexor surfaces.
+ */
+export function Button(props: ButtonProps): JSX.Element;

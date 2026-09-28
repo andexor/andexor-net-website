@@ -1,0 +1,24 @@
+const { Button } = window.AndexorNetworkDesignSystem_d67969;
+
+function CTA({ onProposal }) {
+  return (
+    <section style={{ maxWidth:'var(--container-xl)', margin:'0 auto', padding:'0 24px var(--section-y)' }}>
+      <div style={{ position:'relative', overflow:'hidden', borderRadius:'24px', background:'var(--blue-800)', padding:'56px 48px',
+                    display:'flex', alignItems:'center', justifyContent:'space-between', gap:'32px', flexWrap:'wrap' }}>
+        <div style={{ position:'relative', maxWidth:'620px' }}>
+          <h2 style={{ color:'#FFF', fontSize:'clamp(28px,3.4vw,40px)', letterSpacing:'-0.02em', margin:0, lineHeight:1.1, maxWidth:'12.28em' }}>
+            Let's talk about your needs and explore solutions, then plan the way forward.
+          </h2>
+        </div>
+        <div style={{ position:'relative', display:'flex', gap:'12px', flexWrap:'wrap' }}>
+          <div aria-hidden="true" style={{ position:'absolute', left:'50%', top:'50%', width:'320px', height:'320px', transform:'translate(-50%, -50%)',
+            background:'radial-gradient(circle, color-mix(in srgb, var(--gold-500) 22%, transparent), transparent 65%)', pointerEvents:'none' }} />
+          <div style={{ position:'relative' }}>
+            <Button variant="accent" size="lg" rightIcon={<Icon name="arrow-right" size={18} />} onClick={onProposal}>Contact Us</Button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+Object.assign(window, { CTA });

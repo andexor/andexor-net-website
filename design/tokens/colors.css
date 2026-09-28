@@ -1,0 +1,162 @@
+/* ============================================================
+   Andexor Network — Color Tokens
+   Brand: Blue #002855 (Andexor Blue) + Old Gold #EAAA00
+   ============================================================ */
+:root {
+  /* --- Andexor Blue (primary / dark blue) --- */
+  --blue-950: #00132B;
+  --blue-900: #001B3A;
+  --blue-800: #002855; /* BRAND PRIMARY */
+  --blue-700: #013A73;
+  --blue-600: #0A4F93;
+  --blue-500: #1766B4;
+  --blue-400: #4A8BD0;
+  --blue-300: #8FB6E2;
+  --blue-200: #C5D8EF;
+  --blue-100: #E7EFF8;
+  --blue-50:  #F3F7FC;
+
+  /* --- Old Gold (accent) --- */
+  --gold-800: #7A5900;
+  --gold-700: #9C7100;
+  --gold-600: #C08C00;
+  --gold-500: #EAAA00; /* BRAND ACCENT */
+  --gold-400: #F4BD2E;
+  --gold-300: #F8D066;
+  --gold-200: #FBE4A3;
+  --gold-100: #FDF2D4;
+  --gold-50:  #FEF9EA;
+
+  /* --- Cool slate neutrals (tuned toward the blue) --- */
+  --slate-950: #0B1220;
+  --slate-900: #111A2B;
+  --slate-800: #1E293B;
+  --slate-700: #334155;
+  --slate-600: #475569;
+  --slate-500: #64748B;
+  --slate-400: #94A3B8;
+  --slate-300: #CBD5E1;
+  --slate-200: #E2E8F0;
+  --slate-100: #F1F5F9;
+  --slate-50:  #F8FAFC;
+  --white: #FFFFFF;
+  --black: #000000;
+
+  /* --- Medal set (diagrams: tiers, rankings, comparisons) ---
+     Gold is the brand accent; silver is slate-300; bronze is
+     generated to match — same warm family as gold, lighter and
+     less saturated so the three read as one perceptual set. */
+  --medal-gold:   var(--gold-500);  /* #EAAA00 */
+  --medal-silver: var(--slate-300); /* #CBD5E1 */
+  --medal-bronze: #D49A6A;
+  --medal-maroon: #7B1E26;
+
+  /* --- Medal edges (neon border accents) ---
+     One brighter, more saturated sibling per medal fill, for use as
+     the border on a medal-filled box. The *-rgb pairs are the same
+     colors as raw channels, so glows can be composed with alpha:
+       box-shadow: 0 0 0 1px rgb(var(--edge-gold-rgb) / .9),
+                   0 0 12px rgb(var(--edge-gold-rgb) / .55); */
+  --edge-gold:   #FFD23D;
+  --edge-silver: #8FE9FF;
+  --edge-bronze: #FF9A4D;
+  --edge-maroon: #FF2F52;
+  --edge-gold-rgb:   255 210 61;  /* @kind other */
+  --edge-silver-rgb: 143 233 255; /* @kind other */
+  --edge-bronze-rgb: 255 154 77;  /* @kind other */
+  --edge-maroon-rgb: 255 47 82;   /* @kind other */
+
+  /* Ready-made glow shadows — outer bloom + tight inner rim. */
+  --glow-gold:   0 0 0 1px rgb(var(--edge-gold-rgb) / .55), 0 0 10px rgb(var(--edge-gold-rgb) / .6), 0 0 28px rgb(var(--edge-gold-rgb) / .35), inset 0 0 12px rgb(var(--edge-gold-rgb) / .3);
+  --glow-silver: 0 0 0 1px rgb(var(--edge-silver-rgb) / .55), 0 0 10px rgb(var(--edge-silver-rgb) / .6), 0 0 28px rgb(var(--edge-silver-rgb) / .35), inset 0 0 12px rgb(var(--edge-silver-rgb) / .3);
+  --glow-bronze: 0 0 0 1px rgb(var(--edge-bronze-rgb) / .55), 0 0 10px rgb(var(--edge-bronze-rgb) / .6), 0 0 28px rgb(var(--edge-bronze-rgb) / .35), inset 0 0 12px rgb(var(--edge-bronze-rgb) / .3);
+  --glow-maroon: 0 0 0 1px rgb(var(--edge-maroon-rgb) / .55), 0 0 10px rgb(var(--edge-maroon-rgb) / .6), 0 0 28px rgb(var(--edge-maroon-rgb) / .35), inset 0 0 12px rgb(var(--edge-maroon-rgb) / .3);
+
+  /* --- Semantic status --- */
+  --success-600: #167A4F;
+  --success-700: #0F5A3A;
+  --success-500: #1F8A5B;
+  --success-100: #D7F0E3;
+  --warning-600: #C08C00;
+  --warning-500: #EAAA00;
+  --warning-100: #FDF2D4;
+  --danger-600:  #B23124;
+  --danger-500:  #D33A2C;
+  --danger-100:  #FBE1DE;
+  --info-600:    #0A4F93;
+  --info-500:    #1766B4;
+  --info-100:    #E7EFF8;
+
+  /* ============================================================
+     SEMANTIC ALIASES — prefer these in product code
+     ============================================================ */
+  --brand: var(--blue-800);
+  --accent: var(--gold-500);
+
+  /* Text */
+  --text-heading: var(--blue-800);
+  --text-body:    var(--slate-700);
+  --text-muted:   var(--slate-500);
+  --text-subtle:  var(--slate-400);
+  --text-strong:  var(--slate-900);   /* inputs and highest-contrast copy */
+  --text-inverse: var(--white);
+  --text-accent:  var(--gold-700);   /* gold readable on light surfaces */
+  --text-link:    var(--blue-600);
+
+  /* Surfaces */
+  --surface-page:   var(--slate-50);
+  --surface-card:   var(--white);
+  --surface-sunken: var(--slate-100);
+  --surface-ink:    var(--blue-800);  /* dark brand sections */
+  --surface-ink-2:  var(--blue-900);
+  --surface-accent-soft: var(--gold-50);
+  --surface-brand-soft:  var(--blue-50);
+  --control-bg:     var(--white);     /* inputs, secondary btns, tags */
+  --control-track:  var(--slate-300); /* switch off-state track */
+
+  /* Borders */
+  --border-subtle:  var(--slate-200);
+  --border-default: var(--slate-300);
+  --border-strong:  var(--slate-400);
+  --border-ink:     var(--blue-700);
+
+  /* Interaction */
+  --focus-ring: var(--gold-500);
+  --selection-bg: var(--gold-200);
+}
+
+/* ============================================================
+   DARK MODE — system setting only (prefers-color-scheme).
+   No in-app toggle. Brand blue/gold scales are unchanged;
+   only the semantic surface/text/border aliases flip so every
+   token pairing stays legible in either OS theme.
+   ============================================================ */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Text */
+    --text-heading: var(--slate-50);
+    --text-body:    var(--slate-300);
+    --text-muted:   var(--slate-400);
+    --text-subtle:  var(--slate-500);
+    --text-strong:  var(--slate-50);
+    --text-accent:  var(--gold-400);   /* brighter gold for dark surfaces */
+    --text-link:    var(--blue-300);
+
+    /* Surfaces (dark blue-blacks, lifted in steps) */
+    --surface-page:   #0A1322;
+    --surface-card:   #111F33;
+    --surface-sunken: #070E1A;
+    --surface-ink:    #0D2238;   /* brand panels, lifted off the page */
+    --surface-ink-2:  #081627;
+    --surface-accent-soft: #2A2207;
+    --surface-brand-soft:  #102841;
+    --control-bg:     #16263D;
+    --control-track:  var(--slate-600);
+
+    /* Borders */
+    --border-subtle:  #1F3047;
+    --border-default: #2C405C;
+    --border-strong:  #3E587B;
+    --border-ink:     #1C3A5A;
+  }
+}

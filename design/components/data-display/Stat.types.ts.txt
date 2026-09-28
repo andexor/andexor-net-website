@@ -1,0 +1,11 @@
+import * as React from 'react';
+
+export interface StatProps extends React.HTMLAttributes<HTMLDivElement> {
+  /** The metric value, e.g. "+182%". */
+  value?: React.ReactNode;
+  /** Mono uppercase caption. */
+  label?: React.ReactNode;
+}
+
+/** Headline metric with a mono label. */
+export function Stat(props: StatProps): JSX.Element;

@@ -1,0 +1,50 @@
+function Footer() {
+  const cols = [
+    { h:'TECHNICAL SERVICES', items:['Web Development', 'Web Hosting', 'Technical SEO', 'AI Systems'] },
+    { h:'BUSINESS SERVICES', items:['Cost Reduction', 'Lead Generation', 'Growth Marketing', 'Process Re-engineering'] },
+    { h:'Company', items:['About', 'Contact'] },
+  ];
+  return (
+    <footer style={{ background:'var(--blue-900)', color:'var(--blue-200)' }}>
+      <div style={{ maxWidth:'var(--container-2xl)', margin:'0 auto', padding:'56px 24px 28px',
+                    display:'grid', gridTemplateColumns:'1.4fr repeat(3, 1fr)', gap:'32px' }} className="an-footer-grid">
+        <div>
+          <Logo light />
+          <p style={{ fontSize:'14px', lineHeight:1.6, maxWidth:'30ch', marginTop:'16px', color:'var(--blue-300)' }}>
+            Enterprise-grade services<br />at small business prices
+          </p>
+          <div style={{ display:'flex', gap:'10px', marginTop:'18px' }}>
+            {['linkedin','twitter','github'].map(s => (
+              <a key={s} href={'#'+s} aria-label={s} style={{ width:'34px', height:'34px', borderRadius:'8px',
+                border:'1px solid var(--blue-700)', display:'flex', alignItems:'center', justifyContent:'center', color:'var(--blue-200)' }}>
+                <Icon name={s} size={16} />
+              </a>
+            ))}
+          </div>
+        </div>
+        {cols.map(c => (
+          <div key={c.h}>
+            <div style={{ fontFamily:'var(--font-mono)', fontSize:'11px', letterSpacing:'0.14em', textTransform:'uppercase', color:'var(--gold-400)', marginBottom:'14px' }}>{c.h}</div>
+            <ul style={{ listStyle:'none', padding:0, margin:0, display:'flex', flexDirection:'column', gap:'10px' }}>
+              {c.items.map(i => (
+                <li key={i}><a href={'#'+i.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')} style={{ fontSize:'14px', color:'var(--blue-200)', textDecoration:'none' }}
+                  onMouseEnter={e=>e.currentTarget.style.color='#FFF'} onMouseLeave={e=>e.currentTarget.style.color='var(--blue-200)'}>{i}</a></li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+      <div style={{ borderTop:'1px solid var(--blue-800)' }}>
+        <div style={{ maxWidth:'var(--container-2xl)', margin:'0 auto', padding:'18px 24px', display:'flex',
+                      justifyContent:'space-between', flexWrap:'wrap', gap:'10px', fontSize:'13px', color:'var(--blue-400)' }}>
+          <span>© 2026 Andexor Network, Inc. All rights reserved.</span>
+          <span style={{ display:'flex', gap:'20px' }}>
+            <a href="#privacy" style={{ color:'var(--blue-400)', textDecoration:'none' }}>Privacy</a>
+            <a href="#terms" style={{ color:'var(--blue-400)', textDecoration:'none' }}>Terms</a>
+          </span>
+        </div>
+      </div>
+    </footer>
+  );
+}
+Object.assign(window, { Footer });

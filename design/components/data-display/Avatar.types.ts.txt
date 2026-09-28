@@ -1,0 +1,13 @@
+import * as React from 'react';
+
+export interface AvatarProps extends React.HTMLAttributes<HTMLSpanElement> {
+  /** Image URL. Falls back to initials when omitted. */
+  src?: string;
+  /** Full name — used for the alt text and initials. */
+  name?: string;
+  /** Size. */
+  size?: 'sm' | 'md' | 'lg';
+}
+
+/** User avatar with image or initials fallback. */
+export function Avatar(props: AvatarProps): JSX.Element;

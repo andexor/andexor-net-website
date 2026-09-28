@@ -1,0 +1,13 @@
+import * as React from 'react';
+
+export interface SwitchProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
+  /** On/off state. */
+  checked?: boolean;
+  /** Change handler. */
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  /** Use the gold accent for the on state instead of blue. */
+  accent?: boolean;
+}
+
+/** Binary toggle switch. */
+export function Switch(props: SwitchProps): JSX.Element;

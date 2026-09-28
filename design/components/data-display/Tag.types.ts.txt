@@ -1,0 +1,10 @@
+import * as React from 'react';
+
+export interface TagProps extends React.HTMLAttributes<HTMLSpanElement> {
+  /** When provided, renders a removable "×" affordance. */
+  onRemove?: React.MouseEventHandler<HTMLSpanElement>;
+  children?: React.ReactNode;
+}
+
+/** Outlined pill tag, optionally removable. */
+export function Tag(props: TagProps): JSX.Element;
