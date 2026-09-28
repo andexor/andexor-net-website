@@ -1,0 +1,13 @@
+import React from 'react';
+
+/** Pill tag, optionally removable. */
+export function Tag({ onRemove, className = '', children, ...rest }) {
+  return (
+    <span className={['an-tag', className].filter(Boolean).join(' ')} {...rest}>
+      {children}
+      {onRemove && (
+        <span className="an-tag__x" role="button" aria-label="Remove" onClick={onRemove}>×</span>
+      )}
+    </span>
+  );
+}

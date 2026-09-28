@@ -1,0 +1,13 @@
+import * as React from 'react';
+
+export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  /** Field label rendered above the control. */
+  label?: string;
+  /** Helper text below the field. */
+  hint?: string;
+  /** Error message; switches the field to its invalid style. */
+  error?: string;
+}
+
+/** Labelled text input with hint / error states. */
+export function Input(props: InputProps): JSX.Element;

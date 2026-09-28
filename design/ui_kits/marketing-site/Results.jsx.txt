@@ -1,0 +1,42 @@
+const { Stat, Badge } = window.AndexorNetworkDesignSystem_d67969;
+
+function Results() {
+  const stats = [
+    { v:'+182%', l:'Avg. organic traffic' },
+    { v:'3.1×', l:'Pipeline ROI' },
+    { v:'0.9s', l:'Median LCP' },
+    { v:'40+', l:'Industries served' },
+  ];
+  const logos = ['NORTHWIND', 'BRIGHTLEAF', 'Carta&Co', 'MERIDIAN', 'Oakline', 'VANTA GROUP'];
+  return (
+    <section style={{ background:'var(--surface-ink)', color:'#FFF' }}>
+      <div style={{ maxWidth:'var(--container-2xl)', margin:'0 auto', padding:'var(--section-y) 24px' }}>
+        <div style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-end', flexWrap:'wrap', gap:'20px' }}>
+          <div style={{ maxWidth:'520px' }}>
+            <span style={{ fontFamily:'var(--font-mono)', fontSize:'12px', letterSpacing:'0.14em', textTransform:'uppercase', color:'var(--gold-400)' }}>>> Outcomes</span>
+            <h2 style={{ color:'#FFF', fontSize:'clamp(30px,3.6vw,42px)', letterSpacing:'-0.02em', margin:'12px 0 0' }}>Results we report on, not around</h2>
+          </div>
+          <p style={{ color:'var(--blue-200)', maxWidth:'34ch', fontSize:'15px', lineHeight:1.6, margin:0 }}>
+            Median figures across active engagements in the trailing 12 months.
+          </p>
+        </div>
+        <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(160px,1fr))', gap:'24px', marginTop:'48px',
+                      borderTop:'1px solid var(--blue-700)', borderBottom:'1px solid var(--blue-700)', padding:'40px 0' }}>
+          {stats.map(s => (
+            <div key={s.l}>
+              <div style={{ fontFamily:'var(--font-display)', fontWeight:700, fontSize:'clamp(36px,4vw,52px)', color:'#FFF', letterSpacing:'-0.02em', lineHeight:1 }}>{s.v}</div>
+              <div style={{ fontFamily:'var(--font-mono)', fontSize:'12px', letterSpacing:'0.1em', textTransform:'uppercase', color:'var(--gold-400)', marginTop:'10px' }}>{s.l}</div>
+            </div>
+          ))}
+        </div>
+        <div style={{ display:'flex', alignItems:'center', gap:'14px', marginTop:'40px', flexWrap:'wrap' }}>
+          <span style={{ fontSize:'12px', color:'var(--blue-300)', fontFamily:'var(--font-mono)', letterSpacing:'0.08em' }}>TRUSTED BY</span>
+          {logos.map(l => (
+            <span key={l} style={{ fontFamily:'var(--font-display)', fontWeight:600, fontSize:'16px', color:'var(--blue-200)', opacity:0.8, letterSpacing:'0.02em' }}>{l}</span>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+Object.assign(window, { Results });

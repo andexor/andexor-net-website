@@ -1,0 +1,40 @@
+const { Card, Avatar, Button } = window.AndexorNetworkDesignSystem_d67969;
+
+function Testimonial() {
+  return (
+    <section style={{ maxWidth:'var(--container-xl)', margin:'0 auto', padding:'var(--section-y) 24px' }}>
+      <div style={{ display:'grid', gridTemplateColumns:'1.4fr 1fr', gap:'28px', alignItems:'stretch' }} className="an-quote-grid">
+        <Card style={{ padding:'40px', display:'flex', flexDirection:'column', justifyContent:'space-between' }}>
+          <div>
+            <Icon name="quote" size={34} style={{ color:'var(--gold-500)' }} />
+            <p style={{ fontFamily:'var(--font-display)', fontWeight:500, fontSize:'clamp(20px,2.4vw,28px)', lineHeight:1.34, letterSpacing:'-0.01em', color:'var(--text-heading)', margin:'18px 0 0' }}>
+              "Andexor rebuilt our site, fixed years of SEO debt, and stood up an AI support flow in a single quarter. We finally have one team that owns the whole sales funnel."
+            </p>
+          </div>
+          <div style={{ display:'flex', alignItems:'center', gap:'13px', marginTop:'32px' }}>
+            <Avatar name="Renée Caldwell" size="lg" />
+            <div>
+              <div style={{ fontWeight:600, color:'var(--text-heading)', fontSize:'15px' }}>Renée Caldwell</div>
+              <div style={{ fontSize:'13px', color:'var(--text-muted)' }}>VP Marketing, Brightleaf Supply</div>
+            </div>
+          </div>
+        </Card>
+        <Card ink style={{ padding:'36px', display:'flex', flexDirection:'column', justifyContent:'center', gap:'18px' }}>
+          <span style={{ fontFamily:'var(--font-mono)', fontSize:'12px', letterSpacing:'0.14em', textTransform:'uppercase', color:'var(--gold-400)' }}>>> The engagement</span>
+          {[
+            ['Rebuilt', 'on Next.js + headless CMS'],
+            ['Recovered', '2 years of crawl and index debt'],
+            ['Launched', 'AI support deflecting 38% of tickets'],
+          ].map(([k,v]) => (
+            <div key={k} style={{ display:'flex', gap:'12px', alignItems:'flex-start' }}>
+              <Icon name="check" size={18} style={{ color:'var(--gold-400)', marginTop:'2px' }} />
+              <div style={{ color:'#FFF', fontSize:'15px' }}><strong>{k}</strong> <span style={{ color:'var(--blue-200)' }}>{v}</span></div>
+            </div>
+          ))}
+          <Button variant="secondary" onInk rightIcon={<Icon name="arrow-right" size={16} />} style={{ marginTop:'6px', alignSelf:'flex-start' }}>Read the case study</Button>
+        </Card>
+      </div>
+    </section>
+  );
+}
+Object.assign(window, { Testimonial });

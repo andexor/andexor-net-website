@@ -1,0 +1,11 @@
+import React from 'react';
+
+/** Toggle switch. Controlled via `checked` + `onChange`. */
+export function Switch({ checked, onChange, accent = false, className = '', ...rest }) {
+  return (
+    <label className={['an-switch', accent && 'an-switch--accent', className].filter(Boolean).join(' ')}>
+      <input type="checkbox" checked={checked} onChange={onChange} {...rest} />
+      <span className="an-switch__track"><span className="an-switch__thumb" /></span>
+    </label>
+  );
+}

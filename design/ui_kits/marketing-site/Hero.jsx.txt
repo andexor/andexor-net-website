@@ -1,0 +1,34 @@
+const { Button } = window.AndexorNetworkDesignSystem_d67969;
+
+function Hero({ onProposal }) {
+  return (
+    <section id="top" style={{ position:'relative', background:'var(--surface-ink)', overflow:'hidden' }}>
+      {/* faint engineering grid */}
+      <div aria-hidden="true" style={{ position:'absolute', inset:0, opacity:0.5,
+        backgroundImage:'linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)',
+        backgroundSize:'48px 48px', maskImage:'radial-gradient(ellipse 80% 70% at 70% 0%, #000 30%, transparent 75%)',
+        WebkitMaskImage:'radial-gradient(ellipse 80% 70% at 70% 0%, #000 30%, transparent 75%)' }} />
+      <div style={{ position:'relative', maxWidth:'var(--container-2xl)', margin:'0 auto', padding:'29px 24px 29px' }} className="an-hero-grid">
+        <div style={{ position:'relative', display:'flex', alignItems:'center', gap:'22px' }}>
+          <div aria-hidden="true" style={{ position:'absolute', left:'-150px', top:'50%', width:'420px', height:'420px', transform:'translateY(-50%)',
+            background:'radial-gradient(circle, color-mix(in srgb, var(--gold-500) 22%, transparent), transparent 65%)', pointerEvents:'none' }} />
+          <img src={(window.__resources && window.__resources.logoGold) || "../../assets/logo/logo-gold.svg"} alt=""
+            style={{ position:'relative', width:'clamp(72px, 9vw, 112px)', height:'clamp(72px, 9vw, 112px)', display:'block' }} />
+          <span style={{ position:'relative', fontFamily:'var(--font-display)', fontWeight:700, fontSize:'clamp(32px, 4.4vw, 54px)',
+            lineHeight:1, letterSpacing:'-0.02em', color:'#FFF' }}>Andexor Network</span>
+        </div>
+        <h1 style={{ position:'relative', color:'#FFF', fontSize:'clamp(38px, 5vw, 60px)', lineHeight:1.04, letterSpacing:'-0.02em', margin:'40px 0 0', maxWidth:'14em', textWrap:'balance' }}>
+          Enterprise-grade services at small business prices
+        </h1>
+        <p style={{ color:'var(--blue-200)', fontSize:'19px', lineHeight:1.55, maxWidth:'22em', margin:'20px 0 0' }}>
+          Andexor Network designs, builds, and manages solutions to help your business grow.
+        </p>
+        <div style={{ display:'flex', gap:'12px', marginTop:'30px', flexWrap:'wrap' }}>
+          <Button variant="accent" size="lg" rightIcon={<Icon name="arrow-right" size={18} />} onClick={onProposal}>Contact Us</Button>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+Object.assign(window, { Hero });

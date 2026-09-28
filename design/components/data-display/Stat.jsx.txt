@@ -1,0 +1,11 @@
+import React from 'react';
+
+/** Big metric with a mono label. */
+export function Stat({ value, label, className = '', ...rest }) {
+  return (
+    <div className={className} {...rest}>
+      <div className="an-stat__value">{value}</div>
+      <div className="an-stat__label">{label}</div>
+    </div>
+  );
+}

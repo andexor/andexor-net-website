@@ -1,0 +1,12 @@
+import React from 'react';
+
+/** Square, icon-only button. Provide an accessible `aria-label`. */
+export function IconButton({ bordered = false, size = 'md', className = '', children, ...rest }) {
+  const cls = [
+    'an-iconbtn',
+    bordered && 'an-iconbtn--bordered',
+    size === 'sm' && 'an-iconbtn--sm',
+    className,
+  ].filter(Boolean).join(' ');
+  return <button className={cls} {...rest}>{children}</button>;
+}

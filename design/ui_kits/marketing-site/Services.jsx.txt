@@ -1,0 +1,53 @@
+const { Card, Badge } = window.AndexorNetworkDesignSystem_d67969;
+
+const SERVICES = [
+  { icon:'code-2', tag:'Web', tone:'brand', title:'Web Development',
+    body:"We'll create or update your site with a strong technical foundation to handle an increase in traffic and sales.",
+    points:['Brochure site, blog, forms, shop', 'Content management system', 'Web application'] },
+  { icon:'search', tag:'SEO', tone:'accent', title:'Technical SEO',
+    body:"We'll assess your site's structure and brand identity, then improve visibility in search engines and AI agents.",
+    points:['Site audit', 'Content strategy', 'Maps, social media'] },
+  { icon:'bot', tag:'AI', tone:'brand', title:'AI Systems',
+    body:"We'll build the agents you need so you can adapt to emerging trends as AI agents handle business transactions.",
+    points:['Knowledge Base', 'Digital assistant, scheduling', 'Workflow automation'] },
+  { icon:'line-chart', tag:'Growth', tone:'accent', title:'Growth Marketing',
+    body:'Campaigns made for impact, from brand awareness to lead generation to closed sales, with continuous monitoring.',
+    points:['Newsletters, branded email', 'Social media marketing', 'Paid advertising'] },
+];
+
+function Services() {
+  return (
+    <section id="services" style={{ padding:'var(--section-y) 24px', maxWidth:'var(--container-2xl)', margin:'0 auto' }}>
+      <div style={{ maxWidth:'620px' }}>
+        <h2 style={{ fontSize:'clamp(30px,3.6vw,42px)', letterSpacing:'-0.02em', margin:'12px 0 0' }}>Four disciplines, all in one place</h2>
+        <p style={{ fontSize:'18px', color:'var(--text-body)', margin:'14px 0 0', lineHeight:1.55 }}>
+          Web, SEO, AI, and marketing under one roof.
+        </p>
+      </div>
+      <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(250px, 1fr))', gap:'18px', marginTop:'40px' }}>
+        {SERVICES.map(s => (
+          <Card key={s.title} hover as="a" href={'#'+s.tag.toLowerCase()} style={{ textDecoration:'none', display:'block' }}>
+            <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:'16px' }}>
+              <span style={{ width:'44px', height:'44px', borderRadius:'11px', background:'var(--blue-50)',
+                display:'flex', alignItems:'center', justifyContent:'center', color:'var(--blue-700)' }}>
+                <Icon name={s.icon} size={22} />
+              </span>
+              <Badge tone={s.tone}>{s.tag}</Badge>
+            </div>
+            <h3 style={{ fontSize:'20px', margin:'0 0 6px', color:'var(--text-heading)' }}>{s.title}</h3>
+            <p style={{ fontSize:'14px', color:'var(--text-body)', lineHeight:1.55, margin:'0 0 14px' }}>{s.body}</p>
+            <ul style={{ listStyle:'none', padding:0, margin:0, display:'flex', flexDirection:'column', gap:'7px' }}>
+              {s.points.map(p => (
+                <li key={p} style={{ display:'flex', alignItems:'center', gap:'8px', fontSize:'13px', color:'var(--text-body)' }}>
+                  <Icon name="check" size={15} style={{ color:'var(--gold-600)' }} />
+                  <span>{p}</span>
+                </li>
+              ))}
+            </ul>
+          </Card>
+        ))}
+      </div>
+    </section>
+  );
+}
+Object.assign(window, { Services });

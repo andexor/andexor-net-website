@@ -1,0 +1,75 @@
+const { Button, Input } = window.AndexorNetworkDesignSystem_d67969;
+
+function ContactUs({ open, onClose, inline = false, initialSent = false }) {
+  const [sent, setSent] = React.useState(initialSent);
+  React.useEffect(() => { if (open && !inline) setSent(false); }, [open]);
+  if (!open && !inline) return null;
+
+  const panel = (
+      <div onClick={e=>e.stopPropagation()} style={{ width:'min(480px, 100%)', background:'var(--blue-500)',
+        borderRadius:'18px', boxShadow:'var(--shadow-xl)', overflow:'hidden' }}>
+        {/* header */}
+        <div style={{ position:'relative', overflow:'hidden', background:'var(--blue-800)', padding:'22px 24px', display:'flex', alignItems:'center', gap:'12px' }}>
+          <div aria-hidden="true" style={{ position:'absolute', left:'-110px', top:'-110px', width:'260px', height:'260px',
+            background:'radial-gradient(circle, color-mix(in srgb, var(--gold-500) 22%, transparent), transparent 65%)', pointerEvents:'none' }} />
+          <img src={(window.__resources && window.__resources.logoBoxed) || "../../assets/logo/andexor-logo.svg"} alt="" style={{ position:'relative', width:'34px', height:'34px', borderRadius:'8px' }} />
+          <div style={{ position:'relative', lineHeight:1.2 }}>
+            <div style={{ color:'#FFF', fontFamily:'var(--font-display)', fontWeight:700, fontSize:'30px', lineHeight:'34px' }}>Contact Us</div>
+          </div>
+          <button onClick={onClose} aria-label="Close" style={{ position:'relative', marginLeft:'auto', background:'transparent', border:'none',
+            color:'var(--blue-200)', cursor:'pointer', padding:'4px' }}><Icon name="x" size={20} /></button>
+        </div>
+
+        {sent ? (
+          <div style={{ padding:'40px 28px', textAlign:'center' }}>
+            <div style={{ width:'56px', height:'56px', borderRadius:'999px', background:'var(--success-100)',
+              display:'flex', alignItems:'center', justifyContent:'center', margin:'0 auto 16px', color:'var(--success-600)' }}>
+              <Icon name="check" size={28} stroke={2.5} />
+            </div>
+            <h3 style={{ margin:'0 0 8px', fontSize:'22px', color:'#FFF' }}>Request received</h3>
+            <p style={{ margin:'0 auto', maxWidth:'34ch', color:'var(--blue-100)', fontSize:'14px', lineHeight:1.55 }}>
+              Thanks for reaching out. A strategist will review your site and contact you soon.
+            </p>
+            <Button variant="primary" style={{ marginTop:'22px' }} onClick={onClose}>Done</Button>
+          </div>
+        ) : (
+          <form className="an-modal-form" onSubmit={e=>{ e.preventDefault(); setSent(true); }} style={{ padding:'24px', display:'flex', flexDirection:'column', gap:'14px' }}>
+            <Input label="Full name" placeholder="Jordan Reyes" required />
+            <Input label="Work email" type="email" placeholder="you@company.com" required />
+            <Input label="Company website" placeholder="company.com" required />
+            <div className="an-field">
+              <label className="an-label" htmlFor="svc">Primary need</label>
+              <select id="svc" className="an-input" defaultValue="" required style={{ appearance:'none', backgroundImage:'none' }}>
+                <option value="" disabled>Select a service…</option>
+                <optgroup label="Technical services">
+                  <option>Web Development</option>
+                  <option>Web Hosting</option>
+                  <option>Technical SEO</option>
+                  <option>AI Systems</option>
+                </optgroup>
+                <optgroup label="Business services">
+                  <option>Cost Reduction</option>
+                  <option>Lead Generation</option>
+                  <option>Growth Marketing</option>
+                  <option>Process Re-engineering</option>
+                </optgroup>
+                <option>Something else</option>
+              </select>
+            </div>
+            <Button type="submit" variant="accent" block size="lg" rightIcon={<Icon name="arrow-right" size={18} />}>Send</Button>
+            <p style={{ margin:0, fontSize:'12px', color:'var(--blue-100)', textAlign:'center' }}>No obligation. We never share your personal information.</p>
+          </form>
+        )}
+      </div>
+  );
+
+  if (inline) return panel;
+  return (
+    <div role="dialog" aria-modal="true" onClick={onClose} style={{
+      position:'fixed', inset:0, zIndex:60, background:'rgba(0,19,43,0.55)',
+      backdropFilter:'blur(3px)', display:'flex', alignItems:'center', justifyContent:'center', padding:'24px' }}>
+      {panel}
+    </div>
+  );
+}
+Object.assign(window, { ContactUs });

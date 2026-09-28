@@ -1,0 +1,21 @@
+import * as React from 'react';
+
+/**
+ * Surface container for grouped content.
+ */
+export interface CardProps extends React.HTMLAttributes<HTMLElement> {
+  /** Apply default internal padding. */
+  pad?: boolean;
+  /** Lift + shadow on hover (use for clickable cards). */
+  hover?: boolean;
+  /** Dark blue "ink" surface variant. */
+  ink?: boolean;
+  /** Render as a different element, e.g. "a" or "article". */
+  as?: any;
+  children?: React.ReactNode;
+}
+
+/**
+ * Surface container for grouped content.
+ */
+export function Card(props: CardProps): JSX.Element;

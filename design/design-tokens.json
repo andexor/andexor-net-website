@@ -1,0 +1,235 @@
+{
+  "$schema": "https://tr.designtokens.org/format/",
+  "$description": "Andexor Network design tokens — machine-readable (W3C DTCG format). Generated from the design-system CSS sources; the human-readable companion is DESIGN.md. Do not hand-edit if regenerating from source.",
+  "color": {
+    "$type": "color",
+    "blue": {
+      "$description": "Andexor Blue — brand primary. 800 is the brand anchor.",
+      "50":  { "$value": "#F3F7FC" },
+      "100": { "$value": "#E7EFF8" },
+      "200": { "$value": "#C5D8EF" },
+      "300": { "$value": "#8FB6E2" },
+      "400": { "$value": "#4A8BD0" },
+      "500": { "$value": "#1766B4" },
+      "600": { "$value": "#0A4F93" },
+      "700": { "$value": "#013A73" },
+      "800": { "$value": "#002855", "$description": "BRAND PRIMARY" },
+      "900": { "$value": "#001B3A" },
+      "950": { "$value": "#00132B" }
+    },
+    "gold": {
+      "$description": "Old Gold — accent. Use sparingly; poor contrast on white (use 700/800 for gold text on light).",
+      "50":  { "$value": "#FEF9EA" },
+      "100": { "$value": "#FDF2D4" },
+      "200": { "$value": "#FBE4A3" },
+      "300": { "$value": "#F8D066" },
+      "400": { "$value": "#F4BD2E" },
+      "500": { "$value": "#EAAA00", "$description": "BRAND ACCENT" },
+      "600": { "$value": "#C08C00" },
+      "700": { "$value": "#9C7100" },
+      "800": { "$value": "#7A5900" }
+    },
+    "slate": {
+      "$description": "Cool neutrals, tuned toward the blue (never warm).",
+      "50":  { "$value": "#F8FAFC" },
+      "100": { "$value": "#F1F5F9" },
+      "200": { "$value": "#E2E8F0" },
+      "300": { "$value": "#CBD5E1" },
+      "400": { "$value": "#94A3B8" },
+      "500": { "$value": "#64748B" },
+      "600": { "$value": "#475569" },
+      "700": { "$value": "#334155" },
+      "800": { "$value": "#1E293B" },
+      "900": { "$value": "#111A2B" },
+      "950": { "$value": "#0B1220" }
+    },
+    "white": { "$value": "#FFFFFF" },
+    "black": { "$value": "#000000" },
+    "status": {
+      "success": {
+        "500": { "$value": "#1F8A5B" }, "600": { "$value": "#167A4F" },
+        "700": { "$value": "#0F5A3A" }, "100": { "$value": "#D7F0E3" }
+      },
+      "warning": {
+        "500": { "$value": "#EAAA00" }, "600": { "$value": "#C08C00" }, "100": { "$value": "#FDF2D4" }
+      },
+      "danger": {
+        "500": { "$value": "#D33A2C" }, "600": { "$value": "#B23124" }, "100": { "$value": "#FBE1DE" }
+      },
+      "info": {
+        "500": { "$value": "#1766B4" }, "600": { "$value": "#0A4F93" }, "100": { "$value": "#E7EFF8" }
+      }
+    },
+    "semantic": {
+      "$description": "Prefer these aliases in product code. Two themes: light (default) and dark (prefers-color-scheme only, no in-app toggle). Brand blue/gold scales are identical across themes; only these aliases flip.",
+      "light": {
+        "text-heading": { "$value": "{color.blue.800}" },
+        "text-body":    { "$value": "{color.slate.700}" },
+        "text-muted":   { "$value": "{color.slate.500}" },
+        "text-subtle":  { "$value": "{color.slate.400}" },
+        "text-strong":  { "$value": "{color.slate.900}" },
+        "text-inverse": { "$value": "{color.white}" },
+        "text-accent":  { "$value": "{color.gold.700}" },
+        "text-link":    { "$value": "{color.blue.600}" },
+        "surface-page":   { "$value": "{color.slate.50}" },
+        "surface-card":   { "$value": "{color.white}" },
+        "surface-sunken": { "$value": "{color.slate.100}" },
+        "surface-ink":    { "$value": "{color.blue.800}" },
+        "surface-ink-2":  { "$value": "{color.blue.900}" },
+        "surface-accent-soft": { "$value": "{color.gold.50}" },
+        "surface-brand-soft":  { "$value": "{color.blue.50}" },
+        "control-bg":     { "$value": "{color.white}" },
+        "control-track":  { "$value": "{color.slate.300}" },
+        "border-subtle":  { "$value": "{color.slate.200}" },
+        "border-default": { "$value": "{color.slate.300}" },
+        "border-strong":  { "$value": "{color.slate.400}" },
+        "border-ink":     { "$value": "{color.blue.700}" },
+        "focus-ring":     { "$value": "{color.gold.500}" },
+        "selection-bg":   { "$value": "{color.gold.200}" }
+      },
+      "dark": {
+        "text-heading": { "$value": "{color.slate.50}" },
+        "text-body":    { "$value": "{color.slate.300}" },
+        "text-muted":   { "$value": "{color.slate.400}" },
+        "text-subtle":  { "$value": "{color.slate.500}" },
+        "text-strong":  { "$value": "{color.slate.50}" },
+        "text-inverse": { "$value": "{color.white}" },
+        "text-accent":  { "$value": "{color.gold.400}" },
+        "text-link":    { "$value": "{color.blue.300}" },
+        "surface-page":   { "$value": "#0A1322" },
+        "surface-card":   { "$value": "#111F33" },
+        "surface-sunken": { "$value": "#070E1A" },
+        "surface-ink":    { "$value": "#0D2238" },
+        "surface-ink-2":  { "$value": "#081627" },
+        "surface-accent-soft": { "$value": "#2A2207" },
+        "surface-brand-soft":  { "$value": "#102841" },
+        "control-bg":     { "$value": "#16263D" },
+        "control-track":  { "$value": "{color.slate.600}" },
+        "border-subtle":  { "$value": "#1F3047" },
+        "border-default": { "$value": "#2C405C" },
+        "border-strong":  { "$value": "#3E587B" },
+        "border-ink":     { "$value": "#1C3A5A" },
+        "focus-ring":     { "$value": "{color.gold.500}" },
+        "selection-bg":   { "$value": "{color.gold.200}" }
+      }
+    }
+  },
+  "fontFamily": {
+    "$type": "fontFamily",
+    "display": { "$value": ["Play", "ui-sans-serif", "system-ui", "sans-serif"], "$description": "Ships only 400 and 700 — never 500/600." },
+    "sans":    { "$value": ["Roboto", "ui-sans-serif", "system-ui", "-apple-system", "sans-serif"] },
+    "mono":    { "$value": ["Source Code Pro", "ui-monospace", "SFMono-Regular", "monospace"] }
+  },
+  "fontWeight": {
+    "$type": "fontWeight",
+    "regular":  { "$value": 400 },
+    "medium":   { "$value": 500 },
+    "semibold": { "$value": 600 },
+    "bold":     { "$value": 700 },
+    "display":  { "$value": 700, "$description": "The only bold weight Play offers." }
+  },
+  "fontSize": {
+    "$type": "dimension",
+    "2xs": { "$value": "0.6875rem" },
+    "xs":  { "$value": "0.75rem" },
+    "sm":  { "$value": "0.875rem" },
+    "md":  { "$value": "1rem", "$description": "base — 16px" },
+    "lg":  { "$value": "1.125rem" },
+    "xl":  { "$value": "1.375rem" },
+    "2xl": { "$value": "1.75rem" },
+    "3xl": { "$value": "2.25rem" },
+    "4xl": { "$value": "3rem" },
+    "5xl": { "$value": "3.75rem" },
+    "6xl": { "$value": "4.75rem" }
+  },
+  "lineHeight": {
+    "$type": "number",
+    "none":    { "$value": 1 },
+    "tight":   { "$value": 1.12 },
+    "snug":    { "$value": 1.28 },
+    "normal":  { "$value": 1.5 },
+    "relaxed": { "$value": 1.65 }
+  },
+  "letterSpacing": {
+    "$type": "dimension",
+    "tighter": { "$value": "-0.03em" },
+    "tight":   { "$value": "-0.015em" },
+    "normal":  { "$value": "0em" },
+    "wide":    { "$value": "0.02em" },
+    "wider":   { "$value": "0.08em" },
+    "caps":    { "$value": "0.14em", "$description": "Eyebrows / overlines." }
+  },
+  "spacing": {
+    "$type": "dimension",
+    "$description": "4px base unit.",
+    "0":  { "$value": "0" },
+    "1":  { "$value": "0.25rem" },
+    "2":  { "$value": "0.5rem" },
+    "3":  { "$value": "0.75rem" },
+    "4":  { "$value": "1rem" },
+    "5":  { "$value": "1.25rem" },
+    "6":  { "$value": "1.5rem" },
+    "8":  { "$value": "2rem" },
+    "10": { "$value": "2.5rem" },
+    "12": { "$value": "3rem" },
+    "16": { "$value": "4rem" },
+    "20": { "$value": "5rem" },
+    "24": { "$value": "6rem" },
+    "32": { "$value": "8rem" }
+  },
+  "container": {
+    "$type": "dimension",
+    "sm":  { "$value": "640px" },
+    "md":  { "$value": "768px" },
+    "lg":  { "$value": "1024px" },
+    "xl":  { "$value": "1200px" },
+    "2xl": { "$value": "1320px" }
+  },
+  "sectionRhythm": {
+    "$type": "dimension",
+    "default": { "$value": "{spacing.24}" },
+    "tight":   { "$value": "{spacing.16}" }
+  },
+  "radius": {
+    "$type": "dimension",
+    "$description": "Restrained / engineered — not pill-soft. full is reserved for pills, avatars, switches, status dots.",
+    "xs":   { "$value": "3px" },
+    "sm":   { "$value": "5px" },
+    "md":   { "$value": "8px" },
+    "lg":   { "$value": "12px" },
+    "xl":   { "$value": "16px" },
+    "2xl":  { "$value": "24px" },
+    "full": { "$value": "999px" }
+  },
+  "borderWidth": {
+    "$type": "dimension",
+    "default": { "$value": "1px" },
+    "thick":   { "$value": "2px" }
+  },
+  "shadow": {
+    "$type": "shadow",
+    "$description": "Blue-tinted ramp (color = blue-900 at low alpha), cool not black.",
+    "xs": { "$value": { "color": "rgba(0,19,43,0.06)", "offsetX": "0", "offsetY": "1px", "blur": "2px", "spread": "0" } },
+    "sm": { "$value": [
+      { "color": "rgba(0,19,43,0.08)", "offsetX": "0", "offsetY": "1px", "blur": "3px", "spread": "0" },
+      { "color": "rgba(0,19,43,0.06)", "offsetX": "0", "offsetY": "1px", "blur": "2px", "spread": "0" }
+    ] },
+    "md": { "$value": [
+      { "color": "rgba(0,19,43,0.10)", "offsetX": "0", "offsetY": "4px", "blur": "10px", "spread": "-2px" },
+      { "color": "rgba(0,19,43,0.06)", "offsetX": "0", "offsetY": "2px", "blur": "4px", "spread": "-2px" }
+    ] },
+    "lg": { "$value": [
+      { "color": "rgba(0,19,43,0.12)", "offsetX": "0", "offsetY": "12px", "blur": "24px", "spread": "-6px" },
+      { "color": "rgba(0,19,43,0.08)", "offsetX": "0", "offsetY": "4px", "blur": "8px", "spread": "-4px" }
+    ] },
+    "xl": { "$value": [
+      { "color": "rgba(0,19,43,0.18)", "offsetX": "0", "offsetY": "24px", "blur": "48px", "spread": "-12px" },
+      { "color": "rgba(0,19,43,0.10)", "offsetX": "0", "offsetY": "8px", "blur": "16px", "spread": "-8px" }
+    ] }
+  },
+  "focusRing": {
+    "$type": "shadow",
+    "$description": "Gold 3px outer halo on :focus-visible.",
+    "$value": { "color": "rgba(234,170,0,0.45)", "offsetX": "0", "offsetY": "0", "blur": "0", "spread": "3px" }
+  }
+}

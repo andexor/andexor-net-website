@@ -1,0 +1,42 @@
+/* Lucide icon → inline SVG. Reads icon node data from the Lucide UMD global
+   so icons render as real <svg> inside React without DOM-scanning. */
+function toPascal(name){
+  return name.replace(/(^\w|-\w)/g, s => s.replace('-','').toUpperCase());
+}
+function Icon({ name, size = 20, stroke = 2, className = '', style }) {
+  const lib = (window.lucide && (window.lucide.icons || window.lucide)) || {};
+  const node = lib[toPascal(name)] || lib[name];
+  // Lucide UMD icon node = ["svg", attrs, [ [tag, attrs], ... ] ]; children live at node[2].
+  const children = Array.isArray(node) ? (Array.isArray(node[2]) ? node[2] : []) : [];
+  const inner = children.map(([tag, attrs]) =>
+    `<${tag} ${Object.entries(attrs || {}).map(([k,v]) => `${k}="${v}"`).join(' ')} />`
+  ).join('');
+  return (
+    <svg
+      width={size} height={size} viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" strokeWidth={stroke} strokeLinecap="round" strokeLinejoin="round"
+      className={className} style={{ display:'block', flex:'none', ...style }}
+      dangerouslySetInnerHTML={{ __html: inner }}
+    />
+  );
+}
+
+/* Brand logo lockup used in header + footer. */
+function Logo({ light = false, compact = false }) {
+  return (
+    <a href="#top" style={{ display:'flex', alignItems:'center', gap:'11px', textDecoration:'none' }}>
+      <img src={(window.__resources && window.__resources.logoGold) || "../../assets/logo/logo-gold.svg"} alt="Andexor Network"
+           style={{ width:'38px', height:'38px' }} />
+      {!compact && (
+        <span style={{ display:'flex', flexDirection:'column', lineHeight:1 }}>
+          <span style={{ fontFamily:'var(--font-display)', fontWeight:700, fontSize:'19px',
+                         letterSpacing:'-0.02em', color: light ? '#FFF' : 'var(--text-heading)' }}>Andexor</span>
+          <span style={{ fontFamily:'var(--font-mono)', fontSize:'9px', letterSpacing:'0.2em',
+                         textTransform:'uppercase', color: light ? 'var(--gold-400)' : 'var(--text-accent)', marginTop:'3px' }}>Network, Inc.</span>
+        </span>
+      )}
+    </a>
+  );
+}
+
+Object.assign(window, { Icon, Logo });

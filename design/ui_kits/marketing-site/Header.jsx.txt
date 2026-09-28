@@ -1,0 +1,30 @@
+const { Button } = window.AndexorNetworkDesignSystem_d67969;
+
+function Header({ onProposal }) {
+  const [open, setOpen] = React.useState(false);
+  const nav = ['Services', 'About'];
+  return (
+    <header style={{
+      position:'sticky', top:0, zIndex:30, background:'linear-gradient(90deg, #475569, #28211A)',
+      backdropFilter:'saturate(140%) blur(10px)', WebkitBackdropFilter:'saturate(140%) blur(10px)',
+      borderBottom:'1px solid rgba(255,255,255,0.14)'
+    }}>
+      <div style={{ maxWidth:'var(--container-2xl)', margin:'0 auto', padding:'0 24px',
+                    height:'68px', display:'flex', alignItems:'center', justifyContent:'space-between' }}>
+        <Logo light />
+        <nav style={{ display:'flex', alignItems:'center', gap:'28px' }} className="an-desktop-nav">
+          {nav.map(n => (
+            <a key={n} href={'#'+n.toLowerCase()} style={{
+              fontSize:'14px', fontWeight:500, color:'rgba(255,255,255,0.85)', textDecoration:'none'
+            }} onMouseEnter={e=>e.currentTarget.style.color='#FFF'}
+               onMouseLeave={e=>e.currentTarget.style.color='rgba(255,255,255,0.85)'}>{n}</a>
+          ))}
+        </nav>
+        <div style={{ display:'flex', alignItems:'center', gap:'10px' }}>
+          <Button variant="accent" size="sm" rightIcon={<Icon name="arrow-right" size={15} />} onClick={onProposal}>Contact Us</Button>
+        </div>
+      </div>
+    </header>
+  );
+}
+Object.assign(window, { Header });
