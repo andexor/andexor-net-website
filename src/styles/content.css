@@ -18,9 +18,6 @@
   padding: 14px 24px;
 }
 
-/* The logo lockup's wordmark is white in the light variant only; here it sits
- * on a light surface, so the default (dark) treatment applies. */
-
 .an-content {
   padding: var(--space-12) 24px var(--space-16);
 }

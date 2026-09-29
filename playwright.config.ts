@@ -14,10 +14,14 @@ export default defineConfig({
     baseURL: "http://localhost:3000",
     trace: "on-first-retry",
   },
+  // Tests run against the production build (static export served by
+  // server.ts), the same output Docker serves. `next dev` cannot serve the
+  // not-found page under `output: "export"`, and it compiles pages lazily.
   webServer: {
-    command: "bun run dev",
+    command: "bun run build && bun run server.ts",
     url: "http://localhost:3000",
     reuseExistingServer: !process.env.CI,
+    timeout: 180_000,
   },
   projects: [
     // Desktop browsers — Chrome and Safari are the high-priority, thoroughly
