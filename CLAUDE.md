@@ -4,11 +4,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project status
 
-This repository is the Andexor Network, Inc. company website. As of now it contains no
-application code — only the [GitHub Spec Kit](https://github.com/github/spec-kit) (`specify-cli`
-v1.0.12) scaffolding for Spec-Driven Development (SDD). The current branch
-(`1-build-initial-home-page`) is the first feature branch, created by Spec Kit for building the
-initial home page, but no `specs/` directory or source tree exists yet.
+This repository is the Andexor Network, Inc. company website: a Next.js static site with a home
+page and Contact Us popup (`specs/001-homepage-contact-us/`) and Markdown content pages with a
+card layout, currently the Web Development page (`specs/002-content-pages-card-template/`, an
+as-built spec written after the fact). Spec Kit (`specify-cli` v1.0.12) scaffolding drives
+Spec-Driven Development (SDD).
 
 ## Spec-Driven Development workflow
 
@@ -16,9 +16,9 @@ This project is driven by Spec Kit's slash-command workflow rather than ad-hoc c
 proceeds through these skills, in order, each producing artifacts consumed by the next:
 
 1. `speckit-constitution` — establish/update the project's governing principles in
-   `.specify/memory/constitution.md`. **This file is currently an unfilled template**
-   (placeholders like `[PROJECT_NAME]`, `[PRINCIPLE_1_NAME]`) — it should be filled in before
-   principles are assumed to apply.
+   `.specify/memory/constitution.md` (currently v1.2.1, eight principles). Read it before
+   specifying or planning; it holds the always-dark, no-hover-underline, graceful-shutdown,
+   Markdown-content, toolchain, license-header, and spec-policy rules.
 2. `speckit-specify` — turn a natural-language feature description into a spec, creating a new
    numbered feature branch/directory (e.g. `specs/001-build-initial-home-page/`).
 3. `speckit-clarify` — resolve underspecified areas in the spec via targeted questions (run before
@@ -93,6 +93,19 @@ don't invent alternate `docker build`/`docker run` invocations):
 - `debug.sh` — same image and port mapping, but runs `/bin/bash` instead of the app, for
   poking around inside the container.
 
+The project is Apache-2.0 (`license` in `package.json`, which is deliberately not marked
+`"private"` so tools report the license correctly). No copyleft dependencies: the optional `sharp`
+dependency of Next.js (LGPL libvips) is replaced by the empty stub in `stubs/sharp` through
+`overrides` in `package.json`. The Dockerfile copies `stubs/` before `bun install
+--frozen-lockfile`, so keep that line. Update the license report by running `./setup.sh`, which
+appends a dated section to `reports/license-report.md` (append-only, never overwrite it, so
+do not add another script that writes the report) and fails if a GPL, LGPL, or AGPL license
+is found. Nothing is excluded from the report.
+
+Playwright e2e tests (`bun run test:e2e`) build the site and serve `out/` with `server.ts`
+(production mode), not `next dev`, because dev cannot serve the static-export 404 page. Port 3000
+must be free, or Playwright will reuse whatever is listening there.
+
 ## Markdown content pages
 
 Pages are authored as Markdown in `content/` (path = route, e.g. `content/about.md` -> `/about`)
@@ -101,6 +114,24 @@ using `src/lib/content.ts` (unified/remark/rehype) and styled by `src/styles/con
 user adds and edits these files themselves; do not convert them to hand-written `.tsx` pages.
 Authoring rules are in `content/README.md`. Content pages are intentionally not linked from the
 home page or footer until the user says a page is ready.
+
+## Contributing and setup
+
+Read `CONTRIBUTING.md` and `setup.md` (companions to the constitution, with `SECURITY.md`,
+`CODE_OF_CONDUCT.md`, `DCO`, `LICENSE`, and `NOTICE`). The rules that affect day-to-day work:
+
+- Work is issue-driven: a GitHub issue written as a user story (Description, Acceptance Criteria,
+  optional Technical Details), one branch per issue, and the spec updated before the change.
+- Commit with `git commit -s`, and end the subject with `Closes #N.` (or `Fixes #N.` for a bug
+  fix), for example `Updated copy for Web Development. Closes #9.`
+- Open a PR only when asked. Reviewer `andexor/write`, assigned to the user.
+- Prerequisites come from the scripts in `setup.md`. Bun, Docker, and Spec Kit are installed with
+  `install-bun.sh`, `install-docker.sh`, and `install-spec-kit.sh`. Playwright needs
+  `bunx playwright install-deps webkit`, though WebKit still hangs on the owner's machine.
+- Development targets Linux, preferably the latest Ubuntu LTS.
+- AI-generated code and text are reviewed before acceptance: no tests that pass but prove
+  nothing, and no machine-sounding prose.
+- Report security issues per `SECURITY.md`, never in public issues or PRs.
 
 ## License header
 

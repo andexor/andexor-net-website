@@ -8,6 +8,14 @@
 
 **Input**: User description: "Build a website based on the Homepage and Contact Us popup templates in the "Andexor Network Design System" from Claude Design. Don't worry about where the links point to right now. We will update them later."
 
+## Amendments
+
+### 2026-09-29 (retrospective, see `specs/002-content-pages-card-template/spec.md`)
+
+- Appearance is now always dark (FR-016, SC-007, the dark-scheme edge case, and the toggle
+  assumption are superseded).
+- The Web Development service card and footer link lead to `/web-development` (FR-017 amended).
+
 ## Clarifications
 
 ### Session 2026-09-28
@@ -107,8 +115,9 @@ service options are listed and grouped, and that a selection is retained when su
 
 ### Edge Cases
 
-- What happens if a visitor's browser or OS is set to a dark color scheme? The site MUST adapt
-  its appearance automatically; there is no manual light/dark toggle.
+- What happens if a visitor's browser or OS is set to a dark color scheme? ~~The site MUST adapt
+  its appearance automatically; there is no manual light/dark toggle.~~ **Superseded by
+  002:** the site always renders the dark palette and there is no toggle.
 - What happens if a visitor navigates primarily by keyboard? Every interactive element (buttons,
   form fields, selector, close control) MUST be reachable and operable via keyboard, with a
   visible focus indicator.
@@ -164,9 +173,12 @@ service options are listed and grouped, and that a selection is retained when su
   visible focus indicator when focused. For the primary need field, a native `<select>` element's
   own browser-provided keyboard behavior satisfies this requirement; no custom
   dropdown/keyboard handling is required.
-- **FR-016**: The site's visual appearance (light/dark) MUST follow the visitor's operating
-  system preference automatically; the system MUST NOT provide a manual theme toggle.
-- **FR-017**: Navigation, footer, and service card links MAY point to placeholder destinations
+- **FR-016**: ~~The site's visual appearance (light/dark) MUST follow the visitor's operating
+  system preference automatically; the system MUST NOT provide a manual theme toggle.~~
+  **Superseded by 002 FR-024:** the site MUST always render the dark palette regardless of the
+  visitor's system setting, and MUST NOT provide a manual theme toggle.
+- **FR-017**: (Amended by 002 FR-023: the Web Development service card and footer link now lead
+  to `/web-development`; all other links remain placeholders.) Navigation, footer, and service card links MAY point to placeholder destinations
   for this feature; resolving them to final destinations is out of scope and will be addressed
   in a follow-up change. Activating a placeholder link MUST be a no-op (no navigation, no error).
 - **FR-018**: Actual delivery of submitted Contact Requests to a real destination (e.g. a CRM
@@ -238,8 +250,9 @@ service options are listed and grouped, and that a selection is retained when su
   consistent with standard Lighthouse mobile throttling.
 - **SC-006**: 100% of interactive elements on the page (links, buttons, form fields, popup
   close control) are reachable and operable using keyboard navigation alone.
-- **SC-007**: A visitor whose system is set to dark mode sees an appropriately adapted color
-  scheme automatically, with no action required on their part.
+- **SC-007**: ~~A visitor whose system is set to dark mode sees an appropriately adapted color
+  scheme automatically, with no action required on their part.~~ **Superseded by 002 SC-003:**
+  visitors on light and dark systems see an identical dark page.
 - **SC-008**: Closing and reopening the contact popup always returns the visitor to a blank
   Contact Request form, verified across repeated open/close/submit cycles.
 
@@ -254,8 +267,8 @@ service options are listed and grouped, and that a selection is retained when su
 - Submitting the contact form only needs to demonstrate the client-side experience (validation
   and confirmation state); wiring it to a real email/CRM/backend destination is a separate,
   future concern.
-- There is no manual light/dark mode toggle; appearance follows the operating system's
-  preference only, per the design system.
+- There is no manual light/dark mode toggle. ~~Appearance follows the operating system's
+  preference only, per the design system.~~ Superseded by 002: the site is always dark.
 - The "Tweaks panel" and other design-exploration-only tooling shown in the design system's
   reference files are not part of the production site.
 - Hosting and deployment target (provider, domain) are out of scope for this feature and will
