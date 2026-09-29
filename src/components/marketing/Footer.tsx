@@ -23,6 +23,10 @@ const COLUMNS = [
   { heading: "COMPANY", items: ["About", "Contact"] },
 ];
 
+const ITEM_HREFS: Record<string, string> = {
+  "Web Development": "/web-development",
+};
+
 function slugify(label: string) {
   return label
     .toLowerCase()
@@ -64,7 +68,7 @@ export function Footer() {
             <ul className="an-footer__col-list">
               {column.items.map((item) => (
                 <li key={item}>
-                  <a href={`#${slugify(item)}`} className="an-footer__col-link">
+                  <a href={ITEM_HREFS[item] ?? `#${slugify(item)}`} className="an-footer__col-link">
                     {item}
                   </a>
                 </li>

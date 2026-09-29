@@ -25,7 +25,7 @@ export function Services() {
               key={service.title}
               hover
               as="a"
-              href={`#${service.tag.toLowerCase()}`}
+              href={service.href ?? `#${service.tag.toLowerCase()}`}
               className="an-services__card"
             >
               <div className="an-services__card-top">
