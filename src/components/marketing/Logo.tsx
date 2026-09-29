@@ -5,11 +5,12 @@
 export interface LogoProps {
   light?: boolean;
   compact?: boolean;
+  href?: string;
 }
 
-export function Logo({ light = false, compact = false }: LogoProps) {
+export function Logo({ light = false, compact = false, href = "#top" }: LogoProps) {
   return (
-    <a href="#top" className="an-logo-lockup">
+    <a href={href} className="an-logo-lockup">
       {/* eslint-disable-next-line @next/next/no-img-element -- static SVG asset, no next/image optimization needed for static export */}
       <img src="/logo/logo-gold.svg" alt="Andexor Network" className="an-logo-mark" />
       {!compact && (
