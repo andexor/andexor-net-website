@@ -11,7 +11,14 @@
 .an-cardhero {
   position: relative;
   overflow: hidden;
-  background: var(--surface-ink);
+  /* Fades from the ink band into the page background so the hero bleeds into
+   * the cards section with no hard edge. */
+  background: linear-gradient(
+    to bottom,
+    var(--surface-ink) 0%,
+    var(--surface-ink) 35%,
+    var(--surface-page) 100%
+  );
   padding: var(--space-8) 24px calc(var(--space-12) + 56px);
 }
 
@@ -250,6 +257,7 @@
   .an-cards {
     display: flex;
     flex-direction: column;
+    align-items: stretch;
     margin-top: -32px;
     gap: var(--space-5);
   }

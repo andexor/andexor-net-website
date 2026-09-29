@@ -10,7 +10,7 @@ featured:
   - How about an AI agent?
 ---
 
-# Web Development Services
+# Web Development
 
 ## Need a new website?
 
