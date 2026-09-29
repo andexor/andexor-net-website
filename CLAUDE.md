@@ -79,6 +79,15 @@ don't invent alternate `docker build`/`docker run` invocations):
 - `debug.sh` — same image and port mapping, but runs `/bin/bash` instead of the app, for
   poking around inside the container.
 
+## Markdown content pages
+
+Pages are authored as Markdown in `content/` (path = route, e.g. `content/about.md` -> `/about`)
+and rendered to static HTML at build time by the catch-all route `src/app/[...slug]/page.tsx`,
+using `src/lib/content.ts` (unified/remark/rehype) and styled by `src/styles/content.css`. The
+user adds and edits these files themselves; do not convert them to hand-written `.tsx` pages.
+Authoring rules are in `content/README.md`. Content pages are intentionally not linked from the
+home page or footer until the user says a page is ready.
+
 ## License header
 
 Every generated source code file (`.ts`/`.tsx`/`.js`/`.css`, `Dockerfile`, shell scripts, etc.)

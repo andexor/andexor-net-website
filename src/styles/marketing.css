@@ -241,7 +241,8 @@
   margin-top: 40px;
 }
 
-.an-services__card {
+.an-services__card,
+.an-services__card:hover {
   text-decoration: none;
   display: block;
 }

@@ -25,7 +25,7 @@ async function resolveFile(pathname: string) {
   return null;
 }
 
-Bun.serve({
+const server = Bun.serve({
   port: PORT,
   hostname: "0.0.0.0",
   async fetch(req) {
@@ -40,3 +40,19 @@ Bun.serve({
 });
 
 console.log(`Serving ${OUT_DIR} on :${PORT}`);
+
+// In Docker this process is PID 1, and the kernel ignores SIGINT/SIGTERM for
+// PID 1 unless it installs handlers. Without these, ^C and `docker stop` do
+// nothing until Docker escalates to SIGKILL. Stop accepting connections, let
+// in-flight requests finish, then exit so `--rm` removes the container.
+let shuttingDown = false;
+function shutdown(signal: string) {
+  if (shuttingDown) return;
+  shuttingDown = true;
+  console.log(`Received ${signal}, shutting down`);
+  // Safety net in case a connection refuses to close.
+  setTimeout(() => process.exit(1), 5000).unref();
+  server.stop().then(() => process.exit(0));
+}
+process.on("SIGINT", () => shutdown("SIGINT"));
+process.on("SIGTERM", () => shutdown("SIGTERM"));
