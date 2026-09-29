@@ -133,37 +133,39 @@
 }
 
 /* ============================================================
-   DARK MODE — system setting only (prefers-color-scheme).
-   No in-app toggle. Brand blue/gold scales are unchanged;
-   only the semantic surface/text/border aliases flip so every
-   token pairing stays legible in either OS theme.
+   DARK LOOK — always on. Andexor Network deliberately diverges
+   from design/tokens/colors.css here: this site renders the dark
+   palette whatever the OS color-scheme setting is, so light and
+   dark visitors see the same page. No in-app toggle. Brand blue/
+   gold scales are unchanged; only the semantic surface/text/
+   border aliases differ from the light defaults above.
    ============================================================ */
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* Text */
-    --text-heading: var(--slate-50);
-    --text-body:    var(--slate-300);
-    --text-muted:   var(--slate-400);
-    --text-subtle:  var(--slate-500);
-    --text-strong:  var(--slate-50);
-    --text-accent:  var(--gold-400);   /* brighter gold for dark surfaces */
-    --text-link:    var(--blue-300);
+:root {
+  color-scheme: dark;
 
-    /* Surfaces (dark blue-blacks, lifted in steps) */
-    --surface-page:   #0A1322;
-    --surface-card:   #111F33;
-    --surface-sunken: #070E1A;
-    --surface-ink:    #0D2238;   /* brand panels, lifted off the page */
-    --surface-ink-2:  #081627;
-    --surface-accent-soft: #2A2207;
-    --surface-brand-soft:  #102841;
-    --control-bg:     #16263D;
-    --control-track:  var(--slate-600);
+  /* Text */
+  --text-heading: var(--slate-50);
+  --text-body:    var(--slate-300);
+  --text-muted:   var(--slate-400);
+  --text-subtle:  var(--slate-500);
+  --text-strong:  var(--slate-50);
+  --text-accent:  var(--gold-400);   /* brighter gold for dark surfaces */
+  --text-link:    var(--blue-300);
 
-    /* Borders */
-    --border-subtle:  #1F3047;
-    --border-default: #2C405C;
-    --border-strong:  #3E587B;
-    --border-ink:     #1C3A5A;
-  }
+  /* Surfaces (dark blue-blacks, lifted in steps) */
+  --surface-page:   #0A1322;
+  --surface-card:   #111F33;
+  --surface-sunken: #070E1A;
+  --surface-ink:    #0D2238;   /* brand panels, lifted off the page */
+  --surface-ink-2:  #081627;
+  --surface-accent-soft: #2A2207;
+  --surface-brand-soft:  #102841;
+  --control-bg:     #16263D;
+  --control-track:  var(--slate-600);
+
+  /* Borders */
+  --border-subtle:  #1F3047;
+  --border-default: #2C405C;
+  --border-strong:  #3E587B;
+  --border-ink:     #1C3A5A;
 }

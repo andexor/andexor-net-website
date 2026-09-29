@@ -34,5 +34,5 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function MarkdownPage({ params }: PageProps) {
   const page = await getContentPage((await params).slug);
   if (!page) notFound();
-  return <ContentPage html={page.html} />;
+  return <ContentPage html={page.html} cards={page.cards} />;
 }

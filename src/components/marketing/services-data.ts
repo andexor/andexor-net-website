@@ -9,6 +9,7 @@ export interface ServiceOffering {
   tag: string;
   badgeTone: "brand" | "accent";
   title: string;
+  href?: string;
   description: string;
   bullets: string[];
 }
@@ -21,6 +22,7 @@ export const SERVICES: ServiceOffering[] = [
     tag: "Web",
     badgeTone: "brand",
     title: "Web Development",
+    href: "/web-development",
     description:
       "We'll create or update your site with a strong technical foundation to handle an increase in traffic and sales.",
     bullets: ["Brochure site, blog, forms, shop", "Content management system", "Web application"],

@@ -61,6 +61,20 @@ install script (or manually creating `.gitignore`) is expected to fix that.
 
 Follow design/README.md and design/DESIGN.md for all UI. Use the CSS variables in design/tokens. Obey the brand and copy rules in design/README.md.
 
+## Always dark
+
+The site always renders the dark palette, whatever the visitor's OS light/dark setting is. This
+is set in `src/styles/tokens/colors.css` (the dark alias values are unconditional, with
+`color-scheme: dark`) and deliberately differs from `design/tokens/colors.css`, which follows the
+OS setting. Don't add `prefers-color-scheme` light/dark switching back, and keep this override if
+the design tokens are re-copied. There is no light theme to design or test.
+
+## No underline on hover
+
+Never underline text on hover (`a:hover { text-decoration: underline }` or similar). It causes a
+rendering flicker and is never the right hover cue. Signal hover with a color change instead. If
+a design-system or framework base stylesheet ships an underline-on-hover rule, remove it.
+
 ## Toolchain
 
 The site is built with Next.js using Static Site Generation (SSG, `output: "export"`) — no
