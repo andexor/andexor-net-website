@@ -4,9 +4,9 @@
 
 import { expect, test } from "@playwright/test";
 
-// FR-016 / SC-007: appearance follows the OS color-scheme preference
-// automatically, with no manual toggle.
-test("adapts to a dark OS color-scheme preference automatically", async ({ page }) => {
+// The site always renders the dark look, whatever the OS color-scheme
+// preference is (deliberate divergence from FR-016; see src/styles/tokens/colors.css).
+test("looks the same in light and dark OS color-scheme preferences", async ({ page }) => {
   await page.emulateMedia({ colorScheme: "light" });
   await page.goto("/");
   const lightBodyBg = await page.evaluate(() => getComputedStyle(document.body).backgroundColor);
@@ -15,7 +15,8 @@ test("adapts to a dark OS color-scheme preference automatically", async ({ page 
   await page.reload();
   const darkBodyBg = await page.evaluate(() => getComputedStyle(document.body).backgroundColor);
 
-  expect(darkBodyBg).not.toBe(lightBodyBg);
+  expect(lightBodyBg).toBe(darkBodyBg);
+  expect(darkBodyBg).toBe("rgb(10, 19, 34)");
 });
 
 test("provides no manual light/dark toggle control", async ({ page }) => {

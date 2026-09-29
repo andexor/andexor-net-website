@@ -78,3 +78,58 @@ describe("renderMarkdown", () => {
     expect(html).toContain('<a href="/about">y</a>');
   });
 });
+
+describe("cards layout", () => {
+  const md = [
+    "---",
+    "layout: cards",
+    "eyebrow: Tech",
+    "image: /pic.svg",
+    "image_alt: A picture",
+    "featured:",
+    "  - Third?",
+    "---",
+    "# Page title",
+    "",
+    "## First?",
+    "",
+    ">> One",
+    "",
+    "Body one.",
+    "",
+    "## Second?",
+    "",
+    "- a",
+    "- b",
+    "",
+    "## Third?",
+    "",
+    "Body three.",
+    "",
+  ].join("\n");
+
+  it("turns each ## section into a card, dealt into two columns", async () => {
+    write("cards.md", md);
+    const page = await getContentPage(["cards"], dir);
+    expect(page?.html).toBe("");
+    const cards = page!.cards!;
+    expect(cards.headingHtml).toBe("Page title");
+    expect(cards.eyebrow).toBe("Tech");
+    expect(cards.image).toEqual({ src: "/pic.svg", alt: "A picture" });
+    expect(cards.cardsHtml.match(/<article /g)).toHaveLength(3);
+    expect(cards.cardsHtml.match(/an-cards__col/g)).toHaveLength(2);
+    // Odd cards share the first column, even cards the second.
+    const [first, second] = cards.cardsHtml.split('<div class="an-cards__col">').slice(1);
+    expect(first).toContain("First?");
+    expect(first).toContain("Third?");
+    expect(second).toContain("Second?");
+  });
+
+  it("uses the >> line as the card label and marks featured cards", async () => {
+    const cards = (await getContentPage(["cards"], dir))!.cards!;
+    expect(cards.cardsHtml).toContain('<p class="an-tile__eyebrow">One</p>');
+    expect(cards.cardsHtml).not.toContain("<blockquote");
+    expect(cards.cardsHtml).toMatch(/an-tile an-tile--ink" style="--i:3"/);
+    expect(cards.cardsHtml).not.toMatch(/an-tile an-tile--ink" style="--i:1"/);
+  });
+});

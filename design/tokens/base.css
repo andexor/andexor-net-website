@@ -24,7 +24,7 @@ h1, h2, h3, h4, h5 {
 }
 
 a { color: var(--text-link); text-decoration: none; }
-a:hover { text-decoration: underline; }
+/* No underline on hover, ever. Links signal hover through color only. */
 
 ::selection { background: var(--selection-bg); color: var(--blue-900); }
 

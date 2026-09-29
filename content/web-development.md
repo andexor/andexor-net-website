@@ -1,6 +1,13 @@
 ---
 title: Web Development
 description: Web Development
+layout: cards
+eyebrow: Technical services
+image: /web-development.svg
+image_alt: Isometric laptop showing code, with gears and a browser window floating beside it
+featured:
+  - Need a web application?
+  - How about an AI agent?
 ---
 
 # Web Development Services

@@ -27,6 +27,37 @@ draft: true
 - `description`: meta description. Optional.
 - `draft: true`: skips the page entirely until you remove the line.
 
+## Card layout
+
+Add `layout: cards` to the frontmatter to render each `##` section as its own card under a
+dark hero band. The `#` heading becomes the hero headline, and any text between it and the
+first `##` becomes the hero lede.
+
+```markdown
+---
+layout: cards
+eyebrow: Technical services
+image: /web-development.svg
+image_alt: Describe the illustration
+featured:
+  - Need a web application?
+---
+
+# Page headline
+
+## Card heading?
+
+>> Card label
+
+Card body.
+```
+
+- `eyebrow`: small label above the hero headline.
+- `image`, `image_alt`: hero illustration from `public/`.
+- `featured`: headings (exact text) that use the dark card.
+- `>> Label` on the line after a `##` heading is the card's small label. It is optional.
+- Cards alternate between two columns and stack in order on narrow screens.
+
 ## Writing rules
 
 Follow the brand and copy rules in `design/README.md`: no italics, no emoji, Oxford comma,
