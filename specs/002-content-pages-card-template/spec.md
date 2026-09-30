@@ -13,6 +13,9 @@
 > site does today so that future changes have a written baseline. Where it conflicts with
 > `specs/001-homepage-contact-us/spec.md`, this spec wins and the conflicts are recorded in
 > that spec's Amendments section.
+>
+> Amended by `specs/007-no-link-underlines/spec.md`: links are never underlined, at rest or on
+> hover (this spec allowed underlined body links at rest).
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -211,8 +214,8 @@ the color changes and no underline appears or disappears.
 
 1. **Given** any link, **When** a visitor hovers over it, **Then** its color changes and no
    underline is added.
-2. **Given** a link in body text on a content page that is underlined at rest, **When** the
-   visitor hovers, **Then** only its color changes and the underline neither grows nor shrinks.
+2. **Given** a link in body text on a content page, **When** the visitor hovers, **Then** only its
+   color changes; it has no underline at rest, on hover, or on focus (amended by spec 007).
 3. **Given** the stylesheets, **When** searched for a hover rule that adds an underline, **Then**
    none exist, including in the design-system base styles.
 
@@ -346,7 +349,8 @@ the color changes and no underline appears or disappears.
   is no server-side rendering or database.
 - The site owner, not visitors, supplies all Markdown. Content is trusted.
 - Design-system rules in `design/README.md` and `design/DESIGN.md` govern look and copy.
-- Underlined links in body text (at rest) are allowed. Only underline on hover is banned.
+- Links are never underlined, at rest or on hover (amended by spec 007; this line used to allow
+  underlined body links at rest).
 - Supersedes: FR-016, SC-007, the dark-scheme edge case, and the "no manual toggle; follows
   the OS" assumption in `specs/001-homepage-contact-us/spec.md`; FR-017 in that spec no longer
   applies to the Web Development links.

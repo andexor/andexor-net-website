@@ -16,8 +16,8 @@ This project is driven by Spec Kit's slash-command workflow rather than ad-hoc c
 proceeds through these skills, in order, each producing artifacts consumed by the next:
 
 1. `speckit-constitution` — establish/update the project's governing principles in
-   `.specify/memory/constitution.md` (currently v1.2.2, eight principles). Read it before
-   specifying or planning; it holds the always-dark, no-hover-underline, graceful-shutdown,
+   `.specify/memory/constitution.md` (currently v1.3.1, eight principles). Read it before
+   specifying or planning; it holds the always-dark, no-link-underline, graceful-shutdown,
    Markdown-content, toolchain, license-header, and spec-policy rules.
 2. `speckit-specify` — turn a natural-language feature description into a spec, creating a new
    numbered feature branch/directory (e.g. `specs/001-build-initial-home-page/`).
@@ -69,11 +69,18 @@ is set in `src/styles/tokens/colors.css` (the dark alias values are unconditiona
 OS setting. Don't add `prefers-color-scheme` light/dark switching back, and keep this override if
 the design tokens are re-copied. There is no light theme to design or test.
 
-## No underline on hover
+## No underline on links
 
-Never underline text on hover (`a:hover { text-decoration: underline }` or similar). It causes a
-rendering flicker and is never the right hover cue. Signal hover with a color change instead. If
-a design-system or framework base stylesheet ships an underline-on-hover rule, remove it.
+Never underline a link, at rest, on hover, or on focus (`a { text-decoration: underline }`,
+`a:hover { text-decoration: underline }`, or similar). Hover underline causes a rendering flicker,
+and links look best without underlines, like the footer links. Signal hover with a color change and
+keyboard focus with the ring. A link that is not underlined at rest must NEVER gain an underline on
+hover, whatever a design-system document, framework default, or example says. If a design-system or
+framework stylesheet or document (for example `design/DESIGN.md`, "Hover" paragraph) ships or
+describes an underline rule, remove or correct it when you find it. Do not ask the owner again. Because there is no underline, links in body text must stand out by color: inside
+`.an-prose` and `.an-tile`, body text is `--slate-50` and links are `--blue-400` (hover
+`--blue-300`), which passes the WCAG 2.1 AA link-versus-text check. A link inside a featured
+(`.an-tile--ink`) card would need its own color. Keep this rule when adding pages or components.
 
 ## Toolchain
 

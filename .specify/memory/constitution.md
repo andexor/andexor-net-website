@@ -1,9 +1,15 @@
 <!--
 Sync Impact Report
-- Version change: 1.2.1 → 1.2.2 (PATCH: one branch per issue is now a suggestion, not a rule,
+- Version change: 1.2.2 → 1.3.1 (MINOR 1.3.0, then PATCH 1.3.1 to say explicitly that a link not
+  underlined at rest never gains an underline on hover, and that conflicting design-system text is
+  corrected; design/DESIGN.md line 112 was fixed). 1.3.0 details (MINOR: Principle VI is materially expanded. No link is underlined
+  at rest, on hover, or on focus; the earlier allowance for underlined inline body links is
+  removed. Owner decision, specs/007-no-link-underlines. Body links stay distinguishable by color
+  at WCAG 2.1 AA contrast. Templates in .specify/templates/ checked: none mention link underlines).
+  Earlier: 1.2.1 → 1.2.2 (PATCH: one branch per issue is now a suggestion, not a rule,
   to avoid ceremony on small changes). Earlier: 1.1.0 → 1.2.1 (MINOR for 1.2.0, then PATCH 1.2.1 for the license policy: materially expanded Development Workflow and Technology
   Constraints, based on CONTRIBUTING.md, SECURITY.md, setup.md, and NOTICE added 2026-09-29)
-- Modified principles: none
+- Modified principles: VI (no link underlines at all; heading unchanged)
 - Added principles: none
 - Added guidance: issue-first workflow with commit trailer rule, sign-off meaning (Code of
   Conduct and DCO), AI-generated content rules, supported operating systems, dependency audit
@@ -72,12 +78,19 @@ Rationale: Without a test suite as a safety net, a marketing site accumulates si
 The site MUST always render the dark palette, whatever the visitor's operating system light or
 dark setting is. It MUST NOT offer a theme toggle, and no light theme is designed or tested. The
 always-dark tokens in `src/styles/tokens/colors.css` deliberately differ from the design
-system's `design/tokens/colors.css` and MUST be kept if the design tokens are re-copied. Text MUST
-NOT gain an underline on hover, in any stylesheet including design-system base styles; hover MUST
-be signaled by a color change. Underlines at rest on inline body links are allowed.
+system's `design/tokens/colors.css` and MUST be kept if the design tokens are re-copied. Links
+MUST NOT be underlined at rest, on hover, or on focus, in any stylesheet including design-system
+base styles. A link that is not underlined at rest MUST NEVER gain an underline on hover or on
+focus, even when a design-system document, framework default, or example says "links underline";
+this rule wins over all of them, and any such text MUST be corrected when found. Hover MUST be
+signaled by a color change and keyboard focus by a visible ring. Links
+inside body text MUST stay distinguishable from the surrounding text by color, at the contrast
+WCAG 2.1 AA requires, without relying on an underline.
 
-Rationale: One look for every visitor keeps the brand consistent, and hover underlines cause a
-visible rendering flicker.
+Rationale: One look for every visitor keeps the brand consistent, hover underlines cause a
+visible rendering flicker, and footer-style links without underlines look cleaner than mixed
+styles. Removing the underline only passes accessibility if body links differ enough in color
+from the text.
 
 ### VII. Graceful Container Shutdown
 Any app run in a Docker container MUST stop on the first `Ctrl+C` (SIGINT) and on `docker stop`
@@ -190,4 +203,4 @@ MUST be explicitly justified in the relevant artifact rather than silently intro
 are companion documents for contributors; where they conflict with this constitution, this
 constitution wins until one of them is amended.
 
-**Version**: 1.2.2 | **Ratified**: 2026-09-28 | **Last Amended**: 2026-09-30
+**Version**: 1.3.1 | **Ratified**: 2026-09-28 | **Last Amended**: 2026-09-30

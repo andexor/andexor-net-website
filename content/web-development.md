@@ -12,21 +12,11 @@ featured:
 
 <!--
 
-Here are the prompts I used to create public/web-development.png using recraft.ai.
+Here is the prompt I used to create public/web-development.png using recraft.ai:
 
 Please create a modern 3D isometric icon illustration that represents web development services.
 
-I like #2 the best. You can remove the other options. But option #2 does not have a keyboard. Please add a keyboard like the one in option #1. The purple is pretty dark. Can we lighten it up some? Let's remove those faint, thin square lines. They are kind of distracting.
-
-Make the background transparent.
-
-What would this image look like, given the color palette I just gave you? Feel free to add shades of these colors for smoothness and depth.
-
-Can you make the computer screen and lines of code and the floating window look the same as they did in the previous version? Expand the color palette as needed.
-
-This is beautiful and unique and pretty much on brand. BTW, for future reference, my company's colors are defined as follows: The primary color is called Andexor Blue (#002855) and the accent color is called Old Gold (#EAAA00). No need to change anything right now. This is FYI.
-
-In the previous version, the area between and round the keys on the keyboard had a better contrast against the keys. In this golden version, there appears to be less contrast. Can you make that gap a slightly darker color?
+BTW, for future reference, my company's colors are defined as follows: The primary color is called Andexor Blue (#002855) and the accent color is called Old Gold (#EAAA00). No need to change anything right now. This is FYI.
 
 -->
 

@@ -109,7 +109,7 @@ Three families, all Google Fonts (self-host before production):
 
 **Animation:** restrained and functional. Transitions 0.15s (color/border) to 0.18s (lift) on `ease`. No bounce, no infinite decorative loops, no parallax.
 
-**Hover:** buttons darken (primary → blue-700, accent → gold-400); secondary gains blue-400 border + blue-50 wash; links underline; nav items shift slate→blue; cards lift 2px + deeper shadow + blue-200 border.
+**Hover:** buttons darken (primary → blue-700, accent → gold-400); secondary gains blue-400 border + blue-50 wash; links change color only and NEVER gain an underline on hover (a link that is not underlined at rest must never gain one on hover; this overrides the design system's original "links underline" rule, per the Andexor Network, Inc. website constitution, Principle VI); nav items shift slate→blue; cards lift 2px + deeper shadow + blue-200 border.
 
 **Press:** 1px downward translate; primary deepens to blue-900, accent to gold-600.
 
