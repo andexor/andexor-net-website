@@ -42,7 +42,7 @@ test.describe("Link style", () => {
   test("every body, card, and footer link is not underlined on hover", async ({ page }) => {
     for (const url of ["/web-development", "/nope", "/"]) {
       await page.goto(url);
-      const links = page.locator(".an-prose a, .an-tile a, footer a");
+      const links = page.locator(".an-prose a, .an-tile a, .an-cardhero__intro a, footer a");
       const count = await links.count();
       for (let i = 0; i < count; i++) {
         const link = links.nth(i);
@@ -57,7 +57,8 @@ test.describe("Link style", () => {
   test("the not-found link is blue-400 on slate-50 text, and changes color on hover", async ({ page }) => {
     await page.goto("/nope");
     const link = page.getByRole("link", { name: "Go to the home page" });
-    const paragraph = page.locator(".an-prose p");
+    // The not-found page's text sits in the hero intro (spec 006), which uses the same colors as .an-prose and .an-tile.
+    const paragraph = page.locator(".an-cardhero__intro p");
     expect(await paragraph.evaluate((p) => getComputedStyle(p).color)).toBe("rgb(248, 250, 252)");
     const rest = await link.evaluate((a) => getComputedStyle(a).color);
     expect(rest).toBe("rgb(74, 139, 208)");
@@ -82,9 +83,9 @@ test.describe("Link style", () => {
     test.skip(browserName === "webkit", "Safari skips links when tabbing by default");
     for (const url of ["/nope", "/web-development"]) {
       await page.goto(url);
-      const count = await page.locator(".an-prose a, .an-tile a").count();
+      const count = await page.locator(".an-prose a, .an-tile a, .an-cardhero__intro a").count();
       for (let i = 0; i < count; i++) {
-        const link = page.locator(".an-prose a, .an-tile a").nth(i);
+        const link = page.locator(".an-prose a, .an-tile a, .an-cardhero__intro a").nth(i);
         await link.focus();
         await page.keyboard.press("Tab");
         await page.keyboard.press("Shift+Tab");

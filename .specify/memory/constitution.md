@@ -1,6 +1,9 @@
 <!--
 Sync Impact Report
-- Version change: 1.2.2 → 1.3.1 (MINOR 1.3.0, then PATCH 1.3.1 to say explicitly that a link not
+- Version change: 1.3.1 → 1.3.2 (PATCH: Principle VIII names the framework not-found page as the
+  one hand-written page, since it is not a routable content page and authoring it as Markdown
+  would publish a /404 route; owner decision, specs/006-not-found-page-style). Earlier: 1.2.2 →
+  1.3.1 (MINOR 1.3.0, then PATCH 1.3.1 to say explicitly that a link not
   underlined at rest never gains an underline on hover, and that conflicting design-system text is
   corrected; design/DESIGN.md line 112 was fixed). 1.3.0 details (MINOR: Principle VI is materially expanded. No link is underlined
   at rest, on hover, or on focus; the earlier allowance for underlined inline body links is
@@ -9,7 +12,8 @@ Sync Impact Report
   Earlier: 1.2.1 → 1.2.2 (PATCH: one branch per issue is now a suggestion, not a rule,
   to avoid ceremony on small changes). Earlier: 1.1.0 → 1.2.1 (MINOR for 1.2.0, then PATCH 1.2.1 for the license policy: materially expanded Development Workflow and Technology
   Constraints, based on CONTRIBUTING.md, SECURITY.md, setup.md, and NOTICE added 2026-09-29)
-- Modified principles: VI (no link underlines at all; heading unchanged)
+- Modified principles: VIII (not-found page exception); earlier VI (no link underlines at all;
+  heading unchanged)
 - Added principles: none
 - Added guidance: issue-first workflow with commit trailer rule, sign-off meaning (Code of
   Conduct and DCO), AI-generated content rules, supported operating systems, dependency audit
@@ -107,8 +111,11 @@ unless the process handles them.
 ### VIII. Markdown-Authored Content Pages
 Pages other than the home page MUST be authored as Markdown files under `content/`, where the path
 is the route, and rendered to static HTML at build time. They MUST NOT be converted to
-hand-written page components. A content page MUST NOT be linked from the home page or footer
-until the site owner says it is ready. Authoring rules live in `content/README.md`.
+hand-written page components. The one exception is the framework's not-found page
+(`src/app/not-found.tsx`), which is not a routable content page: it is answered for any unknown
+address, so it stays a component, and it renders through the shared page shell. A content page
+MUST NOT be linked from the home page or footer until the site owner says it is ready. Authoring
+rules live in `content/README.md`.
 
 Rationale: The owner writes and edits page copy directly, and unlinked pages keep unfinished work
 out of customers' view.
@@ -203,4 +210,4 @@ MUST be explicitly justified in the relevant artifact rather than silently intro
 are companion documents for contributors; where they conflict with this constitution, this
 constitution wins until one of them is amended.
 
-**Version**: 1.3.1 | **Ratified**: 2026-09-28 | **Last Amended**: 2026-09-30
+**Version**: 1.3.2 | **Ratified**: 2026-09-28 | **Last Amended**: 2026-09-30

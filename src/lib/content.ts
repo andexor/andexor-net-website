@@ -32,6 +32,9 @@ export interface CardsLayout {
   headingHtml: string;
   introHtml: string;
   cardsHtml: string;
+  // The faint engineering grid behind the hero is shown unless this is false
+  // (specs/006-not-found-page-style). Markdown pages never set it.
+  grid?: boolean;
 }
 
 export interface ContentPage {

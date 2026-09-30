@@ -31,4 +31,4 @@
 
 ## Notes
 
-- All items pass on the first review.
+- All items pass on the first review. FR-013 and SC-006 (no redirect) added afterward, still passing.

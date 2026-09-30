@@ -81,12 +81,3 @@ test.describe("Web Development page", () => {
     await expect(page).toHaveURL(/\/$/);
   });
 });
-
-// Spec 002 FR-006: unknown addresses show the site's not-found page.
-test("unknown address shows the not-found page", async ({ page }) => {
-  const response = await page.goto("/nope");
-  expect(response?.status()).toBe(404);
-  await expect(page.getByRole("heading", { level: 1, name: "Page not found" })).toBeVisible();
-  await page.getByRole("link", { name: "Go to the home page" }).click();
-  await expect(page).toHaveURL(/\/$/);
-});

@@ -16,7 +16,7 @@ This project is driven by Spec Kit's slash-command workflow rather than ad-hoc c
 proceeds through these skills, in order, each producing artifacts consumed by the next:
 
 1. `speckit-constitution` — establish/update the project's governing principles in
-   `.specify/memory/constitution.md` (currently v1.3.1, eight principles). Read it before
+   `.specify/memory/constitution.md` (currently v1.3.2, eight principles). Read it before
    specifying or planning; it holds the always-dark, no-link-underline, graceful-shutdown,
    Markdown-content, toolchain, license-header, and spec-policy rules.
 2. `speckit-specify` — turn a natural-language feature description into a spec, creating a new

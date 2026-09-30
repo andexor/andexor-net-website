@@ -16,7 +16,9 @@ Here is the prompt I used to create public/web-development.png using recraft.ai:
 
 Please create a modern 3D isometric icon illustration that represents web development services.
 
-BTW, for future reference, my company's colors are defined as follows: The primary color is called Andexor Blue (#002855) and the accent color is called Old Gold (#EAAA00). No need to change anything right now. This is FYI.
+BTW, for future reference, my company's colors are defined as follows:
+The primary color is called Andexor Blue (#002855).
+The accent color is called Old Gold (#EAAA00).
 
 -->
 

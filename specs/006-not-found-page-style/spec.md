@@ -40,6 +40,9 @@ headline, and no grid.
    the Web Development page shows is absent.
 5. **Given** the "Page not found" page, **When** the visitor activates "Go to the home page",
    **Then** they arrive at the home page.
+6. **Given** a visitor who requests an address the site does not have, **When** the page loads,
+   **Then** the address in the browser stays exactly as requested (no redirect), and the page is
+   shown with a "not found" status.
 
 ---
 
@@ -88,10 +91,13 @@ illustration has a text description and the page still reports "not found".
 
 - The page shows exactly one top-level headline, "Page not found".
 - With no cards below the hero, the hero still fades into the page background without a hard edge
-  or a large empty gap before the footer.
+  or a large empty gap before the footer. "Large" means more than 160px between the bottom of the
+  explanation and the top of the footer.
 - The illustration has a transparent background, so it must look right on the dark hero band.
 - The page keeps the always-dark palette and never shows a light background flash.
 - The browser tab title stays "Page not found | Andexor Network".
+- The address bar keeps whatever unknown address the visitor typed, including query strings and
+  trailing slashes.
 - Hovering the link changes its color and does not underline it.
 
 ## Requirements *(mandatory)*
@@ -112,6 +118,9 @@ illustration has a text description and the page still reports "not found".
   the title "Page not found | Andexor Network".
 - **FR-008**: The page MUST remain a "not found" response for the unknown address, and MUST NOT
   become a redirect.
+- **FR-013**: The address the visitor requested MUST stay in the browser's address bar, unchanged,
+  after the page loads. The site MUST NOT redirect unknown addresses to another address (for
+  example a `/404` page).
 - **FR-009**: The page MUST have no horizontal scrolling at a 320px width.
 - **FR-010**: The page MUST meet WCAG 2.1 AA, including a visible keyboard focus indicator.
 - **FR-011**: The link MUST signal hover with a color change, not an underline.
@@ -133,11 +142,17 @@ illustration has a text description and the page still reports "not found".
 - **SC-004**: A visitor can get from the not-found page to the home page in one activation of the
   link, by mouse or keyboard.
 - **SC-005**: The Web Development page renders identically before and after this change.
+- **SC-006**: On 100% of unknown addresses checked, the browser address after loading equals the
+  requested address, and the response status is "not found" (404).
 
 ## Assumptions
 
 - "Similar to the web-development page" means the hero layout (illustration beside text, dark band
   fading into the page background, same type sizes and colors). It does not include the cards.
+- One color difference is deliberate: the explanation text is brighter (`--slate-50`) and its link
+  stronger blue (`--blue-400`) than in the Web Development hero. Links have no underline (spec 007),
+  so the link must differ from the text by at least 3:1 to pass the accessibility check. The Web
+  Development hero is not changed.
 - The current wording stays: headline "Page not found" and the sentence "We could not find that
   page. Go to the home page."
 - The 404 illustration is `public/404.png`, already in the project. Its text description will

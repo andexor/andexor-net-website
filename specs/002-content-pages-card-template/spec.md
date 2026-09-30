@@ -251,7 +251,9 @@ the color changes and no underline appears or disappears.
   `specs/003-logo-wordmark/spec.md`: ", Inc." is dropped from titles).
 - **FR-005**: A page's meta description MUST come from front matter `description` when present
   and MUST be omitted otherwise.
-- **FR-006**: Addresses with no page MUST show the site's "not found" page.
+- **FR-006**: Addresses with no page MUST show the site's "not found" page. Amended by
+  `specs/006-not-found-page-style/spec.md`: it uses the Web Development style hero with the 404
+  image, and the requested address is never redirected.
 - **FR-007**: Markdown MUST support tables, task lists, strikethrough, and automatic links;
   headings MUST get linkable anchors; raw HTML MUST NOT be rendered.
 - **FR-008**: Links starting with `http` MUST open in a new tab and MUST NOT expose the

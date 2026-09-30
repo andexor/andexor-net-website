@@ -27,7 +27,8 @@ bun run test:e2e      # Playwright (includes dark-mode)
 5. Set the OS or browser to light mode and reload: page stays dark.
 6. Hover over footer, card, and body links: color changes, and no link is underlined at rest, on
    hover, or on focus (amended by spec 007).
-7. Visit `/nope`: 404 page.
+7. Visit `/nope`: 404 page in the Web Development hero style with the 404 image; the address
+   stays `/nope` (amended by spec 006).
 8. Add `content/test.md` with `# Test`; rebuild; `/test` exists. Add `draft: true`; rebuild; 404.
 9. In the terminal running `./run.sh`, press `Ctrl+C` once. Expect `Received SIGINT, shutting down`
    and a prompt. `docker ps -a` shows no leftover container.
