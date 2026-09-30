@@ -125,6 +125,14 @@ describe("cards layout", () => {
     expect(second).toContain("Second?");
   });
 
+  it("reads the section that picks the hero backdrop, ignoring unknown values", async () => {
+    write("sec.md", md.replace("layout: cards", "layout: cards\nsection: business"));
+    expect((await getContentPage(["sec"], dir))!.cards!.section).toBe("business");
+    write("sec.md", md.replace("layout: cards", "layout: cards\nsection: nonsense"));
+    expect((await getContentPage(["sec"], dir))!.cards!.section).toBeUndefined();
+    expect((await getContentPage(["cards"], dir))!.cards!.section).toBeUndefined();
+  });
+
   it("uses the >> line as the card label and marks featured cards", async () => {
     const cards = (await getContentPage(["cards"], dir))!.cards!;
     expect(cards.cardsHtml).toContain('<p class="an-tile__eyebrow">One</p>');

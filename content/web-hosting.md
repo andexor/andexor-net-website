@@ -2,6 +2,7 @@
 title: Web Hosting
 description: Web Hosting
 layout: cards
+section: technical
 eyebrow: Technical Services
 image: /web-hosting.png
 image_alt: Isometric image of servers in a cloud
@@ -16,3 +17,5 @@ Please create a modern 3D isometric icon illustration that represents web hostin
 -->
 
 # Web Hosting
+
+Keep your site running while you run the business.

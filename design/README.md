@@ -36,7 +36,7 @@ Sections in order: Hero → Services → CTA band → Footer. No sticky header. 
 - Inner container max 1320px, horizontal padding 24px.
 - Brand row (flex, gap 22px, centered): gold logo `assets/logo/logo-gold.svg` at `clamp(72px, 9vw, 112px)` square, then "Andexor Network" in Play 700, `clamp(32px, 4.4vw, 54px)`, line-height 1, tracking -0.02em, `#FFFFFF`. Behind the logo, a 420px Old Gold radial glow: `radial-gradient(circle, color-mix(in srgb, #EAAA00 22%, transparent), transparent 65%)`, positioned left -150px, vertically centered.
 - H1 "Enterprise-grade services at small business prices": Play 700, `clamp(38px, 5vw, 60px)`, line-height 1.04, tracking -0.02em, white, max-width 14em, `text-wrap: balance`, margin-top 40px.
-- Subhead "Andexor Network designs, builds, and manages solutions to help your business grow.": Roboto 19px/1.55, `--blue-200` (`#C5D8EF`), max-width 22em, margin-top 20px.
+- Subhead "We create and manage solutions to help your business grow.": Roboto 19px/1.55, `--blue-200` (`#C5D8EF`), max-width 40em, margin-top 20px.
 - Button "Contact Us": accent (gold), size lg, trailing arrow-right icon 18px, margin-top 30px. Opens Contact Us popup.
 
 **Services** (`#services`)

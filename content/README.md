@@ -36,6 +36,7 @@ first `##` becomes the hero lede.
 ```markdown
 ---
 layout: cards
+section: technical
 eyebrow: Technical Services
 image: /web-development.png
 image_alt: Describe the illustration
@@ -52,6 +53,7 @@ featured:
 Card body.
 ```
 
+- `section`: `technical`, `business`, or `company`. Picks the hero's backdrop pattern. Omit it for a plain hero.
 - `eyebrow`: small label above the hero headline.
 - `image`, `image_alt`: hero illustration from `public/`.
 - `featured`: headings (exact text) that use the dark card.

@@ -2,6 +2,7 @@
 title: Cost Reduction
 description: Cost Reduction
 layout: cards
+section: business
 eyebrow: Business Services
 image: /cost-reduction.png
 image_alt: Isometric image of expenses going down
@@ -16,3 +17,5 @@ Please create a modern 3D isometric icon illustration that shows a bar chart wit
 -->
 
 # Cost Reduction
+
+Cut spend without cutting capability.

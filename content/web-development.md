@@ -2,6 +2,7 @@
 title: Web Development
 description: Web Development
 layout: cards
+section: technical
 eyebrow: Technical Services
 image: /web-development.png
 image_alt: Isometric laptop showing code, with gears and a browser window floating beside it
@@ -23,6 +24,8 @@ The accent color is called Old Gold (#EAAA00).
 -->
 
 # Web Development
+
+Designed to impress, built to handle the traffic.
 
 ## Need a new website?
 

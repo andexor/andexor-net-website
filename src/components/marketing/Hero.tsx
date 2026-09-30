@@ -23,7 +23,7 @@ export function Hero({ onContactClick }: HeroProps) {
         </div>
         <h1 className="an-hero__headline">Enterprise-grade services at small business prices</h1>
         <p className="an-hero__subhead">
-          Andexor Network designs, builds, and manages solutions to help your business grow.
+          We create and manage solutions to help your business grow.
         </p>
         <div className="an-hero__cta-row">
           <Button variant="accent" size="lg" rightIcon={<ArrowRight size={18} />} onClick={onContactClick}>

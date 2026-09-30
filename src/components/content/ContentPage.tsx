@@ -26,8 +26,10 @@ export function ContentPage({ html, cards }: ContentPageProps) {
       </header>
       {cards ? (
         <main>
-          <section className={`an-cardhero${hasCards ? "" : " an-cardhero--solo"}`}>
-            {cards.grid !== false && <div className="an-cardhero__grid" aria-hidden="true" />}
+          <section
+            className={`an-cardhero${cards.section ? ` an-cardhero--${cards.section}` : ""}${hasCards ? "" : " an-cardhero--solo"}`}
+          >
+            {cards.section && <div className="an-cardhero__pattern" aria-hidden="true" />}
             <div className="an-cardhero__inner">
               {cards.image && (
                 <div className="an-cardhero__art">
@@ -36,7 +38,14 @@ export function ContentPage({ html, cards }: ContentPageProps) {
                 </div>
               )}
               <div className="an-cardhero__text">
-                {cards.eyebrow && <p className="an-cardhero__eyebrow">{cards.eyebrow}</p>}
+                {cards.eyebrow ? (
+                  <p className="an-cardhero__eyebrow">{cards.eyebrow}</p>
+                ) : (
+                  // Same height as an eyebrow, so the headline lines up with pages that have one.
+                  <p className="an-cardhero__spacer" aria-hidden="true">
+                    {"\u00a0"}
+                  </p>
+                )}
                 <h1 dangerouslySetInnerHTML={{ __html: cards.headingHtml }} />
                 {cards.introHtml && (
                   <div className="an-cardhero__intro" dangerouslySetInnerHTML={{ __html: cards.introHtml }} />

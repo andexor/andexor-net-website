@@ -1,0 +1,72 @@
+<!--
+SPDX-License-Identifier: Apache-2.0
+Copyright 2026 Andexor Network, Inc.
+Author: Ed Jenkins <ed@andexor.net>
+
+Backdrop for Business Services heroes (the business modifier of .an-cardhero, in
+src/styles/cards.css): city blocks of varying sizes with the streets as the
+gaps. The hero repeats it along the X axis, so the streets at x=0 and x=700
+line up.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 340" width="700" height="340" fill="white" fill-opacity="0.03">
+<rect x="4" y="4" width="52" height="42" rx="3"/>
+<rect x="4" y="54" width="52" height="52" rx="3"/>
+<rect x="4" y="114" width="52" height="52" rx="3"/>
+<rect x="4" y="174" width="52" height="52" rx="3"/>
+<rect x="4" y="234" width="52" height="52" rx="3"/>
+<rect x="4" y="294" width="52" height="42" rx="3"/>
+<rect x="64" y="4" width="52" height="42" rx="3"/>
+<rect x="64" y="54" width="52" height="52" rx="3"/>
+<rect x="64" y="114" width="52" height="52" rx="3"/>
+<rect x="64" y="174" width="52" height="52" rx="3"/>
+<rect x="64" y="234" width="52" height="52" rx="3"/>
+<rect x="64" y="294" width="52" height="42" rx="3"/>
+<rect x="124" y="4" width="72" height="42" rx="3"/>
+<rect x="124" y="54" width="72" height="52" rx="3"/>
+<rect x="124" y="114" width="72" height="52" rx="3"/>
+<rect x="124" y="174" width="72" height="52" rx="3"/>
+<rect x="124" y="234" width="72" height="52" rx="3"/>
+<rect x="124" y="294" width="72" height="42" rx="3"/>
+<rect x="204" y="4" width="52" height="42" rx="3"/>
+<rect x="204" y="54" width="52" height="52" rx="3"/>
+<rect x="204" y="114" width="52" height="52" rx="3"/>
+<rect x="204" y="174" width="52" height="52" rx="3"/>
+<rect x="204" y="234" width="52" height="52" rx="3"/>
+<rect x="204" y="294" width="52" height="42" rx="3"/>
+<rect x="264" y="4" width="52" height="42" rx="3"/>
+<rect x="264" y="54" width="52" height="52" rx="3"/>
+<rect x="264" y="114" width="52" height="52" rx="3"/>
+<rect x="264" y="174" width="52" height="52" rx="3"/>
+<rect x="264" y="234" width="52" height="52" rx="3"/>
+<rect x="264" y="294" width="52" height="42" rx="3"/>
+<rect x="324" y="4" width="52" height="42" rx="3"/>
+<rect x="324" y="54" width="52" height="52" rx="3"/>
+<rect x="324" y="114" width="52" height="52" rx="3"/>
+<rect x="324" y="174" width="52" height="52" rx="3"/>
+<rect x="324" y="234" width="52" height="52" rx="3"/>
+<rect x="324" y="294" width="52" height="42" rx="3"/>
+<rect x="384" y="4" width="92" height="42" rx="3"/>
+<rect x="384" y="54" width="92" height="52" rx="3"/>
+<rect x="384" y="114" width="92" height="52" rx="3"/>
+<rect x="384" y="174" width="92" height="52" rx="3"/>
+<rect x="384" y="234" width="92" height="52" rx="3"/>
+<rect x="384" y="294" width="92" height="42" rx="3"/>
+<rect x="484" y="4" width="72" height="42" rx="3"/>
+<rect x="484" y="54" width="72" height="52" rx="3"/>
+<rect x="484" y="114" width="72" height="52" rx="3"/>
+<rect x="484" y="174" width="72" height="52" rx="3"/>
+<rect x="484" y="234" width="72" height="52" rx="3"/>
+<rect x="484" y="294" width="72" height="42" rx="3"/>
+<rect x="564" y="4" width="72" height="42" rx="3"/>
+<rect x="564" y="54" width="72" height="52" rx="3"/>
+<rect x="564" y="114" width="72" height="52" rx="3"/>
+<rect x="564" y="174" width="72" height="52" rx="3"/>
+<rect x="564" y="234" width="72" height="52" rx="3"/>
+<rect x="564" y="294" width="72" height="42" rx="3"/>
+<rect x="644" y="4" width="52" height="42" rx="3"/>
+<rect x="644" y="54" width="52" height="52" rx="3"/>
+<rect x="644" y="114" width="52" height="52" rx="3"/>
+<rect x="644" y="174" width="52" height="52" rx="3"/>
+<rect x="644" y="234" width="52" height="52" rx="3"/>
+<rect x="644" y="294" width="52" height="42" rx="3"/>
+</svg>

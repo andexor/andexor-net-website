@@ -2,6 +2,7 @@
 title: Technical SEO
 description: Technical SEO
 layout: cards
+section: technical
 eyebrow: Technical Services
 image: /technical-seo.png
 image_alt: Isometric image of servers in a cloud
@@ -16,3 +17,5 @@ Please create a modern 3D isometric icon illustration that represents Technical 
 -->
 
 # Technical SEO
+
+Make your site easy to find, and easy to understand.

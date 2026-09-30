@@ -3,7 +3,7 @@
  * Author: Ed Jenkins <ed@andexor.net>
  *
  * Card layout for Markdown content pages with `layout: cards` (see
- * src/lib/content.ts). A dark hero band with the engineering grid, then two
+ * src/lib/content.ts). A dark hero band with the backdrop pattern, then two
  * staggered columns of cards that pull up over the band's edge. Uses design
  * tokens only; no italics anywhere, per design/README.md's brand rules.
  */
@@ -22,15 +22,48 @@
   padding: var(--space-8) 24px calc(var(--space-12) + 56px);
 }
 
-.an-cardhero__grid {
+/* The backdrop pattern layer. The base `.an-cardhero` (for example the
+ * not-found page) has none; each section modifier supplies its own pattern. */
+.an-cardhero__pattern {
   position: absolute;
   inset: 0;
+}
+
+/* Technical Services: the engineering grid. */
+.an-cardhero--technical .an-cardhero__pattern {
   background-image:
     linear-gradient(rgba(255, 255, 255, 0.10) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.10) 1px, transparent 1px);
   background-size: 48px 48px;
   mask-image: radial-gradient(ellipse 80% 70% at 30% 0%, #000 30%, transparent 75%);
   -webkit-mask-image: radial-gradient(ellipse 80% 70% at 30% 0%, #000 30%, transparent 75%);
+}
+
+/* Business Services: a city-block grid. The blocks vary in size and the streets
+ * are the gaps between them. The SVG tile is as tall as the hero and repeats
+ * along the X axis from the left edge, fading out toward the right and bottom. */
+.an-cardhero--business .an-cardhero__pattern {
+  background: url("/city-grid.svg") left top / auto 100% repeat-x;
+  mask-image:
+    linear-gradient(to right, #000 35%, transparent 95%),
+    linear-gradient(to bottom, #000 55%, transparent 100%);
+  mask-composite: intersect;
+  -webkit-mask-image:
+    linear-gradient(to right, #000 35%, transparent 95%),
+    linear-gradient(to bottom, #000 55%, transparent 100%);
+  -webkit-mask-composite: source-in;
+}
+
+/* Company (About Us): concentric rings radiating from behind the hero art,
+ * echoing the gold glow there. */
+.an-cardhero--company .an-cardhero__pattern {
+  background-image: repeating-radial-gradient(
+    circle at 15% 40%,
+    transparent 0 46px,
+    rgba(255, 255, 255, 0.11) 46px 47px
+  );
+  mask-image: radial-gradient(ellipse 90% 90% at 15% 40%, #000 20%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 90% at 15% 40%, #000 20%, transparent 80%);
 }
 
 .an-cardhero__inner {
@@ -66,7 +99,8 @@
   min-width: 0;
 }
 
-.an-cardhero__eyebrow {
+.an-cardhero__eyebrow,
+.an-cardhero__spacer {
   margin: 0 0 var(--space-3);
   font-family: var(--font-mono);
   font-size: var(--text-xs);
@@ -76,13 +110,19 @@
   color: var(--gold-400);
 }
 
+/* A hero with no eyebrow (the not-found page) keeps the eyebrow's height, empty
+ * and invisible, so its headline lines up with the pages that have one. */
+.an-cardhero__spacer {
+  visibility: hidden;
+}
+
 .an-cardhero__eyebrow::before {
   content: ">> ";
 }
 
 .an-cardhero h1 {
   margin: 0;
-  max-width: 10em;
+  max-width: 14em;
   font-family: var(--font-display);
   font-weight: 700;
   font-size: clamp(32px, 4.4vw, 52px);
@@ -94,7 +134,7 @@
 
 .an-cardhero__intro {
   margin-top: var(--space-4);
-  max-width: 32em;
+  max-width: 40em;
   font-size: var(--text-lg);
   line-height: var(--leading-relaxed);
   color: var(--blue-200);
