@@ -47,7 +47,7 @@ function ContactUs({ open, onClose, inline = false, initialSent = false }) {
                   <option>Technical SEO</option>
                   <option>Agentic Systems</option>
                 </optgroup>
-                <optgroup label="Business services">
+                <optgroup label="Business Services">
                   <option>Cost Reduction</option>
                   <option>Lead Generation</option>
                   <option>Growth Marketing</option>

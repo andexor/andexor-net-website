@@ -55,6 +55,6 @@ Static enum used by the Contact Request form's "Primary need" field (not a separ
 entity, just the selector's allowed values):
 
 - **Technical Services**: Web Development, Web Hosting, Technical SEO, Agentic Systems
-- **Business services**: Cost Reduction, Lead Generation, Growth Marketing, Process
+- **Business Services**: Cost Reduction, Lead Generation, Growth Marketing, Process
   Re-engineering
 - Something else

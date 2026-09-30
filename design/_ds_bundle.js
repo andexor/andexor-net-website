@@ -1236,7 +1236,7 @@ function ContactUs({
   }, "Select a service\u2026"), /*#__PURE__*/React.createElement("optgroup", {
     label: "Technical Services"
   }, /*#__PURE__*/React.createElement("option", null, "Web Development"), /*#__PURE__*/React.createElement("option", null, "Web Hosting"), /*#__PURE__*/React.createElement("option", null, "Technical SEO"), /*#__PURE__*/React.createElement("option", null, "Agentic Systems")), /*#__PURE__*/React.createElement("optgroup", {
-    label: "Business services"
+    label: "Business Services"
   }, /*#__PURE__*/React.createElement("option", null, "Cost Reduction"), /*#__PURE__*/React.createElement("option", null, "Lead Generation"), /*#__PURE__*/React.createElement("option", null, "Growth Marketing"), /*#__PURE__*/React.createElement("option", null, "Process Re-engineering")), /*#__PURE__*/React.createElement("option", null, "Something else"))), /*#__PURE__*/React.createElement(Button, {
     type: "submit",
     variant: "accent",

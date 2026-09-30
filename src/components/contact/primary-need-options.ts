@@ -14,7 +14,7 @@ export const PRIMARY_NEED_GROUPS: PrimaryNeedGroup[] = [
     options: ["Web Development", "Web Hosting", "Technical SEO", "Agentic Systems"],
   },
   {
-    label: "Business services",
+    label: "Business Services",
     options: ["Cost Reduction", "Lead Generation", "Growth Marketing", "Process Re-engineering"],
   },
 ];
