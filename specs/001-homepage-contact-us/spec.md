@@ -43,6 +43,12 @@
   name. FR-017 no longer applies to service cards. The footer has more entries than there are
   cards, by design.
 
+### 2026-09-30 (see `specs/015-escape-closes-contact/spec.md`)
+
+- Pressing Esc also closes the contact popup, wherever focus is (FR-012 amended). It does nothing
+  when the popup is closed, and while the "Primary need" list is expanded the first Esc closes only
+  the list.
+
 ## Clarifications
 
 ### Session 2026-09-28
@@ -190,8 +196,8 @@ service options are listed and grouped, and that a selection is retained when su
 - **FR-011**: Upon successful submission, the system MUST replace the form with a confirmation
   state acknowledging the request was received, without leaving the current page.
 - **FR-012**: The visitor MUST be able to close the contact popup at any time via the close (×)
-  control, by clicking outside the popup panel (the scrim), or — while the confirmation state is
-  shown — the "Done" button, without losing their place on the page.
+  control, by clicking outside the popup panel (the scrim), by pressing Esc (spec 015), or — while
+  the confirmation state is shown — the "Done" button, without losing their place on the page.
 - **FR-013**: Reopening the contact popup after a prior close or submission MUST show the empty
   form state, not a stale confirmation.
 - **FR-014**: The site MUST remain usable and legible across viewport widths from 320px to

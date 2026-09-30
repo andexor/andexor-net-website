@@ -2,7 +2,7 @@
 // Copyright 2026 Andexor Network, Inc.
 // Author: Ed Jenkins <ed@andexor.net>
 
-import { fireEvent, render, screen } from "@testing-library/react";
+import { createEvent, fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
 import { ContactPopup } from "@/components/contact/ContactPopup";
@@ -90,5 +90,80 @@ describe("ContactPopup", () => {
 
     expect(onClose).toHaveBeenCalledTimes(1);
     expect(onSubmit).not.toHaveBeenCalled();
+  });
+
+  // Spec 015: Esc is one more way to close the popup, and calls the same onClose.
+  describe("Esc key", () => {
+    it("closes the form with one Esc", () => {
+      const onClose = vi.fn();
+      render(<ContactPopup open onClose={onClose} />);
+      fireEvent.keyDown(document, { key: "Escape" });
+      expect(onClose).toHaveBeenCalledTimes(1);
+    });
+
+    it("closes the confirmation with one Esc", () => {
+      const onClose = vi.fn();
+      render(<ContactPopup open onClose={onClose} />);
+      fillValidForm();
+      fireEvent.click(screen.getByRole("button", { name: "Send" }));
+      expect(screen.getByRole("heading", { name: "Request received" })).toBeInTheDocument();
+      fireEvent.keyDown(document, { key: "Escape" });
+      expect(onClose).toHaveBeenCalledTimes(1);
+    });
+
+    it("closes without submitting when text was typed", () => {
+      const onClose = vi.fn();
+      const onSubmit = vi.fn();
+      render(<ContactPopup open onClose={onClose} onSubmit={onSubmit} />);
+      fireEvent.change(screen.getByLabelText("Full name"), { target: { value: "Jordan" } });
+      fireEvent.keyDown(screen.getByLabelText("Full name"), { key: "Escape" });
+      expect(onClose).toHaveBeenCalledTimes(1);
+      expect(onSubmit).not.toHaveBeenCalled();
+    });
+
+    it("does nothing while the popup is closed", () => {
+      const onClose = vi.fn();
+      render(<ContactPopup open={false} onClose={onClose} />);
+      fireEvent.keyDown(document, { key: "Escape" });
+      expect(onClose).not.toHaveBeenCalled();
+    });
+
+    it("stops listening once the popup closes", () => {
+      const onClose = vi.fn();
+      const { rerender } = render(<ContactPopup open onClose={onClose} />);
+      rerender(<ContactPopup open={false} onClose={onClose} />);
+      fireEvent.keyDown(document, { key: "Escape" });
+      expect(onClose).not.toHaveBeenCalled();
+    });
+
+    it("leaves Esc to the Primary need list while it is expanded", () => {
+      const onClose = vi.fn();
+      render(<ContactPopup open onClose={onClose} />);
+      const select = screen.getByLabelText("Primary need");
+      const matches = vi.spyOn(select, "matches").mockImplementation((selector) => selector === ":open");
+      fireEvent.keyDown(document, { key: "Escape" });
+      expect(onClose).not.toHaveBeenCalled();
+      matches.mockRestore();
+      fireEvent.keyDown(document, { key: "Escape" });
+      expect(onClose).toHaveBeenCalledTimes(1);
+    });
+
+    it("ignores an Esc another handler already used", () => {
+      const onClose = vi.fn();
+      render(<ContactPopup open onClose={onClose} />);
+      const field = screen.getByLabelText("Full name");
+      const event = createEvent.keyDown(field, { key: "Escape" });
+      event.preventDefault();
+      fireEvent(field, event);
+      expect(onClose).not.toHaveBeenCalled();
+    });
+
+    it("ignores other keys and Esc during text composition", () => {
+      const onClose = vi.fn();
+      render(<ContactPopup open onClose={onClose} />);
+      fireEvent.keyDown(document, { key: "Enter" });
+      fireEvent.keyDown(document, { key: "Escape", isComposing: true });
+      expect(onClose).not.toHaveBeenCalled();
+    });
   });
 });
