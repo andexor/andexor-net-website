@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const page = await getContentPage((await params).slug);
   if (!page) return {};
   return {
-    title: `${page.title} | Andexor Network, Inc.`,
+    title: `${page.title} | Andexor Network`,
     ...(page.description ? { description: page.description } : {}),
   };
 }

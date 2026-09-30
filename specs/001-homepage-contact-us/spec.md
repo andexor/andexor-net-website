@@ -16,6 +16,19 @@
   assumption are superseded).
 - The Web Development service card and footer link lead to `/web-development` (FR-017 amended).
 
+### 2026-09-30 (see `specs/003-logo-wordmark/spec.md`)
+
+- The logo wordmark is now the single line "Andexor Network", sized to the mark. The second line
+  ("Network, Inc.") and the mark-only `compact` variant are removed.
+- The hero's brand row uses the shared logo lockup at the larger design-system size. It is no
+  longer a link; the footer logo still scrolls to the top of the home page. (Superseded by the
+  2026-09-30 entry below for spec 008.)
+
+### 2026-09-30 (see `specs/008-no-top-links/spec.md`)
+
+- The footer logo is no longer a link and does not scroll to the top. No link anywhere goes to
+  `#top`.
+
 ## Clarifications
 
 ### Session 2026-09-28

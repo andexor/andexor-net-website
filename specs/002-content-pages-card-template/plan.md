@@ -79,7 +79,7 @@ content/
 └── web-development.md            # first content page
 
 public/
-└── web-development.svg           # hero illustration
+└── web-development.png           # hero illustration
 
 src/
 ├── app/[...slug]/page.tsx        # catch-all route, static params, metadata, 404

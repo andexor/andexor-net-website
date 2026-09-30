@@ -16,8 +16,8 @@ This project is driven by Spec Kit's slash-command workflow rather than ad-hoc c
 proceeds through these skills, in order, each producing artifacts consumed by the next:
 
 1. `speckit-constitution` — establish/update the project's governing principles in
-   `.specify/memory/constitution.md` (currently v1.2.1, eight principles). Read it before
-   specifying or planning; it holds the always-dark, no-hover-underline, graceful-shutdown,
+   `.specify/memory/constitution.md` (currently v1.4.0, eight principles). Read it before
+   specifying or planning; it holds the always-dark, no-link-underline, no-#top-link, graceful-shutdown,
    Markdown-content, toolchain, license-header, and spec-policy rules.
 2. `speckit-specify` — turn a natural-language feature description into a spec, creating a new
    numbered feature branch/directory (e.g. `specs/001-build-initial-home-page/`).
@@ -69,11 +69,28 @@ is set in `src/styles/tokens/colors.css` (the dark alias values are unconditiona
 OS setting. Don't add `prefers-color-scheme` light/dark switching back, and keep this override if
 the design tokens are re-copied. There is no light theme to design or test.
 
-## No underline on hover
+## No links to #top
 
-Never underline text on hover (`a:hover { text-decoration: underline }` or similar). It causes a
-rendering flicker and is never the right hover cue. Signal hover with a color change instead. If
-a design-system or framework base stylesheet ships an underline-on-hover rule, remove it.
+Never link to `#top` (or any address whose fragment is `top`, such as `/#top` or `/page#top`),
+anywhere. The footer logo and the home page hero logo are plain branding, not links; only the header
+logo on content pages links, and it goes to `/`. Do not add a "back to top" link or scroll-to-top
+control. `tests/unit/no-top-links.test.ts` fails if any `src/` code or `content/` Markdown links to
+`#top`. The `id="top"` on page wrappers is not a link and may stay. If an older spec, contract, or
+design document says a logo scrolls to the top, correct it when you find it. Do not ask the owner
+again.
+
+## No underline on links
+
+Never underline a link, at rest, on hover, or on focus (`a { text-decoration: underline }`,
+`a:hover { text-decoration: underline }`, or similar). Hover underline causes a rendering flicker,
+and links look best without underlines, like the footer links. Signal hover with a color change and
+keyboard focus with the ring. A link that is not underlined at rest must NEVER gain an underline on
+hover, whatever a design-system document, framework default, or example says. If a design-system or
+framework stylesheet or document (for example `design/DESIGN.md`, "Hover" paragraph) ships or
+describes an underline rule, remove or correct it when you find it. Do not ask the owner again. Because there is no underline, links in body text must stand out by color: inside
+`.an-prose` and `.an-tile`, body text is `--slate-50` and links are `--blue-400` (hover
+`--blue-300`), which passes the WCAG 2.1 AA link-versus-text check. A link inside a featured
+(`.an-tile--ink`) card would need its own color. Keep this rule when adding pages or components.
 
 ## Toolchain
 
@@ -121,7 +138,8 @@ Read `CONTRIBUTING.md` and `setup.md` (companions to the constitution, with `SEC
 `CODE_OF_CONDUCT.md`, `DCO`, `LICENSE`, and `NOTICE`). The rules that affect day-to-day work:
 
 - Work is issue-driven: a GitHub issue written as a user story (Description, Acceptance Criteria,
-  optional Technical Details), one branch per issue, and the spec updated before the change.
+  optional Technical Details), the spec updated before the change. A branch per issue is a suggestion, not a rule; small
+  related changes may share a branch, so don't create a new branch unless asked.
 - Commit with `git commit -s`, and end the subject with `Closes #N.` (or `Fixes #N.` for a bug
   fix), for example `Updated copy for Web Development. Closes #9.`
 - Open a PR only when asked. Reviewer `andexor/write`, assigned to the user.

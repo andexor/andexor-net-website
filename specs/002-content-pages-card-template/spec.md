@@ -13,6 +13,9 @@
 > site does today so that future changes have a written baseline. Where it conflicts with
 > `specs/001-homepage-contact-us/spec.md`, this spec wins and the conflicts are recorded in
 > that spec's Amendments section.
+>
+> Amended by `specs/007-no-link-underlines/spec.md`: links are never underlined, at rest or on
+> hover (this spec allowed underlined body links at rest).
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -211,8 +214,8 @@ the color changes and no underline appears or disappears.
 
 1. **Given** any link, **When** a visitor hovers over it, **Then** its color changes and no
    underline is added.
-2. **Given** a link in body text on a content page that is underlined at rest, **When** the
-   visitor hovers, **Then** only its color changes and the underline neither grows nor shrinks.
+2. **Given** a link in body text on a content page, **When** the visitor hovers, **Then** only its
+   color changes; it has no underline at rest, on hover, or on focus (amended by spec 007).
 3. **Given** the stylesheets, **When** searched for a hover rule that adds an underline, **Then**
    none exist, including in the design-system base styles.
 
@@ -244,18 +247,23 @@ the color changes and no underline appears or disappears.
   published.
 - **FR-003**: A page whose front matter sets `draft: true` MUST NOT be published.
 - **FR-004**: A page's browser tab title MUST come from front matter `title`, else the first `#`
-  heading, else its file name in words; the site MUST append "| Andexor Network, Inc.".
+  heading, else its file name in words; the site MUST append "| Andexor Network" (amended by
+  `specs/003-logo-wordmark/spec.md`: ", Inc." is dropped from titles).
 - **FR-005**: A page's meta description MUST come from front matter `description` when present
   and MUST be omitted otherwise.
-- **FR-006**: Addresses with no page MUST show the site's "not found" page.
+- **FR-006**: Addresses with no page MUST show the site's "not found" page. Amended by
+  `specs/006-not-found-page-style/spec.md`: it uses the Web Development style hero with the 404
+  image, and the requested address is never redirected.
 - **FR-007**: Markdown MUST support tables, task lists, strikethrough, and automatic links;
   headings MUST get linkable anchors; raw HTML MUST NOT be rendered.
 - **FR-008**: Links starting with `http` MUST open in a new tab and MUST NOT expose the
   originating page to the destination; links to other site routes MUST open in the same tab.
 - **FR-009**: A page not using the card layout MUST render a logo bar, a readable article
   column, and the shared footer.
-- **FR-010**: The logo on a content page MUST link to the home page; on the home page it MUST
-  keep scrolling to the top.
+- **FR-010**: The logo on a content page MUST link to the home page. No logo scrolls to the top:
+  the footer logo and the hero's brand row are not links (amended by
+  `specs/003-logo-wordmark/spec.md` and `specs/008-no-top-links/spec.md`), and no link anywhere goes
+  to `#top`.
 - **FR-011**: Pages MUST be authored as Markdown; they MUST NOT be converted to hand-written
   page code.
 - **FR-012**: Authoring rules (routes, front matter, card layout, copy rules, publishing) MUST
@@ -344,7 +352,8 @@ the color changes and no underline appears or disappears.
   is no server-side rendering or database.
 - The site owner, not visitors, supplies all Markdown. Content is trusted.
 - Design-system rules in `design/README.md` and `design/DESIGN.md` govern look and copy.
-- Underlined links in body text (at rest) are allowed. Only underline on hover is banned.
+- Links are never underlined, at rest or on hover (amended by spec 007; this line used to allow
+  underlined body links at rest).
 - Supersedes: FR-016, SC-007, the dark-scheme edge case, and the "no manual toggle; follows
   the OS" assumption in `specs/001-homepage-contact-us/spec.md`; FR-017 in that spec no longer
   applies to the Web Development links.

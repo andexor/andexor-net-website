@@ -37,7 +37,7 @@ first `##` becomes the hero lede.
 ---
 layout: cards
 eyebrow: Technical services
-image: /web-development.svg
+image: /web-development.png
 image_alt: Describe the illustration
 featured:
   - Need a web application?

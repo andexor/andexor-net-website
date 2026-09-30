@@ -7,7 +7,7 @@ import type { ReactNode } from "react";
 import "../styles/globals.css";
 
 export const metadata: Metadata = {
-  title: "Andexor Network, Inc.",
+  title: "Andexor Network",
   description: "Enterprise-grade web, SEO, AI, and marketing services at small business prices.",
   manifest: "/site.webmanifest",
   icons: {

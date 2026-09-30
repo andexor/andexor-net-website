@@ -1,8 +1,22 @@
 <!--
 Sync Impact Report
-- Version change: 1.1.0 → 1.2.1 (MINOR for 1.2.0, then PATCH 1.2.1 for the license policy: materially expanded Development Workflow and Technology
+- Version change: 1.3.2 → 1.4.0 (MINOR: Principle IV gains a new prohibition: no link on the site
+  may go to `#top`, and the footer and home page hero logos are plain branding, not links. Owner
+  decision, specs/008-no-top-links; enforced by tests/unit/no-top-links.test.ts. Templates in
+  .specify/templates/ checked: none mention it). Earlier: 1.3.1 → 1.3.2 (PATCH: Principle VIII names the framework not-found page as the
+  one hand-written page, since it is not a routable content page and authoring it as Markdown
+  would publish a /404 route; owner decision, specs/006-not-found-page-style). Earlier: 1.2.2 →
+  1.3.1 (MINOR 1.3.0, then PATCH 1.3.1 to say explicitly that a link not
+  underlined at rest never gains an underline on hover, and that conflicting design-system text is
+  corrected; design/DESIGN.md line 112 was fixed). 1.3.0 details (MINOR: Principle VI is materially expanded. No link is underlined
+  at rest, on hover, or on focus; the earlier allowance for underlined inline body links is
+  removed. Owner decision, specs/007-no-link-underlines. Body links stay distinguishable by color
+  at WCAG 2.1 AA contrast. Templates in .specify/templates/ checked: none mention link underlines).
+  Earlier: 1.2.1 → 1.2.2 (PATCH: one branch per issue is now a suggestion, not a rule,
+  to avoid ceremony on small changes). Earlier: 1.1.0 → 1.2.1 (MINOR for 1.2.0, then PATCH 1.2.1 for the license policy: materially expanded Development Workflow and Technology
   Constraints, based on CONTRIBUTING.md, SECURITY.md, setup.md, and NOTICE added 2026-09-29)
-- Modified principles: none
+- Modified principles: IV (no links to #top); earlier VIII (not-found page exception); earlier VI (no link underlines at all;
+  heading unchanged)
 - Added principles: none
 - Added guidance: issue-first workflow with commit trailer rule, sign-off meaning (Code of
   Conduct and DCO), AI-generated content rules, supported operating systems, dependency audit
@@ -53,7 +67,10 @@ being usable by all visitors and performing well on real-world networks and devi
 All pages MUST share a consistent design system (shared components, typography, spacing, color
 tokens) and consistent content structure (navigation, headings, calls to action). New UI MUST
 reuse existing shared components before introducing new one-off styles or components. Appearance
-rules in Principle VI apply to every page.
+rules in Principle VI apply to every page. No link on the site MAY go to `#top` (an address whose
+fragment is `top`, such as `#top`, `/#top`, or `/page#top`). The footer logo and the home page
+hero logo are plain branding, not links; only the header logo on content pages links, and it goes
+to the home page. `tests/unit/no-top-links.test.ts` enforces this for source and Markdown.
 
 Rationale: A company website's credibility depends on looking and behaving like one coherent
 product; inconsistency across pages undermines trust and increases long-term maintenance cost.
@@ -71,12 +88,19 @@ Rationale: Without a test suite as a safety net, a marketing site accumulates si
 The site MUST always render the dark palette, whatever the visitor's operating system light or
 dark setting is. It MUST NOT offer a theme toggle, and no light theme is designed or tested. The
 always-dark tokens in `src/styles/tokens/colors.css` deliberately differ from the design
-system's `design/tokens/colors.css` and MUST be kept if the design tokens are re-copied. Text MUST
-NOT gain an underline on hover, in any stylesheet including design-system base styles; hover MUST
-be signaled by a color change. Underlines at rest on inline body links are allowed.
+system's `design/tokens/colors.css` and MUST be kept if the design tokens are re-copied. Links
+MUST NOT be underlined at rest, on hover, or on focus, in any stylesheet including design-system
+base styles. A link that is not underlined at rest MUST NEVER gain an underline on hover or on
+focus, even when a design-system document, framework default, or example says "links underline";
+this rule wins over all of them, and any such text MUST be corrected when found. Hover MUST be
+signaled by a color change and keyboard focus by a visible ring. Links
+inside body text MUST stay distinguishable from the surrounding text by color, at the contrast
+WCAG 2.1 AA requires, without relying on an underline.
 
-Rationale: One look for every visitor keeps the brand consistent, and hover underlines cause a
-visible rendering flicker.
+Rationale: One look for every visitor keeps the brand consistent, hover underlines cause a
+visible rendering flicker, and footer-style links without underlines look cleaner than mixed
+styles. Removing the underline only passes accessibility if body links differ enough in color
+from the text.
 
 ### VII. Graceful Container Shutdown
 Any app run in a Docker container MUST stop on the first `Ctrl+C` (SIGINT) and on `docker stop`
@@ -93,8 +117,11 @@ unless the process handles them.
 ### VIII. Markdown-Authored Content Pages
 Pages other than the home page MUST be authored as Markdown files under `content/`, where the path
 is the route, and rendered to static HTML at build time. They MUST NOT be converted to
-hand-written page components. A content page MUST NOT be linked from the home page or footer
-until the site owner says it is ready. Authoring rules live in `content/README.md`.
+hand-written page components. The one exception is the framework's not-found page
+(`src/app/not-found.tsx`), which is not a routable content page: it is answered for any unknown
+address, so it stays a component, and it renders through the shared page shell. A content page
+MUST NOT be linked from the home page or footer until the site owner says it is ready. Authoring
+rules live in `content/README.md`.
 
 Rationale: The owner writes and edits page copy directly, and unlinked pages keep unfinished work
 out of customers' view.
@@ -151,7 +178,9 @@ out of customers' view.
 - If work is done outside Spec Kit, a retrospective (as-built) spec MUST be written afterward.
 - Work is issue-driven, as described in `CONTRIBUTING.md`. Each change starts with a GitHub issue
   written as a user story, with a Description heading, an Acceptance Criteria heading, and
-  optionally a Technical Details heading. Each issue gets its own branch. The spec is updated
+  optionally a Technical Details heading. A separate branch per issue is a suggestion, not a
+  requirement: related small changes MAY share a branch, and each commit still references its
+  issue. The spec is updated
   before the change when one exists.
 - Commits MUST use `git commit -s`. The sign-off certifies acceptance of the Contributor Covenant
   3.0 Code of Conduct, the Developer Certificate of Origin 1.1 (`DCO`), and the Apache License
@@ -187,4 +216,4 @@ MUST be explicitly justified in the relevant artifact rather than silently intro
 are companion documents for contributors; where they conflict with this constitution, this
 constitution wins until one of them is amended.
 
-**Version**: 1.2.1 | **Ratified**: 2026-09-28 | **Last Amended**: 2026-09-29
+**Version**: 1.4.0 | **Ratified**: 2026-09-28 | **Last Amended**: 2026-09-30

@@ -27,6 +27,11 @@
   margin: 0 auto;
   font-size: var(--text-md);
   line-height: var(--leading-relaxed);
+  /* Links here have no underline (specs/007-no-link-underlines), so they must
+   * stand out from the text by color alone: brighter text, stronger link blue
+   * (3.4:1 apart; 4.65:1 or better against the page). */
+  --text-body: var(--slate-50);
+  --text-link: var(--blue-400);
   color: var(--text-body);
 }
 
@@ -89,12 +94,10 @@
 
 .an-prose a {
   color: var(--text-link);
-  text-decoration: underline;
-  text-underline-offset: 2px;
 }
 
 .an-prose a:hover {
-  color: var(--text-heading);
+  color: var(--blue-300);
 }
 
 .an-prose a:focus-visible {

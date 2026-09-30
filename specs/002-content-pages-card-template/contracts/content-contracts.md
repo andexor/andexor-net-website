@@ -22,7 +22,7 @@ See `content/README.md` for the full text. Summary:
 | Link | Target |
 |---|---|
 | Logo on content pages | `/` |
-| Logo on home page | `#top` |
+| Logo in the home page hero and in every footer | Not a link (amended by spec 008) |
 | Web Development service card and footer link | `/web-development` |
 | Any link beginning `http` inside content | New tab, `rel="noopener noreferrer"` |
 

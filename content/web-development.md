@@ -3,12 +3,24 @@ title: Web Development
 description: Web Development
 layout: cards
 eyebrow: Technical services
-image: /web-development.svg
+image: /web-development.png
 image_alt: Isometric laptop showing code, with gears and a browser window floating beside it
 featured:
   - Need a web application?
   - How about an AI agent?
 ---
+
+<!--
+
+Here is the prompt I used to create public/web-development.png using recraft.ai:
+
+Please create a modern 3D isometric icon illustration that represents web development services.
+
+BTW, for future reference, my company's colors are defined as follows:
+The primary color is called Andexor Blue (#002855).
+The accent color is called Old Gold (#EAAA00).
+
+-->
 
 # Web Development
 

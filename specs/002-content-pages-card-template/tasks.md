@@ -41,7 +41,7 @@ here; `/speckit-converge` will append any remaining gaps.
 **Independent Test**: Click the service card and the footer link; page shows H1 "Web Development" and nine cards.
 
 - [X] T011 [US1] Write the Web Development page in content/web-development.md (nine cards, featured "Need a web application?" and "How about an AI agent?")
-- [X] T012 [P] [US1] Add hero illustration public/web-development.svg
+- [X] T012 [P] [US1] Add hero illustration public/web-development.png
 - [X] T013 [US1] Add optional `href` to src/components/marketing/services-data.ts and use it in src/components/marketing/Services.tsx
 - [X] T014 [US1] Add `ITEM_HREFS` for Web Development in src/components/marketing/Footer.tsx
 - [X] T015 [US1] Use `<Logo href="/" />` in src/components/content/ContentPage.tsx
@@ -112,5 +112,5 @@ here; `/speckit-converge` will append any remaining gaps.
 - [X] T039 [US5] Check that an unknown address (for example `/nope`) shows a dark "not found" page; if the default framework 404 renders light or unstyled, add src/app/not-found.tsx using the site header, tokens, and footer, with the SPDX header, per FR-006 and FR-024 (partial). Done: the default 404 injected a light `body{background:#fff}`; replaced by src/app/not-found.tsx, tested in tests/unit/not-found.test.tsx and in the e2e specs against the production build.
 - [X] T040 [US7] Add an automated check (unit test reading src/styles and design/tokens CSS) that no rule with a `:hover` selector sets `text-decoration: underline`, in tests/unit/no-hover-underline.test.ts per FR-026, SC-004, and Constitution VI (missing)
 - [X] T041 [US3] Add a unit or e2e test that the only content-page links on the home page and footer are the approved `/web-development` ones, and that `draft: true` pages do not appear, per FR-013 and SC-007 (missing)
-- [X] T042 [P] Review and either reference or delete the unreferenced public/web-development.png (about 318 KB; the page uses public/web-development.svg). Deleted (nothing referenced it; still in git history) per plan: source layout (unrequested)
+- [X] T042 [P] Review and either reference or delete the unreferenced public/web-development.png (about 318 KB; the page uses public/web-development.png). Deleted (nothing referenced it; still in git history) per plan: source layout (unrequested)
 - [X] T043 [P] Fix the stale comment in src/styles/content.css that says the logo bar sits on a light surface; the site is always dark per FR-024 (contradicts)

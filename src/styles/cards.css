@@ -104,6 +104,26 @@
   margin-bottom: 0;
 }
 
+/* A hero with no cards (the not-found page, specs/006-not-found-page-style):
+ * no card overlaps the bottom edge, so it needs less room. Links have no
+ * underline (specs/007-no-link-underlines), so the link must differ from the
+ * text by 3:1: brighter text, --blue-400 link. */
+.an-cardhero--solo {
+  padding-bottom: var(--space-12);
+}
+
+.an-cardhero--solo .an-cardhero__intro {
+  color: var(--slate-50);
+}
+
+.an-cardhero--solo .an-cardhero__intro a {
+  color: var(--blue-400);
+}
+
+.an-cardhero--solo .an-cardhero__intro a:hover {
+  color: var(--blue-300);
+}
+
 /* ---- Cards ---------------------------------------------------------- */
 
 .an-cards {
@@ -136,6 +156,10 @@
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-sm);
+  /* Same link treatment as .an-prose: no underline, so color separates links
+   * from text (specs/007-no-link-underlines). */
+  --text-body: var(--slate-50);
+  --text-link: var(--blue-400);
   color: var(--text-body);
   font-size: var(--text-md);
   line-height: var(--leading-relaxed);
@@ -213,8 +237,10 @@
 
 .an-tile a {
   color: var(--text-link);
-  text-decoration: underline;
-  text-underline-offset: 2px;
+}
+
+.an-tile a:hover {
+  color: var(--blue-300);
 }
 
 .an-tile a:focus-visible {
@@ -224,6 +250,8 @@
 }
 
 /* Flagship offerings: the dark card. */
+/* A link here would be --blue-400 on --blue-200 text (2.45:1) and fail; give it
+ * its own color when one is needed. There are none today. */
 .an-tile--ink {
   background: var(--surface-ink);
   border-color: var(--border-ink);
@@ -242,6 +270,10 @@
 @media (max-width: 860px) {
   .an-cardhero {
     padding-bottom: 88px;
+  }
+
+  .an-cardhero--solo {
+    padding-bottom: var(--space-8);
   }
 
   .an-cardhero__inner {

@@ -54,7 +54,8 @@ All decisions below are already implemented. There are no open clarifications.
 ## No hover underline
 
 - **Decision**: Remove `a:hover { text-decoration: underline }` from both `design/tokens/base.css`
-  and `src/styles/tokens/base.css`. Body links may be underlined at rest and change color on hover.
+  and `src/styles/tokens/base.css`. Amended by spec 007: body links are no longer underlined at rest
+  either; they stand out by color and change color on hover.
 - **Rationale**: Hover underline causes a rendering flicker.
 
 ## Graceful shutdown

@@ -85,6 +85,7 @@ Three families, all Google Fonts (self-host before production):
 
 - **Base unit 4px.** Scale: `space-1 (4) · 2 (8) · 3 (12) · 4 (16) · 5 (20) · 6 (24) · 8 (32) · 10 (40) · 12 (48) · 16 (64) · 20 (80) · 24 (96) · 32 (128)`.
 - **Containers:** `sm 640 · md 768 · lg 1024 · xl 1200 · 2xl 1320` px.
+- **Consistent left edge.** Every page uses the same left edge: content starts at the same distance from the left of the window on every page, at every window width, whether or not the page is long enough to scroll. A visible scrollbar or a short page must never move content sideways, so the page root reserves the scrollbar's space (`scrollbar-gutter: stable` in `src/styles/globals.css`). A new page must not add its own side offsets to compensate. The value depends on the window width (a centered container up to 1320px with 24px padding), so this is a rule about consistency, not a fixed pixel number. Windows with classic (always visible) scrollbars are no longer tested, since they are essentially obsolete; `tests/e2e/left-edge.spec.ts` checks the pages line up with hidden or overlay scrollbars.
 - **Section rhythm:** `--section-y: 96px` (tight variant 64px). Generous vertical breathing between page sections.
 
 ---
@@ -109,7 +110,7 @@ Three families, all Google Fonts (self-host before production):
 
 **Animation:** restrained and functional. Transitions 0.15s (color/border) to 0.18s (lift) on `ease`. No bounce, no infinite decorative loops, no parallax.
 
-**Hover:** buttons darken (primary → blue-700, accent → gold-400); secondary gains blue-400 border + blue-50 wash; links underline; nav items shift slate→blue; cards lift 2px + deeper shadow + blue-200 border.
+**Hover:** buttons darken (primary → blue-700, accent → gold-400); secondary gains blue-400 border + blue-50 wash; links change color only and NEVER gain an underline on hover (a link that is not underlined at rest must never gain one on hover; this overrides the design system's original "links underline" rule, per the Andexor Network, Inc. website constitution, Principle VI); nav items shift slate→blue; cards lift 2px + deeper shadow + blue-200 border.
 
 **Press:** 1px downward translate; primary deepens to blue-900, accent to gold-600.
 

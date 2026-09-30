@@ -4,21 +4,35 @@
 
 export interface LogoProps {
   light?: boolean;
-  compact?: boolean;
+  size?: "default" | "hero";
   href?: string;
 }
 
-export function Logo({ light = false, compact = false, href = "#top" }: LogoProps) {
-  return (
-    <a href={href} className="an-logo-lockup">
+// The one logo lockup: mark plus the single-line "Andexor Network" wordmark
+// (specs/003-logo-wordmark). With `href` it is a link; without, a plain block
+// (the footer and the home page hero). It never links to `#top`
+// (specs/008-no-top-links). The mark is decorative because the adjacent text
+// already names the brand.
+export function Logo({ light = false, size = "default", href }: LogoProps) {
+  const className = [
+    "an-logo-lockup",
+    light && "an-logo-lockup--light",
+    size === "hero" && "an-logo-lockup--hero",
+  ]
+    .filter(Boolean)
+    .join(" ");
+  const content = (
+    <>
       {/* eslint-disable-next-line @next/next/no-img-element -- static SVG asset, no next/image optimization needed for static export */}
-      <img src="/logo/logo-gold.svg" alt="Andexor Network" className="an-logo-mark" />
-      {!compact && (
-        <span className={`an-logo-wordmark${light ? " an-logo-wordmark--light" : ""}`}>
-          <span className="an-logo-name">Andexor</span>
-          <span className="an-logo-tagline">Network, Inc.</span>
-        </span>
-      )}
+      <img src="/logo/logo-gold.svg" alt="" className="an-logo-mark" />
+      <span className="an-logo-wordmark">Andexor Network</span>
+    </>
+  );
+  return href === undefined ? (
+    <div className={className}>{content}</div>
+  ) : (
+    <a href={href} className={className}>
+      {content}
     </a>
   );
 }

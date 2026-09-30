@@ -21,7 +21,13 @@
 
 /* ---- Logo lockup -------------------------------------------------- */
 
+/* Two settings size the lockup: --logo-mark-size for the image and
+ * --logo-wordmark-size for the text (specs/003-logo-wordmark). They are
+ * separate because the mark's SVG has transparent padding, so its box is larger
+ * than the visible gate shape. */
 .an-logo-lockup {
+  --logo-mark-size: 38px;
+  --logo-wordmark-size: 26px;
   display: flex;
   align-items: center;
   gap: 11px;
@@ -29,39 +35,32 @@
 }
 
 .an-logo-mark {
-  width: 38px;
-  height: 38px;
+  width: var(--logo-mark-size);
+  height: var(--logo-mark-size);
+  flex: none;
 }
 
 .an-logo-wordmark {
-  display: flex;
-  flex-direction: column;
-  line-height: 1;
-}
-
-.an-logo-name {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 19px;
+  font-size: var(--logo-wordmark-size);
+  line-height: 1;
   letter-spacing: -0.02em;
+  white-space: nowrap;
   color: var(--text-heading);
 }
 
-.an-logo-wordmark--light .an-logo-name {
+.an-logo-lockup--light .an-logo-wordmark {
   color: #ffffff;
 }
 
-.an-logo-tagline {
-  font-family: var(--font-mono);
-  font-size: 9px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--text-accent);
-  margin-top: 3px;
-}
-
-.an-logo-wordmark--light .an-logo-tagline {
-  color: var(--gold-400);
+/* The home page's large brand row keeps the design system's sizes
+ * (design/README.md, Hero). */
+.an-logo-lockup--hero {
+  --logo-mark-size: clamp(72px, 9vw, 112px);
+  --logo-wordmark-size: clamp(32px, 4.4vw, 54px);
+  position: relative;
+  gap: 22px;
 }
 
 /* ---- Hero ----------------------------------------------------------- */
@@ -107,23 +106,6 @@
   transform: translateY(-50%);
   background: radial-gradient(circle, color-mix(in srgb, var(--gold-500) 22%, transparent), transparent 65%);
   pointer-events: none;
-}
-
-.an-hero__logo {
-  position: relative;
-  width: clamp(72px, 9vw, 112px);
-  height: clamp(72px, 9vw, 112px);
-  display: block;
-}
-
-.an-hero__brand-name {
-  position: relative;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(32px, 4.4vw, 54px);
-  line-height: 1;
-  letter-spacing: -0.02em;
-  color: #ffffff;
 }
 
 .an-hero__headline {

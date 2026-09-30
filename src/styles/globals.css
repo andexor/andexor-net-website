@@ -22,3 +22,12 @@
 body {
   margin: 0;
 }
+
+/* Reserve the scrollbar's space on every page. Without this, a page long
+ * enough to scroll loses the scrollbar's width (15px for a classic scrollbar)
+ * and its centered content sits 7.5px further left than on a short page such
+ * as "Page not found" (specs/009-consistent-left-edge). With overlay scrollbars
+ * the reserved width is 0, so nothing changes there. */
+html {
+  scrollbar-gutter: stable;
+}

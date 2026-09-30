@@ -11,10 +11,12 @@ export interface ContentPageProps {
   cards?: CardsLayout;
 }
 
-// Shell for Markdown-authored pages: logo bar, article, then the shared
-// footer. `html` and `cards` are produced at build time from repo-owned
+// Shell for Markdown-authored pages and the not-found page: logo bar, article
+// or card hero, then the shared footer. `html` and `cards` are produced at build time from repo-owned
 // Markdown files (src/lib/content.ts), never from user input.
 export function ContentPage({ html, cards }: ContentPageProps) {
+  // A hero with no cards (the not-found page) gets a compact bottom edge.
+  const hasCards = Boolean(cards && cards.cardsHtml);
   return (
     <div id="top">
       <header className="an-content-header">
@@ -24,8 +26,8 @@ export function ContentPage({ html, cards }: ContentPageProps) {
       </header>
       {cards ? (
         <main>
-          <section className="an-cardhero">
-            <div className="an-cardhero__grid" aria-hidden="true" />
+          <section className={`an-cardhero${hasCards ? "" : " an-cardhero--solo"}`}>
+            {cards.grid !== false && <div className="an-cardhero__grid" aria-hidden="true" />}
             <div className="an-cardhero__inner">
               {cards.image && (
                 <div className="an-cardhero__art">
@@ -42,7 +44,7 @@ export function ContentPage({ html, cards }: ContentPageProps) {
               </div>
             </div>
           </section>
-          <div className="an-cards" dangerouslySetInnerHTML={{ __html: cards.cardsHtml }} />
+          {hasCards && <div className="an-cards" dangerouslySetInnerHTML={{ __html: cards.cardsHtml }} />}
         </main>
       ) : (
         <main className="an-content">

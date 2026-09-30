@@ -4,6 +4,7 @@
 
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { Logo } from "./Logo";
 
 export interface HeroProps {
   onContactClick: () => void;
@@ -18,9 +19,7 @@ export function Hero({ onContactClick }: HeroProps) {
       <div className="an-hero__inner">
         <div className="an-hero__brand-row">
           <div aria-hidden="true" className="an-hero__glow" />
-          {/* eslint-disable-next-line @next/next/no-img-element -- static SVG asset, no next/image optimization needed for static export */}
-          <img src="/logo/logo-gold.svg" alt="" className="an-hero__logo" />
-          <span className="an-hero__brand-name">Andexor Network</span>
+          <Logo size="hero" light />
         </div>
         <h1 className="an-hero__headline">Enterprise-grade services at small business prices</h1>
         <p className="an-hero__subhead">
