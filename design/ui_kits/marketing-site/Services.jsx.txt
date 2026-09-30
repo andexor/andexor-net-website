@@ -7,7 +7,7 @@ const SERVICES = [
   { icon:'search', tag:'SEO', tone:'accent', title:'Technical SEO',
     body:"We'll assess your site's structure and brand identity, then improve visibility in search engines and AI agents.",
     points:['Site audit', 'Content strategy', 'Maps, social media'] },
-  { icon:'bot', tag:'AI', tone:'brand', title:'AI Systems',
+  { icon:'bot', tag:'AI', tone:'brand', title:'Agentic Systems',
     body:"We'll build the agents you need so you can adapt to emerging trends as AI agents handle business transactions.",
     points:['Knowledge Base', 'Digital assistant, scheduling', 'Workflow automation'] },
   { icon:'line-chart', tag:'Growth', tone:'accent', title:'Growth Marketing',

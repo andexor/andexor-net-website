@@ -7,8 +7,8 @@ import { describe, expect, it, vi } from "vitest";
 import { ContactPopup } from "@/components/contact/ContactPopup";
 import { PRIMARY_NEED_GROUPS, PRIMARY_NEED_OTHER } from "@/components/contact/primary-need-options";
 
-// FR-009: primary need field groups options into "Technical services" and
-// "Business services", plus "Something else", with a disabled placeholder.
+// FR-009: primary need field groups options into "Technical Services" and
+// "Business Services", plus "Something else", with a disabled placeholder.
 describe("Primary need select", () => {
   it("renders a disabled placeholder option", () => {
     render(<ContactPopup open onClose={vi.fn()} />);
@@ -35,6 +35,13 @@ describe("Primary need select", () => {
     const otherOption = select.querySelector(`option[value="${PRIMARY_NEED_OTHER}"]`);
     expect(otherOption).not.toBeNull();
     expect(otherOption?.closest("optgroup")).toBeNull();
+  });
+
+  it("labels the two groups with capitalized headings", () => {
+    render(<ContactPopup open onClose={vi.fn()} />);
+    const select = screen.getByLabelText("Primary need") as HTMLSelectElement;
+    const labels = Array.from(select.querySelectorAll("optgroup")).map((g) => g.getAttribute("label"));
+    expect(labels).toEqual(["Technical Services", "Business Services"]);
   });
 
   it("blocks submission while the placeholder is still selected (required)", () => {

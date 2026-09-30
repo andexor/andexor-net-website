@@ -4,6 +4,7 @@
 
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import { ContactProvider } from "@/components/contact/ContactProvider";
 import "../styles/globals.css";
 
 export const metadata: Metadata = {
@@ -70,7 +71,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <style>{`body { visibility: visible !important; }`}</style>
         </noscript>
       </head>
-      <body>{children}</body>
+      <body>
+        <ContactProvider>{children}</ContactProvider>
+      </body>
     </html>
   );
 }

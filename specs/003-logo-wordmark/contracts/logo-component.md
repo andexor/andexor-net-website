@@ -22,6 +22,11 @@ interface LogoProps {
 |--------|-------|
 | `ContentPage` header | `href="/"` |
 | `Footer` | `light` (no `href`, so it is not a link; amended by spec 008) |
+
+The Contact Us popup header (`ContactPopup.tsx`) is not a caller: it shows the mark alone, without the
+wordmark, so it uses `<img src="/logo/logo-gold.svg" alt="">` directly (spec 016).
+`tests/unit/logo.test.tsx` pins the two files that may reference `logo-gold.svg`: `Logo.tsx` and
+`ContactPopup.tsx`.
 | `Hero` brand row | `size="hero"`, `light` (no `href`, so it is not a link) |
 
 ## Sizes

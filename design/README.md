@@ -6,7 +6,7 @@ The Andexor Network design system: tokens, React primitives, brand assets, and a
 ## File extensions
 Source files in `components/` and `ui_kits/` carry an extra `.txt` extension (`Button.jsx.txt`, `Button.types.ts.txt`) so they are not compiled into the live design system. Strip `.txt` when copying them into a codebase. The HTML previews load them as is.
 
-## About the design files
+## About Us the design files
 Files in this bundle are **design references created in HTML/React (Babel in the browser)**. They show intended look and behavior. They are not production code to ship as is. Recreate them in the target codebase's environment (React, Next.js, Astro, etc.) using its patterns. If no codebase exists yet, Next.js or Astro with plain CSS custom properties is a good fit, since all tokens are already CSS variables.
 
 The token CSS (`styles.css`, `tokens/*.css`, `components/components.css`) **can** be copied directly into production.
@@ -50,7 +50,7 @@ Sections in order: Hero → Services → CTA band → Footer. No sticky header. 
 - Content:
   1. `code-2` · Web (brand) · **Web Development** · "We'll create or update your site with a strong technical foundation to handle an increase in traffic and sales." · Brochure site, blog, forms, shop / Content management system / Web application
   2. `search` · SEO (accent) · **Technical SEO** · "We'll assess your site's structure and brand identity, then improve visibility in search engines and AI agents." · Site audit / Content strategy / Maps, social media
-  3. `bot` · AI (brand) · **AI Systems** · "We'll build the agents you need so you can adapt to emerging trends as AI agents handle business transactions." · Knowledge Base / Digital assistant, scheduling / Workflow automation
+  3. `bot` · AI (brand) · **Agentic Systems** · "We'll build the agents you need so you can adapt to emerging trends as AI agents handle business transactions." · Knowledge Base / Digital assistant, scheduling / Workflow automation
   4. `line-chart` · Growth (accent) · **Growth Marketing** · "Campaigns made for impact, from brand awareness to lead generation to closed sales, with continuous monitoring." · Newsletters, branded email / Social media marketing / Paid advertising
 
 **CTA band**
@@ -63,21 +63,21 @@ Sections in order: Hero → Services → CTA band → Footer. No sticky header. 
 - bg `--blue-900` (`#001B3A`). Grid `1.4fr repeat(3, 1fr)`, gap 32px, padding 56px 24px 28px; stacks on narrow screens.
 - Col 1: logo lockup (light), tagline "Enterprise-grade services / at small business prices" 14px/1.6 `#8FB6E2`; social icon buttons (LinkedIn, Twitter, GitHub) 34px square, radius 8px, 1px `#013A73` border, icon 16px `#C5D8EF`.
 - Column headings: Source Code Pro 11px, tracking 0.14em, uppercase, `--gold-400` (`#F4BD2E`).
-  - TECHNICAL SERVICES: Web Development, Web Hosting, Technical SEO, AI Systems
+  - TECHNICAL SERVICES: Web Development, Web Hosting, Technical SEO, Agentic Systems
   - BUSINESS SERVICES: Cost Reduction, Lead Generation, Growth Marketing, Process Re-engineering
-  - COMPANY: About, Contact
+  - COMPANY: About Us, Contact
 - Links 14px `#C5D8EF`, hover `#FFFFFF`.
 - Bottom bar: 1px `#002855` top border; 13px `#4A8BD0`; "© 2026 Andexor Network, Inc. All rights reserved." left; Privacy, Terms right (gap 20px).
 
 ### 2. Contact Us popup (`ui_kits/marketing-site/contact-us.html` shows both states)
 - Scrim: fixed, `rgba(0,19,43,0.55)`, `backdrop-filter: blur(3px)`, z-index 60, centers the panel with 24px padding. Clicking the scrim closes.
 - Panel: `min(480px, 100%)`, bg `--blue-500` (`#1766B4`), radius 18px, `--shadow-xl`.
-- Header: bg `#002855`, padding 22px 24px, flex gap 12px. 260px gold radial glow top-left (offset -110px). Boxed logo 34px, radius 8px. Title "Contact Us" Play 700 30px/34px white. Close (x, 20px, `#C5D8EF`) at right.
+- Header: bg `#002855`, padding 22px 24px, flex gap 12px. 260px gold radial glow top-left (offset -110px). Gold logo (`assets/logo/logo-gold.svg`, transparent) 34px, no radius (spec 016 replaced the boxed logo). Title "Contact Us" Play 700 30px/34px white. Close (x, 20px, `#C5D8EF`) at right.
 - **Form state** (padding 24px, column, gap 14px). Labels in `--blue-100` (`#E7EFF8`):
   - Full name (placeholder "Jordan Reyes", required)
   - Work email (email, "you@company.com", required)
   - Company website ("company.com", required)
-  - Primary need (select, required). Placeholder "Select a service…". Group "Technical services": Web Development, Web Hosting, Technical SEO, AI Systems. Group "Business services": Cost Reduction, Lead Generation, Growth Marketing, Process Re-engineering. Then "Something else".
+  - Primary need (select, required). Placeholder "Select a service…". Group "Technical Services": Web Development, Web Hosting, Technical SEO, Agentic Systems. Group "Business Services": Cost Reduction, Lead Generation, Growth Marketing, Process Re-engineering. Then "Something else".
   - "Send" accent button, block, lg, arrow-right icon.
   - Note "No obligation. We never share your personal information." 12px `#E7EFF8`, centered.
 - **Request received state** (padding 40px 28px, centered): 56px circle bg `--success-100` (`#D7F0E3`) with 28px check `--success-600` (`#167A4F`); H3 "Request received" 22px white; body "Thanks for reaching out. A strategist will review your site and contact you soon." 14px/1.55 `#E7EFF8`, max 34ch; "Done" primary button, margin-top 22px, closes.

@@ -2,7 +2,7 @@ const { Button } = window.AndexorNetworkDesignSystem_d67969;
 
 function Header({ onProposal }) {
   const [open, setOpen] = React.useState(false);
-  const nav = ['Services', 'About'];
+  const nav = ['Services', 'About Us'];
   return (
     <header style={{
       position:'sticky', top:0, zIndex:30, background:'linear-gradient(90deg, #475569, #28211A)',

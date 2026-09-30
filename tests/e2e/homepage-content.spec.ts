@@ -20,10 +20,33 @@ test.describe("Homepage content", () => {
     await services.scrollIntoViewIfNeeded();
     const cards = services.getByRole("link");
     await expect(cards).toHaveCount(4);
-    for (const title of ["Web Development", "Technical SEO", "AI Systems", "Growth Marketing"]) {
+    for (const title of ["Web Development", "Technical SEO", "Agentic Systems", "Growth Marketing"]) {
       await expect(services.getByRole("heading", { name: title })).toBeVisible();
     }
   });
+
+  // Spec 011: each card opens its page, and the same page as the footer entry
+  // of the same name. The footer has more entries than there are cards.
+  for (const [title, path] of [
+    ["Web Development", "/web-development"],
+    ["Technical SEO", "/technical-seo"],
+    ["Agentic Systems", "/agentic-systems"],
+    ["Growth Marketing", "/growth-marketing"],
+  ]) {
+    test(`the ${title} card opens ${path}, like the footer link`, async ({ page }) => {
+      await page.goto("/");
+      const card = page
+        .locator("#services")
+        .getByRole("link")
+        .filter({ has: page.getByRole("heading", { name: title, exact: true }) });
+      const footerLink = page.locator("footer").getByRole("link", { name: title, exact: true });
+      expect(await card.getAttribute("href")).toBe(path);
+      expect(await footerLink.getAttribute("href")).toBe(path);
+      await card.click();
+      await expect(page).toHaveURL(new RegExp(`${path}$`));
+      await expect(page.getByRole("heading", { level: 1, name: title, exact: true })).toBeVisible();
+    });
+  }
 
   test("shows footer navigation groups, social links, and a copyright notice", async ({ page }) => {
     await page.goto("/");

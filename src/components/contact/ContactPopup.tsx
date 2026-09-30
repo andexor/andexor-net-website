@@ -40,6 +40,29 @@ export function ContactPopup({ open, onClose, onSubmit }: ContactPopupProps) {
     }
   }, [open]);
 
+  // Spec 015: Esc is one more way to close the popup and calls the same
+  // onClose as the close button. The listener is on the document because focus
+  // may still be on the trigger behind the scrim. It stands aside when another
+  // handler used the key, when an input method is composing, and while the
+  // "Primary need" list is expanded (Chromium sends no Esc to the page then;
+  // Firefox does, so the :open check is what keeps the list's Esc its own).
+  useEffect(() => {
+    if (!open) return;
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key !== "Escape" || event.defaultPrevented || event.isComposing) return;
+      let listOpen = false;
+      try {
+        listOpen = Boolean(document.getElementById("primaryNeed")?.matches(":open"));
+      } catch {
+        // Browsers that do not know :open throw a SyntaxError; treat as closed.
+      }
+      if (listOpen) return;
+      onClose();
+    }
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [open, onClose]);
+
   if (!open) {
     return null;
   }
@@ -70,7 +93,7 @@ export function ContactPopup({ open, onClose, onSubmit }: ContactPopupProps) {
         <div className="an-contact-header">
           <div aria-hidden="true" className="an-contact-header__glow" />
           {/* eslint-disable-next-line @next/next/no-img-element -- static SVG asset, no next/image optimization needed for static export */}
-          <img src="/logo/andexor-logo.svg" alt="" className="an-contact-header__logo" />
+          <img src="/logo/logo-gold.svg" alt="" className="an-contact-header__logo" />
           <div className="an-contact-header__title">Contact Us</div>
           <button onClick={onClose} aria-label="Close" className="an-contact-header__close">
             <X size={20} aria-hidden="true" />

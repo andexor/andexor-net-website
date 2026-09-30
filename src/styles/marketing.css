@@ -351,6 +351,13 @@
   font-size: 14px;
   color: var(--blue-200);
   text-decoration: none;
+  /* Also styles the footer's Contact Us <button> to match the links. */
+  background: none;
+  border: 0;
+  padding: 0;
+  font-family: inherit;
+  cursor: pointer;
+  text-align: left;
 }
 
 .an-footer__col-link:hover {
@@ -430,7 +437,6 @@
   position: relative;
   width: 34px;
   height: 34px;
-  border-radius: 8px;
 }
 
 .an-contact-header__title {

@@ -41,13 +41,13 @@ function ContactUs({ open, onClose, inline = false, initialSent = false }) {
               <label className="an-label" htmlFor="svc">Primary need</label>
               <select id="svc" className="an-input" defaultValue="" required style={{ appearance:'none', backgroundImage:'none' }}>
                 <option value="" disabled>Select a service…</option>
-                <optgroup label="Technical services">
+                <optgroup label="Technical Services">
                   <option>Web Development</option>
                   <option>Web Hosting</option>
                   <option>Technical SEO</option>
-                  <option>AI Systems</option>
+                  <option>Agentic Systems</option>
                 </optgroup>
-                <optgroup label="Business services">
+                <optgroup label="Business Services">
                   <option>Cost Reduction</option>
                   <option>Lead Generation</option>
                   <option>Growth Marketing</option>

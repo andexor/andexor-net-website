@@ -8,6 +8,14 @@
 
 **Input**: User description: "Let's update the logo wordmark. Remove the second line that says "Network, Inc." Change the first line from "Andexor" to "Andexor Network" and make it the same size as the logo. Do this in a common component so it is used across the site in the header and footer on all pages."
 
+## Amendments
+
+### 2026-09-30 (see `specs/016-popup-gold-logo/spec.md`)
+
+- The gold logo mark is referenced in two places: the shared lockup (`Logo.tsx`) and, alone without
+  the wordmark, the Contact Us popup header (`ContactPopup.tsx`), which replaced its boxed logo.
+  `tests/unit/logo.test.tsx` now pins exactly those two files.
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - See one consistent brand name everywhere (Priority: P1)

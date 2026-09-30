@@ -10,19 +10,22 @@ The homepage is a single page composed of four sections, rendered in this fixed 
 independent component with no required props beyond static content:
 
 ```text
-<HomePage>
-  <Hero onContactClick={openContactPopup} />
-  <Services />
-  <CTABand onContactClick={openContactPopup} />
-  <Footer />
-  <ContactPopup open={contactOpen} onClose={closeContactPopup} />
-</HomePage>
+<RootLayout>
+  <ContactProvider>            // renders the one <ContactPopup>; exposes useContact().openContact
+    <HomePage>
+      <Hero onContactClick={() => openContact()} />
+      <Services />
+      <CTABand onContactClick={() => openContact()} />
+      <Footer />               // its "Contact Us" <button> also calls openContact (spec 014)
+    </HomePage>
+  </ContactProvider>
+</RootLayout>
 ```
 
-- `Hero` and `CTABand` each expose a "Contact Us" action; both MUST call the same
-  `openContactPopup` handler (FR-007: every Contact Us CTA opens the same popup).
-- Popup open/close state (`contactOpen: boolean`) lives at the page level, per
-  `design/README.md`'s documented state model — not inside `Hero`/`CTABand`.
+- `Hero`, `CTABand`, and the footer each expose a "Contact Us" action; all MUST call the same
+  `openContact` (FR-007: every Contact Us CTA opens the same popup).
+- Popup open/close state lives in `ContactProvider` in the root layout (spec 014; it was page-level
+  state in `HomePage` before), not inside `Hero`/`CTABand`, so the popup is available on every page.
 
 ## ContactPopup component contract
 
@@ -33,7 +36,7 @@ Mirrors the design reference (`design/ui_kits/marketing-site/ContactUs.jsx.txt`)
 | Prop | Type | Required | Behavior |
 |---|---|---|---|
 | `open` | boolean | Yes | Whether the popup is rendered/visible |
-| `onClose` | `() => void` | Yes | Called on ×, scrim click, or "Done" click |
+| `onClose` | `() => void` | Yes | Called on ×, scrim click, Esc, or "Done" click |
 | `onSubmit` | `(request: ContactRequest) => void` | No | Optional hook for a future feature (e.g. real backend delivery) to observe a validated submission; this feature does not require a consumer to pass one, and the component MUST still show the confirmation state if omitted |
 
 **Internal state**: `sent: boolean`, reset to `false` whenever `open` transitions from `false` to
@@ -49,7 +52,7 @@ Mirrors the design reference (`design/ui_kits/marketing-site/ContactUs.jsx.txt`)
    view. It MUST NOT perform a network request itself (FR-018).
 4. Submitting with any required field empty/invalid MUST NOT transition to the confirmation
    view; the browser's native validation UI indicates the offending field (FR-010).
-5. Clicking ×, the scrim, or (in the confirmation view) "Done" MUST call `onClose` and MUST NOT
+5. Clicking ×, the scrim, pressing Esc (spec 015), or (in the confirmation view) "Done" MUST call `onClose` and MUST NOT
    itself flip `sent` back to `false` — the reset happens on next open, per point above.
 
 ## Extension seam for a future backend

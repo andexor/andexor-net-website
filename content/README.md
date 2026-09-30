@@ -17,7 +17,7 @@ A root `content/index.md` is ignored because `/` is the home page.
 
 ```markdown
 ---
-title: About Andexor
+title: About Us Andexor
 description: One sentence used for the meta description.
 draft: true
 ---
@@ -36,7 +36,7 @@ first `##` becomes the hero lede.
 ```markdown
 ---
 layout: cards
-eyebrow: Technical services
+eyebrow: Technical Services
 image: /web-development.png
 image_alt: Describe the illustration
 featured:
@@ -67,7 +67,7 @@ no dashes in copy, "and" instead of "&", sentence case headlines with no trailin
 - GitHub-flavored Markdown works (tables, task lists, strikethrough, autolinks).
 - Raw HTML is not rendered.
 - Images go in `public/` and are referenced by absolute path, for example `![Team](/images/team.jpg)`.
-- Links to other pages use the route, for example `[About](/about)`. Links starting with `http`
+- Links to other pages use the route, for example `[About Us](/about)`. Links starting with `http`
   open in a new tab.
 
 ## Publishing

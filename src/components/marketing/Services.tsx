@@ -8,8 +8,7 @@ import { Card } from "@/components/ui/Card";
 import { SERVICES } from "./services-data";
 
 // FR-004: exactly 4 service offerings, each with title/description/bullets.
-// Per FR-017, cards are rendered as links with placeholder hrefs; activating
-// them is a no-op until real destinations are assigned in a follow-up change.
+// Each card is one link to its page (spec 011); there is no placeholder href.
 export function Services() {
   return (
     <section id="services" className="an-services">
@@ -25,7 +24,7 @@ export function Services() {
               key={service.title}
               hover
               as="a"
-              href={service.href ?? `#${service.tag.toLowerCase()}`}
+              href={service.href}
               className="an-services__card"
             >
               <div className="an-services__card-top">

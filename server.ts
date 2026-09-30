@@ -6,12 +6,23 @@
 // Used only by the Docker runtime stage (see Dockerfile) to serve the
 // pre-built site with Bun instead of running a Next.js/Node server.
 
-import { join } from "node:path";
+import { join, sep } from "node:path";
 
 const OUT_DIR = join(import.meta.dir, "out");
 const PORT = Number(process.env.PORT ?? 3000);
 
-async function resolveFile(pathname: string) {
+async function resolveFile(rawPathname: string) {
+  // The URL path is still percent-encoded here (Next.js chunk names such as
+  // app/[...slug]/page-*.js arrive as %5B...slug%5D), so decode it before
+  // looking on disk. A malformed escape or a NUL byte is simply not found.
+  let pathname: string;
+  try {
+    pathname = decodeURIComponent(rawPathname);
+  } catch {
+    return null;
+  }
+  if (pathname.includes("\0")) return null;
+
   const candidates = [
     join(OUT_DIR, pathname),
     join(OUT_DIR, pathname, "index.html"),
@@ -19,6 +30,8 @@ async function resolveFile(pathname: string) {
   ];
 
   for (const candidate of candidates) {
+    // Decoding can produce ".." segments (from %2e%2e); never serve outside out/.
+    if (candidate !== OUT_DIR && !candidate.startsWith(OUT_DIR + sep)) continue;
     const file = Bun.file(candidate);
     if (await file.exists()) return file;
   }
