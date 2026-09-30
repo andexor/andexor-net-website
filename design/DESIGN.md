@@ -85,6 +85,7 @@ Three families, all Google Fonts (self-host before production):
 
 - **Base unit 4px.** Scale: `space-1 (4) · 2 (8) · 3 (12) · 4 (16) · 5 (20) · 6 (24) · 8 (32) · 10 (40) · 12 (48) · 16 (64) · 20 (80) · 24 (96) · 32 (128)`.
 - **Containers:** `sm 640 · md 768 · lg 1024 · xl 1200 · 2xl 1320` px.
+- **Consistent left edge.** Every page uses the same left edge: content starts at the same distance from the left of the window on every page, at every window width, whether or not the page is long enough to scroll. A visible scrollbar or a short page must never move content sideways, so the page root reserves the scrollbar's space (`scrollbar-gutter: stable` in `src/styles/globals.css`). A new page must not add its own side offsets to compensate. The value depends on the window width (a centered container up to 1320px with 24px padding), so this is a rule about consistency, not a fixed pixel number. Enforced by `tests/e2e/left-edge.spec.ts`.
 - **Section rhythm:** `--section-y: 96px` (tight variant 64px). Generous vertical breathing between page sections.
 
 ---
