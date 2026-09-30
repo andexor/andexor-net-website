@@ -22,8 +22,9 @@ scrollbars (headless browsers hide them, which is why the problem never showed i
 
 **Storage**: N/A
 
-**Testing**: Playwright (e2e), Vitest (unit), ESLint. The new e2e spec launches its own Chromium
-with visible scrollbars.
+**Testing**: Playwright (e2e), Vitest (unit), ESLint. The e2e spec checks the pages line up with
+hidden or overlay scrollbars. A test with visible classic scrollbars was written and then removed
+(owner decision 2026-09-30: classic scrollbars are essentially obsolete).
 
 **Target Platform**: Static `out/` served by `server.ts` in Docker (unchanged)
 
@@ -74,7 +75,7 @@ specs/009-consistent-left-edge/
 ```text
 src/styles/globals.css          # edit: html { scrollbar-gutter: stable; } with a comment
 design/DESIGN.md                # edit: section 4 "Spacing and Layout" gets the consistent-left-edge rule
-tests/e2e/left-edge.spec.ts     # new: own Chromium with visible scrollbars; left edge equal on three pages at five widths
+tests/e2e/left-edge.spec.ts     # new: left edge equal on three pages, unchanged with hidden or overlay scrollbars
 ```
 
 **Structure Decision**: Keep the existing layout. The declaration goes in `globals.css`, next to the

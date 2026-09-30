@@ -25,7 +25,12 @@
   current behavior, never a broken layout, and it costs nothing to add.
 - **Alternatives considered**: A polyfill (unjustified for a cosmetic difference).
 
-## Decision 3: Test with visible scrollbars in Chromium only
+## Decision 3: Test with visible scrollbars in Chromium only (superseded)
+
+> **Superseded 2026-09-30:** the owner decided classic scrollbars are essentially obsolete and
+> asked for the tests related to them to be removed. The visible-scrollbar test was written first
+> and confirmed the bug (15, 15, 22.5px) and the fix (15, 15, 15px), then removed. The text below is
+> the original decision, kept as a record.
 
 - **Decision**: `tests/e2e/left-edge.spec.ts` launches its own Chromium with the default
   `--hide-scrollbars` flag removed, checks scrollbars are really visible, then compares the header

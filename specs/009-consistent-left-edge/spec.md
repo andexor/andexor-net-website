@@ -63,8 +63,8 @@ edge, regardless of page length or scrollbars. A test fails if a page's left edg
 
 1. **Given** the design guide, **When** the layout section is read, **Then** it states the rule and
    the reason (a scrolling page's scrollbar must not move the content).
-2. **Given** a new page is added later, **When** the automated tests run in a window with visible
-   scrollbars, **Then** a left edge that differs from the other pages fails the test.
+2. **Given** a new page is added later, **When** the automated tests run (hidden or overlay
+   scrollbars), **Then** a left edge that differs from the other pages fails the test.
 
 ---
 
@@ -90,8 +90,9 @@ edge, regardless of page length or scrollbars. A test fails if a page's left edg
   Web Development page (the case that was 7.5px off).
 - **FR-004**: The design guide (`design/DESIGN.md`) MUST state that all pages use one consistent left
   edge, that scrollbars and page length must not change it, and that a new page must follow it.
-- **FR-005**: An automated check MUST fail if any page's left edge differs from the others when
-  scrollbars are visible.
+- **FR-005**: An automated check MUST fail if any page's left edge differs from the others with
+  hidden or overlay scrollbars. Windows with classic visible scrollbars are not tested (owner
+  decision, 2026-09-30: they are essentially obsolete); the fix for them is the reserved gutter.
 - **FR-006**: The change MUST NOT alter the layout width, padding, or look of any page in windows
   with overlay scrollbars.
 
@@ -110,7 +111,8 @@ edge, regardless of page length or scrollbars. A test fails if a page's left edg
 - **SC-002**: Going from a page that scrolls to one that does not moves the content by 0px.
 - **SC-003**: In windows with overlay scrollbars, every page looks exactly as it does today.
 - **SC-004**: `design/DESIGN.md` contains the rule.
-- **SC-005**: Adding a page whose left edge differs makes the automated tests fail.
+- **SC-005**: Adding a page whose left edge differs (with hidden or overlay scrollbars) makes the
+  automated tests fail.
 
 ## Assumptions
 
@@ -124,5 +126,7 @@ edge, regardless of page length or scrollbars. A test fails if a page's left edg
 - The design guide rule is worded in terms of consistency, not a fixed number of pixels, because a
   fixed "15px" would be wrong at other window widths and on other systems. The owner confirmed this wording on
   2026-09-30.
-- Headless test browsers hide scrollbars by default, so the automated check must run with scrollbars
-  visible to catch this.
+- Windows with classic, always-visible scrollbars are no longer tested. The owner decided on
+  2026-09-30 that they are essentially obsolete, so the test that launched a Chromium with visible
+  scrollbars was removed. The reserved gutter (`scrollbar-gutter: stable`) stays in place, so
+  those windows still line up; it is just not covered by an automated test.

@@ -11,10 +11,9 @@
 
 | Check | Where |
 |-------|-------|
-| With visible scrollbars, the header/hero left edge is identical on `/`, `/web-development`, and `/nope` at 320, 768, 1365, 1440, and 1600px | `tests/e2e/left-edge.spec.ts` (own Chromium; skipped in other projects) |
-| The test browser really shows scrollbars (`innerWidth - clientWidth` is greater than 0 on a scrolling page), so the check cannot pass by accident | same file |
-| With the default hidden scrollbars, the left edges are also identical (FR-006) | same file, in the normal projects |
+| With hidden or overlay scrollbars, the left edges are identical, and unchanged at 140px (1600px window) outside desktop Chromium (FR-006) | `tests/e2e/left-edge.spec.ts`, all projects |
 
 ## Not covered
 
+- Windows with classic visible scrollbars are not tested (owner decision 2026-09-30; a test was written, confirmed the fix, and was removed).
 - Browsers without `scrollbar-gutter` (Safari before 18.2) keep a 7.5px shift on short pages.
