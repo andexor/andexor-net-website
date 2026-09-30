@@ -21,7 +21,7 @@ interface LogoProps {
 | Caller | Props |
 |--------|-------|
 | `ContentPage` header | `href="/"` |
-| `Footer` | `light`, `href="#top"` |
+| `Footer` | `light` (no `href`, so it is not a link; amended by spec 008) |
 | `Hero` brand row | `size="hero"`, `light` (no `href`, so it is not a link) |
 
 ## Sizes

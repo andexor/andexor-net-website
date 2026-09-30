@@ -1,6 +1,9 @@
 <!--
 Sync Impact Report
-- Version change: 1.3.1 → 1.3.2 (PATCH: Principle VIII names the framework not-found page as the
+- Version change: 1.3.2 → 1.4.0 (MINOR: Principle IV gains a new prohibition: no link on the site
+  may go to `#top`, and the footer and home page hero logos are plain branding, not links. Owner
+  decision, specs/008-no-top-links; enforced by tests/unit/no-top-links.test.ts. Templates in
+  .specify/templates/ checked: none mention it). Earlier: 1.3.1 → 1.3.2 (PATCH: Principle VIII names the framework not-found page as the
   one hand-written page, since it is not a routable content page and authoring it as Markdown
   would publish a /404 route; owner decision, specs/006-not-found-page-style). Earlier: 1.2.2 →
   1.3.1 (MINOR 1.3.0, then PATCH 1.3.1 to say explicitly that a link not
@@ -12,7 +15,7 @@ Sync Impact Report
   Earlier: 1.2.1 → 1.2.2 (PATCH: one branch per issue is now a suggestion, not a rule,
   to avoid ceremony on small changes). Earlier: 1.1.0 → 1.2.1 (MINOR for 1.2.0, then PATCH 1.2.1 for the license policy: materially expanded Development Workflow and Technology
   Constraints, based on CONTRIBUTING.md, SECURITY.md, setup.md, and NOTICE added 2026-09-29)
-- Modified principles: VIII (not-found page exception); earlier VI (no link underlines at all;
+- Modified principles: IV (no links to #top); earlier VIII (not-found page exception); earlier VI (no link underlines at all;
   heading unchanged)
 - Added principles: none
 - Added guidance: issue-first workflow with commit trailer rule, sign-off meaning (Code of
@@ -64,7 +67,10 @@ being usable by all visitors and performing well on real-world networks and devi
 All pages MUST share a consistent design system (shared components, typography, spacing, color
 tokens) and consistent content structure (navigation, headings, calls to action). New UI MUST
 reuse existing shared components before introducing new one-off styles or components. Appearance
-rules in Principle VI apply to every page.
+rules in Principle VI apply to every page. No link on the site MAY go to `#top` (an address whose
+fragment is `top`, such as `#top`, `/#top`, or `/page#top`). The footer logo and the home page
+hero logo are plain branding, not links; only the header logo on content pages links, and it goes
+to the home page. `tests/unit/no-top-links.test.ts` enforces this for source and Markdown.
 
 Rationale: A company website's credibility depends on looking and behaving like one coherent
 product; inconsistency across pages undermines trust and increases long-term maintenance cost.
@@ -210,4 +216,4 @@ MUST be explicitly justified in the relevant artifact rather than silently intro
 are companion documents for contributors; where they conflict with this constitution, this
 constitution wins until one of them is amended.
 
-**Version**: 1.3.2 | **Ratified**: 2026-09-28 | **Last Amended**: 2026-09-30
+**Version**: 1.4.0 | **Ratified**: 2026-09-28 | **Last Amended**: 2026-09-30

@@ -9,8 +9,10 @@ export interface LogoProps {
 }
 
 // The one logo lockup: mark plus the single-line "Andexor Network" wordmark
-// (specs/003-logo-wordmark). With `href` it is a link; without, a plain block.
-// The mark is decorative because the adjacent text already names the brand.
+// (specs/003-logo-wordmark). With `href` it is a link; without, a plain block
+// (the footer and the home page hero). It never links to `#top`
+// (specs/008-no-top-links). The mark is decorative because the adjacent text
+// already names the brand.
 export function Logo({ light = false, size = "default", href }: LogoProps) {
   const className = [
     "an-logo-lockup",

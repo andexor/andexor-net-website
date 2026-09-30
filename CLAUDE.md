@@ -16,8 +16,8 @@ This project is driven by Spec Kit's slash-command workflow rather than ad-hoc c
 proceeds through these skills, in order, each producing artifacts consumed by the next:
 
 1. `speckit-constitution` — establish/update the project's governing principles in
-   `.specify/memory/constitution.md` (currently v1.3.2, eight principles). Read it before
-   specifying or planning; it holds the always-dark, no-link-underline, graceful-shutdown,
+   `.specify/memory/constitution.md` (currently v1.4.0, eight principles). Read it before
+   specifying or planning; it holds the always-dark, no-link-underline, no-#top-link, graceful-shutdown,
    Markdown-content, toolchain, license-header, and spec-policy rules.
 2. `speckit-specify` — turn a natural-language feature description into a spec, creating a new
    numbered feature branch/directory (e.g. `specs/001-build-initial-home-page/`).
@@ -68,6 +68,16 @@ is set in `src/styles/tokens/colors.css` (the dark alias values are unconditiona
 `color-scheme: dark`) and deliberately differs from `design/tokens/colors.css`, which follows the
 OS setting. Don't add `prefers-color-scheme` light/dark switching back, and keep this override if
 the design tokens are re-copied. There is no light theme to design or test.
+
+## No links to #top
+
+Never link to `#top` (or any address whose fragment is `top`, such as `/#top` or `/page#top`),
+anywhere. The footer logo and the home page hero logo are plain branding, not links; only the header
+logo on content pages links, and it goes to `/`. Do not add a "back to top" link or scroll-to-top
+control. `tests/unit/no-top-links.test.ts` fails if any `src/` code or `content/` Markdown links to
+`#top`. The `id="top"` on page wrappers is not a link and may stay. If an older spec, contract, or
+design document says a logo scrolls to the top, correct it when you find it. Do not ask the owner
+again.
 
 ## No underline on links
 

@@ -260,9 +260,10 @@ the color changes and no underline appears or disappears.
   originating page to the destination; links to other site routes MUST open in the same tab.
 - **FR-009**: A page not using the card layout MUST render a logo bar, a readable article
   column, and the shared footer.
-- **FR-010**: The logo on a content page MUST link to the home page; on the home page the footer
-  logo MUST keep scrolling to the top (the hero's brand row is not a link, per
-  `specs/003-logo-wordmark/spec.md`).
+- **FR-010**: The logo on a content page MUST link to the home page. No logo scrolls to the top:
+  the footer logo and the hero's brand row are not links (amended by
+  `specs/003-logo-wordmark/spec.md` and `specs/008-no-top-links/spec.md`), and no link anywhere goes
+  to `#top`.
 - **FR-011**: Pages MUST be authored as Markdown; they MUST NOT be converted to hand-written
   page code.
 - **FR-012**: Authoring rules (routes, front matter, card layout, copy rules, publishing) MUST

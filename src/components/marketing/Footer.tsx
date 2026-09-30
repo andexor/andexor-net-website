@@ -42,7 +42,7 @@ export function Footer() {
     <footer className="an-footer">
       <div className="an-footer__grid">
         <div>
-          <Logo light href="#top" />
+          <Logo light />
           <p className="an-footer__tagline">
             Enterprise-grade services
             <br />
