@@ -46,6 +46,29 @@ test.describe("Not-found page style", () => {
     expect(await page.locator(".an-tile").count()).toBeGreaterThan(1);
   });
 
+  // Spec 021: the empty spacer takes the place of the eyebrow, so the headline and
+  // tagline sit where they do on a service page, at every hero layout.
+  for (const width of [1920, 1280, 768, 375]) {
+    test(`headline and tagline line up with a service page at ${width}px`, async ({ page }) => {
+      await page.setViewportSize({ width, height: 900 });
+      const positions = [];
+      for (const path of ["/cost-reduction", "/nope"]) {
+        await page.goto(path);
+        positions.push(
+          await page.evaluate(() => ({
+            h1: (document.querySelector(".an-cardhero h1")?.getBoundingClientRect().top ?? 0) + window.scrollY,
+            intro:
+              (document.querySelector(".an-cardhero__intro")?.getBoundingClientRect().top ?? 0) +
+              window.scrollY,
+          })),
+        );
+      }
+      const [service, missing] = positions;
+      expect(missing.h1).toBeCloseTo(service.h1, 0);
+      expect(missing.intro).toBeCloseTo(service.intro, 0);
+    });
+  }
+
   const WIDTHS = [
     ["desktop", 1280],
     ["tablet", 768],

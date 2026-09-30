@@ -38,7 +38,14 @@ export function ContentPage({ html, cards }: ContentPageProps) {
                 </div>
               )}
               <div className="an-cardhero__text">
-                {cards.eyebrow && <p className="an-cardhero__eyebrow">{cards.eyebrow}</p>}
+                {cards.eyebrow ? (
+                  <p className="an-cardhero__eyebrow">{cards.eyebrow}</p>
+                ) : (
+                  // Same height as an eyebrow, so the headline lines up with pages that have one.
+                  <p className="an-cardhero__spacer" aria-hidden="true">
+                    {"\u00a0"}
+                  </p>
+                )}
                 <h1 dangerouslySetInnerHTML={{ __html: cards.headingHtml }} />
                 {cards.introHtml && (
                   <div className="an-cardhero__intro" dangerouslySetInnerHTML={{ __html: cards.introHtml }} />

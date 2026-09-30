@@ -57,6 +57,20 @@ describe("NotFound", () => {
     }
   });
 
+  it("reserves an empty, hidden eyebrow-height spacer above the headline (spec 021)", () => {
+    const { container } = render(
+      <ContactProvider>
+        <NotFound />
+      </ContactProvider>,
+    );
+    const spacer = container.querySelector(".an-cardhero__spacer");
+    expect(spacer).not.toBeNull();
+    expect(spacer).toHaveAttribute("aria-hidden", "true");
+    expect(spacer?.textContent?.trim()).toBe("");
+    // It comes right before the headline, where the eyebrow sits on other pages.
+    expect(spacer?.nextElementSibling?.tagName).toBe("H1");
+  });
+
   it("keeps the explanation sentence beside the link", () => {
     render(
       <ContactProvider>

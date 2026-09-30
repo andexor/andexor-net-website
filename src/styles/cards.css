@@ -99,7 +99,8 @@
   min-width: 0;
 }
 
-.an-cardhero__eyebrow {
+.an-cardhero__eyebrow,
+.an-cardhero__spacer {
   margin: 0 0 var(--space-3);
   font-family: var(--font-mono);
   font-size: var(--text-xs);
@@ -109,13 +110,19 @@
   color: var(--gold-400);
 }
 
+/* A hero with no eyebrow (the not-found page) keeps the eyebrow's height, empty
+ * and invisible, so its headline lines up with the pages that have one. */
+.an-cardhero__spacer {
+  visibility: hidden;
+}
+
 .an-cardhero__eyebrow::before {
   content: ">> ";
 }
 
 .an-cardhero h1 {
   margin: 0;
-  max-width: 10em;
+  max-width: 14em;
   font-family: var(--font-display);
   font-weight: 700;
   font-size: clamp(32px, 4.4vw, 52px);
@@ -127,7 +134,7 @@
 
 .an-cardhero__intro {
   margin-top: var(--space-4);
-  max-width: 32em;
+  max-width: 40em;
   font-size: var(--text-lg);
   line-height: var(--leading-relaxed);
   color: var(--blue-200);

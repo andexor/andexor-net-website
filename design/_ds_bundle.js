@@ -1571,7 +1571,7 @@ function Hero({
       maxWidth: '22em',
       margin: '20px 0 0'
     }
-  }, "Andexor Network designs, builds, and manages solutions to help your business grow."), /*#__PURE__*/React.createElement("div", {
+  }, "We create and manage solutions to help your business grow."), /*#__PURE__*/React.createElement("div", {
     style: {
       display: 'flex',
       gap: '12px',
