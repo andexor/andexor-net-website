@@ -5,6 +5,7 @@
 import { readFileSync } from "node:fs";
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
+import { ContactProvider } from "@/components/contact/ContactProvider";
 import { Footer } from "@/components/marketing/Footer";
 import { Logo } from "@/components/marketing/Logo";
 import NotFound from "@/app/not-found";
@@ -63,7 +64,11 @@ describe("shared lockup", () => {
   });
 
   it("is used by the footer as plain branding, not a link", () => {
-    const { container } = render(<Footer />);
+    const { container } = render(
+      <ContactProvider>
+        <Footer />
+      </ContactProvider>,
+    );
     expect(screen.queryByRole("link", { name: "Andexor Network" })).toBeNull();
     const lockup = container.querySelector(".an-logo-lockup--light");
     expect(lockup).not.toBeNull();
@@ -73,7 +78,11 @@ describe("shared lockup", () => {
   });
 
   it("is used in the header of content pages such as not-found, linking home", () => {
-    render(<NotFound />);
+    render(
+      <ContactProvider>
+        <NotFound />
+      </ContactProvider>,
+    );
     // Only the header logo is a link; the footer logo is plain branding (spec 008).
     const logos = screen.getAllByRole("link", { name: "Andexor Network" });
     expect(logos).toHaveLength(1);

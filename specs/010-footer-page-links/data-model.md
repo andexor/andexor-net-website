@@ -16,7 +16,7 @@ No stored data. The one entity is the footer entry, defined by `COLUMNS` and `IT
 | Business Services | Growth Marketing | `/growth-marketing` | `content/growth-marketing.md` | new |
 | Business Services | Process Re-engineering | `/process-re-engineering` | `content/process-re-engineering.md` | new |
 | Company | About Us | `/about-us` | `content/about-us.md` | new |
-| Company | Contact | `#contact` (placeholder) | none | unchanged |
+| Company | Contact Us | none (a button that opens the contact popup, spec 014) | none | was `Contact`, `#contact` |
 
 Also unchanged: Privacy `#privacy`, Terms `#terms`, and the three social links.
 

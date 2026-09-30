@@ -20,9 +20,9 @@ const PAGES = [
 
 const START_PAGES = ["/", "/web-development", "/nope"];
 
-// FR-003: these stay placeholders.
+// FR-003 (spec 010, amended by spec 014): Privacy and Terms stay placeholders.
+// Contact Us opens the contact popup (tests/e2e/footer-contact.spec.ts).
 const PLACEHOLDERS = [
-  ["Contact", "#contact"],
   ["Privacy", "#privacy"],
   ["Terms", "#terms"],
 ];
@@ -40,7 +40,7 @@ test.describe("Footer links", () => {
       });
     }
 
-    test(`Contact, Privacy, and Terms are still placeholders on ${start}`, async ({ page }) => {
+    test(`Privacy and Terms are still placeholders on ${start}`, async ({ page }) => {
       await page.goto(start);
       for (const [label, href] of PLACEHOLDERS) {
         const link = page.locator("footer").getByRole("link", { name: label, exact: true });

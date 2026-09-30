@@ -74,8 +74,9 @@ each updated footer link. Each opens the right page.
 
 ### Edge Cases
 
-- "Contact", "Privacy", and "Terms" are placeholder links today (activating them does nothing) and
-  have no pages. They are not changed by this feature.
+- "Privacy" and "Terms" are placeholder links (activating them does nothing) and have no pages. They
+  are not changed by this feature. "Contact" was a placeholder when this was written; spec 014 turned
+  it into "Contact Us", which opens the contact popup.
 - The footer's social links, and the "Web Development" link, are unchanged.
 - A footer entry always matches the page's own title (for example, "Agentic Systems" and
   "About Us"), so the footer and the page heading never disagree.
@@ -93,8 +94,9 @@ each updated footer link. Each opens the right page.
   Re-engineering, and About Us.
 - **FR-002**: The links MUST work from every page that shows the footer, including the home page,
   the content pages, and the "Page not found" page.
-- **FR-003**: The footer's existing behavior MUST be unchanged for "Web Development", "Contact",
-  "Privacy", "Terms", and the social links.
+- **FR-003**: The footer's existing behavior MUST be unchanged for "Web Development",
+  "Privacy", "Terms", and the social links. ("Contact" became "Contact Us" and opens the contact popup
+  in spec 014.)
 - **FR-004**: The footer's look, wording, and link colors MUST be unchanged. Links MUST NOT gain an
   underline at rest, on hover, or on focus.
 - **FR-005**: No footer link MUST go to `#top`.
@@ -126,8 +128,9 @@ each updated footer link. Each opens the right page.
   stay out of the footer until then. Constitution Principle VIII may need a note that the footer
   now links to them.
 - "All other pages mentioned in the footer" means the eight pages that now exist. "Contact" has no page (the
-  Contact Us popup is opened from the home page buttons, not the footer), and "Privacy" and "Terms"
-  are legal pages nobody has asked for yet, so all three keep their placeholder links.
+  Contact Us popup was opened only from the home page buttons; spec 014 later added it to the footer),
+  and "Privacy" and "Terms" are legal pages nobody has asked for yet, so they keep their placeholder
+  links.
 - The footer labels "Agentic Systems" and "About Us" replace the older "AI Systems" and "About",
   already changed in the working tree, and match the page titles.
 - The home page service card that used to read "AI Systems" reads "Agentic Systems" now. Making

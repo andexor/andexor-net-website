@@ -19,7 +19,7 @@ test.describe("Contact request flow", () => {
 
   test("opens the same popup from the CTA band Contact Us button", async ({ page }) => {
     await page.goto("/");
-    await page.getByRole("button", { name: "Contact Us" }).last().click();
+    await page.locator(".an-cta-band").getByRole("button", { name: "Contact Us" }).click();
     await expect(page.getByRole("dialog", { name: "Contact Us" })).toBeVisible();
   });
 

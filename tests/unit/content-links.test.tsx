@@ -4,6 +4,7 @@
 
 import { render } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
+import { ContactProvider } from "@/components/contact/ContactProvider";
 import { Footer } from "@/components/marketing/Footer";
 import { Services } from "@/components/marketing/Services";
 import { listContentSlugs } from "@/lib/content";
@@ -34,13 +35,21 @@ describe("links to content pages", () => {
   it("links the approved pages from the service cards and the footer", () => {
     const services = render(<Services />).container;
     expect(internalPaths(services)).toEqual(CARD_PAGES);
-    const footer = render(<Footer />).container;
+    const footer = render(
+      <ContactProvider>
+        <Footer />
+      </ContactProvider>,
+    ).container;
     expect(internalPaths(footer).sort()).toEqual(FOOTER_PAGES);
   });
 
   it("links no page other than the approved ones", () => {
     const services = render(<Services />).container;
-    const footer = render(<Footer />).container;
+    const footer = render(
+      <ContactProvider>
+        <Footer />
+      </ContactProvider>,
+    ).container;
     const linked = new Set([...internalPaths(services), ...internalPaths(footer)]);
     const content = new Set(listContentSlugs().map((slug) => "/" + slug.join("/")));
     const contentLinks = [...linked].filter((href) => content.has(href));

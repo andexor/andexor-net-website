@@ -10,19 +10,22 @@ The homepage is a single page composed of four sections, rendered in this fixed 
 independent component with no required props beyond static content:
 
 ```text
-<HomePage>
-  <Hero onContactClick={openContactPopup} />
-  <Services />
-  <CTABand onContactClick={openContactPopup} />
-  <Footer />
-  <ContactPopup open={contactOpen} onClose={closeContactPopup} />
-</HomePage>
+<RootLayout>
+  <ContactProvider>            // renders the one <ContactPopup>; exposes useContact().openContact
+    <HomePage>
+      <Hero onContactClick={() => openContact()} />
+      <Services />
+      <CTABand onContactClick={() => openContact()} />
+      <Footer />               // its "Contact Us" <button> also calls openContact (spec 014)
+    </HomePage>
+  </ContactProvider>
+</RootLayout>
 ```
 
-- `Hero` and `CTABand` each expose a "Contact Us" action; both MUST call the same
-  `openContactPopup` handler (FR-007: every Contact Us CTA opens the same popup).
-- Popup open/close state (`contactOpen: boolean`) lives at the page level, per
-  `design/README.md`'s documented state model — not inside `Hero`/`CTABand`.
+- `Hero`, `CTABand`, and the footer each expose a "Contact Us" action; all MUST call the same
+  `openContact` (FR-007: every Contact Us CTA opens the same popup).
+- Popup open/close state lives in `ContactProvider` in the root layout (spec 014; it was page-level
+  state in `HomePage` before), not inside `Hero`/`CTABand`, so the popup is available on every page.
 
 ## ContactPopup component contract
 

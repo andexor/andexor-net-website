@@ -43,6 +43,13 @@
   name. FR-017 no longer applies to service cards. The footer has more entries than there are
   cards, by design.
 
+### 2026-09-30 (see `specs/014-footer-contact-us/spec.md`)
+
+- The footer's "Contact" is now "Contact Us" and opens the contact popup, on every page that shows the
+  footer (home, content pages, "Page not found"). The popup is rendered once, in the root layout, and
+  the home page's buttons and the footer all open it (FR-007 amended). Closing it returns focus to the
+  control that opened it. Privacy and Terms remain placeholders.
+
 ### 2026-09-30 (see `specs/015-escape-closes-contact/spec.md`)
 
 - Pressing Esc also closes the contact popup, wherever focus is (FR-012 amended). It does nothing
@@ -185,7 +192,8 @@ service options are listed and grouped, and that a selection is retained when su
   business services, and company categories, plus a copyright line, secondary links (e.g.
   privacy, terms), and social media links (e.g. LinkedIn, Twitter/X, GitHub). Per FR-017, these
   may point to placeholder destinations for this feature.
-- **FR-007**: Every "Contact Us" call to action on the page MUST open the same contact popup.
+- **FR-007**: Every "Contact Us" call to action on the page, including the footer's "Contact Us"
+  (spec 014), MUST open the same contact popup.
 - **FR-008**: The contact popup MUST present a form requesting: full name, work email, company
   website, and primary need — with full name, work email, and company website required before
   submission.

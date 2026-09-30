@@ -3,6 +3,7 @@
 // Author: Ed Jenkins <ed@andexor.net>
 
 import { Github, Linkedin, Twitter } from "lucide-react";
+import { FooterContactButton } from "./FooterContactButton";
 import { Logo } from "./Logo";
 
 const SOCIAL_LINKS = [
@@ -20,7 +21,7 @@ const COLUMNS = [
     heading: "BUSINESS SERVICES",
     items: ["Cost Reduction", "Lead Generation", "Growth Marketing", "Process Re-engineering"],
   },
-  { heading: "COMPANY", items: ["About Us", "Contact"] },
+  { heading: "COMPANY", items: ["About Us", "Contact Us"] },
 ];
 
 const ITEM_HREFS: Record<string, string> = {
@@ -35,17 +36,11 @@ const ITEM_HREFS: Record<string, string> = {
   "About Us": "/about-us",
 };
 
-function slugify(label: string) {
-  return label
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-|-$/g, "");
-}
-
 // FR-006: navigation grouped into technical/business/company categories,
 // social media links, and a copyright line. The service and About Us entries
-// link to their pages (spec 010). Contact, Privacy, and Terms remain
-// placeholders per FR-017 — activating them is a no-op.
+// link to their pages (spec 010). Contact Us opens the contact popup
+// (spec 014). Privacy and Terms remain placeholders per FR-017 — activating
+// them is a no-op.
 export function Footer() {
   return (
     <footer className="an-footer">
@@ -77,9 +72,13 @@ export function Footer() {
             <ul className="an-footer__col-list">
               {column.items.map((item) => (
                 <li key={item}>
-                  <a href={ITEM_HREFS[item] ?? `#${slugify(item)}`} className="an-footer__col-link">
-                    {item}
-                  </a>
+                  {item === "Contact Us" ? (
+                    <FooterContactButton label={item} />
+                  ) : (
+                    <a href={ITEM_HREFS[item]} className="an-footer__col-link">
+                      {item}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>
