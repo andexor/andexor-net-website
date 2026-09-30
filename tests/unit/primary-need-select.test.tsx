@@ -7,7 +7,7 @@ import { describe, expect, it, vi } from "vitest";
 import { ContactPopup } from "@/components/contact/ContactPopup";
 import { PRIMARY_NEED_GROUPS, PRIMARY_NEED_OTHER } from "@/components/contact/primary-need-options";
 
-// FR-009: primary need field groups options into "Technical services" and
+// FR-009: primary need field groups options into "Technical Services" and
 // "Business services", plus "Something else", with a disabled placeholder.
 describe("Primary need select", () => {
   it("renders a disabled placeholder option", () => {

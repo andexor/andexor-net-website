@@ -288,7 +288,7 @@ the color changes and no underline appears or disappears.
 **Web Development page**
 
 - **FR-020**: The site MUST publish a Web Development page at `/web-development`, whose
-  headline is exactly "Web Development", with eyebrow "Technical services" and an isometric
+  headline is exactly "Web Development", with eyebrow "Technical Services" and an isometric
   laptop-and-gears illustration.
 - **FR-021**: The page MUST contain the nine cards listed in User Story 1 scenario 4, in that
   order, with "Need a web application?" and "How about an AI agent?" as the featured cards.

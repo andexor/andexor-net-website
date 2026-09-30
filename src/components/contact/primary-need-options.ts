@@ -10,7 +10,7 @@ export interface PrimaryNeedGroup {
 
 export const PRIMARY_NEED_GROUPS: PrimaryNeedGroup[] = [
   {
-    label: "Technical services",
+    label: "Technical Services",
     options: ["Web Development", "Web Hosting", "Technical SEO", "Agentic Systems"],
   },
   {

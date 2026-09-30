@@ -132,7 +132,7 @@ service options are listed and grouped, and that a selection is retained when su
 **Acceptance Scenarios**:
 
 1. **Given** the contact popup form is open, **When** the visitor opens the "primary need"
-   selector, **Then** they see options grouped into "Technical services" (Web Development, Web
+   selector, **Then** they see options grouped into "Technical Services" (Web Development, Web
    Hosting, Technical SEO, Agentic Systems) and "Business services" (Cost Reduction, Lead Generation,
    Growth Marketing, Process Re-engineering), plus a "Something else" option.
 2. **Given** no option has been chosen yet, **When** the visitor views the selector, **Then** it

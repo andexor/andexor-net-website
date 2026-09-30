@@ -15,7 +15,7 @@ See `content/README.md` for the full text. Summary:
 |---|---|
 | Published content route | Page with title `<title> | Andexor Network, Inc.` |
 | Draft, README, root index, unknown route | 404 page |
-| `/web-development` | Card page: eyebrow "Technical services", H1 "Web Development", 9 cards, 2 featured |
+| `/web-development` | Card page: eyebrow "Technical Services", H1 "Web Development", 9 cards, 2 featured |
 
 ## Link contract
 

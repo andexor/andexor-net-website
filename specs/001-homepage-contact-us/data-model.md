@@ -54,7 +54,7 @@ Fixed content set (from `design/README.md`, Services section):
 Static enum used by the Contact Request form's "Primary need" field (not a separate persisted
 entity, just the selector's allowed values):
 
-- **Technical services**: Web Development, Web Hosting, Technical SEO, Agentic Systems
+- **Technical Services**: Web Development, Web Hosting, Technical SEO, Agentic Systems
 - **Business services**: Cost Reduction, Lead Generation, Growth Marketing, Process
   Re-engineering
 - Something else

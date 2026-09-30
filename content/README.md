@@ -36,7 +36,7 @@ first `##` becomes the hero lede.
 ```markdown
 ---
 layout: cards
-eyebrow: Technical services
+eyebrow: Technical Services
 image: /web-development.png
 image_alt: Describe the illustration
 featured:
