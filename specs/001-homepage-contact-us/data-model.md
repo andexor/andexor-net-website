@@ -44,7 +44,7 @@ Fixed content set (from `design/README.md`, Services section):
 1. Web Development (brand) — "Brochure site, blog, forms, shop" / "Content management system" /
    "Web application"
 2. Technical SEO (accent) — "Site audit" / "Content strategy" / "Maps, social media"
-3. AI Systems (brand) — "Knowledge Base" / "Digital assistant, scheduling" / "Workflow
+3. Agentic Systems (brand) — "Knowledge Base" / "Digital assistant, scheduling" / "Workflow
    automation"
 4. Growth Marketing (accent) — "Newsletters, branded email" / "Social media marketing" / "Paid
    advertising"
@@ -54,7 +54,7 @@ Fixed content set (from `design/README.md`, Services section):
 Static enum used by the Contact Request form's "Primary need" field (not a separate persisted
 entity, just the selector's allowed values):
 
-- **Technical services**: Web Development, Web Hosting, Technical SEO, AI Systems
+- **Technical services**: Web Development, Web Hosting, Technical SEO, Agentic Systems
 - **Business services**: Cost Reduction, Lead Generation, Growth Marketing, Process
   Re-engineering
 - Something else

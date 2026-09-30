@@ -46,7 +46,7 @@ test.describe("Contact request flow", () => {
       "Web Development",
       "Web Hosting",
       "Technical SEO",
-      "AI Systems",
+      "Agentic Systems",
       "Cost Reduction",
       "Lead Generation",
       "Growth Marketing",

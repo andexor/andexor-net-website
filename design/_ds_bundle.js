@@ -1235,7 +1235,7 @@ function ContactUs({
     disabled: true
   }, "Select a service\u2026"), /*#__PURE__*/React.createElement("optgroup", {
     label: "Technical services"
-  }, /*#__PURE__*/React.createElement("option", null, "Web Development"), /*#__PURE__*/React.createElement("option", null, "Web Hosting"), /*#__PURE__*/React.createElement("option", null, "Technical SEO"), /*#__PURE__*/React.createElement("option", null, "AI Systems")), /*#__PURE__*/React.createElement("optgroup", {
+  }, /*#__PURE__*/React.createElement("option", null, "Web Development"), /*#__PURE__*/React.createElement("option", null, "Web Hosting"), /*#__PURE__*/React.createElement("option", null, "Technical SEO"), /*#__PURE__*/React.createElement("option", null, "Agentic Systems")), /*#__PURE__*/React.createElement("optgroup", {
     label: "Business services"
   }, /*#__PURE__*/React.createElement("option", null, "Cost Reduction"), /*#__PURE__*/React.createElement("option", null, "Lead Generation"), /*#__PURE__*/React.createElement("option", null, "Growth Marketing"), /*#__PURE__*/React.createElement("option", null, "Process Re-engineering")), /*#__PURE__*/React.createElement("option", null, "Something else"))), /*#__PURE__*/React.createElement(Button, {
     type: "submit",
@@ -1282,13 +1282,13 @@ try { (() => {
 function Footer() {
   const cols = [{
     h: 'TECHNICAL SERVICES',
-    items: ['Web Development', 'Web Hosting', 'Technical SEO', 'AI Systems']
+    items: ['Web Development', 'Web Hosting', 'Technical SEO', 'Agentic Systems']
   }, {
     h: 'BUSINESS SERVICES',
     items: ['Cost Reduction', 'Lead Generation', 'Growth Marketing', 'Process Re-engineering']
   }, {
     h: 'Company',
-    items: ['About', 'Contact']
+    items: ['About Us', 'Contact']
   }];
   return /*#__PURE__*/React.createElement("footer", {
     style: {
@@ -1418,7 +1418,7 @@ function Header({
   onProposal
 }) {
   const [open, setOpen] = React.useState(false);
-  const nav = ['Services', 'About'];
+  const nav = ['Services', 'About Us'];
   return /*#__PURE__*/React.createElement("header", {
     style: {
       position: 'sticky',
@@ -1837,7 +1837,7 @@ const SERVICES = [{
   icon: 'bot',
   tag: 'AI',
   tone: 'brand',
-  title: 'AI Systems',
+  title: 'Agentic Systems',
   body: "We'll build the agents you need so you can adapt to emerging trends as AI agents handle business transactions.",
   points: ['Knowledge Base', 'Digital assistant, scheduling', 'Workflow automation']
 }, {

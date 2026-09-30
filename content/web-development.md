@@ -2,7 +2,7 @@
 title: Web Development
 description: Web Development
 layout: cards
-eyebrow: Technical services
+eyebrow: Technical Services
 image: /web-development.png
 image_alt: Isometric laptop showing code, with gears and a browser window floating beside it
 featured:

@@ -59,7 +59,7 @@ Open `http://localhost:3000`.
 3. **Service selection (User Story 3)**
    - Open the popup and open the "Primary need" selector. Confirm it shows "Select a
      service…" as a placeholder, grouped options ("Technical services": Web Development, Web
-     Hosting, Technical SEO, AI Systems; "Business services": Cost Reduction, Lead Generation,
+     Hosting, Technical SEO, Agentic Systems; "Business services": Cost Reduction, Lead Generation,
      Growth Marketing, Process Re-engineering), and a trailing "Something else" option.
    - Confirm submission is blocked while the placeholder is still selected.
 

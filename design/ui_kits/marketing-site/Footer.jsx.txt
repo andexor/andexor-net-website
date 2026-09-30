@@ -1,8 +1,8 @@
 function Footer() {
   const cols = [
-    { h:'TECHNICAL SERVICES', items:['Web Development', 'Web Hosting', 'Technical SEO', 'AI Systems'] },
+    { h:'TECHNICAL SERVICES', items:['Web Development', 'Web Hosting', 'Technical SEO', 'Agentic Systems'] },
     { h:'BUSINESS SERVICES', items:['Cost Reduction', 'Lead Generation', 'Growth Marketing', 'Process Re-engineering'] },
-    { h:'Company', items:['About', 'Contact'] },
+    { h:'Company', items:['About Us', 'Contact'] },
   ];
   return (
     <footer style={{ background:'var(--blue-900)', color:'var(--blue-200)' }}>

@@ -9,19 +9,33 @@ import { Services } from "@/components/marketing/Services";
 import { listContentSlugs } from "@/lib/content";
 
 // Spec 002 FR-013 / FR-023 / SC-007: only approved content pages are linked
-// from the home page and footer, and the Web Development links resolve.
-const APPROVED = ["/web-development"];
+// from the home page and footer, and the links resolve. The owner approved the
+// nine footer pages in spec 010; the home page cards link only Web Development
+// until spec 011 adds the other three.
+const CARD_PAGES = ["/web-development"];
+const FOOTER_PAGES = [
+  "/about-us",
+  "/agentic-systems",
+  "/cost-reduction",
+  "/growth-marketing",
+  "/lead-generation",
+  "/process-re-engineering",
+  "/technical-seo",
+  "/web-development",
+  "/web-hosting",
+];
+const APPROVED = [...new Set([...CARD_PAGES, ...FOOTER_PAGES])].sort();
 
 function internalPaths(container: HTMLElement): string[] {
   return [...container.querySelectorAll("a[href^='/']")].map((a) => a.getAttribute("href") ?? "");
 }
 
 describe("links to content pages", () => {
-  it("links Web Development from the service card and the footer", () => {
+  it("links the approved pages from the service cards and the footer", () => {
     const services = render(<Services />).container;
-    expect(internalPaths(services)).toEqual(APPROVED);
+    expect(internalPaths(services)).toEqual(CARD_PAGES);
     const footer = render(<Footer />).container;
-    expect(internalPaths(footer)).toContain("/web-development");
+    expect(internalPaths(footer).sort()).toEqual(FOOTER_PAGES);
   });
 
   it("links no page other than the approved ones", () => {

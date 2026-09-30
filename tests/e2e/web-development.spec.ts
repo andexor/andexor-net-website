@@ -41,7 +41,7 @@ test.describe("Web Development page", () => {
     await expect(
       page.getByRole("heading", { level: 1, name: "Web Development", exact: true }),
     ).toBeVisible();
-    await expect(page.getByText("Technical services", { exact: true })).toBeVisible();
+    await expect(page.getByText("Technical Services", { exact: true })).toBeVisible();
     await expect(page).toHaveTitle("Web Development | Andexor Network");
   });
 

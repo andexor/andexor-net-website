@@ -40,7 +40,7 @@ export const SERVICES: ServiceOffering[] = [
     icon: Bot,
     tag: "AI",
     badgeTone: "brand",
-    title: "AI Systems",
+    title: "Agentic Systems",
     description:
       "We'll build the agents you need so you can adapt to emerging trends as AI agents handle business transactions.",
     bullets: ["Knowledge Base", "Digital assistant, scheduling", "Workflow automation"],

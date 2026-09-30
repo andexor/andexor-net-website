@@ -45,7 +45,7 @@ function ContactUs({ open, onClose, inline = false, initialSent = false }) {
                   <option>Web Development</option>
                   <option>Web Hosting</option>
                   <option>Technical SEO</option>
-                  <option>AI Systems</option>
+                  <option>Agentic Systems</option>
                 </optgroup>
                 <optgroup label="Business services">
                   <option>Cost Reduction</option>

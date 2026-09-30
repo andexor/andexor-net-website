@@ -14,17 +14,25 @@ const SOCIAL_LINKS = [
 const COLUMNS = [
   {
     heading: "TECHNICAL SERVICES",
-    items: ["Web Development", "Web Hosting", "Technical SEO", "AI Systems"],
+    items: ["Web Development", "Web Hosting", "Technical SEO", "Agentic Systems"],
   },
   {
     heading: "BUSINESS SERVICES",
     items: ["Cost Reduction", "Lead Generation", "Growth Marketing", "Process Re-engineering"],
   },
-  { heading: "COMPANY", items: ["About", "Contact"] },
+  { heading: "COMPANY", items: ["About Us", "Contact"] },
 ];
 
 const ITEM_HREFS: Record<string, string> = {
   "Web Development": "/web-development",
+  "Web Hosting": "/web-hosting",
+  "Technical SEO": "/technical-seo",
+  "Agentic Systems": "/agentic-systems",
+  "Cost Reduction": "/cost-reduction",
+  "Lead Generation": "/lead-generation",
+  "Growth Marketing": "/growth-marketing",
+  "Process Re-engineering": "/process-re-engineering",
+  "About Us": "/about-us",
 };
 
 function slugify(label: string) {
@@ -35,8 +43,9 @@ function slugify(label: string) {
 }
 
 // FR-006: navigation grouped into technical/business/company categories,
-// social media links, and a copyright line. All links (social, nav,
-// Privacy/Terms) are placeholders per FR-017 — activating them is a no-op.
+// social media links, and a copyright line. The service and About Us entries
+// link to their pages (spec 010). Contact, Privacy, and Terms remain
+// placeholders per FR-017 — activating them is a no-op.
 export function Footer() {
   return (
     <footer className="an-footer">

@@ -20,7 +20,7 @@ test.describe("Homepage content", () => {
     await services.scrollIntoViewIfNeeded();
     const cards = services.getByRole("link");
     await expect(cards).toHaveCount(4);
-    for (const title of ["Web Development", "Technical SEO", "AI Systems", "Growth Marketing"]) {
+    for (const title of ["Web Development", "Technical SEO", "Agentic Systems", "Growth Marketing"]) {
       await expect(services.getByRole("heading", { name: title })).toBeVisible();
     }
   });

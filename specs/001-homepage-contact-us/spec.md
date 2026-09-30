@@ -29,6 +29,13 @@
 - The footer logo is no longer a link and does not scroll to the top. No link anywhere goes to
   `#top`.
 
+### 2026-09-30 (see `specs/010-footer-page-links/spec.md`)
+
+- The footer links Web Hosting, Technical SEO, Agentic Systems, Cost Reduction, Lead Generation,
+  Growth Marketing, Process Re-engineering, and About Us to their pages (FR-017 amended).
+  Contact, Privacy, and Terms remain placeholders. The footer labels "AI Systems" and "About" are
+  now "Agentic Systems" and "About Us".
+
 ## Clarifications
 
 ### Session 2026-09-28
@@ -59,7 +66,7 @@ purely by reading and scrolling the page.
    company name and headline value proposition ("Enterprise-grade services at small business
    prices") above the fold.
 2. **Given** a visitor scrolls past the hero, **When** they reach the services section, **Then**
-   they see exactly four service offerings (Web Development, Technical SEO, AI Systems, Growth
+   they see exactly four service offerings (Web Development, Technical SEO, Agentic Systems, Growth
    Marketing), each with a title, description, and supporting bullet points.
 3. **Given** a visitor scrolls to the bottom of the page, **When** they reach the footer,
    **Then** they see company navigation grouped by category (technical services, business
@@ -119,7 +126,7 @@ service options are listed and grouped, and that a selection is retained when su
 
 1. **Given** the contact popup form is open, **When** the visitor opens the "primary need"
    selector, **Then** they see options grouped into "Technical services" (Web Development, Web
-   Hosting, Technical SEO, AI Systems) and "Business services" (Cost Reduction, Lead Generation,
+   Hosting, Technical SEO, Agentic Systems) and "Business services" (Cost Reduction, Lead Generation,
    Growth Marketing, Process Re-engineering), plus a "Something else" option.
 2. **Given** no option has been chosen yet, **When** the visitor views the selector, **Then** it
    shows a "Select a service…" placeholder and submission is blocked until a choice is made.
@@ -157,7 +164,7 @@ service options are listed and grouped, and that a selection is retained when su
 - **FR-003**: The hero section MUST include a "Contact Us" call to action that opens the contact
   popup.
 - **FR-004**: The services section MUST present exactly four service offerings — Web
-  Development, Technical SEO, AI Systems, and Growth Marketing — each with a title, a short
+  Development, Technical SEO, Agentic Systems, and Growth Marketing — each with a title, a short
   description, and a list of supporting bullet points.
 - **FR-005**: The call to action band MUST restate an invitation to talk and include a "Contact
   Us" call to action that opens the contact popup.
@@ -191,7 +198,8 @@ service options are listed and grouped, and that a selection is retained when su
   **Superseded by 002 FR-024:** the site MUST always render the dark palette regardless of the
   visitor's system setting, and MUST NOT provide a manual theme toggle.
 - **FR-017**: (Amended by 002 FR-023: the Web Development service card and footer link now lead
-  to `/web-development`; all other links remain placeholders.) Navigation, footer, and service card links MAY point to placeholder destinations
+  to `/web-development`; amended again by 010: the other service pages and About Us are linked from
+  the footer, while Contact, Privacy, Terms, and the social links remain placeholders.) Navigation, footer, and service card links MAY point to placeholder destinations
   for this feature; resolving them to final destinations is out of scope and will be addressed
   in a follow-up change. Activating a placeholder link MUST be a no-op (no navigation, no error).
 - **FR-018**: Actual delivery of submitted Contact Requests to a real destination (e.g. a CRM
@@ -235,7 +243,7 @@ service options are listed and grouped, and that a selection is retained when su
   Attributes: full name, work email, company website, primary need (one of a predefined list of
   services, or "something else"). Not persisted or transmitted anywhere by this feature.
 - **Service Offering**: One of the four disciplines Andexor Network presents on the homepage
-  (Web Development, Technical SEO, AI Systems, Growth Marketing). Attributes: title,
+  (Web Development, Technical SEO, Agentic Systems, Growth Marketing). Attributes: title,
   description, supporting bullet points.
 
 ## Success Criteria *(mandatory)*

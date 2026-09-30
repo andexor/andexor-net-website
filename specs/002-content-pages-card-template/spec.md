@@ -118,7 +118,7 @@ home-page or footer link leads to it. Add a link, and confirm the link works.
    home page and footer, **Then** no link to that page appears.
 2. **Given** the owner approves a page, **When** the link is added, **Then** it appears in the
    place they choose and leads to the page.
-3. **Given** the footer's other items (for example About and Contact) that have no page yet,
+3. **Given** the footer's other items (for example About Us and Contact) that have no page yet,
    **When** a visitor activates them, **Then** they remain placeholders as defined in the home
    page spec.
 
@@ -296,7 +296,7 @@ the color changes and no underline appears or disappears.
   italics, no emoji, Oxford comma, no dashes, "and" instead of "&", sentence-case headlines
   without a trailing period).
 - **FR-023**: The home page's Web Development service card and the footer's Web Development link
-  MUST lead to `/web-development`. Other service cards and footer items remain placeholders.
+  MUST lead to `/web-development`. Other service cards and footer items remain placeholders. (Footer items amended by spec 010.)
 
 **Appearance and behavior sitewide**
 
@@ -346,7 +346,7 @@ the color changes and no underline appears or disappears.
 
 - Copy on the Web Development page was finalized on 2026-09-29 (issues #5, #7, #9); later
   copy edits are small changes that do not need a new spec.
-- Only Web Development has a page so far. Other services, About, and Contact remain
+- Only Web Development has a page so far. Other services, About Us, and Contact remain
   placeholders per the home page spec.
 - The page is served as a static site from a container. Rendering happens at build time; there
   is no server-side rendering or database.

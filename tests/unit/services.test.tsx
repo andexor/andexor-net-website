@@ -27,11 +27,11 @@ describe("Services", () => {
     }
   });
 
-  it("renders the fixed service set: Web Development, Technical SEO, AI Systems, Growth Marketing", () => {
+  it("renders the fixed service set: Web Development, Technical SEO, Agentic Systems, Growth Marketing", () => {
     render(<Services />);
     expect(screen.getByRole("heading", { name: "Web Development" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Technical SEO" })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "AI Systems" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Agentic Systems" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Growth Marketing" })).toBeInTheDocument();
   });
 });
