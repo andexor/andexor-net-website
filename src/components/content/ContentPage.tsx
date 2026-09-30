@@ -26,8 +26,10 @@ export function ContentPage({ html, cards }: ContentPageProps) {
       </header>
       {cards ? (
         <main>
-          <section className={`an-cardhero${hasCards ? "" : " an-cardhero--solo"}`}>
-            {cards.grid !== false && <div className="an-cardhero__grid" aria-hidden="true" />}
+          <section
+            className={`an-cardhero${cards.section ? ` an-cardhero--${cards.section}` : ""}${hasCards ? "" : " an-cardhero--solo"}`}
+          >
+            {cards.section && <div className="an-cardhero__pattern" aria-hidden="true" />}
             <div className="an-cardhero__inner">
               {cards.image && (
                 <div className="an-cardhero__art">

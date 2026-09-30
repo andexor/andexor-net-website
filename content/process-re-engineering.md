@@ -2,6 +2,7 @@
 title: Process Re-engineering
 description: Process Re-engineering
 layout: cards
+section: business
 eyebrow: Business Services
 image: /process-re-engineering.png
 image_alt: Isometric image of a roadmap from point "A" to point "B"
@@ -16,3 +17,5 @@ Please create a modern 3D isometric icon illustration that depicts business proc
 -->
 
 # Process Re-engineering
+
+Do the same work in fewer steps.

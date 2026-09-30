@@ -52,7 +52,7 @@ describe("NotFound", () => {
       </ContactProvider>,
     );
     expect(container.querySelector("section.an-cardhero.an-cardhero--solo")).not.toBeNull();
-    for (const selector of [".an-tile", ".an-cards", ".an-cardhero__eyebrow", ".an-cardhero__grid"]) {
+    for (const selector of [".an-tile", ".an-cards", ".an-cardhero__eyebrow", ".an-cardhero__pattern"]) {
       expect(container.querySelector(selector), selector).toBeNull();
     }
   });

@@ -34,14 +34,14 @@ test.describe("Not-found page style", () => {
 
     const link = page.getByRole("link", { name: "Go to the home page" });
     await expect(link).toHaveAttribute("href", "/");
-    for (const selector of [".an-tile", ".an-cards", ".an-cardhero__eyebrow", ".an-cardhero__grid"]) {
+    for (const selector of [".an-tile", ".an-cards", ".an-cardhero__eyebrow", ".an-cardhero__pattern"]) {
       await expect(page.locator(selector), selector).toHaveCount(0);
     }
   });
 
   test("the Web Development page keeps its grid, eyebrow, and cards", async ({ page }) => {
     await page.goto("/web-development");
-    await expect(page.locator(".an-cardhero__grid")).toHaveCount(1);
+    await expect(page.locator(".an-cardhero__pattern")).toHaveCount(1);
     await expect(page.locator(".an-cardhero__eyebrow")).toHaveCount(1);
     expect(await page.locator(".an-tile").count()).toBeGreaterThan(1);
   });

@@ -26,15 +26,18 @@ const IGNORED_FILES = new Set(["readme.md"]);
 
 // Pages with `layout: cards` in their frontmatter render each `##` section
 // as its own card (see splitCards). The hero settings come from frontmatter.
+export const CARDS_SECTIONS = ["technical", "business", "company"] as const;
+export type CardsSection = (typeof CARDS_SECTIONS)[number];
+
 export interface CardsLayout {
   eyebrow?: string;
   image?: { src: string; alt: string };
   headingHtml: string;
   introHtml: string;
   cardsHtml: string;
-  // The faint engineering grid behind the hero is shown unless this is false
-  // (specs/006-not-found-page-style). Markdown pages never set it.
-  grid?: boolean;
+  // Picks the hero's backdrop pattern (`an-cardhero--<section>`). A hero with
+  // no section (the not-found page) has a plain backdrop.
+  section?: CardsSection;
 }
 
 export interface ContentPage {
@@ -47,6 +50,7 @@ export interface ContentPage {
 
 interface CardsOptions {
   eyebrow?: string;
+  section?: CardsSection;
   image?: { src: string; alt: string };
   featured: string[];
 }
@@ -98,6 +102,7 @@ function readRaw(dir: string, slug: string[]): RawPage {
     data.layout === "cards"
       ? {
           eyebrow: str(data.eyebrow),
+          section: CARDS_SECTIONS.find((x) => x === data.section),
           image: str(data.image) ? { src: str(data.image)!, alt: str(data.image_alt) ?? "" } : undefined,
           featured: Array.isArray(data.featured) ? data.featured.filter((f) => typeof f === "string") : [],
         }
@@ -219,6 +224,7 @@ async function renderCards(markdown: string, options: CardsOptions): Promise<Car
   const html = (children: RootContent[]) => String(proc.stringify({ type: "root", children }));
   return {
     eyebrow: options.eyebrow,
+    section: options.section,
     image: options.image,
     headingHtml: html(heading),
     introHtml: html(intro),

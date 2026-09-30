@@ -2,6 +2,7 @@
 title: Growth Marketing
 description: Growth Marketing
 layout: cards
+section: business
 eyebrow: Business Services
 image: /growth-marketing.png
 image_alt: Isometric image of a funnel that is filtering out prospective customers
@@ -16,3 +17,5 @@ Please create a modern 3D isometric icon illustration that shows a chart with an
 -->
 
 # Growth Marketing
+
+Campaigns made for impact, not just reach.

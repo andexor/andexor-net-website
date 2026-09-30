@@ -2,6 +2,7 @@
 title: Lead Generation
 description: Lead Generation
 layout: cards
+section: business
 eyebrow: Business Services
 image: /lead-generation.png
 image_alt: Isometric image of a funnel that is filtering out prospective customers
@@ -16,3 +17,5 @@ Please create a modern 3D isometric icon that illustrates the concept of lead ge
 -->
 
 # Lead Generation
+
+More of the right people, fewer wasted clicks.

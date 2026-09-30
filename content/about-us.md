@@ -2,6 +2,7 @@
 title: About Us
 description: About Us
 layout: cards
+section: company
 eyebrow: Company
 image: /about-us.png
 image_alt: Isometric image of a building with employees
@@ -16,3 +17,5 @@ Please create a modern 3D isometric icon illustration that would be appropriate 
 -->
 
 # About Us
+
+Enterprise-grade services, sized for your business.

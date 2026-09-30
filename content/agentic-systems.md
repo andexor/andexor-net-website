@@ -2,6 +2,7 @@
 title: Agentic Systems
 description: Agentic Systems
 layout: cards
+section: technical
 eyebrow: Technical Services
 image: /agentic-systems.png
 image_alt: Isometric image of agents working together
@@ -16,3 +17,5 @@ Please create a modern 3D isometric icon illustration that represents an agentic
 -->
 
 # Agentic Systems
+
+Put agents to work before your competitors do.
