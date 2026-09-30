@@ -36,6 +36,13 @@
   Contact, Privacy, and Terms remain placeholders. The footer labels "AI Systems" and "About" are
   now "Agentic Systems" and "About Us".
 
+### 2026-09-30 (see `specs/011-service-card-links/spec.md`)
+
+- The four service cards link to their pages (`/web-development`, `/technical-seo`,
+  `/agentic-systems`, `/growth-marketing`), the same addresses as the footer entries of the same
+  name. FR-017 no longer applies to service cards. The footer has more entries than there are
+  cards, by design.
+
 ## Clarifications
 
 ### Session 2026-09-28
@@ -199,7 +206,8 @@ service options are listed and grouped, and that a selection is retained when su
   visitor's system setting, and MUST NOT provide a manual theme toggle.
 - **FR-017**: (Amended by 002 FR-023: the Web Development service card and footer link now lead
   to `/web-development`; amended again by 010: the other service pages and About Us are linked from
-  the footer, while Contact, Privacy, Terms, and the social links remain placeholders.) Navigation, footer, and service card links MAY point to placeholder destinations
+  the footer, while Contact, Privacy, Terms, and the social links remain placeholders; amended by
+  011: the four service cards link to their pages.) Navigation, footer, and service card links MAY point to placeholder destinations
   for this feature; resolving them to final destinations is out of scope and will be addressed
   in a follow-up change. Activating a placeholder link MUST be a no-op (no navigation, no error).
 - **FR-018**: Actual delivery of submitted Contact Requests to a real destination (e.g. a CRM

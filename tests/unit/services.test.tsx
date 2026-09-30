@@ -34,4 +34,23 @@ describe("Services", () => {
     expect(screen.getByRole("heading", { name: "Agentic Systems" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Growth Marketing" })).toBeInTheDocument();
   });
+
+  // Spec 011: every card links to its page, never to a placeholder.
+  it("links each card to its page", () => {
+    const pages: Record<string, string> = {
+      "Web Development": "/web-development",
+      "Technical SEO": "/technical-seo",
+      "Agentic Systems": "/agentic-systems",
+      "Growth Marketing": "/growth-marketing",
+    };
+    for (const service of SERVICES) {
+      expect(service.href).toBe(pages[service.title]);
+      expect(service.href.startsWith("/")).toBe(true);
+    }
+    render(<Services />);
+    for (const link of screen.getAllByRole("link")) {
+      const title = link.querySelector("h3")?.textContent ?? "";
+      expect(link).toHaveAttribute("href", pages[title]);
+    }
+  });
 });

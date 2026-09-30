@@ -10,9 +10,9 @@ import { listContentSlugs } from "@/lib/content";
 
 // Spec 002 FR-013 / FR-023 / SC-007: only approved content pages are linked
 // from the home page and footer, and the links resolve. The owner approved the
-// nine footer pages in spec 010; the home page cards link only Web Development
-// until spec 011 adds the other three.
-const CARD_PAGES = ["/web-development"];
+// nine footer pages in spec 010 and the four service card pages in spec 011.
+// The cards are a subset of the footer pages by design; there is no 1:1 mapping.
+const CARD_PAGES = ["/web-development", "/technical-seo", "/agentic-systems", "/growth-marketing"];
 const FOOTER_PAGES = [
   "/about-us",
   "/agentic-systems",
