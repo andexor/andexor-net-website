@@ -6,7 +6,7 @@ import type { Metadata } from "next";
 import { ContentPage } from "@/components/content/ContentPage";
 
 export const metadata: Metadata = {
-  title: "Page not found | Andexor Network, Inc.",
+  title: "Page not found | Andexor Network",
 };
 
 // Replaces the framework's default 404, which injects its own light

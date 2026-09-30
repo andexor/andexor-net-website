@@ -1,6 +1,7 @@
 <!--
 Sync Impact Report
-- Version change: 1.1.0 → 1.2.1 (MINOR for 1.2.0, then PATCH 1.2.1 for the license policy: materially expanded Development Workflow and Technology
+- Version change: 1.2.1 → 1.2.2 (PATCH: one branch per issue is now a suggestion, not a rule,
+  to avoid ceremony on small changes). Earlier: 1.1.0 → 1.2.1 (MINOR for 1.2.0, then PATCH 1.2.1 for the license policy: materially expanded Development Workflow and Technology
   Constraints, based on CONTRIBUTING.md, SECURITY.md, setup.md, and NOTICE added 2026-09-29)
 - Modified principles: none
 - Added principles: none
@@ -151,7 +152,9 @@ out of customers' view.
 - If work is done outside Spec Kit, a retrospective (as-built) spec MUST be written afterward.
 - Work is issue-driven, as described in `CONTRIBUTING.md`. Each change starts with a GitHub issue
   written as a user story, with a Description heading, an Acceptance Criteria heading, and
-  optionally a Technical Details heading. Each issue gets its own branch. The spec is updated
+  optionally a Technical Details heading. A separate branch per issue is a suggestion, not a
+  requirement: related small changes MAY share a branch, and each commit still references its
+  issue. The spec is updated
   before the change when one exists.
 - Commits MUST use `git commit -s`. The sign-off certifies acceptance of the Contributor Covenant
   3.0 Code of Conduct, the Developer Certificate of Origin 1.1 (`DCO`), and the Apache License
@@ -187,4 +190,4 @@ MUST be explicitly justified in the relevant artifact rather than silently intro
 are companion documents for contributors; where they conflict with this constitution, this
 constitution wins until one of them is amended.
 
-**Version**: 1.2.1 | **Ratified**: 2026-09-28 | **Last Amended**: 2026-09-29
+**Version**: 1.2.2 | **Ratified**: 2026-09-28 | **Last Amended**: 2026-09-30

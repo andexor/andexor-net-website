@@ -42,7 +42,7 @@ test.describe("Web Development page", () => {
       page.getByRole("heading", { level: 1, name: "Web Development", exact: true }),
     ).toBeVisible();
     await expect(page.getByText("Technical services", { exact: true })).toBeVisible();
-    await expect(page).toHaveTitle("Web Development | Andexor Network, Inc.");
+    await expect(page).toHaveTitle("Web Development | Andexor Network");
   });
 
   test("shows the hero illustration with a text alternative", async ({ page }) => {

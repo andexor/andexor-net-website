@@ -244,7 +244,8 @@ the color changes and no underline appears or disappears.
   published.
 - **FR-003**: A page whose front matter sets `draft: true` MUST NOT be published.
 - **FR-004**: A page's browser tab title MUST come from front matter `title`, else the first `#`
-  heading, else its file name in words; the site MUST append "| Andexor Network, Inc.".
+  heading, else its file name in words; the site MUST append "| Andexor Network" (amended by
+  `specs/003-logo-wordmark/spec.md`: ", Inc." is dropped from titles).
 - **FR-005**: A page's meta description MUST come from front matter `description` when present
   and MUST be omitted otherwise.
 - **FR-006**: Addresses with no page MUST show the site's "not found" page.
@@ -254,8 +255,9 @@ the color changes and no underline appears or disappears.
   originating page to the destination; links to other site routes MUST open in the same tab.
 - **FR-009**: A page not using the card layout MUST render a logo bar, a readable article
   column, and the shared footer.
-- **FR-010**: The logo on a content page MUST link to the home page; on the home page it MUST
-  keep scrolling to the top.
+- **FR-010**: The logo on a content page MUST link to the home page; on the home page the footer
+  logo MUST keep scrolling to the top (the hero's brand row is not a link, per
+  `specs/003-logo-wordmark/spec.md`).
 - **FR-011**: Pages MUST be authored as Markdown; they MUST NOT be converted to hand-written
   page code.
 - **FR-012**: Authoring rules (routes, front matter, card layout, copy rules, publishing) MUST

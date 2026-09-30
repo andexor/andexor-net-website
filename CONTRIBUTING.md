@@ -71,7 +71,7 @@ The following overview describes the general procedures for how to contribute to
 1. Clone the repository.
 1. Install build tools and project dependencies. See [setup.md](./setup.md) to get started.
 1. Create an issue, or ask for one to be created for you. It should read like a user story. It should contain a Description heading and an Acceptance Criteria heading. It may also have a Technical Details heading if necessary. Explain what the feature or fix is and what it is supposed to do and why it should be done. Make a note of the issue number. You will need to reference it in your git commit message.
-1. Create a new branch.
+1. Create a new branch. One branch per issue is a suggestion, not a requirement; small related changes may share a branch.
 1. If you are adding or updating a feature, update the specification first, if there is one.
 1. Add or update architecture documentation as needed, including
    - use case diagrams
