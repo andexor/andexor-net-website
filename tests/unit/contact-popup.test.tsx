@@ -92,6 +92,21 @@ describe("ContactPopup", () => {
     expect(onSubmit).not.toHaveBeenCalled();
   });
 
+  // Spec 016: the header shows the gold logo (transparent), decorative, in both states.
+  it("shows the gold logo, decorative, in the form and the confirmation", () => {
+    render(<ContactPopup open onClose={vi.fn()} />);
+    const logo = () => document.querySelector(".an-contact-header__logo");
+    expect(logo()).toBeInstanceOf(HTMLImageElement);
+    expect(logo()?.getAttribute("src")).toBe("/logo/logo-gold.svg");
+    expect(logo()?.getAttribute("alt")).toBe("");
+
+    fillValidForm();
+    fireEvent.click(screen.getByRole("button", { name: "Send" }));
+    expect(screen.getByRole("heading", { name: "Request received" })).toBeInTheDocument();
+    expect(logo()?.getAttribute("src")).toBe("/logo/logo-gold.svg");
+    expect(logo()?.getAttribute("alt")).toBe("");
+  });
+
   // Spec 015: Esc is one more way to close the popup, and calls the same onClose.
   describe("Esc key", () => {
     it("closes the form with one Esc", () => {

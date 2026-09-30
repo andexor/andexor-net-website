@@ -93,7 +93,7 @@ export function ContactPopup({ open, onClose, onSubmit }: ContactPopupProps) {
         <div className="an-contact-header">
           <div aria-hidden="true" className="an-contact-header__glow" />
           {/* eslint-disable-next-line @next/next/no-img-element -- static SVG asset, no next/image optimization needed for static export */}
-          <img src="/logo/andexor-logo.svg" alt="" className="an-contact-header__logo" />
+          <img src="/logo/logo-gold.svg" alt="" className="an-contact-header__logo" />
           <div className="an-contact-header__title">Contact Us</div>
           <button onClick={onClose} aria-label="Close" className="an-contact-header__close">
             <X size={20} aria-hidden="true" />

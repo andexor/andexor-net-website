@@ -72,7 +72,7 @@ Sections in order: Hero → Services → CTA band → Footer. No sticky header. 
 ### 2. Contact Us popup (`ui_kits/marketing-site/contact-us.html` shows both states)
 - Scrim: fixed, `rgba(0,19,43,0.55)`, `backdrop-filter: blur(3px)`, z-index 60, centers the panel with 24px padding. Clicking the scrim closes.
 - Panel: `min(480px, 100%)`, bg `--blue-500` (`#1766B4`), radius 18px, `--shadow-xl`.
-- Header: bg `#002855`, padding 22px 24px, flex gap 12px. 260px gold radial glow top-left (offset -110px). Boxed logo 34px, radius 8px. Title "Contact Us" Play 700 30px/34px white. Close (x, 20px, `#C5D8EF`) at right.
+- Header: bg `#002855`, padding 22px 24px, flex gap 12px. 260px gold radial glow top-left (offset -110px). Gold logo (`assets/logo/logo-gold.svg`, transparent) 34px, no radius (spec 016 replaced the boxed logo). Title "Contact Us" Play 700 30px/34px white. Close (x, 20px, `#C5D8EF`) at right.
 - **Form state** (padding 24px, column, gap 14px). Labels in `--blue-100` (`#E7EFF8`):
   - Full name (placeholder "Jordan Reyes", required)
   - Work email (email, "you@company.com", required)
