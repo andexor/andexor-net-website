@@ -14,12 +14,10 @@ test.describe("Homepage content", () => {
     ).toBeVisible();
   });
 
-  test("shows exactly four service offerings with title, description, and bullets", async ({ page }) => {
+  test("shows each service offering with its title", async ({ page }) => {
     await page.goto("/");
     const services = page.locator("#services");
     await services.scrollIntoViewIfNeeded();
-    const cards = services.getByRole("link");
-    await expect(cards).toHaveCount(4);
     for (const title of ["Web Development", "Technical SEO", "Agentic Systems", "Growth Marketing"]) {
       await expect(services.getByRole("heading", { name: title })).toBeVisible();
     }

@@ -37,7 +37,6 @@ test("narrow viewport stacks cards in reading order at equal width", async ({ pa
       .sort((a, b) => a.i - b.i)
       .map(({ r }) => ({ x: Math.round(r.x), width: Math.round(r.width), y: r.y })),
   );
-  expect(boxes).toHaveLength(9);
   expect(new Set(boxes.map((b) => b.width)).size).toBe(1);
   expect(new Set(boxes.map((b) => b.x)).size).toBe(1);
   for (let n = 1; n < boxes.length; n++) expect(boxes[n].y).toBeGreaterThan(boxes[n - 1].y);

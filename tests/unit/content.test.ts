@@ -86,8 +86,6 @@ describe("cards layout", () => {
     "eyebrow: Tech",
     "image: /pic.svg",
     "image_alt: A picture",
-    "featured:",
-    "  - Third?",
     "---",
     "# Page title",
     "",
@@ -116,8 +114,6 @@ describe("cards layout", () => {
     expect(cards.headingHtml).toBe("Page title");
     expect(cards.eyebrow).toBe("Tech");
     expect(cards.image).toEqual({ src: "/pic.svg", alt: "A picture" });
-    expect(cards.cardsHtml.match(/<article /g)).toHaveLength(3);
-    expect(cards.cardsHtml.match(/an-cards__col/g)).toHaveLength(2);
     // Odd cards share the first column, even cards the second.
     const [first, second] = cards.cardsHtml.split('<div class="an-cards__col">').slice(1);
     expect(first).toContain("First?");
@@ -133,11 +129,28 @@ describe("cards layout", () => {
     expect((await getContentPage(["cards"], dir))!.cards!.section).toBeUndefined();
   });
 
-  it("uses the >> line as the card label and marks featured cards", async () => {
+  // Spec 033: cards after a `---` leave the staggered columns and follow them, wide.
+  it("puts the cards after a horizontal rule after the columns, as wide cards", async () => {
+    write(
+      "wide.md",
+      ["---", "layout: cards", "---", "# T", "", "## One?", "", "a", "", "## Two?", "", "b", "", "---", "", "## Closing", "", "- x", "- y", ""].join("\n"),
+    );
+    const html = (await getContentPage(["wide"], dir))!.cards!.cardsHtml;
+    expect(html).not.toContain("<hr");
+    const closing = html.indexOf("Closing");
+    expect(html.indexOf("an-tile--wide")).toBeLessThan(closing);
+    expect(html.lastIndexOf("an-cards__col")).toBeLessThan(closing);
+    expect(html.indexOf("One?")).toBeLessThan(html.indexOf("an-tile--wide"));
+    expect(html.indexOf("Two?")).toBeLessThan(html.indexOf("an-tile--wide"));
+    // Without the rule, the same cards all alternate between the columns.
+    write("wide.md", ["---", "layout: cards", "---", "# T", "", "## One?", "", "## Closing", ""].join("\n"));
+    expect((await getContentPage(["wide"], dir))!.cards!.cardsHtml).not.toContain("an-tile--wide");
+  });
+
+  it("uses the >> line as the card label", async () => {
     const cards = (await getContentPage(["cards"], dir))!.cards!;
     expect(cards.cardsHtml).toContain('<p class="an-tile__eyebrow">One</p>');
     expect(cards.cardsHtml).not.toContain("<blockquote");
-    expect(cards.cardsHtml).toMatch(/an-tile an-tile--ink" style="--i:3"/);
-    expect(cards.cardsHtml).not.toMatch(/an-tile an-tile--ink" style="--i:1"/);
+    expect(cards.cardsHtml).not.toContain("an-tile--ink");
   });
 });

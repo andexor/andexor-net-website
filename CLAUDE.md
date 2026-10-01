@@ -89,8 +89,7 @@ hover, whatever a design-system document, framework default, or example says. If
 framework stylesheet or document (for example `design/DESIGN.md`, "Hover" paragraph) ships or
 describes an underline rule, remove or correct it when you find it. Do not ask the owner again. Because there is no underline, links in body text must stand out by color: inside
 `.an-prose` and `.an-tile`, body text is `--slate-50` and links are `--blue-400` (hover
-`--blue-300`), which passes the WCAG 2.1 AA link-versus-text check. A link inside a featured
-(`.an-tile--ink`) card would need its own color. Keep this rule when adding pages or components.
+`--blue-300`), which passes the WCAG 2.1 AA link-versus-text check. Keep this rule when adding pages or components.
 
 ## Toolchain
 

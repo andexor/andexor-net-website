@@ -5,10 +5,7 @@ layout: cards
 section: technical
 eyebrow: Technical Services
 image: /web-development.png
-image_alt: Isometric laptop showing code, with gears and a browser window floating beside it
-featured:
-  - Need a web application?
-  - How about an AI agent?
+image_alt: laptop showing code with a browser window floating beside it
 ---
 
 <!--
@@ -105,3 +102,23 @@ Then we can setup a chat assistant to answer questions
 for your customers and get a conversation started.
 We can also create an AI assistant to answer
 phone calls and book appointments for you.
+
+---
+
+## Techno Bits
+
+We have over 20 years of experience
+in full lifecycle development, including:
+
+- product management with Claude and Spec Kit
+- product owner, scrum master, agile team leadership and training
+- requirments management and documentation with Jira, Confluence, and GitHub
+- wireframes, mockups, UML diagrams, guide books, API documentation
+- Java, TypeScript, Python, BASH, and other languages
+- Spring (WebMVC and WebFlux), NextJS/NestJS, FastAPI, and other frameworks
+- unit, integration, performance, and security testing
+- source code management and code reviews with GitLab and GitHub
+- packaging, deployment, DevOps, site reliability engineering
+- monitoring dashboards, alerts, analytics
+- production support and incident management
+- directing cross-functional teams

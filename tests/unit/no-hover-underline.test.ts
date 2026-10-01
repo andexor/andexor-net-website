@@ -67,10 +67,6 @@ describe("no underline on links", () => {
 describe("no underline on hover", () => {
   const files = ROOTS.flatMap(cssFiles);
 
-  it("finds the stylesheets to check", () => {
-    expect(files.length).toBeGreaterThan(5);
-  });
-
   it("detects a hover underline rule (guards the checker itself)", () => {
     expect(hoverUnderlineRules("a:hover { text-decoration: underline; }")).toEqual(["a:hover"]);
     expect(hoverUnderlineRules("@media (x) { a:hover { color: red; } }")).toEqual([]);

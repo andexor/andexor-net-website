@@ -42,8 +42,6 @@ section: technical
 eyebrow: Technical Services
 image: /web-development.png
 image_alt: Describe the illustration
-featured:
-  - Need a web application?
 ---
 
 # Page headline
@@ -58,9 +56,11 @@ Card body.
 - `section`: `technical`, `business`, or `company`. Picks the hero's backdrop pattern. Omit it for a plain hero.
 - `eyebrow`: small label above the hero headline.
 - `image`, `image_alt`: hero illustration from `public/`.
-- `featured`: headings (exact text) that use the dark card.
 - `>> Label` on the line after a `##` heading is the card's small label. It is optional.
 - Cards alternate between two columns and stack in order on narrow screens.
+- A line with `---` in the body ends the alternating flow. Every card after it is shown full width
+  below the two columns, in the order written, and a bulleted list inside it flows in two columns
+  (one column when narrow). Remove the line to put the cards back into the alternating flow.
 
 ## Writing rules
 

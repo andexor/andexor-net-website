@@ -16,6 +16,11 @@
 >
 > Amended by `specs/007-no-link-underlines/spec.md`: links are never underlined, at rest or on
 > hover (this spec allowed underlined body links at rest).
+>
+> Amended 2026-10-01 (owner decision, issue 19): there are no "featured" (dark) cards, so every card
+> looks the same, and no page has a fixed number of cards. The `featured` front matter field is gone,
+> and where this spec or its companion documents mention featured cards or a set number of cards,
+> read them as removed. The owner may want featured cards back later.
 
 ## User Scenarios & Testing *(mandatory)*
 

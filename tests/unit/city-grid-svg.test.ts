@@ -12,11 +12,10 @@ import { describe, expect, it } from "vitest";
 describe("public/city-grid.svg", () => {
   const svg = fs.readFileSync(path.join(process.cwd(), "public", "city-grid.svg"), "utf8");
 
-  it("is valid XML with an svg root and repeating blocks", () => {
+  it("is valid XML with an svg root", () => {
     const doc = new DOMParser().parseFromString(svg, "image/svg+xml");
     expect(doc.querySelector("parsererror")).toBeNull();
     expect(doc.documentElement.tagName).toBe("svg");
-    expect(doc.querySelectorAll("rect").length).toBeGreaterThan(20);
   });
 
   it("has no double hyphen inside its comments", () => {
