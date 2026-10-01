@@ -84,7 +84,7 @@
   content: "";
   position: absolute;
   inset: -30%;
-  background: radial-gradient(circle, color-mix(in srgb, var(--gold-500) 22%, transparent), transparent 65%);
+  background: radial-gradient(circle, color-mix(in srgb, var(--gold-500) 12%, transparent), transparent 48%);
   pointer-events: none;
 }
 

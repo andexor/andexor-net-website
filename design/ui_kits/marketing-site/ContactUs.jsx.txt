@@ -11,7 +11,7 @@ function ContactUs({ open, onClose, inline = false, initialSent = false }) {
         {/* header */}
         <div style={{ position:'relative', overflow:'hidden', background:'var(--blue-800)', padding:'22px 24px', display:'flex', alignItems:'center', gap:'12px' }}>
           <div aria-hidden="true" style={{ position:'absolute', left:'-110px', top:'-110px', width:'260px', height:'260px',
-            background:'radial-gradient(circle, color-mix(in srgb, var(--gold-500) 22%, transparent), transparent 65%)', pointerEvents:'none' }} />
+            background:'radial-gradient(circle, color-mix(in srgb, var(--gold-500) 12%, transparent), transparent 48%)', pointerEvents:'none' }} />
           <img src={(window.__resources && window.__resources.logoBoxed) || "../../assets/logo/andexor-logo.svg"} alt="" style={{ position:'relative', width:'34px', height:'34px', borderRadius:'8px' }} />
           <div style={{ position:'relative', lineHeight:1.2 }}>
             <div style={{ color:'#FFF', fontFamily:'var(--font-display)', fontWeight:700, fontSize:'30px', lineHeight:'34px' }}>Contact Us</div>

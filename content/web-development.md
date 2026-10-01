@@ -25,7 +25,7 @@ The accent color is called Old Gold (#EAAA00).
 
 # Web Development
 
-Designed to impress, built to handle the traffic.
+Designed to impress, built to support your needs.
 
 ## Need a new website?
 

@@ -1044,7 +1044,7 @@ function CTA({
       width: '320px',
       height: '320px',
       transform: 'translate(-50%, -50%)',
-      background: 'radial-gradient(circle, color-mix(in srgb, var(--gold-500) 22%, transparent), transparent 65%)',
+      background: 'radial-gradient(circle, color-mix(in srgb, var(--gold-500) 12%, transparent), transparent 48%)',
       pointerEvents: 'none'
     }
   }), /*#__PURE__*/React.createElement("div", {
@@ -1110,7 +1110,7 @@ function ContactUs({
       top: '-110px',
       width: '260px',
       height: '260px',
-      background: 'radial-gradient(circle, color-mix(in srgb, var(--gold-500) 22%, transparent), transparent 65%)',
+      background: 'radial-gradient(circle, color-mix(in srgb, var(--gold-500) 12%, transparent), transparent 48%)',
       pointerEvents: 'none'
     }
   }), /*#__PURE__*/React.createElement("img", {
@@ -1530,7 +1530,7 @@ function Hero({
       width: '420px',
       height: '420px',
       transform: 'translateY(-50%)',
-      background: 'radial-gradient(circle, color-mix(in srgb, var(--gold-500) 22%, transparent), transparent 65%)',
+      background: 'radial-gradient(circle, color-mix(in srgb, var(--gold-500) 12%, transparent), transparent 48%)',
       pointerEvents: 'none'
     }
   }), /*#__PURE__*/React.createElement("img", {
