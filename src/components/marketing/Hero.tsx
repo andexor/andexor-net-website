@@ -21,7 +21,7 @@ export function Hero({ onContactClick }: HeroProps) {
           <div aria-hidden="true" className="an-hero__glow" />
           <Logo size="hero" light />
         </div>
-        <h1 className="an-hero__headline">Enterprise-grade services at small business prices</h1>
+        <h1 className="an-hero__headline">Enterprise services for small business</h1>
         <p className="an-hero__subhead">
           We create and manage solutions to help your business grow.
         </p>

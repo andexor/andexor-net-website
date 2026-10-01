@@ -83,8 +83,7 @@ purely by reading and scrolling the page.
 **Acceptance Scenarios**:
 
 1. **Given** a visitor lands on the homepage, **When** the page loads, **Then** they see the
-   company name and headline value proposition ("Enterprise-grade services at small business
-   prices") above the fold.
+   company name and headline value proposition ("Enterprise services for small business") above the fold.
 2. **Given** a visitor scrolls past the hero, **When** they reach the services section, **Then**
    they see exactly four service offerings (Web Development, Technical SEO, Agentic Systems, Growth
    Marketing), each with a title, description, and supporting bullet points.

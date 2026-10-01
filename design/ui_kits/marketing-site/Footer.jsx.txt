@@ -10,8 +10,8 @@ function Footer() {
                     display:'grid', gridTemplateColumns:'1.4fr repeat(3, 1fr)', gap:'32px' }} className="an-footer-grid">
         <div>
           <Logo light />
-          <p style={{ fontSize:'14px', lineHeight:1.6, maxWidth:'30ch', marginTop:'16px', color:'var(--blue-300)' }}>
-            Enterprise-grade services<br />at small business prices
+          <p style={{ fontSize:'14px', lineHeight:1.6, marginTop:'16px', color:'var(--blue-300)' }}>
+            Enterprise services for small business
           </p>
           <div style={{ display:'flex', gap:'10px', marginTop:'18px' }}>
             {['linkedin','twitter','github'].map(s => (

@@ -1311,11 +1311,10 @@ function Footer() {
     style: {
       fontSize: '14px',
       lineHeight: 1.6,
-      maxWidth: '30ch',
       marginTop: '16px',
       color: 'var(--blue-300)'
     }
-  }, "Enterprise-grade services", /*#__PURE__*/React.createElement("br", null), "at small business prices"), /*#__PURE__*/React.createElement("div", {
+  }, "Enterprise services for small business"), /*#__PURE__*/React.createElement("div", {
     style: {
       display: 'flex',
       gap: '10px',
@@ -1560,10 +1559,9 @@ function Hero({
       lineHeight: 1.04,
       letterSpacing: '-0.02em',
       margin: '40px 0 0',
-      maxWidth: '14em',
       textWrap: 'balance'
     }
-  }, "Enterprise-grade services at small business prices"), /*#__PURE__*/React.createElement("p", {
+  }, "Enterprise services for small business"), /*#__PURE__*/React.createElement("p", {
     style: {
       color: 'var(--blue-200)',
       fontSize: '19px',

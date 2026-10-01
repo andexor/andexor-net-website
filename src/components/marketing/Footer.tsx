@@ -47,11 +47,7 @@ export function Footer() {
       <div className="an-footer__grid">
         <div>
           <Logo light />
-          <p className="an-footer__tagline">
-            Enterprise-grade services
-            <br />
-            at small business prices
-          </p>
+          <p className="an-footer__tagline">Enterprise services for small business</p>
           <div className="an-footer__social-row">
             {SOCIAL_LINKS.map(({ key, label, href, Icon }) => (
               <a

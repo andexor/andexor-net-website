@@ -33,7 +33,7 @@ Open `http://localhost:3000`.
 
 1. **Homepage content (User Story 1)**
    - Load the page. Confirm the hero shows the Andexor Network brand and headline
-     "Enterprise-grade services at small business prices" above the fold.
+     "Enterprise services for small business" above the fold.
    - Scroll to Services: confirm exactly four cards (Web Development, Technical SEO, AI
      Systems, Growth Marketing), each with title, description, and bullets.
    - Scroll to the footer: confirm three link groups (technical services, business services,

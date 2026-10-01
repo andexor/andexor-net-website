@@ -67,7 +67,17 @@
 
 .an-hero {
   position: relative;
-  background: var(--surface-ink);
+  /* Holds the ink color behind the content, then fades into the page
+   * background over the bottom of the hero, so the hero bleeds into the services
+   * section with no hard edge (as the card page hero does). The hero gets no
+   * extra bottom padding, so the fade runs behind the bottom of the content. */
+  background: linear-gradient(
+    to bottom,
+    var(--surface-ink) 0%,
+    var(--surface-ink) calc(100% - var(--an-hero-fade)),
+    var(--surface-page) 100%
+  );
+  --an-hero-fade: calc(var(--space-12) + 56px);
   overflow: hidden;
 }
 
@@ -115,7 +125,6 @@
   line-height: 1.04;
   letter-spacing: -0.02em;
   margin: 40px 0 0;
-  max-width: 14em;
   text-wrap: balance;
 }
 
@@ -307,7 +316,6 @@
 .an-footer__tagline {
   font-size: 14px;
   line-height: 1.6;
-  max-width: 30ch;
   margin-top: 16px;
   color: var(--blue-300);
 }

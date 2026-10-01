@@ -122,7 +122,6 @@
 
 .an-cardhero h1 {
   margin: 0;
-  max-width: 14em;
   font-family: var(--font-display);
   font-weight: 700;
   font-size: clamp(32px, 4.4vw, 52px);

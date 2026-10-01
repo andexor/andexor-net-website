@@ -17,8 +17,8 @@ function Hero({ onProposal }) {
           <span style={{ position:'relative', fontFamily:'var(--font-display)', fontWeight:700, fontSize:'clamp(32px, 4.4vw, 54px)',
             lineHeight:1, letterSpacing:'-0.02em', color:'#FFF' }}>Andexor Network</span>
         </div>
-        <h1 style={{ position:'relative', color:'#FFF', fontSize:'clamp(38px, 5vw, 60px)', lineHeight:1.04, letterSpacing:'-0.02em', margin:'40px 0 0', maxWidth:'14em', textWrap:'balance' }}>
-          Enterprise-grade services at small business prices
+        <h1 style={{ position:'relative', color:'#FFF', fontSize:'clamp(38px, 5vw, 60px)', lineHeight:1.04, letterSpacing:'-0.02em', margin:'40px 0 0', textWrap:'balance' }}>
+          Enterprise services for small business
         </h1>
         <p style={{ color:'var(--blue-200)', fontSize:'19px', lineHeight:1.55, maxWidth:'40em', margin:'20px 0 0' }}>
           We create and manage solutions to help your business grow.

@@ -10,7 +10,7 @@ test.describe("Homepage content", () => {
     await page.goto("/");
     await expect(page.locator("#top").getByText("Andexor Network", { exact: true })).toBeVisible();
     await expect(
-      page.getByRole("heading", { name: "Enterprise-grade services at small business prices" }),
+      page.getByRole("heading", { name: "Enterprise services for small business" }),
     ).toBeVisible();
   });
 
