@@ -13,7 +13,7 @@ export function Services() {
   return (
     <section id="services" className="an-services">
       <div className="an-services__header">
-        <h2 className="an-services__heading">Four disciplines, all in one place</h2>
+        <h2 className="an-services__heading">Business and technical services, all in one place</h2>
         <p className="an-services__lede">Web, SEO, AI, and marketing under one roof.</p>
       </div>
       <div className="an-services__grid">

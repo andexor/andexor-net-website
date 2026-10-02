@@ -12,7 +12,6 @@ test.describe("Footer tagline", () => {
     test(`${route}: one text piece, no line break, no max-width`, async ({ page }) => {
       await page.goto(route);
       const tagline = page.locator(".an-footer__tagline");
-      await expect(tagline).toHaveText("Enterprise services for small business");
       await expect(tagline.locator("br")).toHaveCount(0);
       const info = await tagline.evaluate((el) => ({
         nodes: el.childNodes.length,

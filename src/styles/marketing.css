@@ -208,10 +208,6 @@
   margin: 0 auto;
 }
 
-.an-services__header {
-  max-width: 620px;
-}
-
 .an-services__heading {
   font-size: clamp(30px, 3.6vw, 42px);
   letter-spacing: -0.02em;
