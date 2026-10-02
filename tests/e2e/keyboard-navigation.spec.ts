@@ -8,6 +8,7 @@ import { expect, test } from "@playwright/test";
 // keyboard alone, with a visible focus indicator at each stop.
 test("full contact flow is operable using only the keyboard", async ({ page }) => {
   await page.goto("/");
+  await page.waitForFunction(() => document.hasFocus(), undefined, { timeout: 5000 });
 
   const ctaButton = page.getByRole("button", { name: "Contact Us" }).first();
   await ctaButton.focus();
@@ -29,6 +30,11 @@ test("full contact flow is operable using only the keyboard", async ({ page }) =
   await page.keyboard.press("Tab");
   await expect(page.getByLabel("Primary need")).toBeFocused();
   await page.getByLabel("Primary need").selectOption("Web Development");
+  // The note's Privacy and Terms links come before Send, in reading order.
+  await page.keyboard.press("Tab");
+  await expect(dialog.getByRole("link", { name: "Privacy" })).toBeFocused();
+  await page.keyboard.press("Tab");
+  await expect(dialog.getByRole("link", { name: "Terms" })).toBeFocused();
   await page.keyboard.press("Tab");
   await expect(page.getByRole("button", { name: "Send" })).toBeFocused();
 

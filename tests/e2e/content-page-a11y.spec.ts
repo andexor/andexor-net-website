@@ -26,6 +26,7 @@ test("Web Development page links are reachable by keyboard with visible focus", 
 }) => {
   test.skip(browserName === "webkit", "Safari skips links when tabbing by default");
   await page.goto("/web-development");
+  await page.waitForFunction(() => document.hasFocus(), undefined, { timeout: 5000 });
   const logo = page.getByRole("link", { name: "Andexor Network" }).first();
   await page.keyboard.press("Tab");
   await expect(logo).toBeFocused();

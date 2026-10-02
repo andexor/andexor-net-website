@@ -23,12 +23,16 @@ export interface ContactPopupProps {
   onSubmit?: (request: ContactRequest) => void;
 }
 
+const FOCUSABLE =
+  'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
 // Implements the props/state/behavior contract from
 // specs/001-homepage-contact-us/contracts/ui-contracts.md.
 export function ContactPopup({ open, onClose, onSubmit }: ContactPopupProps) {
   const [sent, setSent] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
 
   // FR-013: reopening the popup always resets to the empty form state.
   // FR-023: the submit control must be enabled whenever the popup opens.
@@ -63,6 +67,47 @@ export function ContactPopup({ open, onClose, onSubmit }: ContactPopupProps) {
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [open, onClose]);
 
+  // Keyboard focus stays inside the popup. Tab and Shift+Tab cycle through the
+  // popup's controls with Close last, so Tab after the Send button reaches
+  // Close, and Tab after Close wraps to the first form field. If focus is
+  // somewhere else (the page behind the popup), the next Tab brings it in.
+  useEffect(() => {
+    if (!open) return;
+    function handleTab(event: KeyboardEvent) {
+      if (event.key !== "Tab" || event.defaultPrevented || event.isComposing) return;
+      const panel = panelRef.current;
+      if (!panel) return;
+      const close = panel.querySelector<HTMLElement>(".an-contact-header__close");
+      const items = Array.from(panel.querySelectorAll<HTMLElement>(FOCUSABLE)).filter((el) => el !== close);
+      if (close) items.push(close);
+      if (items.length === 0) return;
+      event.preventDefault();
+      const index = items.indexOf(document.activeElement as HTMLElement);
+      const step = event.shiftKey ? -1 : 1;
+      const next =
+        index === -1 ? (event.shiftKey ? items.length - 1 : 0) : (index + step + items.length) % items.length;
+      items[next].focus();
+    }
+    document.addEventListener("keydown", handleTab);
+    return () => document.removeEventListener("keydown", handleTab);
+  }, [open]);
+
+  // The page behind the popup is made inert while it is open, so nothing there
+  // can take focus (keyboard, click, or script) and screen readers skip it.
+  // The siblings of the popup's scrim are the page; their prior state is put
+  // back on close.
+  useEffect(() => {
+    if (!open) return;
+    const scrim = panelRef.current?.closest(".an-contact-scrim");
+    const siblings = Array.from(scrim?.parentElement?.children ?? []).filter(
+      (el): el is HTMLElement => el instanceof HTMLElement && el !== scrim && !el.inert,
+    );
+    for (const el of siblings) el.inert = true;
+    return () => {
+      for (const el of siblings) el.inert = false;
+    };
+  }, [open]);
+
   if (!open) {
     return null;
   }
@@ -89,7 +134,7 @@ export function ContactPopup({ open, onClose, onSubmit }: ContactPopupProps) {
 
   return (
     <div className="an-contact-scrim" onClick={onClose} role="dialog" aria-modal="true" aria-label="Contact Us">
-      <div className="an-contact-panel" onClick={(event) => event.stopPropagation()}>
+      <div ref={panelRef} className="an-contact-panel" onClick={(event) => event.stopPropagation()}>
         <div className="an-contact-header">
           <div aria-hidden="true" className="an-contact-header__glow" />
           {/* eslint-disable-next-line @next/next/no-img-element -- static SVG asset, no next/image optimization needed for static export */}
@@ -109,13 +154,14 @@ export function ContactPopup({ open, onClose, onSubmit }: ContactPopupProps) {
             <p className="an-contact-confirmation__body">
               Thanks for reaching out. A strategist will review your site and contact you soon.
             </p>
-            <Button variant="primary" className="an-contact-confirmation__done" onClick={onClose}>
+            <Button variant="primary" className="an-contact-confirmation__done" onClick={onClose} autoFocus>
               Done
             </Button>
           </div>
         ) : (
           <form ref={formRef} className="an-contact-form" onSubmit={handleSubmit}>
-            <Input name="fullName" label="Full name" placeholder="Jordan Reyes" required />
+            {/* The form mounts each time the popup opens, so autoFocus moves keyboard focus into the dialog. */}
+            <Input name="fullName" label="Full name" placeholder="Jordan Reyes" required autoFocus />
             <Input
               name="workEmail"
               label="Work email"
@@ -145,6 +191,12 @@ export function ContactPopup({ open, onClose, onSubmit }: ContactPopupProps) {
                 <option value={PRIMARY_NEED_OTHER}>{PRIMARY_NEED_OTHER}</option>
               </select>
             </div>
+            <p className="an-contact-form__note">
+              No obligation. We never share your personal information.{" "}
+              <span className="an-contact-form__legal">
+                <a href="#privacy">Privacy</a> | <a href="#terms">Terms</a>
+              </span>
+            </p>
             <Button
               type="submit"
               variant="accent"
@@ -155,12 +207,6 @@ export function ContactPopup({ open, onClose, onSubmit }: ContactPopupProps) {
             >
               Send
             </Button>
-            <p className="an-contact-form__note">
-              No obligation. We never share your personal information.{" "}
-              <span className="an-contact-form__legal">
-                <a href="#privacy">Privacy</a> | <a href="#terms">Terms</a>
-              </span>
-            </p>
           </form>
         )}
       </div>
