@@ -8,7 +8,7 @@ import { expect, test } from "@playwright/test";
 // background, at the same size and place as before. Playwright's loader here
 // fails on TypeScript type annotations, so callbacks rely on contextual typing.
 test.describe("Popup header logo", () => {
-  test("from the hero on /: gold, loaded, 34px, no box, 12px left of the title", async ({
+  test("from the call-to-action band on /: gold, loaded, 34px, no box, 12px left of the title", async ({
     page,
   }) => {
     await page.goto("/");

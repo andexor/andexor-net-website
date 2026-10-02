@@ -9,7 +9,7 @@ import { expect, test } from "@playwright/test";
 // page that shows the footer. Playwright's loader here fails on TypeScript type
 // annotations, so callbacks rely on contextual typing.
 test.describe("Footer Contact Us on the home page", () => {
-  test("opens the same popup as the hero button, and only one", async ({ page }) => {
+  test("opens the same popup as the call-to-action band button, and only one", async ({ page }) => {
     await page.goto("/");
     await page.locator("footer").getByRole("button", { name: "Contact Us" }).click();
     await expect(page.getByRole("dialog", { name: "Contact Us" })).toBeVisible();

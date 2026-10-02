@@ -7,7 +7,7 @@ import { expect, test } from "@playwright/test";
 // User Story 2 Acceptance Scenarios 1-6, and User Story 3 Acceptance
 // Scenarios 1-2 (spec.md).
 test.describe("Contact request flow", () => {
-  test("opens from the hero Contact Us button", async ({ page }) => {
+  test("opens from the Contact Us button in the call-to-action band", async ({ page }) => {
     await page.goto("/");
     await page.getByRole("button", { name: "Contact Us" }).first().click();
     await expect(page.getByRole("dialog", { name: "Contact Us" })).toBeVisible();

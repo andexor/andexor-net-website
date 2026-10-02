@@ -9,9 +9,9 @@ import { expect, test } from "@playwright/test";
 test("full contact flow is operable using only the keyboard", async ({ page }) => {
   await page.goto("/");
 
-  const heroButton = page.getByRole("button", { name: "Contact Us" }).first();
-  await heroButton.focus();
-  await expect(heroButton).toBeFocused();
+  const ctaButton = page.getByRole("button", { name: "Contact Us" }).first();
+  await ctaButton.focus();
+  await expect(ctaButton).toBeFocused();
   await page.keyboard.press("Enter");
 
   const dialog = page.getByRole("dialog", { name: "Contact Us" });
@@ -42,7 +42,7 @@ test("full contact flow is operable using only the keyboard", async ({ page }) =
 
   // Reopen and close via the × control with the keyboard, using Escape-free
   // Tab navigation to reach it (per FR-021's accessible name).
-  await heroButton.focus();
+  await ctaButton.focus();
   await page.keyboard.press("Enter");
   await page.getByRole("button", { name: "Close" }).focus();
   await expect(page.getByRole("button", { name: "Close" })).toBeFocused();
