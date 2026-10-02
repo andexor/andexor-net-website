@@ -161,8 +161,8 @@ function takeEyebrow(nodes: ElementContent[]): string | undefined {
 
 // Splits a rendered page into the `#` heading, the intro before the first `##`,
 // and one card per `##` section, dealt into two columns (odd, then even) so
-// the columns stagger. `--i` is the reading order, used on narrow screens.
-// A horizontal rule (`---`) in the body ends the staggered flow: the cards
+// the columns alternate. `--i` is the reading order, used on narrow screens.
+// A horizontal rule (`---`) in the body ends the alternating flow: the cards
 // after it are not dealt into the columns but follow them, each one full width
 // (`an-tile--wide`), in written order (spec 033).
 export function splitCards(tree: Root) {

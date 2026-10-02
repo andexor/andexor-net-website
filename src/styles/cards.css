@@ -4,7 +4,7 @@
  *
  * Card layout for Markdown content pages with `layout: cards` (see
  * src/lib/content.ts). A dark hero band with the backdrop pattern, then two
- * staggered columns of cards that pull up over the band's edge. Uses design
+ * columns of cards that pull up over the band's edge. Uses design
  * tokens only; no italics anywhere, per design/README.md's brand rules.
  */
 
@@ -176,16 +176,11 @@
   align-items: start;
 }
 
-/* The right column starts lower so the two columns never line up. */
 .an-cards__col {
   display: grid;
   gap: var(--space-6);
   align-content: start;
   min-width: 0;
-}
-
-.an-cards__col + .an-cards__col {
-  padding-top: 56px;
 }
 
 .an-tile {

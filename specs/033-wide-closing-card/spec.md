@@ -12,7 +12,7 @@
 
 ### User Story 1 - The Techno Bits card closes the page, full width (Priority: P1)
 
-A visitor reads the Web Development page. The cards run down the page in two staggered columns as
+A visitor reads the Web Development page. The cards run down the page in two columns as
 before. After the last card of those two columns, the Techno Bits card sits on its own row and spans the
 full width of both columns, like a closing panel. It is no longer one of the alternating cards, so the
 two columns are no longer left uneven by a long card at the end of one of them.
@@ -99,11 +99,11 @@ cards alternate.
 - The Techno Bits card's text, order of items, and wording are not changed, including its heading and
   the sentence above the list.
 - The card's own styling (colors, border, radius, bullet, spacing inside) is the same as the other
-  cards for now. The owner plans to style it differently later, which is not part of this change.
+  cards. The owner confirmed (2026-10-01) that no further formatting of the Techno Bits card is planned.
 - A card page with no wide card, the home page, and the not-found page do not change.
 - If a `---` line is written but nothing follows it, nothing changes.
 - A long item never splits across the two columns.
-- The stagger between the columns, the hero, and the page spacing at the end of the page are unchanged.
+- The two columns, the hero, and the page spacing at the end of the page are unchanged.
   The wide card has the same space above it as there is between other cards.
 - Front matter delimiters also use `---` but are not part of the body, so they are not affected.
 
@@ -163,5 +163,6 @@ cards alternate.
   for its text. It is judged by eye and not fixed by this spec.
 - Tests do not check how many cards or list items exist. They check that the wide card is below both
   columns, spans their width, and that its list is in two columns, whatever the counts are.
-- Special styling for the Techno Bits card is planned by the owner for later and is out of scope.
+- The card keeps the normal card styling. The owner confirmed that nothing more is planned for its
+  formatting.
 - This is a small layout change. Implement directly; no plan or tasks needed.

@@ -129,7 +129,7 @@ describe("cards layout", () => {
     expect((await getContentPage(["cards"], dir))!.cards!.section).toBeUndefined();
   });
 
-  // Spec 033: cards after a `---` leave the staggered columns and follow them, wide.
+  // Spec 033: cards after a `---` leave the alternating columns and follow them, wide.
   it("puts the cards after a horizontal rule after the columns, as wide cards", async () => {
     write(
       "wide.md",

@@ -49,8 +49,23 @@ We have more than 5 years of experience with:
 
 We have more than 5 years of experience with:
 
-- Bigtable NoSQL database
-- Data marts in BigQuery
+- BigQuery Studio
+- Bigtable
+- VM instances
+- Cloud Run
+- IAM
+
+## Grafana
+
+We have 2 years of experience with
+custom OSS installation, configuration,
+dashboards, snapshots, and alerts using:
+
+- Alloy
+- Loki
+- Mimir
+- Tempo
+- Grafana
 
 ## Cloudflare
 

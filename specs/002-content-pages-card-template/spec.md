@@ -144,7 +144,7 @@ the hero, card widths, and card order.
 1. **Given** a card page, **When** it loads, **Then** the hero band's background fades from the
    dark brand color at the top into the page background at the bottom, with no hard edge between
    the hero and the first cards.
-2. **Given** a wide viewport, **When** cards are shown, **Then** they appear in two staggered
+2. **Given** a wide viewport, **When** cards are shown, **Then** they appear in two
    columns, with odd-numbered cards in one column and even-numbered cards in the other.
 3. **Given** a narrow viewport, **When** cards are shown, **Then** they stack in one column in
    reading order, and every card is the same width as the others.
@@ -284,7 +284,7 @@ the color changes and no underline appears or disappears.
 - **FR-015**: Each `##` section MUST render as its own card, with an optional small label taken
   from a `>> Label` line directly after the heading.
 - **FR-016**: Headings listed under `featured` MUST render as dark cards.
-- **FR-017**: On wide viewports, cards MUST be dealt into two staggered columns; on narrow
+- **FR-017**: On wide viewports, cards MUST be dealt into two columns; on narrow
   viewports, they MUST stack in one column in reading order at equal width.
 - **FR-018**: The hero band's background MUST fade from the dark brand color into the page
   background so that no hard edge separates it from the cards.

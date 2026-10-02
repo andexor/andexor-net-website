@@ -16,13 +16,14 @@ for (const width of [320, 768, 1920]) {
   });
 }
 
-test("wide viewport shows two staggered columns", async ({ page }) => {
+test("wide viewport shows two columns side by side", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto("/web-development");
   const columns = page.locator(".an-cards__col");
-  await expect(columns).toHaveCount(2);
   const [a, b] = await Promise.all([columns.nth(0).boundingBox(), columns.nth(1).boundingBox()]);
   expect(a && b && a.x < b.x).toBe(true);
+  // Both columns start at the same height (spec 034).
+  expect(Math.abs((a?.y ?? 0) - (b?.y ?? 99))).toBeLessThan(1);
 });
 
 test("narrow viewport stacks cards in reading order at equal width", async ({ page }) => {
