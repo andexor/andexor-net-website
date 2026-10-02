@@ -155,7 +155,12 @@ export function ContactPopup({ open, onClose, onSubmit }: ContactPopupProps) {
             >
               Send
             </Button>
-            <p className="an-contact-form__note">No obligation. We never share your personal information.</p>
+            <p className="an-contact-form__note">
+              No obligation. We never share your personal information.{" "}
+              <span className="an-contact-form__legal">
+                <a href="#privacy">Privacy</a> | <a href="#terms">Terms</a>
+              </span>
+            </p>
           </form>
         )}
       </div>

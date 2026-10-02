@@ -352,32 +352,6 @@
   color: #ffffff;
 }
 
-.an-footer__bottom-bar {
-  border-top: 1px solid var(--blue-800);
-}
-
-.an-footer__bottom-inner {
-  max-width: var(--container-2xl);
-  margin: 0 auto;
-  padding: 18px 24px;
-  display: flex;
-  justify-content: flex-end;
-  flex-wrap: wrap;
-  gap: 10px;
-  font-size: 13px;
-  color: var(--blue-400);
-}
-
-.an-footer__legal-links {
-  display: flex;
-  gap: 20px;
-}
-
-.an-footer__legal-link {
-  color: var(--blue-400);
-  text-decoration: none;
-}
-
 /* ---- Contact Us popup ------------------------------------------------- */
 
 .an-contact-scrim {
@@ -463,6 +437,19 @@
   font-size: 12px;
   color: var(--blue-100);
   text-align: center;
+}
+
+.an-contact-form__legal {
+  white-space: nowrap;
+}
+
+.an-contact-form__legal a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.an-contact-form__legal a:hover {
+  color: var(--blue-200);
 }
 
 .an-contact-confirmation {

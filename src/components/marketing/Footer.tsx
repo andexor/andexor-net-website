@@ -20,7 +20,7 @@ const COLUMNS = [
     heading: "BUSINESS SERVICES",
     items: ["Cost Reduction", "Lead Generation", "Growth Marketing", "Process Re-engineering"],
   },
-  { heading: "COMPANY", items: ["About Us"] },
+  { heading: "COMPANY", items: ["About Us", "Privacy", "Terms"] },
 ];
 
 const ITEM_HREFS: Record<string, string> = {
@@ -33,6 +33,8 @@ const ITEM_HREFS: Record<string, string> = {
   "Growth Marketing": "/growth-marketing",
   "Process Re-engineering": "/process-re-engineering",
   "About Us": "/about-us",
+  Privacy: "#privacy",
+  Terms: "#terms",
 };
 
 // FR-006: navigation grouped into technical/business/company categories,
@@ -74,18 +76,6 @@ export function Footer() {
             </ul>
           </div>
         ))}
-      </div>
-      <div className="an-footer__bottom-bar">
-        <div className="an-footer__bottom-inner">
-          <span className="an-footer__legal-links">
-            <a href="#privacy" className="an-footer__legal-link">
-              Privacy
-            </a>
-            <a href="#terms" className="an-footer__legal-link">
-              Terms
-            </a>
-          </span>
-        </div>
       </div>
     </footer>
   );
