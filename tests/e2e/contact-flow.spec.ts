@@ -72,7 +72,7 @@ test.describe("Contact request flow", () => {
     expect(page.url()).toContain("/");
   });
 
-  test('"Done" closes the popup', async ({ page }) => {
+  test('"OK" closes the popup', async ({ page }) => {
     await page.goto("/");
     await page.getByRole("button", { name: "Contact Us" }).first().click();
     await page.getByLabel("Full name").fill("Jordan Reyes");
@@ -80,7 +80,7 @@ test.describe("Contact request flow", () => {
     await page.getByLabel("Company website").fill("example.com");
     await page.getByLabel("Primary need").selectOption("Web Development");
     await page.getByRole("button", { name: "Send" }).click();
-    await page.getByRole("button", { name: "Done" }).click();
+    await page.getByRole("button", { name: "OK" }).click();
     await expect(page.getByRole("dialog", { name: "Contact Us" })).not.toBeVisible();
   });
 
@@ -106,7 +106,7 @@ test.describe("Contact request flow", () => {
     await page.getByLabel("Primary need").selectOption("Web Development");
     await page.getByRole("button", { name: "Send" }).click();
     await expect(page.getByRole("heading", { name: "Request received" })).toBeVisible();
-    await page.getByRole("button", { name: "Done" }).click();
+    await page.getByRole("button", { name: "OK" }).click();
 
     await page.getByRole("button", { name: "Contact Us" }).first().click();
     await expect(page.getByRole("heading", { name: "Request received" })).not.toBeVisible();

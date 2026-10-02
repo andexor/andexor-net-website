@@ -21,7 +21,7 @@ Expected: all pass.
 2. The Company column reads "About Us" and "Contact Us". Hover "Contact Us": the color changes, with no
    underline.
 3. Click it: the same Contact Us popup opens as from the hero button. The address bar does not change.
-4. Fill the form and send it: the "Request received" confirmation shows. Click "Done".
+4. Fill the form and send it: the "Request received" confirmation shows. Click "OK".
 5. Tab to the footer's "Contact Us", press Enter to open the popup, close it with the close button:
    focus is back on the footer entry.
 6. Repeat steps 3 and 5 on `/web-development` and on a made-up address such as `/nope`.

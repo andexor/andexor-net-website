@@ -50,7 +50,7 @@ Open `http://localhost:3000`.
      popup switches to the "Request received" confirmation without navigating away from the
      page, and that the whole flow (open popup to submit) takes under 60 seconds (SC-002) and
      the confirmation appears within 10 seconds of clicking "Send" (SC-003).
-   - Click "Done". Confirm the popup closes.
+   - Click "OK". Confirm the popup closes.
    - Reopen the popup (any Contact Us button). Confirm it shows the empty form, not the prior
      confirmation.
    - Open the popup again and click the background scrim, then reopen and click the × control.

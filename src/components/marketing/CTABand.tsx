@@ -10,7 +10,7 @@ export interface CTABandProps {
 }
 
 // FR-005: restates the invitation to talk, with a "Contact Us" CTA that
-// opens the same contact popup as the hero (FR-007).
+// opens the contact popup (FR-007).
 export function CTABand({ onContactClick }: CTABandProps) {
   return (
     <section className="an-cta-band">

@@ -41,8 +41,8 @@ test("full contact flow is operable using only the keyboard", async ({ page }) =
   await page.keyboard.press("Enter");
   await expect(page.getByRole("heading", { name: "Request received" })).toBeVisible();
 
-  await page.getByRole("button", { name: "Done" }).focus();
-  await expect(page.getByRole("button", { name: "Done" })).toBeFocused();
+  await page.getByRole("button", { name: "OK" }).focus();
+  await expect(page.getByRole("button", { name: "OK" })).toBeFocused();
   await page.keyboard.press("Enter");
   await expect(dialog).not.toBeVisible();
 

@@ -22,7 +22,7 @@ feature.
 - `(empty form)` → **filled** as the visitor types/selects values.
 - **filled + valid** → `submitted`, on submit: form view is replaced by the confirmation view
   (`Request received`). No value round-trips back into the form.
-- Popup **closed** (via ×, scrim click, or "Done") → any in-progress Contact Request values are
+- Popup **closed** (via ×, scrim click, or "OK") → any in-progress Contact Request values are
   discarded. Reopening always starts from an empty form (FR-013).
 
 ## Service Offering

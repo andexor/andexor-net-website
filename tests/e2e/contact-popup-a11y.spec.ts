@@ -51,7 +51,7 @@ test.describe("ContactPopup accessibility", () => {
     await expect(dialog.getByRole("button", { name: "Send" })).toBeFocused();
   });
 
-  test("the confirmation state focuses Done, and focus moves only between Done and Close", async ({ page }) => {
+  test("the confirmation state focuses OK, and focus moves only between OK and Close", async ({ page }) => {
     await page.goto("/");
     await page.waitForFunction(() => document.hasFocus(), undefined, { timeout: 5000 });
     await page.getByRole("button", { name: "Contact Us" }).first().click();
@@ -62,17 +62,17 @@ test.describe("ContactPopup accessibility", () => {
     await page.getByRole("button", { name: "Send" }).click();
     const dialog = page.getByRole("dialog", { name: "Contact Us" });
     await expect(page.getByRole("heading", { name: "Request received" })).toBeVisible();
-    const done = dialog.getByRole("button", { name: "Done" });
+    const ok = dialog.getByRole("button", { name: "OK" });
     const close = dialog.getByRole("button", { name: "Close" });
-    await expect(done).toBeFocused();
+    await expect(ok).toBeFocused();
     await page.keyboard.press("Tab");
     await expect(close).toBeFocused();
     await page.keyboard.press("Tab");
-    await expect(done).toBeFocused();
+    await expect(ok).toBeFocused();
     await page.keyboard.press("Shift+Tab");
     await expect(close).toBeFocused();
     await page.keyboard.press("Shift+Tab");
-    await expect(done).toBeFocused();
+    await expect(ok).toBeFocused();
   });
 
   test("when focus is behind the popup, the next Tab brings it in", async ({ page }) => {

@@ -120,7 +120,7 @@ the rest of the homepage content.
 3. **Given** the contact popup is open with all required fields completed, **When** the visitor
    submits the form, **Then** the popup switches to a "Request received" confirmation state
    without navigating away from the page.
-4. **Given** the confirmation state is shown, **When** the visitor clicks "Done", **Then** the
+4. **Given** the confirmation state is shown, **When** the visitor clicks "OK", **Then** the
    popup closes.
 5. **Given** the popup is open, **When** the visitor clicks outside the popup panel (the
    background scrim) or the close (×) control, **Then** the popup closes without submitting.
@@ -204,7 +204,7 @@ service options are listed and grouped, and that a selection is retained when su
   state acknowledging the request was received, without leaving the current page.
 - **FR-012**: The visitor MUST be able to close the contact popup at any time via the close (×)
   control, by clicking outside the popup panel (the scrim), by pressing Esc (spec 015), or — while
-  the confirmation state is shown — the "Done" button, without losing their place on the page.
+  the confirmation state is shown — the "OK" button, without losing their place on the page.
 - **FR-013**: Reopening the contact popup after a prior close or submission MUST show the empty
   form state, not a stale confirmation.
 - **FR-014**: The site MUST remain usable and legible across viewport widths from 320px to

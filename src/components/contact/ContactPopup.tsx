@@ -44,6 +44,19 @@ export function ContactPopup({ open, onClose, onSubmit }: ContactPopupProps) {
     }
   }, [open]);
 
+  // Spec 036: when the confirmation appears, OK gets the focus. It is done here
+  // and not with autoFocus because the form's Send button was just clicked: after
+  // a mouse click the browser would not count a focus set by script as
+  // keyboard-visible, so the focus ring would be missing. focusVisible asks for
+  // the ring; the .an-contact-confirmation__ok:focus rule backs it up where the
+  // option is unsupported.
+  useEffect(() => {
+    if (!open || !sent) return;
+    panelRef.current
+      ?.querySelector<HTMLElement>(".an-contact-confirmation__ok")
+      ?.focus({ focusVisible: true } as FocusOptions);
+  }, [open, sent]);
+
   // Spec 015: Esc is one more way to close the popup and calls the same
   // onClose as the close button. The listener is on the document because focus
   // may still be on the trigger behind the scrim. It stands aside when another
@@ -154,8 +167,8 @@ export function ContactPopup({ open, onClose, onSubmit }: ContactPopupProps) {
             <p className="an-contact-confirmation__body">
               Thanks for reaching out. A strategist will review your site and contact you soon.
             </p>
-            <Button variant="primary" className="an-contact-confirmation__done" onClick={onClose} autoFocus>
-              Done
+            <Button variant="accent" size="lg" className="an-contact-confirmation__ok" onClick={onClose}>
+              OK
             </Button>
           </div>
         ) : (
@@ -200,7 +213,6 @@ export function ContactPopup({ open, onClose, onSubmit }: ContactPopupProps) {
             <Button
               type="submit"
               variant="accent"
-              block
               size="lg"
               rightIcon={<ArrowRight size={18} aria-hidden="true" />}
               disabled={submitting}

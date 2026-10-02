@@ -197,10 +197,20 @@
  * they follow the button's rounded corners. Keyboard focus brightens the gold
  * like hover does and strengthens the glow, so the focused state still stands
  * out from the resting one. */
-/* Keyboard focus on the Send button: the call-to-action button's thin black
- * border and gold border around it, without the glow, and the same brighter
- * gold as hover. */
-.an-contact-form .an-btn:focus-visible {
+/* The Send and OK buttons look like the call-to-action button without the halo: the
+ * same thin black border and gold border around it at rest, and the same
+ * brighter gold plus rings on keyboard focus. It is as wide as its content,
+ * and it is centered on the form like the other buttons. */
+.an-contact-form .an-btn,
+.an-contact-confirmation .an-btn {
+  margin-inline: auto;
+  box-shadow:
+    0 0 0 2px #000000,
+    0 0 0 5px var(--gold-500);
+}
+
+.an-contact-form .an-btn:focus-visible,
+.an-contact-confirmation .an-btn:focus {
   border-radius: var(--radius-md);
   background: var(--gold-400);
   box-shadow:
@@ -211,7 +221,8 @@
 /* Pressing the call-to-action and Send buttons moves them 2px right and 2px
  * down, the same as the Close button. */
 .an-cta-band .an-btn:not(:disabled):active,
-.an-contact-form .an-btn:not(:disabled):active {
+.an-contact-form .an-btn:not(:disabled):active,
+.an-contact-confirmation .an-btn:not(:disabled):active {
   transform: translateX(2px) translateY(2px);
 }
 
@@ -459,13 +470,11 @@
   line-height: 34px;
 }
 
-/* The Close and Done buttons share one look: a glossy black button with a
- * dark vertical gradient, a light rim and a bright top edge for the bevel, a
- * drop shadow for depth, and a gloss highlight across the top half. They press
- * 2px right and 2px down, and a keyboard focus ring is solid gold. The Done
- * selector is doubled up so it outranks the design system's .an-btn colors. */
-.an-contact-header__close,
-.an-contact-confirmation__done.an-btn {
+/* The Close button is a glossy black button with a dark vertical gradient, a
+ * light rim and a bright top edge for the bevel, a drop shadow for depth, and a
+ * gloss highlight across the top half. It presses 2px right and 2px down, and
+ * its keyboard focus ring is solid gold. */
+.an-contact-header__close {
   position: relative;
   isolation: isolate;
   overflow: hidden;
@@ -483,8 +492,7 @@
   transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.05s ease;
 }
 
-.an-contact-header__close::before,
-.an-contact-confirmation__done.an-btn::before {
+.an-contact-header__close::before {
   content: "";
   position: absolute;
   z-index: -1;
@@ -494,13 +502,11 @@
   pointer-events: none;
 }
 
-.an-contact-header__close:hover,
-.an-contact-confirmation__done.an-btn:hover {
+.an-contact-header__close:hover {
   background: linear-gradient(180deg, #4a4a4a 0%, #1c1c1c 48%, #0a0a0a 100%);
 }
 
-.an-contact-header__close:active,
-.an-contact-confirmation__done.an-btn:active {
+.an-contact-header__close:active {
   transform: translateX(2px) translateY(2px);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.3),
@@ -508,8 +514,7 @@
     0 1px 2px rgba(0, 0, 0, 0.6);
 }
 
-.an-contact-header__close:focus-visible,
-.an-contact-confirmation__done.an-btn:focus-visible {
+.an-contact-header__close:focus-visible {
   border-radius: 7px;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.45),
@@ -604,6 +609,6 @@
   line-height: 1.55;
 }
 
-.an-contact-confirmation__done {
+.an-contact-confirmation__ok {
   margin-top: 22px;
 }

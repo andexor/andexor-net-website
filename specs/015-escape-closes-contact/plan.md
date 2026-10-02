@@ -7,7 +7,7 @@
 ## Summary
 
 `ContactPopup` renders the dialog when its `open` prop is true and calls `onClose` from the close
-button, "Done", and a click on the scrim. It has no keyboard handling. The plan adds one effect in
+button, "OK", and a click on the scrim. It has no keyboard handling. The plan adds one effect in
 `ContactPopup.tsx`: while `open` is true, listen for `keydown` on `document` and call `onClose` when
 the key is Escape. A document-level listener works wherever focus is (spec User Story 2), covers the
 form and the confirmation (both are the same `open` state), and needs no change to the hero,
