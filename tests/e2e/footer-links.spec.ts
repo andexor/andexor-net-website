@@ -21,7 +21,6 @@ const PAGES = [
 const START_PAGES = ["/", "/web-development", "/nope"];
 
 // FR-003 (spec 010, amended by spec 014): Privacy and Terms stay placeholders.
-// Contact Us opens the contact popup (tests/e2e/footer-contact.spec.ts).
 const PLACEHOLDERS = [
   ["Privacy", "#privacy"],
   ["Terms", "#terms"],

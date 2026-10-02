@@ -6,8 +6,8 @@ import { expect, test } from "@playwright/test";
 
 // server.ts serves the static export. Next.js chunk names contain brackets
 // (app/[...slug]/page-*.js), which arrive percent-encoded; if they are not
-// decoded the content pages never hydrate and their client components (the
-// footer's Contact Us button) do nothing. Playwright's loader here fails on
+// decoded the content pages never hydrate and their client components
+// do nothing. Playwright's loader here fails on
 // TypeScript type annotations, so callbacks rely on contextual typing.
 for (const path of ["/", "/web-development", "/nope"]) {
   test(`every script and style on ${path} loads`, async ({ page }) => {
