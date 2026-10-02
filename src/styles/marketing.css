@@ -146,7 +146,7 @@
 /* ---- CTA band --------------------------------------------------------- */
 
 .an-cta-band {
-  max-width: var(--container-xl);
+  max-width: var(--container-sm);
   margin: 0 auto;
   padding: 0 24px var(--section-y);
 }
@@ -166,7 +166,6 @@
 
 .an-cta-band__copy {
   position: relative;
-  max-width: 620px;
 }
 
 .an-cta-band__heading {
@@ -175,11 +174,11 @@
   letter-spacing: -0.02em;
   margin: 0;
   line-height: 1.1;
-  max-width: 12.28em;
 }
 
 .an-cta-band__action {
   position: relative;
+  margin: 0 auto;
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
