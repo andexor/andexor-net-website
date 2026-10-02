@@ -50,6 +50,9 @@ test("full contact flow is operable using only the keyboard", async ({ page }) =
   // Tab navigation to reach it (per FR-021's accessible name).
   await ctaButton.focus();
   await page.keyboard.press("Enter");
+  // The popup moves focus to Full name just after it appears; wait for that
+  // before moving focus, or the late autofocus takes it back from Close.
+  await expect(page.getByLabel("Full name")).toBeFocused();
   await page.getByRole("button", { name: "Close" }).focus();
   await expect(page.getByRole("button", { name: "Close" })).toBeFocused();
   await page.keyboard.press("Enter");

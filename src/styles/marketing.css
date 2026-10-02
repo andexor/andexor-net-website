@@ -192,6 +192,29 @@
   position: relative;
 }
 
+/* The call-to-action button always wears a thin black border, a gold border
+ * around it, and a hazy gold glow around both. The rings are box-shadow, so
+ * they follow the button's rounded corners. Keyboard focus brightens the gold
+ * like hover does and strengthens the glow, so the focused state still stands
+ * out from the resting one. */
+.an-cta-band .an-btn {
+  box-shadow:
+    0 0 0 2px #000000,
+    0 0 0 5px var(--gold-500),
+    0 0 18px 8px color-mix(in srgb, var(--gold-500) 55%, transparent),
+    0 0 40px 14px color-mix(in srgb, var(--gold-500) 30%, transparent);
+}
+
+.an-cta-band .an-btn:focus-visible {
+  border-radius: var(--radius-md);
+  background: var(--gold-400); /* the same brighter gold as hover */
+  box-shadow:
+    0 0 0 2px #000000,
+    0 0 0 5px var(--gold-500),
+    0 0 22px 11px color-mix(in srgb, var(--gold-500) 70%, transparent),
+    0 0 48px 18px color-mix(in srgb, var(--gold-500) 40%, transparent);
+}
+
 /* ---- Services ----------------------------------------------------------- */
 
 .an-services {
