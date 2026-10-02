@@ -141,7 +141,7 @@ export function ContactPopup({ open, onClose, onSubmit }: ContactPopupProps) {
           <img src="/logo/logo-gold.svg" alt="" className="an-contact-header__logo" />
           <div className="an-contact-header__title">Contact Us</div>
           <button onClick={onClose} aria-label="Close" className="an-contact-header__close">
-            <X size={20} aria-hidden="true" />
+            <X size={22} strokeWidth={3} aria-hidden="true" />
           </button>
         </div>
 
