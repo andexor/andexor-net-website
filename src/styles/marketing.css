@@ -301,11 +301,10 @@
   }
 }
 
-.an-footer__tagline {
-  font-size: 14px;
-  line-height: 1.6;
-  margin-top: 16px;
-  color: var(--blue-300);
+.an-footer__copyright {
+  font-size: 13px;
+  margin: 16px 0 0;
+  color: var(--blue-400);
 }
 
 .an-footer__social-row {
@@ -369,7 +368,7 @@
   margin: 0 auto;
   padding: 18px 24px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   flex-wrap: wrap;
   gap: 10px;
   font-size: 13px;

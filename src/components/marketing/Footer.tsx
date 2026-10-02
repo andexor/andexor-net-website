@@ -37,7 +37,7 @@ const ITEM_HREFS: Record<string, string> = {
 };
 
 // FR-006: navigation grouped into technical/business/company categories,
-// social media links, and a copyright line. The service and About Us entries
+// social media links, and a copyright line under the logo. The service and About Us entries
 // link to their pages (spec 010). Contact Us opens the contact popup
 // (spec 014). Privacy and Terms remain placeholders per FR-017 — activating
 // them is a no-op.
@@ -47,7 +47,7 @@ export function Footer() {
       <div className="an-footer__grid">
         <div>
           <Logo light />
-          <p className="an-footer__tagline">Enterprise services for small business</p>
+          <p className="an-footer__copyright">© 2026 Andexor Network, Inc. All rights reserved.</p>
           <div className="an-footer__social-row">
             {SOCIAL_LINKS.map(({ key, label, href, Icon }) => (
               <a
@@ -83,7 +83,6 @@ export function Footer() {
       </div>
       <div className="an-footer__bottom-bar">
         <div className="an-footer__bottom-inner">
-          <span>© 2026 Andexor Network, Inc. All rights reserved.</span>
           <span className="an-footer__legal-links">
             <a href="#privacy" className="an-footer__legal-link">
               Privacy
