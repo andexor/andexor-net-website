@@ -5,7 +5,7 @@ layout: cards
 section: technical
 eyebrow: Technical Services
 image: /web-hosting.png
-image_alt: servers in a cloud
+image_alt: 3 web servers in a cloud
 ---
 
 <!--
@@ -18,7 +18,7 @@ Please create a modern 3D isometric icon illustration that represents web hostin
 
 # Web Hosting
 
-We keep your site running so you can focus on your business.
+We keep your site running. You focus on your business.
 
 ## AWS
 
@@ -61,6 +61,7 @@ We have 2 years of experience with
 custom OSS installation, configuration,
 dashboards, snapshots, and alerts using:
 
+- Faro
 - Alloy
 - Loki
 - Mimir
@@ -72,3 +73,14 @@ dashboards, snapshots, and alerts using:
 We are now in the process of adding
 various Cloudflare services as deployment options.
 Stay tuned for more details to come.
+
+## Complex Setups
+
+Do you need a brochure website built with a static platform,
+a personalized web app built with a dynamic platform,
+a blog made with another platform,
+and a set of AI agents and APIs,
+all rolled into one consistent website?
+We can manage all of that with consistent, shared
+brand assets and smoth navigation to bring it all together seamlessly.
+Call now to speak to a Web Hosting Specialist to find out how.

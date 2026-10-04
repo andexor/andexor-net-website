@@ -240,7 +240,7 @@
 }
 
 .an-tile ul {
-  margin: 0;
+  margin: 0 0 var(--space-3);
   padding: 0;
   list-style: none;
   display: grid;

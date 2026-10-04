@@ -18,7 +18,7 @@ Please create a modern 3D isometric icon illustration that represents an agentic
 
 # Agentic Systems
 
-Let AI agents handle routine tasks for you.
+Let AI agents handle routine tasks. You do what only you can do.
 
 ## Answer the phone
 
@@ -42,3 +42,16 @@ The world is moving towards facilitating secure
 Agent To Agent (A2A) e-commerce transactions,
 bypassing websites entirely.
 Let us help you on this new journey.
+
+## Fast Proposals
+
+Hate giving quotes and writing proposals?
+Give those tasks to an agent.
+Once we document all of your services
+and price ranges in a knowledge base,
+we can make a self-service kiosk app
+or a chatbot to give quotes.
+With your review and customizations,
+it can generate a custom proposal for you,
+saving you time and energy so you can
+focus on getting the job done.
