@@ -27,7 +27,7 @@
 
 - [x] CHK010 Are the Success Criteria numbered consistently and sequentially (SC-007 currently appears between SC-003 and SC-004)? [Consistency, Spec §Success Criteria] — Resolved: renumbered into sequential document order (SC-001 through SC-008, after CHK014 also split SC-002 into two criteria).
 - [x] CHK011 Is the contact submission entity referred to consistently (e.g., "Contact Request" vs. "request" vs. "inquiry") across User Scenarios, Functional Requirements, and Key Entities? [Consistency] — Resolved: normalized to "Contact Request" throughout (the quoted UI copy "Request received" is locked design-system text and intentionally left as-is).
-- [x] CHK012 Do the popup-closing requirements in FR-012 and the Acceptance Scenarios in User Story 2 agree on every way the popup can be closed (×, scrim, "Done")? [Consistency, Spec §FR-012] — Resolved: FR-012 now explicitly enumerates ×, scrim, and "Done".
+- [x] CHK012 Do the popup-closing requirements in FR-012 and the Acceptance Scenarios in User Story 2 agree on every way the popup can be closed (×, scrim, "OK")? [Consistency, Spec §FR-012] — Resolved: FR-012 now explicitly enumerates ×, scrim, and "OK".
 
 ## Acceptance Criteria Quality
 

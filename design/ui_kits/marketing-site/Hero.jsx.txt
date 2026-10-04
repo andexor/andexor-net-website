@@ -11,14 +11,14 @@ function Hero({ onProposal }) {
       <div style={{ position:'relative', maxWidth:'var(--container-2xl)', margin:'0 auto', padding:'29px 24px 29px' }} className="an-hero-grid">
         <div style={{ position:'relative', display:'flex', alignItems:'center', gap:'22px' }}>
           <div aria-hidden="true" style={{ position:'absolute', left:'-150px', top:'50%', width:'420px', height:'420px', transform:'translateY(-50%)',
-            background:'radial-gradient(circle, color-mix(in srgb, var(--gold-500) 22%, transparent), transparent 65%)', pointerEvents:'none' }} />
+            background:'radial-gradient(circle, color-mix(in srgb, var(--gold-500) 12%, transparent), transparent 48%)', pointerEvents:'none' }} />
           <img src={(window.__resources && window.__resources.logoGold) || "../../assets/logo/logo-gold.svg"} alt=""
             style={{ position:'relative', width:'clamp(72px, 9vw, 112px)', height:'clamp(72px, 9vw, 112px)', display:'block' }} />
           <span style={{ position:'relative', fontFamily:'var(--font-display)', fontWeight:700, fontSize:'clamp(32px, 4.4vw, 54px)',
             lineHeight:1, letterSpacing:'-0.02em', color:'#FFF' }}>Andexor Network</span>
         </div>
-        <h1 style={{ position:'relative', color:'#FFF', fontSize:'clamp(38px, 5vw, 60px)', lineHeight:1.04, letterSpacing:'-0.02em', margin:'40px 0 0', maxWidth:'14em', textWrap:'balance' }}>
-          Enterprise-grade services at small business prices
+        <h1 style={{ position:'relative', color:'#FFF', fontSize:'clamp(38px, 5vw, 60px)', lineHeight:1.04, letterSpacing:'-0.02em', margin:'40px 0 0', textWrap:'balance' }}>
+          Enterprise services for small business
         </h1>
         <p style={{ color:'var(--blue-200)', fontSize:'19px', lineHeight:1.55, maxWidth:'40em', margin:'20px 0 0' }}>
           We create and manage solutions to help your business grow.

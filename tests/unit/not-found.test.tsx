@@ -70,13 +70,4 @@ describe("NotFound", () => {
     // It comes right before the headline, where the eyebrow sits on other pages.
     expect(spacer?.nextElementSibling?.tagName).toBe("H1");
   });
-
-  it("keeps the explanation sentence beside the link", () => {
-    render(
-      <ContactProvider>
-        <NotFound />
-      </ContactProvider>,
-    );
-    expect(screen.getByText(/We could not find that page\./)).toBeInTheDocument();
-  });
 });

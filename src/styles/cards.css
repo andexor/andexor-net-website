@@ -4,7 +4,7 @@
  *
  * Card layout for Markdown content pages with `layout: cards` (see
  * src/lib/content.ts). A dark hero band with the backdrop pattern, then two
- * staggered columns of cards that pull up over the band's edge. Uses design
+ * columns of cards that pull up over the band's edge. Uses design
  * tokens only; no italics anywhere, per design/README.md's brand rules.
  */
 
@@ -84,7 +84,7 @@
   content: "";
   position: absolute;
   inset: -30%;
-  background: radial-gradient(circle, color-mix(in srgb, var(--gold-500) 22%, transparent), transparent 65%);
+  background: radial-gradient(circle, color-mix(in srgb, var(--gold-500) 12%, transparent), transparent 48%);
   pointer-events: none;
 }
 
@@ -122,7 +122,6 @@
 
 .an-cardhero h1 {
   margin: 0;
-  max-width: 14em;
   font-family: var(--font-display);
   font-weight: 700;
   font-size: clamp(32px, 4.4vw, 52px);
@@ -177,16 +176,11 @@
   align-items: start;
 }
 
-/* The right column starts lower so the two columns never line up. */
 .an-cards__col {
   display: grid;
   gap: var(--space-6);
   align-content: start;
   min-width: 0;
-}
-
-.an-cards__col:last-child {
-  padding-top: 56px;
 }
 
 .an-tile {
@@ -246,7 +240,7 @@
 }
 
 .an-tile ul {
-  margin: 0;
+  margin: 0 0 var(--space-3);
   padding: 0;
   list-style: none;
   display: grid;
@@ -261,14 +255,35 @@
   align-items: start;
 }
 
+/* A round bullet in the accent gold (spec 032). The home page's service cards
+ * keep their own checkmarks (marketing.css). */
 .an-tile li::before {
   content: "";
   width: 16px;
   height: 16px;
   margin-top: 3px;
   background: var(--gold-600);
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center / contain no-repeat;
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center / contain no-repeat;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='4.5'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='4.5'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+/* Cards after a `---` in the Markdown follow the two columns, full width (spec 033).
+ * Their lists flow in two columns while each column has room (16rem), and in one
+ * when it does not. No script: the browser re-flows it on resize. */
+.an-tile--wide {
+  grid-column: 1 / -1;
+}
+
+.an-tile--wide ul {
+  display: block;
+  column-count: 2;
+  column-width: 16rem;
+  column-gap: var(--space-8);
+}
+
+.an-tile--wide li {
+  break-inside: avoid;
+  margin-bottom: var(--space-2);
 }
 
 .an-tile > :last-child {
@@ -287,23 +302,6 @@
   outline: none;
   border-radius: var(--radius-xs);
   box-shadow: 0 0 0 3px rgba(234, 170, 0, 0.45);
-}
-
-/* Flagship offerings: the dark card. */
-/* A link here would be --blue-400 on --blue-200 text (2.45:1) and fail; give it
- * its own color when one is needed. There are none today. */
-.an-tile--ink {
-  background: var(--surface-ink);
-  border-color: var(--border-ink);
-  color: var(--blue-200);
-}
-
-.an-tile--ink .an-tile__eyebrow {
-  color: var(--gold-400);
-}
-
-.an-tile--ink li::before {
-  background: var(--gold-400);
 }
 
 /* Narrow screens: one column in reading order (`--i` set per card). */

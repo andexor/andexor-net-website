@@ -8,7 +8,7 @@ exists.
 | Path | Where | Result |
 |------|-------|--------|
 | Close button | popup header | `onClose()` |
-| "Done" | confirmation | `onClose()` |
+| "OK" | confirmation | `onClose()` |
 | Click outside the panel | scrim | `onClose()` |
 | Esc (new) | anywhere, while open | `onClose()`, unless the "Primary need" list is expanded |
 

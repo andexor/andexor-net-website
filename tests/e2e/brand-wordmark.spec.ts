@@ -44,7 +44,7 @@ test.describe("Logo wordmark", () => {
 
   test("page titles say 'Andexor Network' without ', Inc.'", async ({ page }) => {
     for (const [url, title] of [
-      ["/", "Andexor Network"],
+      ["/", "Enterprise services for small business | Andexor Network"],
       ["/nope", "Page not found | Andexor Network"],
     ]) {
       await page.goto(url);

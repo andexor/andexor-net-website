@@ -32,10 +32,10 @@ The token CSS (`styles.css`, `tokens/*.css`, `components/components.css`) **can*
 Sections in order: Hero → Services → CTA band → Footer. No sticky header. Section vertical padding is `--section-y`, **32px (Compact, the default)**; hero top/bottom padding 29px.
 
 **Hero**
-- Full-width, background `--surface-ink` (`#002855`). Overlay: engineering grid of 1px `rgba(255,255,255,0.04)` lines on 48px cells, opacity 0.5, masked by `radial-gradient(ellipse 80% 70% at 70% 0%, #000 30%, transparent 75%)`.
+- Full-width, background `--surface-ink` (`#002855`) held behind the content, then fading into `--surface-page` over its bottom 104px, with no extra bottom padding (spec 026). Overlay: engineering grid of 1px `rgba(255,255,255,0.04)` lines on 48px cells, opacity 0.5, masked by `radial-gradient(ellipse 80% 70% at 70% 0%, #000 30%, transparent 75%)`.
 - Inner container max 1320px, horizontal padding 24px.
-- Brand row (flex, gap 22px, centered): gold logo `assets/logo/logo-gold.svg` at `clamp(72px, 9vw, 112px)` square, then "Andexor Network" in Play 700, `clamp(32px, 4.4vw, 54px)`, line-height 1, tracking -0.02em, `#FFFFFF`. Behind the logo, a 420px Old Gold radial glow: `radial-gradient(circle, color-mix(in srgb, #EAAA00 22%, transparent), transparent 65%)`, positioned left -150px, vertically centered.
-- H1 "Enterprise-grade services at small business prices": Play 700, `clamp(38px, 5vw, 60px)`, line-height 1.04, tracking -0.02em, white, max-width 14em, `text-wrap: balance`, margin-top 40px.
+- Brand row (flex, gap 22px, centered): gold logo `assets/logo/logo-gold.svg` at `clamp(72px, 9vw, 112px)` square, then "Andexor Network" in Play 700, `clamp(32px, 4.4vw, 54px)`, line-height 1, tracking -0.02em, `#FFFFFF`. Behind the logo, a 420px Old Gold radial glow: `radial-gradient(circle, color-mix(in srgb, #EAAA00 12%, transparent), transparent 48%)`, positioned left -150px, vertically centered.
+- H1 "Enterprise services for small business": Play 700, `clamp(38px, 5vw, 60px)`, line-height 1.04, tracking -0.02em, white, no max-width, `text-wrap: balance`, margin-top 40px.
 - Subhead "We create and manage solutions to help your business grow.": Roboto 19px/1.55, `--blue-200` (`#C5D8EF`), max-width 40em, margin-top 20px.
 - Button "Contact Us": accent (gold), size lg, trailing arrow-right icon 18px, margin-top 30px. Opens Contact Us popup.
 
@@ -61,7 +61,7 @@ Sections in order: Hero → Services → CTA band → Footer. No sticky header. 
 
 **Footer**
 - bg `--blue-900` (`#001B3A`). Grid `1.4fr repeat(3, 1fr)`, gap 32px, padding 56px 24px 28px; stacks on narrow screens.
-- Col 1: logo lockup (light), tagline "Enterprise-grade services / at small business prices" 14px/1.6 `#8FB6E2`; social icon buttons (LinkedIn, Twitter, GitHub) 34px square, radius 8px, 1px `#013A73` border, icon 16px `#C5D8EF`.
+- Col 1: logo lockup (light), tagline "Enterprise services for small business" 14px/1.6, no max-width `#8FB6E2`; social icon buttons (LinkedIn, Twitter, GitHub) 34px square, radius 8px, 1px `#013A73` border, icon 16px `#C5D8EF`.
 - Column headings: Source Code Pro 11px, tracking 0.14em, uppercase, `--gold-400` (`#F4BD2E`).
   - TECHNICAL SERVICES: Web Development, Web Hosting, Technical SEO, Agentic Systems
   - BUSINESS SERVICES: Cost Reduction, Lead Generation, Growth Marketing, Process Re-engineering
@@ -80,7 +80,7 @@ Sections in order: Hero → Services → CTA band → Footer. No sticky header. 
   - Primary need (select, required). Placeholder "Select a service…". Group "Technical Services": Web Development, Web Hosting, Technical SEO, Agentic Systems. Group "Business Services": Cost Reduction, Lead Generation, Growth Marketing, Process Re-engineering. Then "Something else".
   - "Send" accent button, block, lg, arrow-right icon.
   - Note "No obligation. We never share your personal information." 12px `#E7EFF8`, centered.
-- **Request received state** (padding 40px 28px, centered): 56px circle bg `--success-100` (`#D7F0E3`) with 28px check `--success-600` (`#167A4F`); H3 "Request received" 22px white; body "Thanks for reaching out. A strategist will review your site and contact you soon." 14px/1.55 `#E7EFF8`, max 34ch; "Done" primary button, margin-top 22px, closes.
+- **Request received state** (padding 40px 28px, centered): 56px circle bg `--success-100` (`#D7F0E3`) with 28px check `--success-600` (`#167A4F`); H3 "Request received" 22px white; body "Thanks for reaching out. A strategist will review your site and contact you soon." 14px/1.55 `#E7EFF8`, max 34ch; "OK" button styled like Send (accent, lg, no arrow, no halo), centered, margin-top 22px, closes.
 
 ## Interactions and behavior
 - Every "Contact Us" button opens the popup. Reopening resets to the form state.

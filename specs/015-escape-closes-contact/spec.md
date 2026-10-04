@@ -16,7 +16,7 @@ A visitor has opened the Contact Us popup, changes their mind, and presses Esc. 
 they are back on the page exactly where they were, as if they had used the close button.
 
 **Why this priority**: Dismissing a dialog with Esc is what keyboard users, and many mouse users,
-expect. Today the only ways out are the close button, "Done", and clicking outside the panel.
+expect. Today the only ways out are the close button, "OK", and clicking outside the panel.
 
 **Independent Test**: Open the popup from any "Contact Us" button and press Esc. The popup closes.
 
@@ -27,7 +27,7 @@ expect. Today the only ways out are the close button, "Done", and clicking outsi
 2. **Given** the popup is open and the visitor has typed into some fields, **When** they press Esc,
    **Then** the popup closes and the typed text is discarded, exactly as with the close button.
 3. **Given** the popup is showing the "Request received" confirmation, **When** the visitor presses
-   Esc, **Then** the popup closes, as with "Done".
+   Esc, **Then** the popup closes, as with "OK".
 4. **Given** the popup was closed with Esc, **When** the visitor opens it again from any "Contact Us"
    button, **Then** it shows the empty form, as it does after any other way of closing.
 5. **Given** the popup is open, **When** the visitor presses Esc, **Then** the page behind it does not
@@ -88,7 +88,7 @@ With the popup open, open the "Primary need" list and press Esc: only the list c
 - Esc after a valid "Send", while the "Request received" message shows, closes the popup and leaves no
   message behind.
 - Esc does not submit the form and does not send anything.
-- The close button, "Done", and clicking outside the panel keep working as before.
+- The close button, "OK", and clicking outside the panel keep working as before.
 - Other keys are unchanged.
 
 ## Requirements *(mandatory)*
@@ -105,7 +105,7 @@ With the popup open, open the "Primary need" list and press Esc: only the list c
 - **FR-005**: When the "Primary need" list is expanded, Esc MUST close only the list. A further Esc
   MUST then close the popup.
 - **FR-006**: Pressing Esc MUST NOT scroll, navigate, or otherwise change the page behind the popup.
-- **FR-007**: The close button, "Done", and clicking outside the panel MUST keep working as before, and
+- **FR-007**: The close button, "OK", and clicking outside the panel MUST keep working as before, and
   the popup's look and fields MUST be unchanged.
 - **FR-008**: Automated tests MUST cover Esc closing the popup from the form and from the confirmation,
   Esc with focus in a field, Esc doing nothing when closed, and reopening to an empty form.

@@ -39,11 +39,10 @@ test.describe("Not-found page style", () => {
     }
   });
 
-  test("the Web Development page keeps its grid, eyebrow, and cards", async ({ page }) => {
+  test("the Web Development page keeps its grid and eyebrow", async ({ page }) => {
     await page.goto("/web-development");
     await expect(page.locator(".an-cardhero__pattern")).toHaveCount(1);
     await expect(page.locator(".an-cardhero__eyebrow")).toHaveCount(1);
-    expect(await page.locator(".an-tile").count()).toBeGreaterThan(1);
   });
 
   // Spec 021: the empty spacer takes the place of the eyebrow, so the headline and

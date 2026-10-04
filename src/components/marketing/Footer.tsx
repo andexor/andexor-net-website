@@ -3,7 +3,6 @@
 // Author: Ed Jenkins <ed@andexor.net>
 
 import { Github, Linkedin, Twitter } from "lucide-react";
-import { FooterContactButton } from "./FooterContactButton";
 import { Logo } from "./Logo";
 
 const SOCIAL_LINKS = [
@@ -21,7 +20,7 @@ const COLUMNS = [
     heading: "BUSINESS SERVICES",
     items: ["Cost Reduction", "Lead Generation", "Growth Marketing", "Process Re-engineering"],
   },
-  { heading: "COMPANY", items: ["About Us", "Contact Us"] },
+  { heading: "COMPANY", items: ["About Us", "Privacy", "Terms"] },
 ];
 
 const ITEM_HREFS: Record<string, string> = {
@@ -34,12 +33,13 @@ const ITEM_HREFS: Record<string, string> = {
   "Growth Marketing": "/growth-marketing",
   "Process Re-engineering": "/process-re-engineering",
   "About Us": "/about-us",
+  Privacy: "#privacy",
+  Terms: "#terms",
 };
 
 // FR-006: navigation grouped into technical/business/company categories,
-// social media links, and a copyright line. The service and About Us entries
-// link to their pages (spec 010). Contact Us opens the contact popup
-// (spec 014). Privacy and Terms remain placeholders per FR-017 — activating
+// social media links, and a copyright line under the logo. The service and About Us entries
+// link to their pages (spec 010). Privacy and Terms remain placeholders per FR-017 — activating
 // them is a no-op.
 export function Footer() {
   return (
@@ -47,11 +47,7 @@ export function Footer() {
       <div className="an-footer__grid">
         <div>
           <Logo light />
-          <p className="an-footer__tagline">
-            Enterprise-grade services
-            <br />
-            at small business prices
-          </p>
+          <p className="an-footer__copyright">© 2026 Andexor Network, Inc. All rights reserved.</p>
           <div className="an-footer__social-row">
             {SOCIAL_LINKS.map(({ key, label, href, Icon }) => (
               <a
@@ -72,31 +68,14 @@ export function Footer() {
             <ul className="an-footer__col-list">
               {column.items.map((item) => (
                 <li key={item}>
-                  {item === "Contact Us" ? (
-                    <FooterContactButton label={item} />
-                  ) : (
-                    <a href={ITEM_HREFS[item]} className="an-footer__col-link">
-                      {item}
-                    </a>
-                  )}
+                  <a href={ITEM_HREFS[item]} className="an-footer__col-link">
+                    {item}
+                  </a>
                 </li>
               ))}
             </ul>
           </div>
         ))}
-      </div>
-      <div className="an-footer__bottom-bar">
-        <div className="an-footer__bottom-inner">
-          <span>© 2026 Andexor Network, Inc. All rights reserved.</span>
-          <span className="an-footer__legal-links">
-            <a href="#privacy" className="an-footer__legal-link">
-              Privacy
-            </a>
-            <a href="#terms" className="an-footer__legal-link">
-              Terms
-            </a>
-          </span>
-        </div>
       </div>
     </footer>
   );

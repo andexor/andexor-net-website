@@ -29,7 +29,7 @@ opens. Compare with the hero's "Contact Us" button: the popup is identical.
    Contact Us popup opens.
 2. **Given** the popup opened from the footer, **When** the visitor fills in the required fields
    and submits, **Then** they see the same confirmation as when it is opened from the hero.
-3. **Given** the popup opened from the footer, **When** the visitor closes it (the close button, "Done"
+3. **Given** the popup opened from the footer, **When** the visitor closes it (the close button, "OK"
    after sending, or a click outside), **Then** it closes and they are back where they were on the page.
 4. **Given** a keyboard user, **When** they tab to the footer's "Contact Us" and press Enter or
    Space, **Then** the popup opens, and closing it returns focus to that footer item.

@@ -67,7 +67,17 @@
 
 .an-hero {
   position: relative;
-  background: var(--surface-ink);
+  /* Holds the ink color behind the content, then fades into the page
+   * background over the bottom of the hero, so the hero bleeds into the services
+   * section with no hard edge (as the card page hero does). The hero gets no
+   * extra bottom padding, so the fade runs behind the bottom of the content. */
+  background: linear-gradient(
+    to bottom,
+    var(--surface-ink) 0%,
+    var(--surface-ink) calc(100% - var(--an-hero-fade)),
+    var(--surface-page) 100%
+  );
+  --an-hero-fade: calc(var(--space-12) + 56px);
   overflow: hidden;
 }
 
@@ -104,7 +114,7 @@
   width: 420px;
   height: 420px;
   transform: translateY(-50%);
-  background: radial-gradient(circle, color-mix(in srgb, var(--gold-500) 22%, transparent), transparent 65%);
+  background: radial-gradient(circle, color-mix(in srgb, var(--gold-500) 12%, transparent), transparent 48%);
   pointer-events: none;
 }
 
@@ -115,7 +125,6 @@
   line-height: 1.04;
   letter-spacing: -0.02em;
   margin: 40px 0 0;
-  max-width: 14em;
   text-wrap: balance;
 }
 
@@ -127,17 +136,10 @@
   margin: 20px 0 0;
 }
 
-.an-hero__cta-row {
-  display: flex;
-  gap: 12px;
-  margin-top: 30px;
-  flex-wrap: wrap;
-}
-
 /* ---- CTA band --------------------------------------------------------- */
 
 .an-cta-band {
-  max-width: var(--container-xl);
+  max-width: var(--container-sm);
   margin: 0 auto;
   padding: 0 24px var(--section-y);
 }
@@ -157,7 +159,6 @@
 
 .an-cta-band__copy {
   position: relative;
-  max-width: 620px;
 }
 
 .an-cta-band__heading {
@@ -166,11 +167,11 @@
   letter-spacing: -0.02em;
   margin: 0;
   line-height: 1.1;
-  max-width: 12.28em;
 }
 
 .an-cta-band__action {
   position: relative;
+  margin: 0 auto;
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
@@ -183,12 +184,64 @@
   width: 320px;
   height: 320px;
   transform: translate(-50%, -50%);
-  background: radial-gradient(circle, color-mix(in srgb, var(--gold-500) 22%, transparent), transparent 65%);
+  background: radial-gradient(circle, color-mix(in srgb, var(--gold-500) 12%, transparent), transparent 48%);
   pointer-events: none;
 }
 
 .an-cta-band__button-wrap {
   position: relative;
+}
+
+/* The call-to-action button always wears a thin black border, a gold border
+ * around it, and a hazy gold glow around both. The rings are box-shadow, so
+ * they follow the button's rounded corners. Keyboard focus brightens the gold
+ * like hover does and strengthens the glow, so the focused state still stands
+ * out from the resting one. */
+/* The Send and OK buttons look like the call-to-action button without the halo: the
+ * same thin black border and gold border around it at rest, and the same
+ * brighter gold plus rings on keyboard focus. It is as wide as its content,
+ * and it is centered on the form like the other buttons. */
+.an-contact-form .an-btn,
+.an-contact-confirmation .an-btn {
+  margin-inline: auto;
+  box-shadow:
+    0 0 0 2px #000000,
+    0 0 0 5px var(--gold-500);
+}
+
+.an-contact-form .an-btn:focus-visible,
+.an-contact-confirmation .an-btn:focus {
+  border-radius: var(--radius-md);
+  background: var(--gold-400);
+  box-shadow:
+    0 0 0 2px #000000,
+    0 0 0 5px var(--gold-500);
+}
+
+/* Pressing the call-to-action and Send buttons moves them 2px right and 2px
+ * down, the same as the Close button. */
+.an-cta-band .an-btn:not(:disabled):active,
+.an-contact-form .an-btn:not(:disabled):active,
+.an-contact-confirmation .an-btn:not(:disabled):active {
+  transform: translateX(2px) translateY(2px);
+}
+
+.an-cta-band .an-btn {
+  box-shadow:
+    0 0 0 2px #000000,
+    0 0 0 5px var(--gold-500),
+    0 0 18px 8px color-mix(in srgb, var(--gold-500) 55%, transparent),
+    0 0 40px 14px color-mix(in srgb, var(--gold-500) 30%, transparent);
+}
+
+.an-cta-band .an-btn:focus-visible {
+  border-radius: var(--radius-md);
+  background: var(--gold-400); /* the same brighter gold as hover */
+  box-shadow:
+    0 0 0 2px #000000,
+    0 0 0 5px var(--gold-500),
+    0 0 22px 11px color-mix(in srgb, var(--gold-500) 70%, transparent),
+    0 0 48px 18px color-mix(in srgb, var(--gold-500) 40%, transparent);
 }
 
 /* ---- Services ----------------------------------------------------------- */
@@ -197,10 +250,6 @@
   padding: var(--section-y) 24px;
   max-width: var(--container-2xl);
   margin: 0 auto;
-}
-
-.an-services__header {
-  max-width: 620px;
 }
 
 .an-services__heading {
@@ -227,6 +276,14 @@
 .an-services__card:hover {
   text-decoration: none;
   display: block;
+}
+
+/* Pressing a service card moves it 2px right and 2px down, like the buttons.
+ * The extra class outranks the design system's hover lift, which is still in
+ * effect while the pointer is down. */
+.an-services__card.an-card--hover:active {
+  transform: translateX(2px) translateY(2px);
+  transition: box-shadow 0.18s ease, transform 0.05s ease, border-color 0.18s ease;
 }
 
 .an-services__card-top {
@@ -304,12 +361,10 @@
   }
 }
 
-.an-footer__tagline {
-  font-size: 14px;
-  line-height: 1.6;
-  max-width: 30ch;
-  margin-top: 16px;
-  color: var(--blue-300);
+.an-footer__copyright {
+  font-size: 13px;
+  margin: 16px 0 0;
+  color: var(--blue-400);
 }
 
 .an-footer__social-row {
@@ -351,43 +406,10 @@
   font-size: 14px;
   color: var(--blue-200);
   text-decoration: none;
-  /* Also styles the footer's Contact Us <button> to match the links. */
-  background: none;
-  border: 0;
-  padding: 0;
-  font-family: inherit;
-  cursor: pointer;
-  text-align: left;
 }
 
 .an-footer__col-link:hover {
   color: #ffffff;
-}
-
-.an-footer__bottom-bar {
-  border-top: 1px solid var(--blue-800);
-}
-
-.an-footer__bottom-inner {
-  max-width: var(--container-2xl);
-  margin: 0 auto;
-  padding: 18px 24px;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 10px;
-  font-size: 13px;
-  color: var(--blue-400);
-}
-
-.an-footer__legal-links {
-  display: flex;
-  gap: 20px;
-}
-
-.an-footer__legal-link {
-  color: var(--blue-400);
-  text-decoration: none;
 }
 
 /* ---- Contact Us popup ------------------------------------------------- */
@@ -407,7 +429,7 @@
 
 .an-contact-panel {
   width: min(480px, 100%);
-  background: var(--blue-500);
+  background: var(--blue-700);
   border-radius: 18px;
   box-shadow: var(--shadow-xl);
   overflow: hidden;
@@ -429,7 +451,7 @@
   top: -110px;
   width: 260px;
   height: 260px;
-  background: radial-gradient(circle, color-mix(in srgb, var(--gold-500) 22%, transparent), transparent 65%);
+  background: radial-gradient(circle, color-mix(in srgb, var(--gold-500) 12%, transparent), transparent 48%);
   pointer-events: none;
 }
 
@@ -448,15 +470,73 @@
   line-height: 34px;
 }
 
+/* The Close button is a glossy black button with a dark vertical gradient, a
+ * light rim and a bright top edge for the bevel, a drop shadow for depth, and a
+ * gloss highlight across the top half. It presses 2px right and 2px down, and
+ * its keyboard focus ring is solid gold. */
 .an-contact-header__close {
   position: relative;
-  margin-left: auto;
-  background: transparent;
-  border: none;
-  color: var(--blue-200);
+  isolation: isolate;
+  overflow: hidden;
+  color: #ffffff;
   cursor: pointer;
-  padding: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 7px;
+  background: linear-gradient(180deg, #3b3b3b 0%, #121212 48%, #000000 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.45),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.8),
+    0 3px 6px rgba(0, 0, 0, 0.55),
+    0 1px 1px rgba(0, 0, 0, 0.9);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.8);
+  transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.05s ease;
+}
+
+.an-contact-header__close::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0 0 50% 0;
+  border-radius: 6px 6px 40% 40% / 6px 6px 22% 22%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0.06));
+  pointer-events: none;
+}
+
+.an-contact-header__close:hover {
+  background: linear-gradient(180deg, #4a4a4a 0%, #1c1c1c 48%, #0a0a0a 100%);
+}
+
+.an-contact-header__close:active {
+  transform: translateX(2px) translateY(2px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.8),
+    0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+.an-contact-header__close:focus-visible {
+  border-radius: 7px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.45),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.8),
+    0 0 0 3px var(--gold-500),
+    0 3px 6px rgba(0, 0, 0, 0.55);
+}
+
+/* Close is a square with only the X in it. */
+.an-contact-header__close {
+  margin-left: auto;
+  flex: none;
+  width: 38px;
+  height: 38px;
+  padding: 0;
   display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.an-contact-header__close svg {
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.8));
 }
 
 .an-contact-form {
@@ -470,11 +550,32 @@
   color: var(--blue-100);
 }
 
+/* A focused field gets the same solid gold border as the Close button, in
+ * place of the faint glow from the design system. */
+.an-contact-form .an-input:not(.an-input--invalid):focus {
+  border-radius: var(--radius-md);
+  box-shadow: 0 0 0 3px var(--gold-500);
+}
+
 .an-contact-form__note {
   margin: 0;
   font-size: 12px;
   color: var(--blue-100);
   text-align: center;
+}
+
+.an-contact-form__legal {
+  white-space: nowrap;
+}
+
+.an-contact-form__legal a {
+  color: #ffffff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.an-contact-form__legal a:hover {
+  color: var(--blue-200);
 }
 
 .an-contact-confirmation {
@@ -508,6 +609,6 @@
   line-height: 1.55;
 }
 
-.an-contact-confirmation__done {
+.an-contact-confirmation__ok {
   margin-top: 22px;
 }

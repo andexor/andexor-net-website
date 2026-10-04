@@ -52,7 +52,6 @@ interface CardsOptions {
   eyebrow?: string;
   section?: CardsSection;
   image?: { src: string; alt: string };
-  featured: string[];
 }
 
 interface RawPage {
@@ -104,7 +103,6 @@ function readRaw(dir: string, slug: string[]): RawPage {
           eyebrow: str(data.eyebrow),
           section: CARDS_SECTIONS.find((x) => x === data.section),
           image: str(data.image) ? { src: str(data.image)!, alt: str(data.image_alt) ?? "" } : undefined,
-          featured: Array.isArray(data.featured) ? data.featured.filter((f) => typeof f === "string") : [],
         }
       : undefined;
   return {
@@ -163,15 +161,20 @@ function takeEyebrow(nodes: ElementContent[]): string | undefined {
 
 // Splits a rendered page into the `#` heading, the intro before the first `##`,
 // and one card per `##` section, dealt into two columns (odd, then even) so
-// the columns stagger. `--i` is the reading order, used on narrow screens.
-export function splitCards(tree: Root, featured: string[]) {
+// the columns alternate. `--i` is the reading order, used on narrow screens.
+// A horizontal rule (`---`) in the body ends the alternating flow: the cards
+// after it are not dealt into the columns but follow them, each one full width
+// (`an-tile--wide`), in written order (spec 033).
+export function splitCards(tree: Root) {
   const nodes = tree.children.filter((n) => !(n.type === "text" && !n.value.trim()));
   const h1 = nodes.findIndex((n) => isElement(n) && n.tagName === "h1");
   const heading = h1 >= 0 ? (nodes.splice(h1, 1)[0] as Element) : undefined;
   const intro: RootContent[] = [];
   const sections: RootContent[][] = [];
+  let wideFrom = Infinity;
   for (const n of nodes) {
     if (isElement(n) && n.tagName === "h2") sections.push([n]);
+    else if (isElement(n) && n.tagName === "hr") wideFrom = Math.min(wideFrom, sections.length);
     else if (sections.length > 0) sections[sections.length - 1].push(n);
     else intro.push(n);
   }
@@ -179,13 +182,12 @@ export function splitCards(tree: Root, featured: string[]) {
     const title = head as Element;
     const rest = body as ElementContent[];
     const eyebrow = takeEyebrow(rest);
-    const isFeatured = featured.includes(textOf(title).trim());
     title.properties = { ...title.properties, className: ["an-tile__title"] };
     return {
       type: "element",
       tagName: "article",
       properties: {
-        className: isFeatured ? ["an-tile", "an-tile--ink"] : ["an-tile"],
+        className: idx >= wideFrom ? ["an-tile", "an-tile--wide"] : ["an-tile"],
         style: `--i:${idx + 1}`,
       },
       children: [
@@ -208,19 +210,19 @@ export function splitCards(tree: Root, featured: string[]) {
     type: "element",
     tagName: "div",
     properties: { className: ["an-cards__col"] },
-    children: cards.filter((_, i) => i % 2 === parity),
+    children: cards.filter((_, i) => i < wideFrom && i % 2 === parity),
   });
   return {
     heading: heading?.children ?? [],
     intro,
-    columns: [column(0), column(1)],
+    columns: [column(0), column(1), ...cards.filter((_, i) => i >= wideFrom)],
   };
 }
 
 async function renderCards(markdown: string, options: CardsOptions): Promise<CardsLayout> {
   const proc = markdownProcessor();
   const tree = (await proc.run(proc.parse(markdown))) as Root;
-  const { heading, intro, columns } = splitCards(tree, options.featured);
+  const { heading, intro, columns } = splitCards(tree);
   const html = (children: RootContent[]) => String(proc.stringify({ type: "root", children }));
   return {
     eyebrow: options.eyebrow,

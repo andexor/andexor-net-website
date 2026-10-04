@@ -1044,7 +1044,7 @@ function CTA({
       width: '320px',
       height: '320px',
       transform: 'translate(-50%, -50%)',
-      background: 'radial-gradient(circle, color-mix(in srgb, var(--gold-500) 22%, transparent), transparent 65%)',
+      background: 'radial-gradient(circle, color-mix(in srgb, var(--gold-500) 12%, transparent), transparent 48%)',
       pointerEvents: 'none'
     }
   }), /*#__PURE__*/React.createElement("div", {
@@ -1110,7 +1110,7 @@ function ContactUs({
       top: '-110px',
       width: '260px',
       height: '260px',
-      background: 'radial-gradient(circle, color-mix(in srgb, var(--gold-500) 22%, transparent), transparent 65%)',
+      background: 'radial-gradient(circle, color-mix(in srgb, var(--gold-500) 12%, transparent), transparent 48%)',
       pointerEvents: 'none'
     }
   }), /*#__PURE__*/React.createElement("img", {
@@ -1311,11 +1311,10 @@ function Footer() {
     style: {
       fontSize: '14px',
       lineHeight: 1.6,
-      maxWidth: '30ch',
       marginTop: '16px',
       color: 'var(--blue-300)'
     }
-  }, "Enterprise-grade services", /*#__PURE__*/React.createElement("br", null), "at small business prices"), /*#__PURE__*/React.createElement("div", {
+  }, "Enterprise services for small business"), /*#__PURE__*/React.createElement("div", {
     style: {
       display: 'flex',
       gap: '10px',
@@ -1530,7 +1529,7 @@ function Hero({
       width: '420px',
       height: '420px',
       transform: 'translateY(-50%)',
-      background: 'radial-gradient(circle, color-mix(in srgb, var(--gold-500) 22%, transparent), transparent 65%)',
+      background: 'radial-gradient(circle, color-mix(in srgb, var(--gold-500) 12%, transparent), transparent 48%)',
       pointerEvents: 'none'
     }
   }), /*#__PURE__*/React.createElement("img", {
@@ -1560,10 +1559,9 @@ function Hero({
       lineHeight: 1.04,
       letterSpacing: '-0.02em',
       margin: '40px 0 0',
-      maxWidth: '14em',
       textWrap: 'balance'
     }
-  }, "Enterprise-grade services at small business prices"), /*#__PURE__*/React.createElement("p", {
+  }, "Enterprise services for small business"), /*#__PURE__*/React.createElement("p", {
     style: {
       color: 'var(--blue-200)',
       fontSize: '19px',

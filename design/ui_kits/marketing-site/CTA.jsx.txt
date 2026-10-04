@@ -12,7 +12,7 @@ function CTA({ onProposal }) {
         </div>
         <div style={{ position:'relative', display:'flex', gap:'12px', flexWrap:'wrap' }}>
           <div aria-hidden="true" style={{ position:'absolute', left:'50%', top:'50%', width:'320px', height:'320px', transform:'translate(-50%, -50%)',
-            background:'radial-gradient(circle, color-mix(in srgb, var(--gold-500) 22%, transparent), transparent 65%)', pointerEvents:'none' }} />
+            background:'radial-gradient(circle, color-mix(in srgb, var(--gold-500) 12%, transparent), transparent 48%)', pointerEvents:'none' }} />
           <div style={{ position:'relative' }}>
             <Button variant="accent" size="lg" rightIcon={<Icon name="arrow-right" size={18} />} onClick={onProposal}>Contact Us</Button>
           </div>

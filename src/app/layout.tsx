@@ -8,8 +8,11 @@ import { ContactProvider } from "@/components/contact/ContactProvider";
 import "../styles/globals.css";
 
 export const metadata: Metadata = {
-  title: "Andexor Network",
-  description: "Enterprise-grade web, SEO, AI, and marketing services at small business prices.",
+  // The defaults are the home page's (specs 028, 029): the title and meta
+  // description are the headline text, and the title adds " | Andexor Network".
+  // The not-found page and the content pages set their own.
+  title: "Enterprise services for small business | Andexor Network",
+  description: "Enterprise services for small business",
   manifest: "/site.webmanifest",
   icons: {
     icon: [

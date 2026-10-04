@@ -41,7 +41,7 @@
 ## Decision 3: Closing with Esc is the same as the close button
 
 - **Decision**: The handler calls `onClose()` and nothing else.
-- **Rationale**: The close button, "Done", and the scrim already call `onClose`, and the popup
+- **Rationale**: The close button, "OK", and the scrim already call `onClose`, and the popup
   resets its form when it opens (FR-013 in spec 001). That gives "text discarded" and "reopens
   empty" (FR-003) with no new code.
 
@@ -64,6 +64,6 @@
   it depends on `[open, onClose]`, which is fine because re-subscribing is cheap.
 - Spec 014's plan (not yet built) moves the popup into a provider; the Esc effect is inside the popup
   and is unaffected.
-- Existing e2e tests close the popup with the close button and "Done"; they stay valid.
+- Existing e2e tests close the popup with the close button and "OK"; they stay valid.
 
 No open questions.

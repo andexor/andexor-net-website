@@ -34,7 +34,7 @@ All decisions below are already implemented. There are no open clarifications.
   (odd, even) and set a `--i` reading-order variable. On narrow screens, columns flatten so cards
   stack in reading order at equal width (`align-items: stretch`). A `>> Label` line becomes the
   card label. Featured cards are matched by exact heading text.
-- **Rationale**: Two staggered columns look better on wide screens; flattening keeps reading
+- **Rationale**: Two columns look better on wide screens; flattening keeps reading
   order on phones. Markdown stays plain.
 - **Alternatives considered**: CSS multi-column (rejected: reading order breaks); front matter
   list of cards (rejected: duplicates copy).

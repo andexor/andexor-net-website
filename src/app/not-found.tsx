@@ -7,6 +7,10 @@ import { ContentPage } from "@/components/content/ContentPage";
 
 export const metadata: Metadata = {
   title: "Page not found | Andexor Network",
+  description: "Page not found",
+  // Every unknown address is served by this page, so keep them out of search
+  // results (spec 030). Renders <meta name="robots" content="noindex, nofollow">.
+  robots: { index: false, follow: false },
 };
 
 // Replaces the framework's default 404, which injects its own light
