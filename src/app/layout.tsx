@@ -5,7 +5,12 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { ContactProvider } from "@/components/contact/ContactProvider";
+import { config } from "@fortawesome/fontawesome-svg-core";
+import "@fortawesome/fontawesome-svg-core/styles.css";
 import "../styles/globals.css";
+
+// Spec 042: the stylesheet is imported above, so FontAwesome must not inject its own at runtime.
+config.autoAddCss = false;
 
 export const metadata: Metadata = {
     // The defaults are the home page's (specs 028, 029): the title and meta

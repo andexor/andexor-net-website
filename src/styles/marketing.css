@@ -387,6 +387,11 @@
     color: var(--blue-200);
 }
 
+.an-footer__social-icon {
+    width: 16px;
+    height: 16px;
+}
+
 .an-footer__col-heading {
     font-family: var(--font-mono);
     font-size: 11px;
