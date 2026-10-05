@@ -22,7 +22,7 @@ test("wide viewport shows two columns side by side", async ({ page }) => {
     const columns = page.locator(".an-cards__col");
     const [a, b] = await Promise.all([columns.nth(0).boundingBox(), columns.nth(1).boundingBox()]);
     expect(a && b && a.x < b.x).toBe(true);
-    // Both columns start at the same height (spec 034).
+    // Both columns of a row start at the same height.
     expect(Math.abs((a?.y ?? 0) - (b?.y ?? 99))).toBeLessThan(1);
 });
 

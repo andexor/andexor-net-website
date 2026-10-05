@@ -4,8 +4,8 @@
 
 import { expect, test } from "@playwright/test";
 
-// Spec 033: on the Web Development page the card after the `---` follows the
-// two columns at full width, and its list flows in two columns that fold to one
+// Specs 033 and 039: on the Web Development page the row after the `---` follows the
+// two columns, each of its cards at full width, and its list flows in two columns that fold to one
 // when narrow. These check where things are, not how many there are. Playwright's
 // loader here fails on TypeScript type annotations, so callbacks rely on
 // contextual typing.

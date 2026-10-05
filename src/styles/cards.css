@@ -158,21 +158,25 @@
 
 /* ---- Cards ---------------------------------------------------------- */
 
+/* A grid of two equal columns (spec 039). Each `.an-cards__col` is one column of a row, a stack of cards in the
+ * order written; `grid-gap` spaces the columns, the rows, and the cards in a column. A card with `an-tile--wide`
+ * is a row of its own that spans both columns. */
 .an-cards {
     position: relative;
     max-width: var(--container-2xl);
     margin: -56px auto 0;
     padding: 0 24px var(--space-16);
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-6);
+    grid: auto / 1fr 1fr;
+    grid-gap: var(--space-6);
     align-items: start;
 }
 
 .an-cards__col {
-    display: grid;
-    gap: var(--space-6);
-    align-content: start;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    grid-gap: var(--space-6);
     min-width: 0;
 }
 
@@ -262,8 +266,8 @@
         center / contain no-repeat;
 }
 
-/* Cards after a `---` in the Markdown follow the two columns, full width (spec 033).
- * Their lists flow in two columns while each column has room (16rem), and in one
+/* A card in a row with no column break is a row of its own, spanning both columns (specs 033, 039).
+ * Its lists flow in two columns while each column has room (16rem), and in one
  * when it does not. No script: the browser re-flows it on resize. */
 .an-tile--wide {
     grid-column: 1 / -1;

@@ -37,12 +37,13 @@ test.describe("Web Development page", () => {
         expect(((await hero.getAttribute("alt")) ?? "").length).toBeGreaterThan(0);
     });
 
-    test("shows its cards in reading order", async ({ page }) => {
+    test("shows its cards in written order, left column first", async ({ page }) => {
+        // The cards come out of the page in the order they are written; nothing is dealt between columns (spec 039).
         const tiles = page.locator("article.an-tile");
         const order = await tiles.evaluateAll((els) =>
-            els.map((el) => Number(getComputedStyle(el).getPropertyValue("--i"))).sort((a, b) => a - b),
+            els.map((el) => Number(getComputedStyle(el).getPropertyValue("--i"))),
         );
-        expect(order).toEqual(order.map((_, n) => n + 1));
+        expect(order).toEqual([...order].sort((a, b) => a - b));
     });
 
     test("logo returns home and the footer is shown", async ({ page }) => {

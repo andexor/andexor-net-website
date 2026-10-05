@@ -57,10 +57,35 @@ Card body.
 - `eyebrow`: small label above the hero headline.
 - `image`, `image_alt`: hero illustration from `public/`.
 - `>> Label` on the line after a `##` heading is the card's small label. It is optional.
-- Cards alternate between two columns and stack in order on narrow screens.
-- A line with `---` in the body ends the alternating flow. Every card after it is shown full width
-  below the two columns, in the order written, and a bulleted list inside it flows in two columns
-  (one column when narrow). Remove the line to put the cards back into the alternating flow.
+- Cards appear in the order you write them. Two marks, each on its own line with a blank line before and after,
+  say how they are arranged:
+    - `||` is a column break. The cards before it go in the left column and the cards after it go in the right
+      column, each stacked in written order. Use at most one per row; a second one stops the build and names the file.
+    - `---` is a row break. The cards after it start a new row below the earlier one.
+- A row with no `||` shows each of its cards full width, one row each, and a bulleted list inside it flows in two
+  columns (one column when narrow). A page that opens with `---` shows all its cards full width.
+- A `||` with nothing after it leaves the right half empty. A `---` at the start or end, or two in a row, adds no
+  empty row.
+- On narrow screens everything is one column, in written order.
+
+Example: A and B on the left, C on the right, then Techno Bits full width below them:
+
+```markdown
+## Card A
+
+## Card B
+
+||
+
+## Card C
+
+---
+
+## Techno Bits
+
+- one
+- two
+```
 
 ## Writing rules
 

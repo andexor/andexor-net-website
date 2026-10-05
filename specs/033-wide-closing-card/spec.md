@@ -1,5 +1,7 @@
 # Feature Specification: Wide Closing Card With a Two-Column List
 
+**Superseded in part by** [specs/039-grid-flex-card-columns](../039-grid-flex-card-columns/spec.md): the alternating column flow is replaced by author-grouped columns (`||`) and rows (`---`).
+
 **Feature Branch**: `19-update-page-taglines`
 
 **Created**: 2026-10-01

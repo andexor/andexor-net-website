@@ -175,8 +175,6 @@ Rules to keep in mind:
 - Do not put a newline in React-rendered text, and do not rely on leading whitespace in a text node. The formatter
   cannot tell it from its own indentation, and the build fails with the file and token when it finds one.
 - No line of built HTML starts with `>`. Do not switch the formatter to a mode that does that.
-- `tests/e2e/visual-parity.spec.ts` and its snapshots compare the built pages with a build of `main` from before this
-  feature (spec 038). Delete both once the owner accepts the change.
 
 ## License header
 
