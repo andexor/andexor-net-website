@@ -15,49 +15,49 @@ import { listContentSlugs } from "@/lib/content";
 // The cards are a subset of the footer pages by design; there is no 1:1 mapping.
 const CARD_PAGES = ["/web-development", "/technical-seo", "/agentic-systems", "/growth-marketing"];
 const FOOTER_PAGES = [
-  "/about-us",
-  "/agentic-systems",
-  "/cost-reduction",
-  "/growth-marketing",
-  "/lead-generation",
-  "/process-re-engineering",
-  "/technical-seo",
-  "/web-development",
-  "/web-hosting",
+    "/about-us",
+    "/agentic-systems",
+    "/cost-reduction",
+    "/growth-marketing",
+    "/lead-generation",
+    "/process-re-engineering",
+    "/technical-seo",
+    "/web-development",
+    "/web-hosting",
 ];
 const APPROVED = [...new Set([...CARD_PAGES, ...FOOTER_PAGES])].sort();
 
 function internalPaths(container: HTMLElement): string[] {
-  return [...container.querySelectorAll("a[href^='/']")].map((a) => a.getAttribute("href") ?? "");
+    return [...container.querySelectorAll("a[href^='/']")].map((a) => a.getAttribute("href") ?? "");
 }
 
 describe("links to content pages", () => {
-  it("links the approved pages from the service cards and the footer", () => {
-    const services = render(<Services />).container;
-    expect(internalPaths(services)).toEqual(CARD_PAGES);
-    const footer = render(
-      <ContactProvider>
-        <Footer />
-      </ContactProvider>,
-    ).container;
-    expect(internalPaths(footer).sort()).toEqual(FOOTER_PAGES);
-  });
+    it("links the approved pages from the service cards and the footer", () => {
+        const services = render(<Services />).container;
+        expect(internalPaths(services)).toEqual(CARD_PAGES);
+        const footer = render(
+            <ContactProvider>
+                <Footer />
+            </ContactProvider>,
+        ).container;
+        expect(internalPaths(footer).sort()).toEqual(FOOTER_PAGES);
+    });
 
-  it("links no page other than the approved ones", () => {
-    const services = render(<Services />).container;
-    const footer = render(
-      <ContactProvider>
-        <Footer />
-      </ContactProvider>,
-    ).container;
-    const linked = new Set([...internalPaths(services), ...internalPaths(footer)]);
-    const content = new Set(listContentSlugs().map((slug) => "/" + slug.join("/")));
-    const contentLinks = [...linked].filter((href) => content.has(href));
-    expect(contentLinks.sort()).toEqual(APPROVED);
-  });
+    it("links no page other than the approved ones", () => {
+        const services = render(<Services />).container;
+        const footer = render(
+            <ContactProvider>
+                <Footer />
+            </ContactProvider>,
+        ).container;
+        const linked = new Set([...internalPaths(services), ...internalPaths(footer)]);
+        const content = new Set(listContentSlugs().map((slug) => "/" + slug.join("/")));
+        const contentLinks = [...linked].filter((href) => content.has(href));
+        expect(contentLinks.sort()).toEqual(APPROVED);
+    });
 
-  it("only links to pages that are published (not drafts)", () => {
-    const published = new Set(listContentSlugs().map((slug) => "/" + slug.join("/")));
-    for (const href of APPROVED) expect(published.has(href)).toBe(true);
-  });
+    it("only links to pages that are published (not drafts)", () => {
+        const published = new Set(listContentSlugs().map((slug) => "/" + slug.join("/")));
+        for (const href of APPROVED) expect(published.has(href)).toBe(true);
+    });
 });

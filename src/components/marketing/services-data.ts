@@ -5,57 +5,57 @@
 import { Bot, Code2, LineChart, Search, type LucideIcon } from "lucide-react";
 
 export interface ServiceOffering {
-  icon: LucideIcon;
-  tag: string;
-  badgeTone: "brand" | "accent";
-  title: string;
-  href: string;
-  description: string;
-  bullets: string[];
+    icon: LucideIcon;
+    tag: string;
+    badgeTone: "brand" | "accent";
+    title: string;
+    href: string;
+    description: string;
+    bullets: string[];
 }
 
 // Per data-model.md's "Service Offering" table and design/README.md's Services
 // section (FR-004). Exactly 4 entries, fixed content. Each card links to its
 // page (spec 011), the same address as the footer entry of the same name.
 export const SERVICES: ServiceOffering[] = [
-  {
-    icon: Code2,
-    tag: "Web",
-    badgeTone: "brand",
-    title: "Web Development",
-    href: "/web-development",
-    description:
-      "We'll create or update your site with a strong technical foundation to handle an increase in traffic and sales.",
-    bullets: ["Brochure site, blog, forms, shop", "Content management system", "Web application"],
-  },
-  {
-    icon: Search,
-    tag: "SEO",
-    badgeTone: "accent",
-    title: "Technical SEO",
-    href: "/technical-seo",
-    description:
-      "We'll assess your site's structure and brand identity, then improve visibility in search engines and AI agents.",
-    bullets: ["Site audit", "Content strategy", "Maps, social media"],
-  },
-  {
-    icon: Bot,
-    tag: "AI",
-    badgeTone: "brand",
-    title: "Agentic Systems",
-    href: "/agentic-systems",
-    description:
-      "We'll build the agents you need so you can adapt to emerging trends as AI agents handle business transactions.",
-    bullets: ["Knowledge Base", "Digital assistant, scheduling", "Workflow automation"],
-  },
-  {
-    icon: LineChart,
-    tag: "Growth",
-    badgeTone: "accent",
-    title: "Growth Marketing",
-    href: "/growth-marketing",
-    description:
-      "Campaigns made for impact, from brand awareness to lead generation to closed sales, with continuous monitoring.",
-    bullets: ["Newsletters, branded email", "Social media marketing", "Paid advertising"],
-  },
+    {
+        icon: Code2,
+        tag: "Web",
+        badgeTone: "brand",
+        title: "Web Development",
+        href: "/web-development",
+        description:
+            "We'll create or update your site with a strong technical foundation to handle an increase in traffic and sales.",
+        bullets: ["Brochure site, blog, forms, shop", "Content management system", "Web application"],
+    },
+    {
+        icon: Search,
+        tag: "SEO",
+        badgeTone: "accent",
+        title: "Technical SEO",
+        href: "/technical-seo",
+        description:
+            "We'll assess your site's structure and brand identity, then improve visibility in search engines and AI agents.",
+        bullets: ["Site audit", "Content strategy", "Maps, social media"],
+    },
+    {
+        icon: Bot,
+        tag: "AI",
+        badgeTone: "brand",
+        title: "Agentic Systems",
+        href: "/agentic-systems",
+        description:
+            "We'll build the agents you need so you can adapt to emerging trends as AI agents handle business transactions.",
+        bullets: ["Knowledge Base", "Digital assistant, scheduling", "Workflow automation"],
+    },
+    {
+        icon: LineChart,
+        tag: "Growth",
+        badgeTone: "accent",
+        title: "Growth Marketing",
+        href: "/growth-marketing",
+        description:
+            "Campaigns made for impact, from brand awareness to lead generation to closed sales, with continuous monitoring.",
+        bullets: ["Newsletters, branded email", "Social media marketing", "Paid advertising"],
+    },
 ];

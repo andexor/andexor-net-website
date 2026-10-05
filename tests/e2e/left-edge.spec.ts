@@ -23,39 +23,39 @@ const PAGES = ["/", "/web-development", "/nope"];
 // (home page) container, the footer grid, the first card, and the scrollbar
 // width.
 const measure = () => {
-  const left = (selector = "") => {
-    const el = document.querySelector(selector);
-    return el ? Math.round(el.getBoundingClientRect().left * 10) / 10 : null;
-  };
-  return {
-    top: left(".an-content-header__inner, .an-hero__inner"),
-    footer: left("footer .an-footer__grid"),
-    card: left(".an-tile"),
-    scrollbar: window.innerWidth - document.documentElement.clientWidth,
-  };
+    const left = (selector = "") => {
+        const el = document.querySelector(selector);
+        return el ? Math.round(el.getBoundingClientRect().left * 10) / 10 : null;
+    };
+    return {
+        top: left(".an-content-header__inner, .an-hero__inner"),
+        footer: left("footer .an-footer__grid"),
+        card: left(".an-tile"),
+        scrollbar: window.innerWidth - document.documentElement.clientWidth,
+    };
 };
 
 test.describe("Consistent left edge", () => {
-  test("with hidden or overlay scrollbars, every page has the same left edge, unchanged from before", async ({
-    page,
-  }, testInfo) => {
-    await page.setViewportSize({ width: 1600, height: 900 });
-    const found = new Map();
-    for (const url of PAGES) {
-      await page.goto(url);
-      found.set(url, await page.evaluate(measure));
-    }
-    const home = found.get("/");
-    const context = JSON.stringify(Array.from(found));
-    expect(found.get("/web-development").top, `header ${context}`).toBe(home.top);
-    expect(found.get("/nope").top, `header ${context}`).toBe(home.top);
-    // With overlay scrollbars the reserved gutter is 0, so the container is
-    // centered in the full window: (1600 - 1320) / 2 = 140, the value before this
-    // change (FR-006). Headless desktop Chromium hides its scrollbar but still
-    // reserves the classic 15px gutter, a state real users never see, so there
-    // only the equality above is asserted.
-    if (testInfo.project.name !== "chromium") {
-      expect(home.top, `header ${context}`).toBe(140);
-    }
-  });
+    test("with hidden or overlay scrollbars, every page has the same left edge, unchanged from before", async ({
+        page,
+    }, testInfo) => {
+        await page.setViewportSize({ width: 1600, height: 900 });
+        const found = new Map();
+        for (const url of PAGES) {
+            await page.goto(url);
+            found.set(url, await page.evaluate(measure));
+        }
+        const home = found.get("/");
+        const context = JSON.stringify(Array.from(found));
+        expect(found.get("/web-development").top, `header ${context}`).toBe(home.top);
+        expect(found.get("/nope").top, `header ${context}`).toBe(home.top);
+        // With overlay scrollbars the reserved gutter is 0, so the container is
+        // centered in the full window: (1600 - 1320) / 2 = 140, the value before this
+        // change (FR-006). Headless desktop Chromium hides its scrollbar but still
+        // reserves the classic 15px gutter, a state real users never see, so there
+        // only the equality above is asserted.
+        if (testInfo.project.name !== "chromium") {
+            expect(home.top, `header ${context}`).toBe(140);
+        }
+    });
 });

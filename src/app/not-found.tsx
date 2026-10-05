@@ -6,11 +6,11 @@ import type { Metadata } from "next";
 import { ContentPage } from "@/components/content/ContentPage";
 
 export const metadata: Metadata = {
-  title: "Page not found | Andexor Network",
-  description: "Page not found",
-  // Every unknown address is served by this page, so keep them out of search
-  // results (spec 030). Renders <meta name="robots" content="noindex, nofollow">.
-  robots: { index: false, follow: false },
+    title: "Page not found | Andexor Network",
+    description: "Page not found",
+    // Every unknown address is served by this page, so keep them out of search
+    // results (spec 030). Renders <meta name="robots" content="noindex, nofollow">.
+    robots: { index: false, follow: false },
 };
 
 // Replaces the framework's default 404, which injects its own light
@@ -19,18 +19,18 @@ export const metadata: Metadata = {
 // (specs/006-not-found-page-style). The address is never redirected: the static
 // server answers unknown addresses with this page and a 404 status.
 export default function NotFound() {
-  return (
-    <ContentPage
-      html=""
-      cards={{
-        image: {
-          src: "/404.png",
-          alt: "Gold isometric laptop showing 404 next to a magnifying glass with a question mark",
-        },
-        headingHtml: "Page not found",
-        introHtml: `<p>We could not find that page. <a href="/">Go to the home page</a>.</p>`,
-        cardsHtml: "",
-      }}
-    />
-  );
+    return (
+        <ContentPage
+            html=""
+            cards={{
+                image: {
+                    src: "/404.png",
+                    alt: "Gold isometric laptop showing 404 next to a magnifying glass with a question mark",
+                },
+                headingHtml: "Page not found",
+                introHtml: `<p>We could not find that page. <a href="/">Go to the home page</a>.</p>`,
+                cardsHtml: "",
+            }}
+        />
+    );
 }

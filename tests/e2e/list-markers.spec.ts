@@ -12,33 +12,33 @@ import { expect, test } from "@playwright/test";
 // here fails on TypeScript type annotations, so callbacks rely on contextual
 // typing.
 const contentRoutes = fs
-  .readdirSync(path.join(process.cwd(), "content"))
-  .filter((f) => f.endsWith(".md") && f.toLowerCase() !== "readme.md")
-  .map((f) => "/" + f.replace(/\.md$/, ""));
+    .readdirSync(path.join(process.cwd(), "content"))
+    .filter((f) => f.endsWith(".md") && f.toLowerCase() !== "readme.md")
+    .map((f) => "/" + f.replace(/\.md$/, ""));
 
 function markerShapes(selector) {
-  return Array.from(document.querySelectorAll(selector)).map((el) => {
-    const cs = getComputedStyle(el, "::before");
-    const mask = cs.maskImage && cs.maskImage !== "none" ? cs.maskImage : cs.webkitMaskImage;
-    return decodeURIComponent(mask || "");
-  });
+    return Array.from(document.querySelectorAll(selector)).map((el) => {
+        const cs = getComputedStyle(el, "::before");
+        const mask = cs.maskImage && cs.maskImage !== "none" ? cs.maskImage : cs.webkitMaskImage;
+        return decodeURIComponent(mask || "");
+    });
 }
 
 test.describe("List markers", () => {
-  for (const route of contentRoutes) {
-    test(`${route}: card lists use a round bullet, not a checkmark`, async ({ page }) => {
-      await page.goto(route);
-      const shapes = await page.evaluate(markerShapes, ".an-tile li");
-      for (const shape of shapes) {
-        expect(shape).toContain("<circle");
-        expect(shape).not.toContain("<path");
-      }
-    });
-  }
+    for (const route of contentRoutes) {
+        test(`${route}: card lists use a round bullet, not a checkmark`, async ({ page }) => {
+            await page.goto(route);
+            const shapes = await page.evaluate(markerShapes, ".an-tile li");
+            for (const shape of shapes) {
+                expect(shape).toContain("<circle");
+                expect(shape).not.toContain("<path");
+            }
+        });
+    }
 
-  test("the home page service cards keep their checkmarks", async ({ page }) => {
-    await page.goto("/");
-    await expect(page.locator("svg.an-services__bullet-icon").first()).toBeVisible();
-    await expect(page.locator(".an-tile li")).toHaveCount(0);
-  });
+    test("the home page service cards keep their checkmarks", async ({ page }) => {
+        await page.goto("/");
+        await expect(page.locator("svg.an-services__bullet-icon").first()).toBeVisible();
+        await expect(page.locator(".an-tile li")).toHaveCount(0);
+    });
 });

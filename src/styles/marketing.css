@@ -16,7 +16,7 @@
  * --section-y, 32px (Compact, the default)".
  */
 :root {
-  --section-y: var(--space-8);
+    --section-y: var(--space-8);
 }
 
 /* ---- Logo lockup -------------------------------------------------- */
@@ -26,170 +26,170 @@
  * separate because the mark's SVG has transparent padding, so its box is larger
  * than the visible gate shape. */
 .an-logo-lockup {
-  --logo-mark-size: 38px;
-  --logo-wordmark-size: 26px;
-  display: flex;
-  align-items: center;
-  gap: 11px;
-  text-decoration: none;
+    --logo-mark-size: 38px;
+    --logo-wordmark-size: 26px;
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    text-decoration: none;
 }
 
 .an-logo-mark {
-  width: var(--logo-mark-size);
-  height: var(--logo-mark-size);
-  flex: none;
+    width: var(--logo-mark-size);
+    height: var(--logo-mark-size);
+    flex: none;
 }
 
 .an-logo-wordmark {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: var(--logo-wordmark-size);
-  line-height: 1;
-  letter-spacing: -0.02em;
-  white-space: nowrap;
-  color: var(--text-heading);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--logo-wordmark-size);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+    color: var(--text-heading);
 }
 
 .an-logo-lockup--light .an-logo-wordmark {
-  color: #ffffff;
+    color: #ffffff;
 }
 
 /* The home page's large brand row keeps the design system's sizes
  * (design/README.md, Hero). */
 .an-logo-lockup--hero {
-  --logo-mark-size: clamp(72px, 9vw, 112px);
-  --logo-wordmark-size: clamp(32px, 4.4vw, 54px);
-  position: relative;
-  gap: 22px;
+    --logo-mark-size: clamp(72px, 9vw, 112px);
+    --logo-wordmark-size: clamp(32px, 4.4vw, 54px);
+    position: relative;
+    gap: 22px;
 }
 
 /* ---- Hero ----------------------------------------------------------- */
 
 .an-hero {
-  position: relative;
-  /* Holds the ink color behind the content, then fades into the page
+    position: relative;
+    /* Holds the ink color behind the content, then fades into the page
    * background over the bottom of the hero, so the hero bleeds into the services
    * section with no hard edge (as the card page hero does). The hero gets no
    * extra bottom padding, so the fade runs behind the bottom of the content. */
-  background: linear-gradient(
-    to bottom,
-    var(--surface-ink) 0%,
-    var(--surface-ink) calc(100% - var(--an-hero-fade)),
-    var(--surface-page) 100%
-  );
-  --an-hero-fade: calc(var(--space-12) + 56px);
-  overflow: hidden;
+    background: linear-gradient(
+        to bottom,
+        var(--surface-ink) 0%,
+        var(--surface-ink) calc(100% - var(--an-hero-fade)),
+        var(--surface-page) 100%
+    );
+    --an-hero-fade: calc(var(--space-12) + 56px);
+    overflow: hidden;
 }
 
 .an-hero__grid-overlay {
-  position: absolute;
-  inset: 0;
-  opacity: 0.5;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-  background-size: 48px 48px;
-  mask-image: radial-gradient(ellipse 80% 70% at 70% 0%, #000 30%, transparent 75%);
-  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 70% 0%, #000 30%, transparent 75%);
+    position: absolute;
+    inset: 0;
+    opacity: 0.5;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 80% 70% at 70% 0%, #000 30%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 70% at 70% 0%, #000 30%, transparent 75%);
 }
 
 .an-hero__inner {
-  position: relative;
-  max-width: var(--container-2xl);
-  margin: 0 auto;
-  padding: 29px 24px 29px;
+    position: relative;
+    max-width: var(--container-2xl);
+    margin: 0 auto;
+    padding: 29px 24px 29px;
 }
 
 .an-hero__brand-row {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 22px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 22px;
 }
 
 .an-hero__glow {
-  position: absolute;
-  left: -150px;
-  top: 50%;
-  width: 420px;
-  height: 420px;
-  transform: translateY(-50%);
-  background: radial-gradient(circle, color-mix(in srgb, var(--gold-500) 12%, transparent), transparent 48%);
-  pointer-events: none;
+    position: absolute;
+    left: -150px;
+    top: 50%;
+    width: 420px;
+    height: 420px;
+    transform: translateY(-50%);
+    background: radial-gradient(circle, color-mix(in srgb, var(--gold-500) 12%, transparent), transparent 48%);
+    pointer-events: none;
 }
 
 .an-hero__headline {
-  position: relative;
-  color: #ffffff;
-  font-size: clamp(38px, 5vw, 60px);
-  line-height: 1.04;
-  letter-spacing: -0.02em;
-  margin: 40px 0 0;
-  text-wrap: balance;
+    position: relative;
+    color: #ffffff;
+    font-size: clamp(38px, 5vw, 60px);
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+    margin: 40px 0 0;
+    text-wrap: balance;
 }
 
 .an-hero__subhead {
-  color: var(--blue-200);
-  font-size: 19px;
-  line-height: 1.55;
-  max-width: 40em;
-  margin: 20px 0 0;
+    color: var(--blue-200);
+    font-size: 19px;
+    line-height: 1.55;
+    max-width: 40em;
+    margin: 20px 0 0;
 }
 
 /* ---- CTA band --------------------------------------------------------- */
 
 .an-cta-band {
-  max-width: var(--container-sm);
-  margin: 0 auto;
-  padding: 0 24px var(--section-y);
+    max-width: var(--container-sm);
+    margin: 0 auto;
+    padding: 0 24px var(--section-y);
 }
 
 .an-cta-band__panel {
-  position: relative;
-  overflow: hidden;
-  border-radius: 24px;
-  background: var(--blue-800);
-  padding: 56px 48px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 32px;
-  flex-wrap: wrap;
+    position: relative;
+    overflow: hidden;
+    border-radius: 24px;
+    background: var(--blue-800);
+    padding: 56px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    flex-wrap: wrap;
 }
 
 .an-cta-band__copy {
-  position: relative;
+    position: relative;
 }
 
 .an-cta-band__heading {
-  color: #ffffff;
-  font-size: clamp(28px, 3.4vw, 40px);
-  letter-spacing: -0.02em;
-  margin: 0;
-  line-height: 1.1;
+    color: #ffffff;
+    font-size: clamp(28px, 3.4vw, 40px);
+    letter-spacing: -0.02em;
+    margin: 0;
+    line-height: 1.1;
 }
 
 .an-cta-band__action {
-  position: relative;
-  margin: 0 auto;
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
+    position: relative;
+    margin: 0 auto;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
 }
 
 .an-cta-band__glow {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 320px;
-  height: 320px;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(circle, color-mix(in srgb, var(--gold-500) 12%, transparent), transparent 48%);
-  pointer-events: none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 320px;
+    height: 320px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, color-mix(in srgb, var(--gold-500) 12%, transparent), transparent 48%);
+    pointer-events: none;
 }
 
 .an-cta-band__button-wrap {
-  position: relative;
+    position: relative;
 }
 
 /* The call-to-action button always wears a thin black border, a gold border
@@ -203,19 +203,19 @@
  * and it is centered on the form like the other buttons. */
 .an-contact-form .an-btn,
 .an-contact-confirmation .an-btn {
-  margin-inline: auto;
-  box-shadow:
-    0 0 0 2px #000000,
-    0 0 0 5px var(--gold-500);
+    margin-inline: auto;
+    box-shadow:
+        0 0 0 2px #000000,
+        0 0 0 5px var(--gold-500);
 }
 
 .an-contact-form .an-btn:focus-visible,
 .an-contact-confirmation .an-btn:focus {
-  border-radius: var(--radius-md);
-  background: var(--gold-400);
-  box-shadow:
-    0 0 0 2px #000000,
-    0 0 0 5px var(--gold-500);
+    border-radius: var(--radius-md);
+    background: var(--gold-400);
+    box-shadow:
+        0 0 0 2px #000000,
+        0 0 0 5px var(--gold-500);
 }
 
 /* Pressing the call-to-action and Send buttons moves them 2px right and 2px
@@ -223,251 +223,254 @@
 .an-cta-band .an-btn:not(:disabled):active,
 .an-contact-form .an-btn:not(:disabled):active,
 .an-contact-confirmation .an-btn:not(:disabled):active {
-  transform: translateX(2px) translateY(2px);
+    transform: translateX(2px) translateY(2px);
 }
 
 .an-cta-band .an-btn {
-  box-shadow:
-    0 0 0 2px #000000,
-    0 0 0 5px var(--gold-500),
-    0 0 18px 8px color-mix(in srgb, var(--gold-500) 55%, transparent),
-    0 0 40px 14px color-mix(in srgb, var(--gold-500) 30%, transparent);
+    box-shadow:
+        0 0 0 2px #000000,
+        0 0 0 5px var(--gold-500),
+        0 0 18px 8px color-mix(in srgb, var(--gold-500) 55%, transparent),
+        0 0 40px 14px color-mix(in srgb, var(--gold-500) 30%, transparent);
 }
 
 .an-cta-band .an-btn:focus-visible {
-  border-radius: var(--radius-md);
-  background: var(--gold-400); /* the same brighter gold as hover */
-  box-shadow:
-    0 0 0 2px #000000,
-    0 0 0 5px var(--gold-500),
-    0 0 22px 11px color-mix(in srgb, var(--gold-500) 70%, transparent),
-    0 0 48px 18px color-mix(in srgb, var(--gold-500) 40%, transparent);
+    border-radius: var(--radius-md);
+    background: var(--gold-400); /* the same brighter gold as hover */
+    box-shadow:
+        0 0 0 2px #000000,
+        0 0 0 5px var(--gold-500),
+        0 0 22px 11px color-mix(in srgb, var(--gold-500) 70%, transparent),
+        0 0 48px 18px color-mix(in srgb, var(--gold-500) 40%, transparent);
 }
 
 /* ---- Services ----------------------------------------------------------- */
 
 .an-services {
-  padding: var(--section-y) 24px;
-  max-width: var(--container-2xl);
-  margin: 0 auto;
+    padding: var(--section-y) 24px;
+    max-width: var(--container-2xl);
+    margin: 0 auto;
 }
 
 .an-services__heading {
-  font-size: clamp(30px, 3.6vw, 42px);
-  letter-spacing: -0.02em;
-  margin: 12px 0 0;
+    font-size: clamp(30px, 3.6vw, 42px);
+    letter-spacing: -0.02em;
+    margin: 12px 0 0;
 }
 
 .an-services__lede {
-  font-size: 18px;
-  color: var(--text-body);
-  margin: 14px 0 0;
-  line-height: 1.55;
+    font-size: 18px;
+    color: var(--text-body);
+    margin: 14px 0 0;
+    line-height: 1.55;
 }
 
 .an-services__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 18px;
-  margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 18px;
+    margin-top: 40px;
 }
 
 .an-services__card,
 .an-services__card:hover {
-  text-decoration: none;
-  display: block;
+    text-decoration: none;
+    display: block;
 }
 
 /* Pressing a service card moves it 2px right and 2px down, like the buttons.
  * The extra class outranks the design system's hover lift, which is still in
  * effect while the pointer is down. */
 .an-services__card.an-card--hover:active {
-  transform: translateX(2px) translateY(2px);
-  transition: box-shadow 0.18s ease, transform 0.05s ease, border-color 0.18s ease;
+    transform: translateX(2px) translateY(2px);
+    transition:
+        box-shadow 0.18s ease,
+        transform 0.05s ease,
+        border-color 0.18s ease;
 }
 
 .an-services__card-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
 }
 
 .an-services__icon-tile {
-  width: 44px;
-  height: 44px;
-  border-radius: 11px;
-  background: var(--blue-50);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--blue-700);
+    width: 44px;
+    height: 44px;
+    border-radius: 11px;
+    background: var(--blue-50);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--blue-700);
 }
 
 .an-services__card-title {
-  font-size: 20px;
-  margin: 0 0 6px;
-  color: var(--text-heading);
+    font-size: 20px;
+    margin: 0 0 6px;
+    color: var(--text-heading);
 }
 
 .an-services__card-body {
-  font-size: 14px;
-  color: var(--text-body);
-  line-height: 1.55;
-  margin: 0 0 14px;
+    font-size: 14px;
+    color: var(--text-body);
+    line-height: 1.55;
+    margin: 0 0 14px;
 }
 
 .an-services__bullets {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
 }
 
 .an-services__bullet {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 13px;
-  color: var(--text-body);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text-body);
 }
 
 .an-services__bullet-icon {
-  color: var(--gold-600);
-  flex: none;
+    color: var(--gold-600);
+    flex: none;
 }
 
 /* ---- Footer ----------------------------------------------------------- */
 
 .an-footer {
-  background: var(--blue-900);
-  color: var(--blue-200);
+    background: var(--blue-900);
+    color: var(--blue-200);
 }
 
 .an-footer__grid {
-  max-width: var(--container-2xl);
-  margin: 0 auto;
-  padding: 56px 24px 28px;
-  display: grid;
-  grid-template-columns: 1.4fr repeat(3, 1fr);
-  gap: 32px;
+    max-width: var(--container-2xl);
+    margin: 0 auto;
+    padding: 56px 24px 28px;
+    display: grid;
+    grid-template-columns: 1.4fr repeat(3, 1fr);
+    gap: 32px;
 }
 
 @media (max-width: 720px) {
-  .an-footer__grid {
-    grid-template-columns: 1fr;
-  }
+    .an-footer__grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .an-footer__copyright {
-  font-size: 13px;
-  margin: 16px 0 0;
-  color: var(--blue-400);
+    font-size: 13px;
+    margin: 16px 0 0;
+    color: var(--blue-400);
 }
 
 .an-footer__social-row {
-  display: flex;
-  gap: 10px;
-  margin-top: 18px;
+    display: flex;
+    gap: 10px;
+    margin-top: 18px;
 }
 
 .an-footer__social-link {
-  width: 34px;
-  height: 34px;
-  border-radius: 8px;
-  border: 1px solid var(--blue-700);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--blue-200);
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    border: 1px solid var(--blue-700);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--blue-200);
 }
 
 .an-footer__col-heading {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--gold-400);
-  margin-bottom: 14px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold-400);
+    margin-bottom: 14px;
 }
 
 .an-footer__col-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .an-footer__col-link {
-  font-size: 14px;
-  color: var(--blue-200);
-  text-decoration: none;
+    font-size: 14px;
+    color: var(--blue-200);
+    text-decoration: none;
 }
 
 .an-footer__col-link:hover {
-  color: #ffffff;
+    color: #ffffff;
 }
 
 /* ---- Contact Us popup ------------------------------------------------- */
 
 .an-contact-scrim {
-  position: fixed;
-  inset: 0;
-  z-index: 60;
-  background: rgba(0, 19, 43, 0.55);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    background: rgba(0, 19, 43, 0.55);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
 }
 
 .an-contact-panel {
-  width: min(480px, 100%);
-  background: var(--blue-700);
-  border-radius: 18px;
-  box-shadow: var(--shadow-xl);
-  overflow: hidden;
+    width: min(480px, 100%);
+    background: var(--blue-700);
+    border-radius: 18px;
+    box-shadow: var(--shadow-xl);
+    overflow: hidden;
 }
 
 .an-contact-header {
-  position: relative;
-  overflow: hidden;
-  background: var(--blue-800);
-  padding: 22px 24px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
+    position: relative;
+    overflow: hidden;
+    background: var(--blue-800);
+    padding: 22px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
 .an-contact-header__glow {
-  position: absolute;
-  left: -110px;
-  top: -110px;
-  width: 260px;
-  height: 260px;
-  background: radial-gradient(circle, color-mix(in srgb, var(--gold-500) 12%, transparent), transparent 48%);
-  pointer-events: none;
+    position: absolute;
+    left: -110px;
+    top: -110px;
+    width: 260px;
+    height: 260px;
+    background: radial-gradient(circle, color-mix(in srgb, var(--gold-500) 12%, transparent), transparent 48%);
+    pointer-events: none;
 }
 
 .an-contact-header__logo {
-  position: relative;
-  width: 34px;
-  height: 34px;
+    position: relative;
+    width: 34px;
+    height: 34px;
 }
 
 .an-contact-header__title {
-  position: relative;
-  color: #ffffff;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 30px;
-  line-height: 34px;
+    position: relative;
+    color: #ffffff;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 34px;
 }
 
 /* The Close button is a glossy black button with a dark vertical gradient, a
@@ -475,140 +478,143 @@
  * gloss highlight across the top half. It presses 2px right and 2px down, and
  * its keyboard focus ring is solid gold. */
 .an-contact-header__close {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  color: #ffffff;
-  cursor: pointer;
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  border-radius: 7px;
-  background: linear-gradient(180deg, #3b3b3b 0%, #121212 48%, #000000 100%);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.45),
-    inset 0 -2px 3px rgba(0, 0, 0, 0.8),
-    0 3px 6px rgba(0, 0, 0, 0.55),
-    0 1px 1px rgba(0, 0, 0, 0.9);
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.8);
-  transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.05s ease;
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    color: #ffffff;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 7px;
+    background: linear-gradient(180deg, #3b3b3b 0%, #121212 48%, #000000 100%);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.45),
+        inset 0 -2px 3px rgba(0, 0, 0, 0.8),
+        0 3px 6px rgba(0, 0, 0, 0.55),
+        0 1px 1px rgba(0, 0, 0, 0.9);
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.8);
+    transition:
+        background 0.15s ease,
+        box-shadow 0.15s ease,
+        transform 0.05s ease;
 }
 
 .an-contact-header__close::before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  inset: 0 0 50% 0;
-  border-radius: 6px 6px 40% 40% / 6px 6px 22% 22%;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0.06));
-  pointer-events: none;
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 0 0 50% 0;
+    border-radius: 6px 6px 40% 40% / 6px 6px 22% 22%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0.06));
+    pointer-events: none;
 }
 
 .an-contact-header__close:hover {
-  background: linear-gradient(180deg, #4a4a4a 0%, #1c1c1c 48%, #0a0a0a 100%);
+    background: linear-gradient(180deg, #4a4a4a 0%, #1c1c1c 48%, #0a0a0a 100%);
 }
 
 .an-contact-header__close:active {
-  transform: translateX(2px) translateY(2px);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.3),
-    inset 0 -1px 2px rgba(0, 0, 0, 0.8),
-    0 1px 2px rgba(0, 0, 0, 0.6);
+    transform: translateX(2px) translateY(2px);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        inset 0 -1px 2px rgba(0, 0, 0, 0.8),
+        0 1px 2px rgba(0, 0, 0, 0.6);
 }
 
 .an-contact-header__close:focus-visible {
-  border-radius: 7px;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.45),
-    inset 0 -2px 3px rgba(0, 0, 0, 0.8),
-    0 0 0 3px var(--gold-500),
-    0 3px 6px rgba(0, 0, 0, 0.55);
+    border-radius: 7px;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.45),
+        inset 0 -2px 3px rgba(0, 0, 0, 0.8),
+        0 0 0 3px var(--gold-500),
+        0 3px 6px rgba(0, 0, 0, 0.55);
 }
 
 /* Close is a square with only the X in it. */
 .an-contact-header__close {
-  margin-left: auto;
-  flex: none;
-  width: 38px;
-  height: 38px;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    margin-left: auto;
+    flex: none;
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .an-contact-header__close svg {
-  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.8));
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.8));
 }
 
 .an-contact-form {
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
 }
 
 .an-contact-form .an-label {
-  color: var(--blue-100);
+    color: var(--blue-100);
 }
 
 /* A focused field gets the same solid gold border as the Close button, in
  * place of the faint glow from the design system. */
 .an-contact-form .an-input:not(.an-input--invalid):focus {
-  border-radius: var(--radius-md);
-  box-shadow: 0 0 0 3px var(--gold-500);
+    border-radius: var(--radius-md);
+    box-shadow: 0 0 0 3px var(--gold-500);
 }
 
 .an-contact-form__note {
-  margin: 0;
-  font-size: 12px;
-  color: var(--blue-100);
-  text-align: center;
+    margin: 0;
+    font-size: 12px;
+    color: var(--blue-100);
+    text-align: center;
 }
 
 .an-contact-form__legal {
-  white-space: nowrap;
+    white-space: nowrap;
 }
 
 .an-contact-form__legal a {
-  color: #ffffff;
-  font-weight: 600;
-  text-decoration: none;
+    color: #ffffff;
+    font-weight: 600;
+    text-decoration: none;
 }
 
 .an-contact-form__legal a:hover {
-  color: var(--blue-200);
+    color: var(--blue-200);
 }
 
 .an-contact-confirmation {
-  padding: 40px 28px;
-  text-align: center;
+    padding: 40px 28px;
+    text-align: center;
 }
 
 .an-contact-confirmation__icon {
-  width: 56px;
-  height: 56px;
-  border-radius: 999px;
-  background: var(--success-100);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 16px;
-  color: var(--success-600);
+    width: 56px;
+    height: 56px;
+    border-radius: 999px;
+    background: var(--success-100);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    color: var(--success-600);
 }
 
 .an-contact-confirmation__heading {
-  margin: 0 0 8px;
-  font-size: 22px;
-  color: #ffffff;
+    margin: 0 0 8px;
+    font-size: 22px;
+    color: #ffffff;
 }
 
 .an-contact-confirmation__body {
-  margin: 0 auto;
-  max-width: 34ch;
-  color: var(--blue-100);
-  font-size: 14px;
-  line-height: 1.55;
+    margin: 0 auto;
+    max-width: 34ch;
+    color: var(--blue-100);
+    font-size: 14px;
+    line-height: 1.55;
 }
 
 .an-contact-confirmation__ok {
-  margin-top: 22px;
+    margin-top: 22px;
 }
