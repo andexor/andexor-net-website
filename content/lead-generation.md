@@ -20,6 +20,8 @@ Please create a modern 3D isometric icon that illustrates the concept of lead ge
 
 More qualified customers. More sales.
 
+---
+
 ## Every business needs more customers.
 
 For some, it's a numbers game.
@@ -36,6 +38,8 @@ We have a few tools and methods available to
 find more leads for you. We may use several of them
 and bring you a report with data blended from multiple sources.
 
+---
+
 ## Need to adjust the parameters?
 
 The definition of an ideal target audience
@@ -44,6 +48,8 @@ It can be a journey of discovery sometimes.
 Let us know anytime you want to make some adjustments.
 We'll make them right away so you can see the effects
 in your next report.
+
+||
 
 ## Need to adjust the frequency?
 

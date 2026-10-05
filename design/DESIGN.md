@@ -29,6 +29,7 @@ This document is a portable snapshot of the specification. The living source of 
 - **Never use italics** — for emphasis use weight, color, or caps.
 - **Never use "&" as the word "and"** in reader-facing copy — always spell out "and". (Code operators and HTML entities are exempt.)
 - **Always use the Oxford (serial) comma** — "web, SEO, and AI".
+- **Never use curly, smart, or typographic quotes** — in any form, as characters or as HTML references. Use only the straight apostrophe (') and the straight double quote (").
 - **No periods on headline phrases** — a period ends a complete sentence, not a fragment. "Built to scale" takes none; "Search is being rewritten by AI." keeps one because it is a full sentence.
 - Numerals for stats ("+182%", "0.9s", "3.1×", "40+").
 - **Emoji: never.** The mono `>>` prefix is the brand's textual icon for eyebrows.

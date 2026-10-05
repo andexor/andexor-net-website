@@ -91,6 +91,18 @@ describes an underline rule, remove or correct it when you find it. Do not ask t
 `.an-prose` and `.an-tile`, body text is `--slate-50` and links are `--blue-400` (hover
 `--blue-300`), which passes the WCAG 2.1 AA link-versus-text check. Keep this rule when adding pages or components.
 
+## Straight quotes only
+
+Never use curly, smart, or typographic quotes, in any file and in any form: not the characters, and not HTML
+character references to them. Use only the straight apostrophe (') and the straight double quote ("). This covers
+source, content, documentation, specs, tests, commit messages, and everything an AI assistant writes. The one
+exception is third-party text the owner has said not to alter, `CODE_OF_CONDUCT.md` and `CODE_OF_CONDUCT.adoc`: leave
+those exactly as they are, and they are not checked. The built pages also write apostrophes and quotes as plain
+characters (We'll, not the escape React writes); `scripts/format-html.ts` does that. `tests/unit/straight-quotes.test.ts`
+fails, naming the file and line, when a curly quote appears. When writing a file, never type a backslash-u escape for
+a quote: it can turn into the real character. Use straight quotes, or numeric code points in code. The owner has
+asked for this firmly, more than once. Do not ask again.
+
 ## Toolchain
 
 The site is built with Next.js using Static Site Generation (SSG, `output: "export"`) — no
@@ -149,6 +161,39 @@ Read `CONTRIBUTING.md` and `setup.md` (companions to the constitution, with `SEC
 - AI-generated code and text are reviewed before acceptance: no tests that pass but prove
   nothing, and no machine-sounding prose.
 - Report security issues per `SECURITY.md`, never in public issues or PRs.
+
+## Formatting
+
+All code written for this site is formatted with Prettier: 4 spaces per indent level, no tabs, lines under 120
+characters where possible (`.prettierrc.json`). Use `bun run format` and `bun run format:check`. This applies to the
+source (`.ts`, `.tsx`, `.js`, `.mjs`, `.css`) and to the built site in `out/`. `design/`, `content/`, `specs/`,
+and Markdown are not formatted. Anchor `.prettierignore` patterns with a leading `/`: an unanchored `content/` also
+skips `src/components/content/`.
+
+`bun run build` runs `next build` and then `scripts/format-site.ts`, which:
+
+- Formats every built HTML page, the site stylesheet, and the site's own script chunk. The vendor chunks (React,
+  Next.js, polyfills) stay minified.
+- Relies on `next.config.ts`, which puts all `src/` code in one `site-*.js` chunk and tells Next's minifier to skip it.
+- Adds one small inline script first in each page's `<head>`. React rejects the whitespace that pretty-printed HTML
+  adds between elements (hydration error #418), so the script strips it before hydration. The formatter fails the build
+  if the formatted page would not have the same DOM as the original (`scripts/format-html.ts`).
+
+Rules to keep in mind:
+
+- The framework's data for each page, a dozen or more small inline scripts at the end of the body, is combined into one
+  script and moved to `out/_next/static/data/<hash>.js` (`scripts/combine-scripts.ts`, spec 041). The file is
+  formatted, named by the hash of its content, and referred to by one plain script element at the end of the body, with
+  a preload hint first in the head (it costs about 30 ms on a slow connection, without the hint about 60 ms). The
+  build runs the original scripts and the new one in a sandbox and fails, naming the page, if the data differs. The
+  head's inline scripts (the whitespace script and the font loader) stay inline and first, and the framework's script
+  files are not touched. The site's links are ordinary links, so every click loads a page fully with its own data file.
+- Markdown-generated HTML is rendered with `dangerouslySetInnerHTML`. Give such an element `data-raw-html=""`: the
+  formatter formats its content with whitespace-safe settings, and the script leaves it alone, because a newline
+  between inline elements there is a visible space.
+- Do not put a newline in React-rendered text, and do not rely on leading whitespace in a text node. The formatter
+  cannot tell it from its own indentation, and the build fails with the file and token when it finds one.
+- No line of built HTML starts with `>`. Do not switch the formatter to a mode that does that.
 
 ## License header
 

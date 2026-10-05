@@ -20,6 +20,8 @@ Please create a modern 3D isometric icon illustration that would be appropriate 
 
 Who we are. What we have done. Where we are going.
 
+---
+
 ## Who we are
 
 Andexor Network, Inc. was founded in 2010
@@ -28,6 +30,8 @@ The original vision at the time was simply for web hosting alone.
 That and a desire to introduce customers to each other
 so they can meet each others needs for multiplied growth.
 
+---
+
 ## What we have done
 
 The reality was a stretch of time doing consulting work
@@ -35,6 +39,8 @@ followed by a long dormant period.
 During this time, Ed worked on other projects,
 gaining more technical and leadership experience
 in exciting new areas.
+
+||
 
 ## Where we are going
 

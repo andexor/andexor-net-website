@@ -1,5 +1,7 @@
 # Feature Specification: Content Pages, Card Template, and Web Development Page
 
+**Superseded in part by** [specs/039-grid-flex-card-columns](../039-grid-flex-card-columns/spec.md): the alternating column flow is replaced by author-grouped columns (`||`) and rows (`---`).
+
 **Feature Branch**: `retrospective-specs` (work originally shipped via issues #3, #5, #7, #9)
 
 **Created**: 2026-09-29

@@ -12,27 +12,27 @@ import { getContentPage, listContentSlugs } from "@/lib/content";
 export const dynamicParams = false;
 
 interface PageProps {
-  params: Promise<{ slug: string[] }>;
+    params: Promise<{ slug: string[] }>;
 }
 
 // `output: "export"` rejects an empty list, so with no content yet we emit a
 // single placeholder route that resolves to no page (and therefore 404s).
 export function generateStaticParams() {
-  const slugs = listContentSlugs();
-  return (slugs.length > 0 ? slugs : [["_no-content"]]).map((slug) => ({ slug }));
+    const slugs = listContentSlugs();
+    return (slugs.length > 0 ? slugs : [["_no-content"]]).map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const page = await getContentPage((await params).slug);
-  if (!page) return {};
-  return {
-    title: `${page.title} | Andexor Network`,
-    ...(page.description ? { description: page.description } : {}),
-  };
+    const page = await getContentPage((await params).slug);
+    if (!page) return {};
+    return {
+        title: `${page.title} | Andexor Network`,
+        ...(page.description ? { description: page.description } : {}),
+    };
 }
 
 export default async function MarkdownPage({ params }: PageProps) {
-  const page = await getContentPage((await params).slug);
-  if (!page) notFound();
-  return <ContentPage html={page.html} cards={page.cards} />;
+    const page = await getContentPage((await params).slug);
+    if (!page) notFound();
+    return <ContentPage html={page.html} cards={page.cards} />;
 }

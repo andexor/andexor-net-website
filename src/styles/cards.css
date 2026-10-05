@@ -9,138 +9,131 @@
  */
 
 .an-cardhero {
-  position: relative;
-  overflow: hidden;
-  /* Fades from the ink band into the page background so the hero bleeds into
+    position: relative;
+    overflow: hidden;
+    /* Fades from the ink band into the page background so the hero bleeds into
    * the cards section with no hard edge. */
-  background: linear-gradient(
-    to bottom,
-    var(--surface-ink) 0%,
-    var(--surface-ink) 35%,
-    var(--surface-page) 100%
-  );
-  padding: var(--space-8) 24px calc(var(--space-12) + 56px);
+    background: linear-gradient(to bottom, var(--surface-ink) 0%, var(--surface-ink) 35%, var(--surface-page) 100%);
+    padding: var(--space-8) 24px calc(var(--space-12) + 56px);
 }
 
 /* The backdrop pattern layer. The base `.an-cardhero` (for example the
  * not-found page) has none; each section modifier supplies its own pattern. */
 .an-cardhero__pattern {
-  position: absolute;
-  inset: 0;
+    position: absolute;
+    inset: 0;
 }
 
 /* Technical Services: the engineering grid. */
 .an-cardhero--technical .an-cardhero__pattern {
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.10) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.10) 1px, transparent 1px);
-  background-size: 48px 48px;
-  mask-image: radial-gradient(ellipse 80% 70% at 30% 0%, #000 30%, transparent 75%);
-  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 30% 0%, #000 30%, transparent 75%);
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 80% 70% at 30% 0%, #000 30%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 70% at 30% 0%, #000 30%, transparent 75%);
 }
 
 /* Business Services: a city-block grid. The blocks vary in size and the streets
  * are the gaps between them. The SVG tile is as tall as the hero and repeats
  * along the X axis from the left edge, fading out toward the right and bottom. */
 .an-cardhero--business .an-cardhero__pattern {
-  background: url("/city-grid.svg") left top / auto 100% repeat-x;
-  mask-image:
-    linear-gradient(to right, #000 35%, transparent 95%),
-    linear-gradient(to bottom, #000 55%, transparent 100%);
-  mask-composite: intersect;
-  -webkit-mask-image:
-    linear-gradient(to right, #000 35%, transparent 95%),
-    linear-gradient(to bottom, #000 55%, transparent 100%);
-  -webkit-mask-composite: source-in;
+    background: url("/city-grid.svg") left top / auto 100% repeat-x;
+    mask-image:
+        linear-gradient(to right, #000 35%, transparent 95%), linear-gradient(to bottom, #000 55%, transparent 100%);
+    mask-composite: intersect;
+    -webkit-mask-image:
+        linear-gradient(to right, #000 35%, transparent 95%), linear-gradient(to bottom, #000 55%, transparent 100%);
+    -webkit-mask-composite: source-in;
 }
 
 /* Company (About Us): concentric rings radiating from behind the hero art,
  * echoing the gold glow there. */
 .an-cardhero--company .an-cardhero__pattern {
-  background-image: repeating-radial-gradient(
-    circle at 15% 40%,
-    transparent 0 46px,
-    rgba(255, 255, 255, 0.11) 46px 47px
-  );
-  mask-image: radial-gradient(ellipse 90% 90% at 15% 40%, #000 20%, transparent 80%);
-  -webkit-mask-image: radial-gradient(ellipse 90% 90% at 15% 40%, #000 20%, transparent 80%);
+    background-image: repeating-radial-gradient(
+        circle at 15% 40%,
+        transparent 0 46px,
+        rgba(255, 255, 255, 0.11) 46px 47px
+    );
+    mask-image: radial-gradient(ellipse 90% 90% at 15% 40%, #000 20%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse 90% 90% at 15% 40%, #000 20%, transparent 80%);
 }
 
 .an-cardhero__inner {
-  position: relative;
-  max-width: var(--container-2xl);
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  gap: clamp(20px, 4vw, 48px);
+    position: relative;
+    max-width: var(--container-2xl);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: clamp(20px, 4vw, 48px);
 }
 
 .an-cardhero__art {
-  position: relative;
-  flex: 0 0 clamp(140px, 22vw, 280px);
+    position: relative;
+    flex: 0 0 clamp(140px, 22vw, 280px);
 }
 
 .an-cardhero__art::before {
-  content: "";
-  position: absolute;
-  inset: -30%;
-  background: radial-gradient(circle, color-mix(in srgb, var(--gold-500) 12%, transparent), transparent 48%);
-  pointer-events: none;
+    content: "";
+    position: absolute;
+    inset: -30%;
+    background: radial-gradient(circle, color-mix(in srgb, var(--gold-500) 12%, transparent), transparent 48%);
+    pointer-events: none;
 }
 
 .an-cardhero__art img {
-  position: relative;
-  display: block;
-  max-width: 100%;
-  height: auto;
+    position: relative;
+    display: block;
+    max-width: 100%;
+    height: auto;
 }
 
 .an-cardhero__text {
-  min-width: 0;
+    min-width: 0;
 }
 
 .an-cardhero__eyebrow,
 .an-cardhero__spacer {
-  margin: 0 0 var(--space-3);
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  font-weight: 600;
-  letter-spacing: var(--tracking-caps);
-  text-transform: uppercase;
-  color: var(--gold-400);
+    margin: 0 0 var(--space-3);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    color: var(--gold-400);
 }
 
 /* A hero with no eyebrow (the not-found page) keeps the eyebrow's height, empty
  * and invisible, so its headline lines up with the pages that have one. */
 .an-cardhero__spacer {
-  visibility: hidden;
+    visibility: hidden;
 }
 
 .an-cardhero__eyebrow::before {
-  content: ">> ";
+    content: ">> ";
 }
 
 .an-cardhero h1 {
-  margin: 0;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(32px, 4.4vw, 52px);
-  line-height: var(--leading-tight);
-  letter-spacing: -0.02em;
-  color: var(--white);
-  text-wrap: balance;
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(32px, 4.4vw, 52px);
+    line-height: var(--leading-tight);
+    letter-spacing: -0.02em;
+    color: var(--white);
+    text-wrap: balance;
 }
 
 .an-cardhero__intro {
-  margin-top: var(--space-4);
-  max-width: 40em;
-  font-size: var(--text-lg);
-  line-height: var(--leading-relaxed);
-  color: var(--blue-200);
+    margin-top: var(--space-4);
+    max-width: 40em;
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    color: var(--blue-200);
 }
 
 .an-cardhero__intro > :last-child {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 /* A hero with no cards (the not-found page, specs/006-not-found-page-style):
@@ -148,205 +141,211 @@
  * underline (specs/007-no-link-underlines), so the link must differ from the
  * text by 3:1: brighter text, --blue-400 link. */
 .an-cardhero--solo {
-  padding-bottom: var(--space-12);
+    padding-bottom: var(--space-12);
 }
 
 .an-cardhero--solo .an-cardhero__intro {
-  color: var(--slate-50);
+    color: var(--slate-50);
 }
 
 .an-cardhero--solo .an-cardhero__intro a {
-  color: var(--blue-400);
+    color: var(--blue-400);
 }
 
 .an-cardhero--solo .an-cardhero__intro a:hover {
-  color: var(--blue-300);
+    color: var(--blue-300);
 }
 
 /* ---- Cards ---------------------------------------------------------- */
 
+/* A grid of two equal columns (spec 039). Each `.an-cards__col` is one column of a row, a stack of cards in the
+ * order written; `grid-gap` spaces the columns, the rows, and the cards in a column. A card with `an-tile--wide`
+ * is a row of its own that spans both columns. */
 .an-cards {
-  position: relative;
-  max-width: var(--container-2xl);
-  margin: -56px auto 0;
-  padding: 0 24px var(--space-16);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-6);
-  align-items: start;
+    position: relative;
+    max-width: var(--container-2xl);
+    margin: -56px auto 0;
+    padding: 0 24px var(--space-16);
+    display: grid;
+    grid: auto / 1fr 1fr;
+    grid-gap: var(--space-6);
+    align-items: start;
 }
 
 .an-cards__col {
-  display: grid;
-  gap: var(--space-6);
-  align-content: start;
-  min-width: 0;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    grid-gap: var(--space-6);
+    min-width: 0;
 }
 
 .an-tile {
-  min-width: 0;
-  padding: var(--space-6);
-  background: var(--surface-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-sm);
-  /* Same link treatment as .an-prose: no underline, so color separates links
+    min-width: 0;
+    padding: var(--space-6);
+    background: var(--surface-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-sm);
+    /* Same link treatment as .an-prose: no underline, so color separates links
    * from text (specs/007-no-link-underlines). */
-  --text-body: var(--slate-50);
-  --text-link: var(--blue-400);
-  color: var(--text-body);
-  font-size: var(--text-md);
-  line-height: var(--leading-relaxed);
-  transition:
-    transform 0.18s ease,
-    box-shadow 0.18s ease,
-    border-color 0.18s ease;
+    --text-body: var(--slate-50);
+    --text-link: var(--blue-400);
+    color: var(--text-body);
+    font-size: var(--text-md);
+    line-height: var(--leading-relaxed);
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        border-color 0.18s ease;
 }
 
 .an-tile:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
-  border-color: var(--border-default);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--border-default);
 }
 
 .an-tile__eyebrow {
-  margin: 0 0 var(--space-3);
-  font-family: var(--font-mono);
-  font-size: var(--text-2xs);
-  font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: var(--tracking-caps);
-  text-transform: uppercase;
-  color: var(--text-accent);
+    margin: 0 0 var(--space-3);
+    font-family: var(--font-mono);
+    font-size: var(--text-2xs);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    color: var(--text-accent);
 }
 
 .an-tile__eyebrow::before {
-  content: ">> ";
+    content: ">> ";
 }
 
 .an-tile__title {
-  margin: 0 0 var(--space-3);
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(19px, 1.8vw, 22px);
-  line-height: var(--leading-snug);
-  letter-spacing: -0.01em;
-  color: var(--gold-500);
-  text-wrap: balance;
+    margin: 0 0 var(--space-3);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(19px, 1.8vw, 22px);
+    line-height: var(--leading-snug);
+    letter-spacing: -0.01em;
+    color: var(--gold-500);
+    text-wrap: balance;
 }
 
 .an-tile p {
-  margin: 0 0 var(--space-3);
+    margin: 0 0 var(--space-3);
 }
 
 .an-tile ul {
-  margin: 0 0 var(--space-3);
-  padding: 0;
-  list-style: none;
-  display: grid;
-  gap: var(--space-2);
-  font-size: var(--text-sm);
+    margin: 0 0 var(--space-3);
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
 }
 
 .an-tile li {
-  display: grid;
-  grid-template-columns: 16px 1fr;
-  gap: 10px;
-  align-items: start;
+    display: grid;
+    grid-template-columns: 16px 1fr;
+    gap: 10px;
+    align-items: start;
 }
 
 /* A round bullet in the accent gold (spec 032). The home page's service cards
  * keep their own checkmarks (marketing.css). */
 .an-tile li::before {
-  content: "";
-  width: 16px;
-  height: 16px;
-  margin-top: 3px;
-  background: var(--gold-600);
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='4.5'/%3E%3C/svg%3E") center / contain no-repeat;
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='4.5'/%3E%3C/svg%3E") center / contain no-repeat;
+    content: "";
+    width: 16px;
+    height: 16px;
+    margin-top: 3px;
+    background: var(--gold-600);
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='4.5'/%3E%3C/svg%3E")
+        center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='4.5'/%3E%3C/svg%3E")
+        center / contain no-repeat;
 }
 
-/* Cards after a `---` in the Markdown follow the two columns, full width (spec 033).
- * Their lists flow in two columns while each column has room (16rem), and in one
+/* A card in a row with no column break is a row of its own, spanning both columns (specs 033, 039).
+ * Its lists flow in two columns while each column has room (16rem), and in one
  * when it does not. No script: the browser re-flows it on resize. */
 .an-tile--wide {
-  grid-column: 1 / -1;
+    grid-column: 1 / -1;
 }
 
 .an-tile--wide ul {
-  display: block;
-  column-count: 2;
-  column-width: 16rem;
-  column-gap: var(--space-8);
+    display: block;
+    column-count: 2;
+    column-width: 16rem;
+    column-gap: var(--space-8);
 }
 
 .an-tile--wide li {
-  break-inside: avoid;
-  margin-bottom: var(--space-2);
+    break-inside: avoid;
+    margin-bottom: var(--space-2);
 }
 
 .an-tile > :last-child {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 .an-tile a {
-  color: var(--text-link);
+    color: var(--text-link);
 }
 
 .an-tile a:hover {
-  color: var(--blue-300);
+    color: var(--blue-300);
 }
 
 .an-tile a:focus-visible {
-  outline: none;
-  border-radius: var(--radius-xs);
-  box-shadow: 0 0 0 3px rgba(234, 170, 0, 0.45);
+    outline: none;
+    border-radius: var(--radius-xs);
+    box-shadow: 0 0 0 3px rgba(234, 170, 0, 0.45);
 }
 
 /* Narrow screens: one column in reading order (`--i` set per card). */
 @media (max-width: 860px) {
-  .an-cardhero {
-    padding-bottom: 88px;
-  }
+    .an-cardhero {
+        padding-bottom: 88px;
+    }
 
-  .an-cardhero--solo {
-    padding-bottom: var(--space-8);
-  }
+    .an-cardhero--solo {
+        padding-bottom: var(--space-8);
+    }
 
-  .an-cardhero__inner {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+    .an-cardhero__inner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 
-  .an-cardhero__art {
-    flex-basis: auto;
-    width: 170px;
-  }
+    .an-cardhero__art {
+        flex-basis: auto;
+        width: 170px;
+    }
 
-  .an-cards {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    margin-top: -32px;
-    gap: var(--space-5);
-  }
+    .an-cards {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        margin-top: -32px;
+        gap: var(--space-5);
+    }
 
-  .an-cards__col {
-    display: contents;
-  }
+    .an-cards__col {
+        display: contents;
+    }
 
-  .an-tile {
-    order: var(--i);
-  }
+    .an-tile {
+        order: var(--i);
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .an-tile {
-    transition: none;
-  }
+    .an-tile {
+        transition: none;
+    }
 
-  .an-tile:hover {
-    transform: none;
-  }
+    .an-tile:hover {
+        transform: none;
+    }
 }

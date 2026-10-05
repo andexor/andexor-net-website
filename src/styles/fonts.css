@@ -14,35 +14,35 @@
  */
 
 @font-face {
-  font-family: "Play";
-  font-style: normal;
-  font-weight: 400;
-  font-display: optional;
-  src: url("/fonts/play-400.woff2") format("woff2");
+    font-family: "Play";
+    font-style: normal;
+    font-weight: 400;
+    font-display: optional;
+    src: url("/fonts/play-400.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: "Play";
-  font-style: normal;
-  font-weight: 700;
-  font-display: optional;
-  src: url("/fonts/play-700.woff2") format("woff2");
+    font-family: "Play";
+    font-style: normal;
+    font-weight: 700;
+    font-display: optional;
+    src: url("/fonts/play-700.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: "Roboto";
-  font-style: normal;
-  font-weight: 400 700;
-  font-display: optional;
-  src: url("/fonts/roboto-variable.woff2") format("woff2");
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400 700;
+    font-display: optional;
+    src: url("/fonts/roboto-variable.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: "Source Code Pro";
-  font-style: normal;
-  font-weight: 400 600;
-  font-display: optional;
-  src: url("/fonts/source-code-pro-variable.woff2") format("woff2");
+    font-family: "Source Code Pro";
+    font-style: normal;
+    font-weight: 400 600;
+    font-display: optional;
+    src: url("/fonts/source-code-pro-variable.woff2") format("woff2");
 }
 
 /* Overrides typography.css's --font-display/--font-sans/--font-mono (which
@@ -50,22 +50,22 @@
  * the loading decision is made. This rule is imported after typography.css
  * in globals.css, so it wins at :root. */
 :root {
-  --font-display: system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-sans: system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-mono: ui-monospace, "SFMono-Regular", Menlo, monospace;
+    --font-display: system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-mono: ui-monospace, "SFMono-Regular", Menlo, monospace;
 }
 
 html.fonts-ready {
-  --font-display: "Play", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-sans: "Roboto", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-mono: "Source Code Pro", ui-monospace, "SFMono-Regular", Menlo, monospace;
+    --font-display: "Play", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-sans: "Roboto", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-mono: "Source Code Pro", ui-monospace, "SFMono-Regular", Menlo, monospace;
 }
 
 body {
-  visibility: hidden;
+    visibility: hidden;
 }
 
 html.fonts-ready body,
 html.fonts-fallback body {
-  visibility: visible;
+    visibility: visible;
 }

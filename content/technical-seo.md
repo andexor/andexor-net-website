@@ -32,23 +32,6 @@ Using a consistent brand name strategy in your website,
 email address, newsletters, and social media accounts
 forms a solid foundation on which to work and be seen.
 
-## Should I also get another domain for my flagship product?
-
-There was a time when the best way to promote
-a business name and all of its products and services
-was to keep everything under a single domain name.
-
-Then some businesses began using additional domain names
-to highlight a specific product or for an ongoing
-sales promotion or as a back door entry point
-for job applicants. It hasn't diminished their
-brand authority one bit. In fact, this technique
-actually helps expand the main domain's authority
-as customers see it in multiple contexts.
-This is another way to rank pages with different keywords.
-Talk to a [Growth Marketing](/growth-marketing) specialist
-to explore your options.
-
 ## How can I obtain brand authority across the Internet?
 
 For businesses that were founded before the Internet
@@ -80,35 +63,6 @@ You may need to pick a new name that isn't
 being used anywhere and start using it everywhere.
 Ask a [Growth Marketing](/growth-marketing) specialist
 how we can help you make that transition.
-
-## What is Topical Authority (TA)?
-
-One of the key ingredients to being discovered and promoted
-by search engines and answer engines is to build up
-a reputation for dispensing knowledge on a specific subject.
-This is known as Topical Authority (TA).
-It's not something you can get all at once.
-This is something you have to earn and build up over time.
-Once you get it, you have to maintain it
-or else the world will move its focus to someone else.
-
-We can help guide you through this process
-with ongoing insights and inspiration
-on what to write next.
-You are an expert in your field.
-Let us help you become one of THE experts in your field.
-Call us today and we will explain how.
-
-## Need help with Competitive Analysis?
-
-One thing you can do to help increase your topical authority
-is to do a competitive analysis of some of your biggest competitors
-and publish the results. This is great for situations where
-you provide a better product or service than others do,
-but no one knows you exist or they don't know you are in the game
-or understand what makes you better.
-It's even better when this analysis is done by an
-independent third party. Call us today and we'll get started.
 
 ## Have you done a Use Case Analysis?
 
@@ -165,6 +119,54 @@ URL, title, H1, and description all say the same thing.
 They don't have to be an exact, word-for-word match,
 but it helps.
 
+||
+
+## Should I get another domain for my flagship product?
+
+There was a time when the best way to promote
+a business name and all of its products and services
+was to keep everything under a single domain name.
+
+Then some businesses began using additional domain names
+to highlight a specific product or for an ongoing
+sales promotion or as a back door entry point
+for job applicants. It hasn't diminished their
+brand authority one bit. In fact, this technique
+actually helps expand the main domain's authority
+as customers see it in multiple contexts.
+This is another way to rank pages with different keywords.
+Talk to a [Growth Marketing](/growth-marketing) specialist
+to explore your options.
+
+## What is Topical Authority (TA)?
+
+One of the key ingredients to being discovered and promoted
+by search engines and answer engines is to build up
+a reputation for dispensing knowledge on a specific subject.
+This is known as Topical Authority (TA).
+It's not something you can get all at once.
+This is something you have to earn and build up over time.
+Once you get it, you have to maintain it
+or else the world will move its focus to someone else.
+
+We can help guide you through this process
+with ongoing insights and inspiration
+on what to write next.
+You are an expert in your field.
+Let us help you become one of THE experts in your field.
+Call us today and we will explain how.
+
+## Need help with Competitive Analysis?
+
+One thing you can do to help increase your topical authority
+is to do a competitive analysis of some of your biggest competitors
+and publish the results. This is great for situations where
+you provide a better product or service than others do,
+but no one knows you exist or they don't know you are in the game
+or understand what makes you better.
+It's even better when this analysis is done by an
+independent third party. Call us today and we'll get started.
+
 ## Have you setup a Google Business Profile (GBP)?
 
 This is the starting point to getting found
@@ -210,6 +212,8 @@ when they use CarPlay in their car.
 
 By the way, it may also help to be listed in
 Bing Maps in order to be seen by ChatGPT.
+
+---
 
 ## Ongoing Support
 

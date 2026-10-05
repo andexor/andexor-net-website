@@ -10,43 +10,43 @@ import { PRIMARY_NEED_GROUPS, PRIMARY_NEED_OTHER } from "@/components/contact/pr
 // FR-009: primary need field groups options into "Technical Services" and
 // "Business Services", plus "Something else", with a disabled placeholder.
 describe("Primary need select", () => {
-  it("renders a disabled placeholder option", () => {
-    render(<ContactPopup open onClose={vi.fn()} />);
-    const select = screen.getByLabelText("Primary need") as HTMLSelectElement;
-    const placeholder = select.querySelector('option[value=""]') as HTMLOptionElement;
-    expect(placeholder).toHaveTextContent("Select a service…");
-    expect(placeholder.disabled).toBe(true);
-  });
-
-  it("renders every option from primary-need-options.ts, grouped exactly as defined", () => {
-    render(<ContactPopup open onClose={vi.fn()} />);
-    const select = screen.getByLabelText("Primary need") as HTMLSelectElement;
-    const groups = select.querySelectorAll("optgroup");
-    expect(groups).toHaveLength(PRIMARY_NEED_GROUPS.length);
-
-    PRIMARY_NEED_GROUPS.forEach((group, index) => {
-      const groupEl = groups[index];
-      expect(groupEl).toHaveAttribute("label", group.label);
-      const optionLabels = Array.from(groupEl.querySelectorAll("option")).map((o) => o.textContent);
-      expect(optionLabels).toEqual(group.options);
+    it("renders a disabled placeholder option", () => {
+        render(<ContactPopup open onClose={vi.fn()} />);
+        const select = screen.getByLabelText("Primary need") as HTMLSelectElement;
+        const placeholder = select.querySelector('option[value=""]') as HTMLOptionElement;
+        expect(placeholder).toHaveTextContent("Select a service…");
+        expect(placeholder.disabled).toBe(true);
     });
 
-    // "Something else" is a trailing top-level option, not in either group.
-    const otherOption = select.querySelector(`option[value="${PRIMARY_NEED_OTHER}"]`);
-    expect(otherOption).not.toBeNull();
-    expect(otherOption?.closest("optgroup")).toBeNull();
-  });
+    it("renders every option from primary-need-options.ts, grouped exactly as defined", () => {
+        render(<ContactPopup open onClose={vi.fn()} />);
+        const select = screen.getByLabelText("Primary need") as HTMLSelectElement;
+        const groups = select.querySelectorAll("optgroup");
+        expect(groups).toHaveLength(PRIMARY_NEED_GROUPS.length);
 
-  it("labels the two groups with capitalized headings", () => {
-    render(<ContactPopup open onClose={vi.fn()} />);
-    const select = screen.getByLabelText("Primary need") as HTMLSelectElement;
-    const labels = Array.from(select.querySelectorAll("optgroup")).map((g) => g.getAttribute("label"));
-    expect(labels).toEqual(["Technical Services", "Business Services"]);
-  });
+        PRIMARY_NEED_GROUPS.forEach((group, index) => {
+            const groupEl = groups[index];
+            expect(groupEl).toHaveAttribute("label", group.label);
+            const optionLabels = Array.from(groupEl.querySelectorAll("option")).map((o) => o.textContent);
+            expect(optionLabels).toEqual(group.options);
+        });
 
-  it("blocks submission while the placeholder is still selected (required)", () => {
-    render(<ContactPopup open onClose={vi.fn()} />);
-    expect(screen.getByLabelText("Primary need")).toBeRequired();
-    expect(screen.getByLabelText("Primary need")).toHaveValue("");
-  });
+        // "Something else" is a trailing top-level option, not in either group.
+        const otherOption = select.querySelector(`option[value="${PRIMARY_NEED_OTHER}"]`);
+        expect(otherOption).not.toBeNull();
+        expect(otherOption?.closest("optgroup")).toBeNull();
+    });
+
+    it("labels the two groups with capitalized headings", () => {
+        render(<ContactPopup open onClose={vi.fn()} />);
+        const select = screen.getByLabelText("Primary need") as HTMLSelectElement;
+        const labels = Array.from(select.querySelectorAll("optgroup")).map((g) => g.getAttribute("label"));
+        expect(labels).toEqual(["Technical Services", "Business Services"]);
+    });
+
+    it("blocks submission while the placeholder is still selected (required)", () => {
+        render(<ContactPopup open onClose={vi.fn()} />);
+        expect(screen.getByLabelText("Primary need")).toBeRequired();
+        expect(screen.getByLabelText("Primary need")).toHaveValue("");
+    });
 });

@@ -4,19 +4,19 @@
 
 // Per data-model.md's "Primary Need option list" and FR-009.
 export interface PrimaryNeedGroup {
-  label: string;
-  options: string[];
+    label: string;
+    options: string[];
 }
 
 export const PRIMARY_NEED_GROUPS: PrimaryNeedGroup[] = [
-  {
-    label: "Technical Services",
-    options: ["Web Development", "Web Hosting", "Technical SEO", "Agentic Systems"],
-  },
-  {
-    label: "Business Services",
-    options: ["Cost Reduction", "Lead Generation", "Growth Marketing", "Process Re-engineering"],
-  },
+    {
+        label: "Technical Services",
+        options: ["Web Development", "Web Hosting", "Technical SEO", "Agentic Systems"],
+    },
+    {
+        label: "Business Services",
+        options: ["Cost Reduction", "Lead Generation", "Growth Marketing", "Process Re-engineering"],
+    },
 ];
 
 export const PRIMARY_NEED_OTHER = "Something else";

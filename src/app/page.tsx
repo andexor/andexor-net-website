@@ -14,14 +14,14 @@ import { Services } from "@/components/marketing/Services";
 // footer. The Contact Us popup is rendered once by ContactProvider in the root
 // layout (spec 014). FR-007: every "Contact Us" CTA opens that same popup.
 export default function HomePage() {
-  const { openContact } = useContact();
+    const { openContact } = useContact();
 
-  return (
-    <>
-      <Hero />
-      <Services />
-      <CTABand onContactClick={() => openContact()} />
-      <Footer />
-    </>
-  );
+    return (
+        <>
+            <Hero />
+            <Services />
+            <CTABand onContactClick={() => openContact()} />
+            <Footer />
+        </>
+    );
 }

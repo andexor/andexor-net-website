@@ -8,70 +8,70 @@
  */
 
 .an-content-header {
-  border-bottom: 1px solid var(--border-subtle);
-  background: var(--surface-card);
+    border-bottom: 1px solid var(--border-subtle);
+    background: var(--surface-card);
 }
 
 .an-content-header__inner {
-  max-width: var(--container-2xl);
-  margin: 0 auto;
-  padding: 14px 24px;
+    max-width: var(--container-2xl);
+    margin: 0 auto;
+    padding: 14px 24px;
 }
 
 .an-content {
-  padding: var(--space-12) 24px var(--space-16);
+    padding: var(--space-12) 24px var(--space-16);
 }
 
 .an-prose {
-  max-width: 720px;
-  margin: 0 auto;
-  font-size: var(--text-md);
-  line-height: var(--leading-relaxed);
-  /* Links here have no underline (specs/007-no-link-underlines), so they must
+    max-width: 720px;
+    margin: 0 auto;
+    font-size: var(--text-md);
+    line-height: var(--leading-relaxed);
+    /* Links here have no underline (specs/007-no-link-underlines), so they must
    * stand out from the text by color alone: brighter text, stronger link blue
    * (3.4:1 apart; 4.65:1 or better against the page). */
-  --text-body: var(--slate-50);
-  --text-link: var(--blue-400);
-  color: var(--text-body);
+    --text-body: var(--slate-50);
+    --text-link: var(--blue-400);
+    color: var(--text-body);
 }
 
 .an-prose > :first-child {
-  margin-top: 0;
+    margin-top: 0;
 }
 
 .an-prose h1,
 .an-prose h2,
 .an-prose h3,
 .an-prose h4 {
-  font-family: var(--font-display);
-  font-weight: 700;
-  color: var(--text-heading);
-  letter-spacing: -0.02em;
-  text-wrap: balance;
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--text-heading);
+    letter-spacing: -0.02em;
+    text-wrap: balance;
 }
 
 .an-prose h1 {
-  font-size: clamp(32px, 4.4vw, 48px);
-  line-height: var(--leading-tight);
-  margin: 0 0 var(--space-6);
+    font-size: clamp(32px, 4.4vw, 48px);
+    line-height: var(--leading-tight);
+    margin: 0 0 var(--space-6);
 }
 
 .an-prose h2 {
-  font-size: clamp(26px, 3vw, 34px);
-  line-height: var(--leading-tight);
-  margin: var(--space-12) 0 var(--space-4);
+    font-size: clamp(26px, 3vw, 34px);
+    line-height: var(--leading-tight);
+    margin: var(--space-12) 0 var(--space-4);
 }
 
 .an-prose h3 {
-  font-size: var(--text-xl);
-  line-height: var(--leading-snug);
-  margin: var(--space-8) 0 var(--space-3);
+    font-size: var(--text-xl);
+    line-height: var(--leading-snug);
+    margin: var(--space-8) 0 var(--space-3);
 }
 
 .an-prose h4 {
-  font-size: var(--text-lg);
-  line-height: var(--leading-snug);
-  margin: var(--space-6) 0 var(--space-2);
+    font-size: var(--text-lg);
+    line-height: var(--leading-snug);
+    margin: var(--space-6) 0 var(--space-2);
 }
 
 .an-prose p,
@@ -80,35 +80,35 @@
 .an-prose blockquote,
 .an-prose pre,
 .an-prose table {
-  margin: 0 0 var(--space-5);
+    margin: 0 0 var(--space-5);
 }
 
 .an-prose ul,
 .an-prose ol {
-  padding-left: var(--space-6);
+    padding-left: var(--space-6);
 }
 
 .an-prose li + li {
-  margin-top: var(--space-2);
+    margin-top: var(--space-2);
 }
 
 .an-prose a {
-  color: var(--text-link);
+    color: var(--text-link);
 }
 
 .an-prose a:hover {
-  color: var(--blue-300);
+    color: var(--blue-300);
 }
 
 .an-prose a:focus-visible {
-  outline: none;
-  border-radius: var(--radius-xs);
-  box-shadow: 0 0 0 3px rgba(234, 170, 0, 0.45);
+    outline: none;
+    border-radius: var(--radius-xs);
+    box-shadow: 0 0 0 3px rgba(234, 170, 0, 0.45);
 }
 
 .an-prose strong {
-  font-weight: 700;
-  color: var(--text-strong);
+    font-weight: 700;
+    color: var(--text-strong);
 }
 
 /* Never italics: emphasis is carried by weight instead. */
@@ -116,78 +116,78 @@
 .an-prose cite,
 .an-prose i,
 .an-prose blockquote {
-  font-style: normal;
+    font-style: normal;
 }
 
 .an-prose em {
-  font-weight: 500;
-  color: var(--text-strong);
+    font-weight: 500;
+    color: var(--text-strong);
 }
 
 .an-prose blockquote {
-  padding: var(--space-4) var(--space-5);
-  background: var(--surface-brand-soft);
-  border-radius: var(--radius-lg);
+    padding: var(--space-4) var(--space-5);
+    background: var(--surface-brand-soft);
+    border-radius: var(--radius-lg);
 }
 
 .an-prose blockquote > :last-child {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 .an-prose hr {
-  border: 0;
-  border-top: 1px solid var(--border-subtle);
-  margin: var(--space-10) 0;
+    border: 0;
+    border-top: 1px solid var(--border-subtle);
+    margin: var(--space-10) 0;
 }
 
 .an-prose img {
-  max-width: 100%;
-  height: auto;
-  border-radius: var(--radius-lg);
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-lg);
 }
 
 .an-prose code {
-  font-family: var(--font-mono);
-  font-size: 0.9em;
-  padding: 2px 6px;
-  background: var(--surface-sunken);
-  border-radius: var(--radius-sm);
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    padding: 2px 6px;
+    background: var(--surface-sunken);
+    border-radius: var(--radius-sm);
 }
 
 .an-prose pre {
-  overflow-x: auto;
-  padding: var(--space-4) var(--space-5);
-  background: var(--surface-ink);
-  color: var(--blue-100);
-  border-radius: var(--radius-lg);
-  line-height: var(--leading-normal);
+    overflow-x: auto;
+    padding: var(--space-4) var(--space-5);
+    background: var(--surface-ink);
+    color: var(--blue-100);
+    border-radius: var(--radius-lg);
+    line-height: var(--leading-normal);
 }
 
 .an-prose pre code {
-  padding: 0;
-  background: none;
-  color: inherit;
+    padding: 0;
+    background: none;
+    color: inherit;
 }
 
 .an-prose table {
-  display: block;
-  overflow-x: auto;
-  border-collapse: collapse;
-  font-size: var(--text-sm);
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    font-size: var(--text-sm);
 }
 
 .an-prose th,
 .an-prose td {
-  padding: var(--space-2) var(--space-4);
-  border: 1px solid var(--border-subtle);
-  text-align: left;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--border-subtle);
+    text-align: left;
 }
 
 .an-prose th {
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  letter-spacing: var(--tracking-caps);
-  text-transform: uppercase;
-  color: var(--text-heading);
-  background: var(--surface-brand-soft);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    color: var(--text-heading);
+    background: var(--surface-brand-soft);
 }

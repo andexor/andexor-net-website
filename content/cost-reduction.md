@@ -48,22 +48,6 @@ for day-to-day operations, we can
 help you archive it and even setup
 automated tasks for routine archival.
 
-## Application
-
-Most applications today are either
-underpowered or overpowered.
-We can examine usage metrics
-and recommend configuration changes
-to scale up or down automatically as needed.
-There are a lot more options available
-that what comes with default settings.
-
-In some cases, this can be a long road,
-as optimizations for one service
-may not be realized until an entire
-cluster can be scaled down.
-We can find out if that applies to you.
-
 ## Logs
 
 Every application handles logs in one of two ways:
@@ -81,6 +65,24 @@ We know how to analyze both scenarios and tame them
 so you will have only what you need, when you need it.
 This not only makes applications far easier to maintain,
 it costs less too.
+
+||
+
+## Application
+
+Most applications today are either
+underpowered or overpowered.
+We can examine usage metrics
+and recommend configuration changes
+to scale up or down automatically as needed.
+There are a lot more options available
+that what comes with default settings.
+
+In some cases, this can be a long road,
+as optimizations for one service
+may not be realized until an entire
+cluster can be scaled down.
+We can find out if that applies to you.
 
 ## Metrics
 
@@ -100,6 +102,8 @@ at regular intervals, such as weekly,
 monthly, quarterly, and annually.
 Combine that with reports built to use multiple data sources
 and you can keep more data for a longer time at a lower cost.
+
+---
 
 ## Alerts
 

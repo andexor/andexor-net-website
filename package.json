@@ -4,8 +4,10 @@
   "license": "Apache-2.0",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && bun scripts/format-site.ts",
     "lint": "eslint .",
+    "format": "prettier --write \"**/*.{ts,tsx,js,mjs,css,html}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,mjs,css,html}\"",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test"

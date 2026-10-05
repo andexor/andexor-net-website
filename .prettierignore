@@ -1,0 +1,13 @@
+/design/
+/out/
+/.next/
+/node_modules/
+/specs/
+/content/
+/reports/
+/playwright-report/
+/test-results/
+/stubs/
+bun.lock
+tsconfig.tsbuildinfo
+*.md

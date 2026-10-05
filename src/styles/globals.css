@@ -20,7 +20,7 @@
 /* Browsers give <body> an 8px default margin, which shows as a border around
  * the page. Content bleeds to the edges. */
 body {
-  margin: 0;
+    margin: 0;
 }
 
 /* Reserve the scrollbar's space on every page. Without this, a page long
@@ -29,5 +29,5 @@ body {
  * as "Page not found" (specs/009-consistent-left-edge). With overlay scrollbars
  * the reserved width is 0, so nothing changes there. */
 html {
-  scrollbar-gutter: stable;
+    scrollbar-gutter: stable;
 }

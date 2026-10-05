@@ -31,13 +31,6 @@ We can create something beautiful, usable, and accessible.
 We will build it on a strong technical foundation,
 ready to handle loads of new customers.
 
-## Is it time for a re-design?
-
-Let's give it a fresh, new look and modernize it.
-We can draw upon award-winning examples
-for design inspiration to get started
-and add as many features as you like.
-
 ## Need a simple brochure site?
 
 We got you.
@@ -45,30 +38,6 @@ We can create pages listing each one of
 your products, services, and locations.
 We can also get each one of your locations
 properly listed on Google Maps.
-
-## Want a blog?
-
-No problem.
-We'll set you up with a content management system
-to publish your articles.
-
-## How about some cool forms, right on your website?
-
-No sweat. We'll make it professionally branded on your site.
-No third-party tools needed.
-
-## Want to setup an e-commerce shop?
-
-Let us help you setup a shop
-to sell products and services.
-
-## Got a slow website?
-
-Let us help you speed it up.
-We can monitor page load times,
-identify the bottlenecks,
-and optimize each stage
-for faster performance.
 
 ## Need a web application?
 
@@ -136,6 +105,47 @@ cut through the weeds to reduce or eliminate
 excess alerts so you can focus your time on
 what really matters.
 
+## Technical SEO
+
+Whether we build a new site or spruce up an existing one,
+it needs to be found by search engines and AI agents.
+Let's talk about the many strategies that can make you
+more visible and help you be seen automatically.
+See our [Technical SEO](/technical-seo) options today.
+
+||
+
+## Is it time for a re-design?
+
+Let's give it a fresh, new look and modernize it.
+We can draw upon award-winning examples
+for design inspiration to get started
+and add as many features as you like.
+
+## Want a blog?
+
+No problem.
+We'll set you up with a content management system
+to publish your articles.
+
+## How about some cool forms, right on your website?
+
+No sweat. We'll make it professionally branded on your site.
+No third-party tools needed.
+
+## Want to setup an e-commerce shop?
+
+Let us help you setup a shop
+to sell products and services.
+
+## Got a slow website?
+
+Let us help you speed it up.
+We can monitor page load times,
+identify the bottlenecks,
+and optimize each stage
+for faster performance.
+
 ## Slow application performance driving customers away?
 
 Let our expertise in site reliability engineering
@@ -173,14 +183,6 @@ websites and web applications.
 
 Check out our [Web Hosting](/web-hosting) options
 in the design phase and when it's time for deployment.
-
-## Technical SEO
-
-Whether we build a new site or spruce up an existing one,
-it needs to be found by search engines and AI agents.
-Let's talk about the many strategies that can make you
-more visible and help you be seen automatically.
-See our [Technical SEO](/technical-seo) options today.
 
 ## Growth Marketing
 

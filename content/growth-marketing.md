@@ -20,22 +20,6 @@ Please create a modern 3D isometric icon illustration that shows a chart with an
 
 Let's tell everyone about you. In all the right channels.
 
-## Need branded email?
-
-Yes you do. If you're using a third-party email system,
-you're not using your brand. You're missing an easy
-opportunity to spread your brand name with every email you send.
-Let's get you setup with email coming from your own domain name
-to add a professional touch to it.
-
-## Do you send out a newsletter?
-
-If you send a daily, weekly, monthly, or occasional newsletter
-to your subscribers, then you know how easy it is to use it
-for free marketing. You can always use it to make product
-and service announcements, educate buyers, and answer questions.
-If you have not ventured into this yet, let's get you started.
-
 ## Need help with social media campaigns?
 
 Let's take a look at which social media platforms
@@ -60,3 +44,21 @@ blog entries, newsletters, social posts, and ads?
 We can do that too.
 
 Talk to a Marketing Specialist today to get started.
+
+||
+
+## Need branded email?
+
+Yes you do. If you're using a third-party email system,
+you're not using your brand. You're missing an easy
+opportunity to spread your brand name with every email you send.
+Let's get you setup with email coming from your own domain name
+to add a professional touch to it.
+
+## Do you send out a newsletter?
+
+If you send a daily, weekly, monthly, or occasional newsletter
+to your subscribers, then you know how easy it is to use it
+for free marketing. You can always use it to make product
+and service announcements, educate buyers, and answer questions.
+If you have not ventured into this yet, let's get you started.
