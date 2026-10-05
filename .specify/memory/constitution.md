@@ -1,6 +1,11 @@
 <!--
 Sync Impact Report
-- Version change: 1.4.0 → 1.5.0 (MINOR: Technology Constraints gains a Formatting rule: code written for the
+- Version change: 1.5.0 → 1.6.0 (MINOR: Technology Constraints gains a Quotes rule: no curly, smart, or typographic
+  quote may appear in any file, as a character or as an HTML reference; only the straight apostrophe and double quote
+  are used, and built pages write them as plain characters. Third-party text the owner has said not to alter, the Code
+  of Conduct files, is the one exception. Owner decision, specs/040-straight-quotes-only; enforced by
+  tests/unit/straight-quotes.test.ts. Templates in .specify/templates/ checked: none mention quotes).
+  Earlier: 1.4.0 → 1.5.0 (MINOR: Technology Constraints gains a Formatting rule: code written for the
   site and the built site are formatted with Prettier at 4 spaces and 120 characters, the site's own scripts stay
   separate and unminified, and a formatter that adds whitespace must not change the DOM. Owner decision,
   specs/038-readable-generated-code. Templates in .specify/templates/ checked: none mention formatting).
@@ -147,6 +152,11 @@ out of customers' view.
   MUST NOT change what a visitor sees or how a page behaves, and any step that adds whitespace to built HTML MUST
   prove the DOM is unchanged (the React hydration rule). `bun run test` MUST fail, naming the file, when a file breaks
   these rules.
+- Quotes: no file in the repository MAY contain a curly, smart, or typographic quote, whether as a character or as an
+  HTML character reference. Only the straight apostrophe and the straight double quote are used, and built pages write
+  them as plain characters rather than escapes. The one exception is third-party text the owner has said not to alter
+  (`CODE_OF_CONDUCT.md` and `CODE_OF_CONDUCT.adoc`), which MUST NOT be changed and is not checked. `bun run test` MUST
+  fail, naming the file and line, when the rule is broken (`tests/unit/straight-quotes.test.ts`).
 - License header: every generated source file (`.ts`, `.tsx`, `.js`, `.css`, `Dockerfile`, shell
   scripts, and similar) MUST start with the SPDX header (`SPDX-License-Identifier: Apache-2.0`,
   `Copyright 2026 Andexor Network, Inc.`, `Author: Ed Jenkins <ed@andexor.net>`) in that
@@ -227,4 +237,4 @@ MUST be explicitly justified in the relevant artifact rather than silently intro
 are companion documents for contributors; where they conflict with this constitution, this
 constitution wins until one of them is amended.
 
-**Version**: 1.5.0 | **Ratified**: 2026-09-28 | **Last Amended**: 2026-10-05
+**Version**: 1.6.0 | **Ratified**: 2026-09-28 | **Last Amended**: 2026-10-05

@@ -62,6 +62,43 @@ export function stripAddedWhitespace(text: string): string {
     return text.replace(/^\s*\n\s*/, "").replace(/\n\s*$/, "");
 }
 
+/** The references React writes for a straight apostrophe, and for a straight double quote in text. */
+const APOSTROPHE_REFERENCES = ["&#x27;", "&#39;"];
+const QUOTE_REFERENCE = "&quot;";
+
+function plainQuotesInText(text: string): string {
+    let result = text;
+    for (const reference of APOSTROPHE_REFERENCES) result = result.replaceAll(reference, "'");
+    return result.replaceAll(QUOTE_REFERENCE, '"');
+}
+
+// In an attribute value written with double quotes, an apostrophe is valid as it is; a double quote is not, so an
+// escaped double quote stays escaped.
+function plainQuotesInTag(tag: string): string {
+    return tag.replace(/="([^"]*)"/g, (_, value: string) => {
+        let plain = value;
+        for (const reference of APOSTROPHE_REFERENCES) plain = plain.replaceAll(reference, "'");
+        return `="${plain}"`;
+    });
+}
+
+/**
+ * Writes apostrophes and double quotes as the plain characters, so the page says "We'll" rather than the escape React
+ * writes (specs/040-straight-quotes-only). The DOM is the same. Script, style, and noscript content is left alone.
+ */
+export function plainQuotes(html: string): string {
+    return html
+        .split(/(<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>|<noscript>[\s\S]*?<\/noscript>)/)
+        .map((part, index) =>
+            index % 2 === 1
+                ? part
+                : part.replace(/<[^>]*>|[^<]+/g, (token) =>
+                      token.startsWith("<") ? plainQuotesInTag(token) : plainQuotesInText(token),
+                  ),
+        )
+        .join("");
+}
+
 /** Splits HTML into tokens. Raw-text elements keep their open tag, raw content, and close tag as separate tokens. */
 export function tokenize(html: string): string[] {
     const tokens: string[] = [];
@@ -85,7 +122,8 @@ export function tokenize(html: string): string[] {
         } else if (token.startsWith("<")) {
             tokens.push(normalizeTag(token));
         } else {
-            tokens.push(token);
+            // The plain and escaped quotes are the same text (spec 040).
+            tokens.push(plainQuotesInText(token));
         }
     }
     return tokens;
@@ -264,8 +302,9 @@ async function restoreRegions(formatted: string, regions: string[], file: string
 
 /** Formats one built page and returns the new HTML. Throws if the DOM would change. */
 export async function formatHtml(original: string, file: string): Promise<string> {
-    // 1. Set aside the content React does not hydrate; it is formatted separately, with its whitespace kept.
-    const { skeleton, regions } = extractRegions(original);
+    // 1. Write apostrophes and quotes as plain characters, then set aside the content React does not hydrate;
+    // it is formatted separately, with its whitespace kept.
+    const { skeleton, regions } = extractRegions(plainQuotes(original));
 
     // 2. Keep <noscript> byte for byte: React compares its text.
     const noscripts = skeleton.match(/<noscript>[\s\S]*?<\/noscript>/g) ?? [];

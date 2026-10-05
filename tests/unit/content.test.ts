@@ -7,6 +7,7 @@ import os from "node:os";
 import path from "node:path";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { getContentPage, listContentSlugs, renderMarkdown } from "@/lib/content";
+import { findBannedQuotes } from "../../scripts/quote-rules";
 
 let dir: string;
 
@@ -288,6 +289,32 @@ describe("cards layout", () => {
             expect(html).toMatch(/<article class="an-tile an-tile--wide"[^>]*><h2[^>]*>Techno Bits</);
             expect(html.indexOf("Card C")).toBeLessThan(html.indexOf("Techno Bits"));
         });
+    });
+
+    // Spec 040: the Markdown renderer never turns straight quotes into curly ones.
+    it("keeps straight apostrophes and double quotes exactly as typed", async () => {
+        write(
+            "quotes.md",
+            [
+                "---",
+                "layout: cards",
+                "---",
+                "# It's here",
+                "",
+                "## Don't miss it",
+                "",
+                'He said "hello" and we\'ll agree.',
+                "",
+            ].join("\n"),
+        );
+        const page = (await getContentPage(["quotes"], dir))!.cards!;
+        const html = page.headingHtml + page.cardsHtml;
+        expect(html).toContain("It's here");
+        expect(html).toContain("Don't miss it");
+        expect(html).toContain("we'll agree");
+        expect(findBannedQuotes(html)).toEqual([]);
+        write("plain.md", '# Say "hi" to Ed\'s team\n');
+        expect(findBannedQuotes((await getContentPage(["plain"], dir))!.html)).toEqual([]);
     });
 
     it("uses the >> line as the card label", async () => {

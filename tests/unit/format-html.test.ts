@@ -3,7 +3,7 @@
 // Author: Ed Jenkins <ed@andexor.net>
 
 import { describe, expect, it } from "vitest";
-import { WHITESPACE_SCRIPT, assertSameDom, formatHtml } from "../../scripts/format-html";
+import { WHITESPACE_SCRIPT, assertSameDom, formatHtml, plainQuotes } from "../../scripts/format-html";
 
 // Rules from specs/038-readable-generated-code/contracts/formatting-rules.md, applied to a small page shaped like
 // the Next.js output (one line, no whitespace between elements).
@@ -66,5 +66,53 @@ describe("assertSameDom", () => {
     it("accepts a trailing space before an inline element", async () => {
         const page = PAGE.replace("<h1>Hello world</h1>", '<h1>Hello <a href="/y">world</a></h1>');
         await expect(formatHtml(page, "space.html")).resolves.toContain("Hello");
+    });
+});
+
+// Spec 040: apostrophes and double quotes are written as the plain characters, not as the escapes React writes.
+describe("plain quotes", () => {
+    const ESCAPED_APOSTROPHE = "&#x27;";
+    const page = (body: string) =>
+        `<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><title>T</title></head><body>${body}</body></html>`;
+
+    it("writes an apostrophe and a double quote in text as the plain characters", () => {
+        expect(plainQuotes(`<p>We${ESCAPED_APOSTROPHE}ll say &quot;hi&quot; and Ed&#39;s</p>`)).toBe(
+            `<p>We'll say "hi" and Ed's</p>`,
+        );
+    });
+
+    it("writes an apostrophe in a double-quoted attribute as the plain character and keeps an escaped double quote", () => {
+        expect(plainQuotes(`<img alt="it${ESCAPED_APOSTROPHE}s" title="say &quot;hi&quot;"/>`)).toBe(
+            `<img alt="it's" title="say &quot;hi&quot;"/>`,
+        );
+    });
+
+    it("leaves script, style, and noscript content alone", () => {
+        const raw = `<script>var s = "a${ESCAPED_APOSTROPHE}b";</script><style>p::after{content:"${ESCAPED_APOSTROPHE}"}</style><noscript>x${ESCAPED_APOSTROPHE}y</noscript>`;
+        expect(plainQuotes(raw)).toBe(raw);
+    });
+
+    it("keeps the escapes HTML needs", () => {
+        expect(plainQuotes("<p>a &amp; b &lt; c &gt; d</p>")).toBe("<p>a &amp; b &lt; c &gt; d</p>");
+    });
+
+    it("shows plain apostrophes and quotes in a formatted page, with the same DOM", async () => {
+        const output = await formatHtml(
+            page(
+                `<p>We${ESCAPED_APOSTROPHE}ll say &quot;hi&quot;</p><img src="/a.png" alt="it${ESCAPED_APOSTROPHE}s"/>`,
+            ),
+            "quotes.html",
+        );
+        expect(output).toContain(`We'll say "hi"`);
+        expect(output).toContain(`alt="it's"`);
+        expect(output).not.toContain(ESCAPED_APOSTROPHE);
+        expect(output).not.toContain("&quot;");
+    });
+
+    it("treats the plain and escaped forms as the same text, and still names the file when text really changes", () => {
+        const escaped = page(`<p>We${ESCAPED_APOSTROPHE}ll</p>`);
+        const plain = page("<p>We'll</p>");
+        expect(() => assertSameDom(escaped, plain, "same.html")).not.toThrow();
+        expect(() => assertSameDom(escaped, page("<p>We will</p>"), "changed.html")).toThrow(/changed\.html/);
     });
 });

@@ -91,6 +91,18 @@ describes an underline rule, remove or correct it when you find it. Do not ask t
 `.an-prose` and `.an-tile`, body text is `--slate-50` and links are `--blue-400` (hover
 `--blue-300`), which passes the WCAG 2.1 AA link-versus-text check. Keep this rule when adding pages or components.
 
+## Straight quotes only
+
+Never use curly, smart, or typographic quotes, in any file and in any form: not the characters, and not HTML
+character references to them. Use only the straight apostrophe (') and the straight double quote ("). This covers
+source, content, documentation, specs, tests, commit messages, and everything an AI assistant writes. The one
+exception is third-party text the owner has said not to alter, `CODE_OF_CONDUCT.md` and `CODE_OF_CONDUCT.adoc`: leave
+those exactly as they are, and they are not checked. The built pages also write apostrophes and quotes as plain
+characters (We'll, not the escape React writes); `scripts/format-html.ts` does that. `tests/unit/straight-quotes.test.ts`
+fails, naming the file and line, when a curly quote appears. When writing a file, never type a backslash-u escape for
+a quote: it can turn into the real character. Use straight quotes, or numeric code points in code. The owner has
+asked for this firmly, more than once. Do not ask again.
+
 ## Toolchain
 
 The site is built with Next.js using Static Site Generation (SSG, `output: "export"`) — no
