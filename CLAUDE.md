@@ -150,6 +150,34 @@ Read `CONTRIBUTING.md` and `setup.md` (companions to the constitution, with `SEC
   nothing, and no machine-sounding prose.
 - Report security issues per `SECURITY.md`, never in public issues or PRs.
 
+## Formatting
+
+All code written for this site is formatted with Prettier: 4 spaces per indent level, no tabs, lines under 120
+characters where possible (`.prettierrc.json`). Use `bun run format` and `bun run format:check`. This applies to the
+source (`.ts`, `.tsx`, `.js`, `.mjs`, `.css`) and to the built site in `out/`. `design/`, `content/`, `specs/`,
+and Markdown are not formatted. Anchor `.prettierignore` patterns with a leading `/`: an unanchored `content/` also
+skips `src/components/content/`.
+
+`bun run build` runs `next build` and then `scripts/format-site.ts`, which:
+
+- Formats every built HTML page, the site stylesheet, and the site's own script chunk. The vendor chunks (React,
+  Next.js, polyfills) stay minified.
+- Relies on `next.config.ts`, which puts all `src/` code in one `site-*.js` chunk and tells Next's minifier to skip it.
+- Adds one small inline script first in each page's `<head>`. React rejects the whitespace that pretty-printed HTML
+  adds between elements (hydration error #418), so the script strips it before hydration. The formatter fails the build
+  if the formatted page would not have the same DOM as the original (`scripts/format-html.ts`).
+
+Rules to keep in mind:
+
+- Markdown-generated HTML is rendered with `dangerouslySetInnerHTML`. Give such an element `data-raw-html=""`: the
+  formatter formats its content with whitespace-safe settings, and the script leaves it alone, because a newline
+  between inline elements there is a visible space.
+- Do not put a newline in React-rendered text, and do not rely on leading whitespace in a text node. The formatter
+  cannot tell it from its own indentation, and the build fails with the file and token when it finds one.
+- No line of built HTML starts with `>`. Do not switch the formatter to a mode that does that.
+- `tests/e2e/visual-parity.spec.ts` and its snapshots compare the built pages with a build of `main` from before this
+  feature (spec 038). Delete both once the owner accepts the change.
+
 ## License header
 
 Every generated source code file (`.ts`/`.tsx`/`.js`/`.css`, `Dockerfile`, shell scripts, etc.)

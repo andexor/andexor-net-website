@@ -14,6 +14,9 @@ export interface ContentPageProps {
 // Shell for Markdown-authored pages and the not-found page: logo bar, article
 // or card hero, then the shared footer. `html` and `cards` are produced at build time from repo-owned
 // Markdown files (src/lib/content.ts), never from user input.
+// Elements with `data-raw-html` hold Markdown-generated HTML that React does not hydrate. The post-build
+// formatter (scripts/format-html.ts) formats them with whitespace-safe settings, and its whitespace script skips
+// them, because a newline between inline elements there is a visible space.
 export function ContentPage({ html, cards }: ContentPageProps) {
     // A hero with no cards (the not-found page) gets a compact bottom edge.
     const hasCards = Boolean(cards && cards.cardsHtml);
@@ -46,21 +49,28 @@ export function ContentPage({ html, cards }: ContentPageProps) {
                                         {"\u00a0"}
                                     </p>
                                 )}
-                                <h1 dangerouslySetInnerHTML={{ __html: cards.headingHtml }} />
+                                <h1 data-raw-html="" dangerouslySetInnerHTML={{ __html: cards.headingHtml }} />
                                 {cards.introHtml && (
                                     <div
                                         className="an-cardhero__intro"
+                                        data-raw-html=""
                                         dangerouslySetInnerHTML={{ __html: cards.introHtml }}
                                     />
                                 )}
                             </div>
                         </div>
                     </section>
-                    {hasCards && <div className="an-cards" dangerouslySetInnerHTML={{ __html: cards.cardsHtml }} />}
+                    {hasCards && (
+                        <div
+                            className="an-cards"
+                            data-raw-html=""
+                            dangerouslySetInnerHTML={{ __html: cards.cardsHtml }}
+                        />
+                    )}
                 </main>
             ) : (
                 <main className="an-content">
-                    <article className="an-prose" dangerouslySetInnerHTML={{ __html: html }} />
+                    <article className="an-prose" data-raw-html="" dangerouslySetInnerHTML={{ __html: html }} />
                 </main>
             )}
             <Footer />

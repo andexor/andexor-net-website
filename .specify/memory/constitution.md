@@ -1,6 +1,10 @@
 <!--
 Sync Impact Report
-- Version change: 1.3.2 → 1.4.0 (MINOR: Principle IV gains a new prohibition: no link on the site
+- Version change: 1.4.0 → 1.5.0 (MINOR: Technology Constraints gains a Formatting rule: code written for the
+  site and the built site are formatted with Prettier at 4 spaces and 120 characters, the site's own scripts stay
+  separate and unminified, and a formatter that adds whitespace must not change the DOM. Owner decision,
+  specs/038-readable-generated-code. Templates in .specify/templates/ checked: none mention formatting).
+  Earlier: 1.3.2 → 1.4.0 (MINOR: Principle IV gains a new prohibition: no link on the site
   may go to `#top`, and the footer and home page hero logos are plain branding, not links. Owner
   decision, specs/008-no-top-links; enforced by tests/unit/no-top-links.test.ts. Templates in
   .specify/templates/ checked: none mention it). Earlier: 1.3.1 → 1.3.2 (PATCH: Principle VIII names the framework not-found page as the
@@ -136,6 +140,13 @@ out of customers' view.
 - Docker workflow: `build.sh`, `run.sh`, and `debug.sh`, with images tagged
   `andexor/<repo-dir-basename>:<VERSION>`. Alternate `docker build` or `docker run` invocations
   MUST NOT be invented.
+- Formatting: code written for the site (`.ts`, `.tsx`, `.js`, `.mjs`, `.css`) and the built site (HTML, the site
+  stylesheet, and the site's own script chunk) MUST be formatted with Prettier: 4 spaces per indent level, no tabs,
+  and lines under 120 characters where possible. The site's own CSS and JavaScript MUST stay in files separate from
+  third-party code and MUST NOT be minified. Third-party CSS and JavaScript MAY be combined and minified. Formatting
+  MUST NOT change what a visitor sees or how a page behaves, and any step that adds whitespace to built HTML MUST
+  prove the DOM is unchanged (the React hydration rule). `bun run test` MUST fail, naming the file, when a file breaks
+  these rules.
 - License header: every generated source file (`.ts`, `.tsx`, `.js`, `.css`, `Dockerfile`, shell
   scripts, and similar) MUST start with the SPDX header (`SPDX-License-Identifier: Apache-2.0`,
   `Copyright 2026 Andexor Network, Inc.`, `Author: Ed Jenkins <ed@andexor.net>`) in that
@@ -216,4 +227,4 @@ MUST be explicitly justified in the relevant artifact rather than silently intro
 are companion documents for contributors; where they conflict with this constitution, this
 constitution wins until one of them is amended.
 
-**Version**: 1.4.0 | **Ratified**: 2026-09-28 | **Last Amended**: 2026-09-30
+**Version**: 1.5.0 | **Ratified**: 2026-09-28 | **Last Amended**: 2026-10-05

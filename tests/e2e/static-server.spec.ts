@@ -27,6 +27,7 @@ test("never serves a file from outside the site directory", async ({ request }) 
     for (const path of ["/..%2fpackage.json", "/..%2f..%2fetc%2fpasswd", "/%00", "/%E0%A4%A"]) {
         const response = await request.get(path);
         expect(response.status(), path).toBe(404);
-        expect(await response.text(), path).not.toContain('"name"');
+        // package.json's own name line. A bare `"name"` also appears in the page's formatted inline data.
+        expect(await response.text(), path).not.toContain('"name": "andexor-net-website"');
     }
 });
