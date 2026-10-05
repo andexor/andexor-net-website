@@ -46,3 +46,59 @@ test.describe("Readable output keeps pages healthy", () => {
         });
     }
 });
+
+// Spec 041: the page's data is in one file the page refers to. These check that the page still works with it: it
+// becomes interactive on a slow connection, and a page reached through a link works.
+test.describe("Page data in an external file", () => {
+    test("the Contact button works within the time budget on a slow connection", async ({ browser, browserName }) => {
+        test.skip(browserName !== "chromium", "network throttling needs Chromium");
+        const context = await browser.newContext();
+        const page = await context.newPage();
+        const session = await context.newCDPSession(page);
+        await session.send("Network.enable");
+        await session.send("Network.emulateNetworkConditions", {
+            offline: false,
+            latency: 150,
+            downloadThroughput: (1.6 * 1024 * 1024) / 8,
+            uploadThroughput: (750 * 1024) / 8,
+        });
+        const dataRequests = [""].filter(Boolean);
+        page.on("request", (request) => {
+            if (/\/_next\/static\/data\/[0-9a-f]{16}\.js$/.test(request.url())) dataRequests.push(request.url());
+        });
+        const started = Date.now();
+        await page.goto("/", { waitUntil: "commit" });
+        const button = page.getByRole("button", { name: "Contact Us" }).first();
+        await button.waitFor({ state: "visible" });
+        while (!(await page.getByLabel("Full name").isVisible())) {
+            await button.click();
+            await page.waitForTimeout(25);
+        }
+        expect(Date.now() - started).toBeLessThan(5000);
+        expect(dataRequests.length > 0).toBe(true);
+        await context.close();
+    });
+
+    test("a page reached through a link loads its own data file and logs no errors", async ({ page }) => {
+        // The site's links are ordinary links, so each click loads the next page fully, with its own data file.
+        const problems = [""].filter(Boolean);
+        const dataRequests = [""].filter(Boolean);
+        page.on("pageerror", (error) => problems.push(error.message));
+        page.on("console", (message) => {
+            if (message.type() === "error") problems.push(message.text());
+        });
+        page.on("request", (request) => {
+            if (/\/_next\/static\/data\/[0-9a-f]{16}\.js$/.test(request.url())) dataRequests.push(request.url());
+        });
+        await page.goto("/", { waitUntil: "networkidle" });
+        const homeData = dataRequests.length > 0 ? dataRequests[dataRequests.length - 1] : "";
+        await page.locator('a[href="/web-development"]').first().click();
+        await expect(page.getByRole("heading", { level: 1, name: "Web Development" })).toBeVisible();
+        await page.waitForLoadState("networkidle");
+        const pageData = dataRequests.length > 0 ? dataRequests[dataRequests.length - 1] : "";
+        expect(homeData).not.toBe("");
+        expect(pageData).not.toBe("");
+        expect(pageData).not.toBe(homeData);
+        expect(problems).toEqual([]);
+    });
+});

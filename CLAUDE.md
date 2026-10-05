@@ -181,6 +181,13 @@ skips `src/components/content/`.
 
 Rules to keep in mind:
 
+- The framework's data for each page, a dozen or more small inline scripts at the end of the body, is combined into one
+  script and moved to `out/_next/static/data/<hash>.js` (`scripts/combine-scripts.ts`, spec 041). The file is
+  formatted, named by the hash of its content, and referred to by one plain script element at the end of the body, with
+  a preload hint first in the head (it costs about 30 ms on a slow connection, without the hint about 60 ms). The
+  build runs the original scripts and the new one in a sandbox and fails, naming the page, if the data differs. The
+  head's inline scripts (the whitespace script and the font loader) stay inline and first, and the framework's script
+  files are not touched. The site's links are ordinary links, so every click loads a page fully with its own data file.
 - Markdown-generated HTML is rendered with `dangerouslySetInnerHTML`. Give such an element `data-raw-html=""`: the
   formatter formats its content with whitespace-safe settings, and the script leaves it alone, because a newline
   between inline elements there is a visible space.

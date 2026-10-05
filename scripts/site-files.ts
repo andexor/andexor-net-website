@@ -6,7 +6,13 @@
 // The post-build pass and the tests both use this, so they cannot disagree.
 
 export type FileGroup =
-    "site-source" | "built-html" | "built-site-css" | "built-site-js" | "built-third-party-js" | "out-of-scope";
+    | "site-source"
+    | "built-html"
+    | "built-site-css"
+    | "built-site-js"
+    | "built-data-js"
+    | "built-third-party-js"
+    | "out-of-scope";
 
 const SOURCE_EXTENSION = /\.(ts|tsx|js|mjs|css)$/;
 const OUT_OF_SCOPE_DIRECTORIES = [
@@ -31,6 +37,8 @@ export function fileGroup(relativePath: string): FileGroup {
         if (path.endsWith(".html")) return "built-html";
         if (/^out\/_next\/static\/css\/[^/]+\.css$/.test(path)) return "built-site-css";
         if (/^out\/_next\/static\/chunks\/site-[^/]+\.js$/.test(path)) return "built-site-js";
+        // The page data moved out of each page by the build (spec 041): site-owned and readable, unlike vendor chunks.
+        if (/^out\/_next\/static\/data\/[^/]+\.js$/.test(path)) return "built-data-js";
         if (/^out\/_next\/static\/(chunks|[^/]+)\/.*\.js$/.test(path)) return "built-third-party-js";
         return "out-of-scope";
     }

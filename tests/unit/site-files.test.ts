@@ -21,6 +21,10 @@ describe("fileGroup", () => {
         expect(fileGroup("out/_next/static/css/2ca6833a067aec74.css")).toBe("built-site-css");
     });
 
+    it("puts the page data files in their own group, not with the vendor chunks", () => {
+        expect(fileGroup("out/_next/static/data/0123456789abcdef.js")).toBe("built-data-js");
+    });
+
     it("treats source files as site source", () => {
         expect(fileGroup("src/styles/cards.css")).toBe("site-source");
         expect(fileGroup("tests/unit/logo.test.tsx")).toBe("site-source");

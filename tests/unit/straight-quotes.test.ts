@@ -108,7 +108,7 @@ describe.skipIf(!fs.existsSync(path.join(ROOT, "out")))("built site", () => {
     };
     const siteFiles = () =>
         walkOut(path.join(ROOT, "out")).filter((file) =>
-            ["built-html", "built-site-css", "built-site-js"].includes(fileGroup(file)),
+            ["built-html", "built-site-css", "built-site-js", "built-data-js"].includes(fileGroup(file)),
         );
 
     it("has no curly quote or reference to one in a page, the site script, or the stylesheet", () => {
