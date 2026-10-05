@@ -32,6 +32,8 @@ Let's examing the steps involved and see
 what can be eliminated, what can be automated,
 and which steps can run in parallel.
 
+||
+
 ## Running into legacy roadblocks?
 
 Let's see if there are modern alternatives

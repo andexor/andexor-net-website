@@ -45,16 +45,6 @@ We have more than 5 years of experience with:
 - sending notifications with
   Simple Notification Service (SNS)
 
-## Google Cloud
-
-We have more than 5 years of experience with:
-
-- BigQuery Studio
-- Bigtable
-- VM instances
-- Cloud Run
-- IAM
-
 ## Grafana
 
 We have 2 years of experience with
@@ -67,6 +57,18 @@ dashboards, snapshots, and alerts using:
 - Mimir
 - Tempo
 - Grafana
+
+||
+
+## Google Cloud
+
+We have more than 5 years of experience with:
+
+- BigQuery Studio
+- Bigtable
+- VM instances
+- Cloud Run
+- IAM
 
 ## Cloudflare
 

@@ -26,6 +26,15 @@ AI assistants are getting better all the time.
 We can set you up with a virtual assistant
 who can answer the phone anytime, 24/7.
 
+## Facilitate sales
+
+The world is moving towards facilitating secure
+Agent To Agent (A2A) e-commerce transactions,
+bypassing websites entirely.
+Let us help you on this new journey.
+
+||
+
 ## Book appointments
 
 The same virtual assistant that answers the phone
@@ -36,12 +45,7 @@ can also book appointments on your calendar.
 Let your customers start a conversation
 or answer routine questions with a chatbot.
 
-## Facilitate sales
-
-The world is moving towards facilitating secure
-Agent To Agent (A2A) e-commerce transactions,
-bypassing websites entirely.
-Let us help you on this new journey.
+---
 
 ## Fast Proposals
 
