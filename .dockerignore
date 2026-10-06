@@ -11,3 +11,4 @@ specs
 .specify
 design
 *.log
+.npmrc

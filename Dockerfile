@@ -12,10 +12,9 @@ COPY package.json bun.lock ./
 # The `sharp` override in package.json points at this local stub (keeps LGPL libvips out).
 COPY stubs ./stubs
 
-# This file is needed for authorization to download the FontAwsome Pro icons.
-COPY ./.npmrc ./
-
-RUN bun install --frozen-lockfile
+# The FontAwesome Pro icons need the auth token in .npmrc. It is mounted as a BuildKit secret for this one command,
+# so it is never copied into an image layer (build.sh passes it with --secret id=npmrc,src=.npmrc).
+RUN --mount=type=secret,id=npmrc,target=/app/.npmrc bun install --frozen-lockfile
 
 COPY . .
 

@@ -18,4 +18,5 @@ if [[ -n "${ID}" ]]; then
 fi
 
 # Build a new image.
-docker build --tag ${IMAGE}:${VERSION} .
+# The FontAwesome token in .npmrc goes in as a BuildKit secret, so it is not stored in the image.
+docker build --secret id=npmrc,src=.npmrc --tag ${IMAGE}:${VERSION} .
