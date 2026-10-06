@@ -58,7 +58,7 @@ export function Footer() {
                                 className="an-footer__social-link"
                                 {...(href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                             >
-                                <FontAwesomeIcon icon={icon} className="an-footer__social-icon" aria-hidden="true" />
+                                <FontAwesomeIcon icon={icon} aria-hidden="true" />
                             </a>
                         ))}
                     </div>

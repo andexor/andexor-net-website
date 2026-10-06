@@ -371,25 +371,21 @@
 }
 
 .an-footer__social-row {
+    --an-social-size: 32px;
     display: flex;
     gap: 10px;
     margin-top: 18px;
 }
 
 .an-footer__social-link {
-    width: 34px;
-    height: 34px;
+    width: var(--an-social-size);
+    height: var(--an-social-size);
     border-radius: 8px;
     border: 1px solid var(--blue-700);
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--blue-200);
-}
-
-.an-footer__social-icon {
-    width: 16px;
-    height: 16px;
 }
 
 .an-footer__col-heading {
