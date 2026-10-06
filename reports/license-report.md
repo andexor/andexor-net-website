@@ -664,12 +664,12 @@
 - [yallist@5.0.0](https://github.com/isaacs/yallist) - BlueOak-1.0.0
 - [yocto-queue@0.1.0](https://github.com/sindresorhus/yocto-queue) - MIT
 - [zwitch@2.0.4](https://github.com/wooorm/zwitch) - MIT
-
  
-2026-10-05T22:34:16+00:00
+2026-10-06T07:02:48+00:00
  
 - [@adobe/css-tools@4.5.0](https://github.com/adobe/css-tools) - MIT
 - [@asamuzakjp/css-color@3.2.0](https://github.com/asamuzaK/cssColor) - MIT
+- [@awesome.me/kit-0a6c11d394@1.0.5](undefined) - UNLICENSED
 - [@axe-core/playwright@4.13.0](https://github.com/dequelabs/axe-core-npm) - MPL-2.0
 - [@babel/code-frame@7.29.7](https://github.com/babel/babel) - MIT
 - [@babel/compat-data@7.29.7](https://github.com/babel/babel) - MIT
@@ -708,7 +708,6 @@
 - [@eslint/plugin-kit@0.4.1](https://github.com/eslint/rewrite) - Apache-2.0
 - [@fortawesome/fontawesome-common-types@7.3.1](https://github.com/FortAwesome/Font-Awesome) - MIT
 - [@fortawesome/fontawesome-svg-core@7.3.1](https://github.com/FortAwesome/Font-Awesome) - MIT
-- [@fortawesome/free-brands-svg-icons@7.3.1](https://github.com/FortAwesome/Font-Awesome) - (CC-BY-4.0 AND MIT)
 - [@fortawesome/react-fontawesome@3.5.0](https://github.com/FortAwesome/react-fontawesome) - MIT
 - [@gar/promise-retry@1.0.3](https://github.com/wraithgar/node-promise-retry) - MIT
 - [@humanfs/core@0.19.2](https://github.com/humanwhocodes/humanfs) - Apache-2.0
@@ -724,10 +723,10 @@
 - [@jridgewell/sourcemap-codec@1.6.0](https://github.com/jridgewell/sourcemaps) - MIT
 - [@jridgewell/trace-mapping@0.3.31](https://github.com/jridgewell/sourcemaps) - MIT
 - [@napi-rs/lzma-linux-x64-gnu@1.5.1](https://github.com/Brooooooklyn/lzma) - MIT
-- [@next/env@15.5.26](https://github.com/vercel/next.js) - MIT
-- [@next/eslint-plugin-next@15.5.26](https://github.com/vercel/next.js) - MIT
-- [@next/swc-linux-x64-gnu@15.5.26](https://github.com/vercel/next.js) - MIT
-- [@next/swc-linux-x64-musl@15.5.26](https://github.com/vercel/next.js) - MIT
+- [@next/env@15.5.27](https://github.com/vercel/next.js) - MIT
+- [@next/eslint-plugin-next@15.5.27](https://github.com/vercel/next.js) - MIT
+- [@next/swc-linux-x64-gnu@15.5.27](https://github.com/vercel/next.js) - MIT
+- [@next/swc-linux-x64-musl@15.5.27](https://github.com/vercel/next.js) - MIT
 - [@nodelib/fs.scandir@2.1.5](https://github.com/nodelib/nodelib.git#master) - MIT
 - [@nodelib/fs.stat@2.0.5](https://github.com/nodelib/nodelib.git#master) - MIT
 - [@nodelib/fs.walk@1.2.8](https://github.com/nodelib/nodelib.git#master) - MIT
@@ -779,6 +778,7 @@
 - [@types/mdast@4.0.4](https://github.com/DefinitelyTyped/DefinitelyTyped) - MIT
 - [@types/ms@2.1.0](https://github.com/DefinitelyTyped/DefinitelyTyped) - MIT
 - [@types/node@22.20.4](https://github.com/DefinitelyTyped/DefinitelyTyped) - MIT
+- [@types/node@22.20.5](https://github.com/DefinitelyTyped/DefinitelyTyped) - MIT
 - [@types/react-dom@19.3.0](https://github.com/DefinitelyTyped/DefinitelyTyped) - MIT
 - [@types/react@19.3.0](https://github.com/DefinitelyTyped/DefinitelyTyped) - MIT
 - [@types/unist@3.0.3](https://github.com/DefinitelyTyped/DefinitelyTyped) - MIT
@@ -911,7 +911,7 @@
 - [escalade@3.2.0](https://github.com/lukeed/escalade) - MIT
 - [escape-string-regexp@4.0.0](https://github.com/sindresorhus/escape-string-regexp) - MIT
 - [escape-string-regexp@5.0.0](https://github.com/sindresorhus/escape-string-regexp) - MIT
-- [eslint-config-next@15.5.26](https://github.com/vercel/next.js) - MIT
+- [eslint-config-next@15.5.27](https://github.com/vercel/next.js) - MIT
 - [eslint-import-resolver-node@0.3.10](https://github.com/import-js/eslint-plugin-import) - MIT
 - [eslint-import-resolver-typescript@3.10.1](https://github.com/import-js/eslint-import-resolver-typescript) - ISC
 - [eslint-module-utils@2.14.0](https://github.com/import-js/eslint-plugin-import) - MIT
@@ -1131,7 +1131,7 @@
 - [napi-postinstall@0.3.4](https://github.com/un-ts/napi-postinstall) - MIT
 - [natural-compare@1.4.0](https://github.com/litejs/natural-compare-lite) - MIT
 - [negotiator@1.1.0](https://github.com/jshttp/negotiator) - MIT
-- [next@15.5.26](https://github.com/vercel/next.js) - MIT
+- [next@15.5.27](https://github.com/vercel/next.js) - MIT
 - [node-exports-info@1.6.2](https://github.com/inspect-js/node-exports-info) - MIT
 - [node-gyp@12.4.0](https://github.com/nodejs/node-gyp) - MIT
 - [node-releases@2.0.57](https://github.com/chicoxyzzy/node-releases) - MIT
