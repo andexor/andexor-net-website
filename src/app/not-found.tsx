@@ -4,6 +4,7 @@
 
 import type { Metadata } from "next";
 import { ContentPage } from "@/components/content/ContentPage";
+import { RemoveFrameworkNoindex } from "@/components/content/RemoveFrameworkNoindex";
 
 export const metadata: Metadata = {
     title: "Page not found | Andexor Network",
@@ -20,17 +21,20 @@ export const metadata: Metadata = {
 // server answers unknown addresses with this page and a 404 status.
 export default function NotFound() {
     return (
-        <ContentPage
-            html=""
-            cards={{
-                image: {
-                    src: "/404.png",
-                    alt: "Gold isometric laptop showing 404 next to a magnifying glass with a question mark",
-                },
-                headingHtml: "Page not found",
-                introHtml: `<p>We could not find that page. <a href="/">Go to the home page</a>.</p>`,
-                cardsHtml: "",
-            }}
-        />
+        <>
+            <RemoveFrameworkNoindex />
+            <ContentPage
+                html=""
+                cards={{
+                    image: {
+                        src: "/404.png",
+                        alt: "laptop showing 404 next to a magnifying glass with a question mark",
+                    },
+                    headingHtml: "Page not found",
+                    introHtml: `<p>We could not find that page. <a href="/">Go to the home page</a>.</p>`,
+                    cardsHtml: "",
+                }}
+            />
+        </>
     );
 }

@@ -45,16 +45,18 @@ not-found page, so without the instruction a crawler may list invalid addresses.
   `robots.txt`.
 - The tag appears exactly once in the page's head, with exactly the content `noindex, nofollow`.
   The framework that builds the site also adds its own plain `<meta name="robots" content="noindex">`
-  to its not-found page and that cannot be turned off. The two do not conflict: both say not to
-  index, and the stricter one wins.
+  to its not-found page and that cannot be turned off, so the build (`scripts/format-site.ts`) removes
+  it from the built page. React puts it back into the live page after hydration, so a small client
+  component (`src/components/content/RemoveFrameworkNoindex.tsx`) removes it again once the page has
+  loaded. The served HTML and the live page each end up with the one `noindex, nofollow` tag.
 
 ## Requirements *(mandatory)*
 
 ### Functional Requirements
 
 - **FR-001**: The not-found page MUST contain `<meta name="robots" content="noindex, nofollow">`
-  exactly once in its head. Any other robots tag on that page (the framework's plain `noindex`) MUST
-  NOT allow indexing.
+  exactly once in its head, and the page MUST have no other robots tag (the framework's plain `noindex`
+  is removed by the build and again in the browser).
 - **FR-002**: No other page (home page and every content page) MUST contain a `robots` meta tag with
   `noindex` or `nofollow`.
 - **FR-003**: The not-found page's 404 status, lack of redirects, visible content, and title
@@ -67,8 +69,8 @@ not-found page, so without the instruction a crawler may list invalid addresses.
 
 ### Measurable Outcomes
 
-- **SC-001**: The not-found page's head has exactly 1 robots meta tag with content
-  `noindex, nofollow`, and no robots tag that allows indexing.
+- **SC-001**: The not-found page's head has exactly 1 robots meta tag, with content
+  `noindex, nofollow`.
 - **SC-002**: 0 of the 10 other pages (home plus 9 content pages) contain a `noindex` or
   `nofollow` instruction.
 - **SC-003**: The built site contains no `robots.txt`, and a request for `/robots.txt` gets the
