@@ -48,9 +48,9 @@ test.describe("Homepage content", () => {
         await page.goto("/");
         const footer = page.locator("footer");
         await footer.scrollIntoViewIfNeeded();
-        await expect(footer.getByLabel("linkedin")).toBeVisible();
-        await expect(footer.getByLabel("twitter")).toBeVisible();
-        await expect(footer.getByLabel("github")).toBeVisible();
+        await expect(footer.getByRole("link", { name: "LinkedIn", exact: true })).toBeVisible();
+        await expect(footer.getByRole("link", { name: "X", exact: true })).toBeVisible();
+        await expect(footer.getByRole("link", { name: "GitHub", exact: true })).toBeVisible();
     });
 
     // SC-004 / FR-014: no visual defects from 320px to 1920px wide.

@@ -30,17 +30,21 @@ test.describe("Page metadata", () => {
             await expect(page.locator('meta[name="description"]')).toHaveAttribute("content", h1);
         });
 
-        test(`${route}: robots tag only on the not-found page`, async ({ page }) => {
-            await page.goto(route);
-            const robots = page.locator('meta[name="robots"]');
+        test(`${route}: robots tag only on the not-found page`, async ({ page, request }) => {
             if (route === "/nope") {
-                // The framework adds its own plain `noindex` to its not-found page, so
-                // there are two tags. Ours is the one with `nofollow`, and it is there once.
-                await expect(page.locator('meta[name="robots"][content="noindex, nofollow"]')).toHaveCount(1);
-                const contents = await robots.evaluateAll((els) => els.map((el) => el.getAttribute("content")));
-                for (const c of contents) expect(c).toMatch(/^noindex/);
+                // The build removes the framework's own plain `noindex` from the served HTML, and a small
+                // client component removes it again after React puts it back, so both views have one tag.
+                const html = await (await request.get(route)).text();
+                expect(html.match(/<meta name="robots"[^>]*>/g)).toEqual([
+                    '<meta name="robots" content="noindex, nofollow" />',
+                ]);
+                await page.goto(route);
+                const robots = page.locator('meta[name="robots"]');
+                await expect(robots).toHaveCount(1);
+                await expect(robots).toHaveAttribute("content", "noindex, nofollow");
             } else {
-                await expect(robots).toHaveCount(0);
+                await page.goto(route);
+                await expect(page.locator('meta[name="robots"]')).toHaveCount(0);
             }
         });
     }

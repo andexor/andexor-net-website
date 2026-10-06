@@ -2,13 +2,14 @@
 // Copyright 2026 Andexor Network, Inc.
 // Author: Ed Jenkins <ed@andexor.net>
 
-import { Github, Linkedin, Twitter } from "lucide-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSquareGithub, faSquareLinkedin, faSquareXTwitter } from "@awesome.me/kit-0a6c11d394/icons/classic/brands";
 import { Logo } from "./Logo";
 
 const SOCIAL_LINKS = [
-    { key: "linkedin", label: "linkedin", href: "https://www.linkedin.com/in/ejenkins/", Icon: Linkedin },
-    { key: "twitter", label: "twitter", href: "https://x.com/andexor", Icon: Twitter },
-    { key: "github", label: "github", href: "https://github.com/andexor", Icon: Github },
+    { key: "linkedin", label: "LinkedIn", href: "https://www.linkedin.com/in/ejenkins/", icon: faSquareLinkedin },
+    { key: "twitter", label: "X", href: "https://x.com/andexor", icon: faSquareXTwitter },
+    { key: "github", label: "GitHub", href: "https://github.com/andexor", icon: faSquareGithub },
 ];
 
 const COLUMNS = [
@@ -49,15 +50,14 @@ export function Footer() {
                     <Logo light />
                     <p className="an-footer__copyright">© 2026 Andexor Network, Inc. All rights reserved.</p>
                     <div className="an-footer__social-row">
-                        {SOCIAL_LINKS.map(({ key, label, href, Icon }) => (
+                        {SOCIAL_LINKS.map(({ key, label, href, icon }) => (
                             <a
                                 key={key}
                                 href={href}
-                                aria-label={label}
                                 className="an-footer__social-link"
                                 {...(href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                             >
-                                <Icon size={16} aria-hidden="true" />
+                                <FontAwesomeIcon icon={icon} aria-label={label} />
                             </a>
                         ))}
                     </div>

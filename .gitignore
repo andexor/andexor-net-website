@@ -31,3 +31,6 @@ Thumbs.db
 
 # Claude Code
 .claude/
+
+# License file for FontAwesome Pro icons
+.npmrc

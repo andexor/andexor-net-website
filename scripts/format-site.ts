@@ -29,8 +29,19 @@ async function* walk(directory: string): AsyncGenerator<string> {
 // The data files moved out of the pages, by path (relative to `out/`) and content.
 const dataFiles = new Map<string, string>();
 
+// Next.js adds its own plain `noindex` robots tag to the not-found page. The page sets "noindex, nofollow" itself
+// (spec 030), so the plain one is removed and the page keeps exactly one robots tag.
+const FRAMEWORK_NOINDEX = /<meta name="robots" content="noindex"\s*\/?>/g;
+
+function removeFrameworkNoindex(html: string, name: string): string {
+    const found = html.match(FRAMEWORK_NOINDEX)?.length ?? 0;
+    if (found !== 1) throw new Error(`${name}: expected 1 framework noindex tag, found ${found}`);
+    return html.replace(FRAMEWORK_NOINDEX, "");
+}
+
 // One built page: combine the framework's data scripts into one and move it to a file (spec 041), then format the page.
-async function formatPage(original: string, name: string): Promise<string> {
+async function formatPage(source: string, name: string): Promise<string> {
+    const original = name === "out/404.html" ? removeFrameworkNoindex(source, name) : source;
     const combined = combineDataScripts(original, name);
     if (combined.note) {
         console.log(combined.note);
