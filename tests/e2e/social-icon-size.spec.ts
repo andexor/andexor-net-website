@@ -4,42 +4,54 @@
 
 import { expect, test } from "@playwright/test";
 
-// Spec 043: the 32px box is on the link, and the site's own CSS sets nothing on the icon's <svg>.
+// Spec 043: the 48px box is on the link, and the icon's <svg> inherits it through the override rules in marketing.css.
+// The link has no border (its edge is a box-shadow ring), so the icon is the full 48px.
 test.describe("Footer social icon size", () => {
     for (const width of [320, 768, 1440]) {
-        test(`links are 32px square with no margin at ${width}px wide`, async ({ page }) => {
+        test(`links are 48px square and icons fill them at ${width}px wide`, async ({ page }) => {
             await page.setViewportSize({ width, height: 900 });
             await page.goto("/");
             const links = page.locator(".an-footer__social-link");
             await links.first().scrollIntoViewIfNeeded();
             for (const link of await links.all()) {
-                const box = await link.evaluate((el) => {
+                const sizes = await link.evaluate((el) => {
                     const style = getComputedStyle(el);
+                    const icon = getComputedStyle(el.querySelector("svg"));
                     return {
-                        width: style.width,
-                        height: style.height,
-                        margin: style.margin,
+                        link: [style.width, style.height, style.margin],
+                        icon: [icon.width, icon.height],
                         sizeVariable: style.getPropertyValue("--an-social-size").trim(),
                     };
                 });
-                expect(box).toEqual({ width: "32px", height: "32px", margin: "0px", sizeVariable: "32px" });
+                expect(sizes).toEqual({
+                    link: ["48px", "48px", "0px"],
+                    icon: ["48px", "48px"],
+                    sizeVariable: "48px",
+                });
             }
         });
     }
 
-    test("the site's own CSS sets no size, margin, or padding on the icon", async ({ page }) => {
+    // The pattern: one rule per icon, named from the <svg>'s two classes joined with a dot.
+    test("every social icon has an override rule named from its classes", async ({ page }) => {
         await page.goto("/");
-        const rules = await page.evaluate(() => {
+        const classLists = await page
+            .locator(".an-footer__social-link svg")
+            .evaluateAll((svgs) => svgs.map((svg) => svg.getAttribute("class")));
+        const selectors = await page.evaluate(() => {
             const found = [];
             for (const sheet of Array.from(document.styleSheets)) {
                 for (const rule of Array.from(sheet.cssRules)) {
-                    if (!(rule instanceof CSSStyleRule) || !rule.selectorText.includes("social")) continue;
-                    if (!/svg|icon/.test(rule.selectorText)) continue;
-                    found.push(rule.cssText);
+                    if (rule instanceof CSSStyleRule) found.push(...rule.selectorText.split(",").map((s) => s.trim()));
                 }
             }
             return found;
         });
-        expect(rules).toEqual([]);
+        for (const classList of classLists) {
+            const classes = classList
+                .split(" ")
+                .filter((name) => name.startsWith("svg-inline--fa") || name.startsWith("fa-"));
+            expect(selectors).toContain("." + classes.join("."));
+        }
     });
 });

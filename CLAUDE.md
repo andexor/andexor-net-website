@@ -143,6 +143,16 @@ user adds and edits these files themselves; do not convert them to hand-written 
 Authoring rules are in `content/README.md`. Content pages are intentionally not linked from the
 home page or footer until the user says a page is ready.
 
+## Sizing FontAwesome icons
+
+FontAwesome's stylesheet (imported unmodified in `src/app/layout.tsx`) gives every icon `height: 1em` and
+`width: 1.25em` through the one-class rule `.svg-inline--fa`. Never copy, patch, or replace that stylesheet: it would
+drift from the package. To size an icon from the element around it, add an override rule in `src/styles/marketing.css`
+named from the `<svg>`'s two classes joined with a dot (`class="svg-inline--fa fa-square-github"` gives
+`.svg-inline--fa.fa-square-github`) that sets `height: inherit` and `width: inherit`. Two classes outrank FontAwesome's
+one, so no `!important` is needed. Add or change the rule whenever an icon is added or swapped. The footer's social
+icons are the example (spec 043); `tests/e2e/social-icon-size.spec.ts` fails if one has no rule.
+
 ## Contributing and setup
 
 Read `CONTRIBUTING.md` and `setup.md` (companions to the constitution, with `SECURITY.md`,

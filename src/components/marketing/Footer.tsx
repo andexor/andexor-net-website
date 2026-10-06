@@ -3,13 +3,13 @@
 // Author: Ed Jenkins <ed@andexor.net>
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGithub, faLinkedinIn, faXTwitter } from "@fortawesome/free-brands-svg-icons";
+import { faSquareGithub, faSquareLinkedin, faSquareXTwitter } from "@fortawesome/free-brands-svg-icons";
 import { Logo } from "./Logo";
 
 const SOCIAL_LINKS = [
-    { key: "linkedin", label: "linkedin", href: "https://www.linkedin.com/in/ejenkins/", icon: faLinkedinIn },
-    { key: "twitter", label: "twitter", href: "https://x.com/andexor", icon: faXTwitter },
-    { key: "github", label: "github", href: "https://github.com/andexor", icon: faGithub },
+    { key: "linkedin", label: "linkedin", href: "https://www.linkedin.com/in/ejenkins/", icon: faSquareLinkedin },
+    { key: "twitter", label: "twitter", href: "https://x.com/andexor", icon: faSquareXTwitter },
+    { key: "github", label: "github", href: "https://github.com/andexor", icon: faSquareGithub },
 ];
 
 const COLUMNS = [

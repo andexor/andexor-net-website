@@ -371,21 +371,87 @@
 }
 
 .an-footer__social-row {
-    --an-social-size: 32px;
+    --an-social-size: 48px;
     display: flex;
     gap: 10px;
     margin-top: 18px;
 }
 
+/* The social links look like the Close button (spec 043): a black gloss gradient with a thin translucent white edge, an
+ * inset highlight and shade, and a drop shadow. The edge is a box-shadow ring and not a border, so the link is exactly
+ * --an-social-size wide and high and the icon fills it. The link presses 2px right and 2px down, flattening the
+ * shadow, and keyboard focus draws a solid gold ring. Hover changes the color and never underlines. */
 .an-footer__social-link {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
     width: var(--an-social-size);
     height: var(--an-social-size);
     border-radius: 8px;
-    border: 1px solid var(--blue-700);
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--blue-200);
+    background: linear-gradient(180deg, #3b3b3b 0%, #121212 48%, #000000 100%);
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.45),
+        inset 0 -2px 3px rgba(0, 0, 0, 0.8),
+        0 3px 6px rgba(0, 0, 0, 0.55),
+        0 1px 1px rgba(0, 0, 0, 0.9);
+    transition:
+        background 0.15s ease,
+        color 0.15s ease,
+        box-shadow 0.15s ease,
+        transform 0.05s ease;
+}
+
+.an-footer__social-link::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 0 0 50% 0;
+    border-radius: 7px 7px 40% 40% / 7px 7px 22% 22%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0.06));
+    pointer-events: none;
+}
+
+.an-footer__social-link:hover {
+    color: var(--blue-100);
+    background: linear-gradient(180deg, #4a4a4a 0%, #1c1c1c 48%, #0a0a0a 100%);
+}
+
+.an-footer__social-link:active {
+    transform: translateX(2px) translateY(2px);
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        inset 0 -1px 2px rgba(0, 0, 0, 0.8),
+        0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+.an-footer__social-link:focus-visible {
+    box-shadow:
+        0 0 0 3px var(--gold-500),
+        inset 0 1px 0 rgba(255, 255, 255, 0.45),
+        inset 0 -2px 3px rgba(0, 0, 0, 0.8),
+        0 3px 6px rgba(0, 0, 0, 0.55);
+}
+
+/*
+ * Pattern for sizing a FontAwesome icon (spec 043). FontAwesome's own stylesheet, used as the package ships it, gives
+ * every icon height: 1em and width: 1.25em in the one-class rule .svg-inline--fa. To size an icon from the element
+ * around it, add a rule here named after the icon's two classes joined with a dot (the <svg> has class="svg-inline--fa
+ * fa-square-github", so the selector is .svg-inline--fa.fa-square-github). Two classes outrank FontAwesome's one, so
+ * the rule wins without !important, and FontAwesome's CSS stays untouched and upgradable. The rule only sets height
+ * and width to inherit, so the icon takes the size of its link. Add one rule per icon, and when an icon is added or
+ * swapped in Footer.tsx, add or change its rule.
+ */
+.svg-inline--fa.fa-square-linkedin,
+.svg-inline--fa.fa-square-x-twitter,
+.svg-inline--fa.fa-square-github {
+    height: inherit;
+    width: inherit;
 }
 
 .an-footer__col-heading {
