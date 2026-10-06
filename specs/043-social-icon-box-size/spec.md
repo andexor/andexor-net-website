@@ -23,7 +23,8 @@ can follow for other icons if we need to." Then, about the border: "I want these
 translations like we did with the CTA and the buttons on the Contact Us popup. I want to have a 3D appearance and
 behavior for all buttons. These social icons are links, not buttons, but I want the button behaviour when they are
 clicked on or tapped on or triggered by a tap." And: "Don't change any existing buttons. Let's try option A and see
-what happens. I'm sure I will want to tweak it a bit after I see it." (Option A was the Close button look.)
+what happens. I'm sure I will want to tweak it a bit after I see it." (Option A was the Close button look.) Later: "Remove the background on .an-footer__social-link:before and on
+.an-footer__social-link."
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -73,7 +74,7 @@ The owner wants the method used here written down, so any other FontAwesome icon
 
 ### User Story 3 - The social links look and press like the Close button (Priority: P2)
 
-The footer's social links have the 3D look of the Close button in the Contact Us popup: a black gloss gradient, a thin
+The footer's social links have the 3D look of the Close button in the Contact Us popup: a thin
 translucent white edge, an inset highlight and shade, and a drop shadow. When clicked, tapped, or triggered, a link
 presses 2px right and 2px down and its shadow flattens, as the Close button and the call-to-action button do. They stay
 links, not buttons, and no existing button changes.
@@ -85,9 +86,9 @@ links, not buttons, and no existing button changes.
 
 **Acceptance Scenarios**:
 
-1. **Given** a social link at rest, **When** it is shown, **Then** it has the Close button's gradient, edge, highlight,
+1. **Given** a social link at rest, **When** it is shown, **Then** it has the Close button's edge, highlight,
    and shadow, and no border of its own.
-2. **Given** a social link, **When** the pointer is over it, **Then** its color and gradient lighten and nothing is
+2. **Given** a social link, **When** the pointer is over it, **Then** its color lightens and nothing is
    underlined.
 3. **Given** a social link, **When** it is pressed (mouse down, touch, or key press), **Then** it moves 2px right and
    2px down and its shadow flattens, and it returns when released.
@@ -129,10 +130,11 @@ links, not buttons, and no existing button changes.
 - **FR-007**: The change MUST NOT break the build, the formatter, or any existing test. A test MUST check the sizes in
   FR-001 to FR-003 in the built page, and that each social icon has a rule named from its classes.
 
-- **FR-008**: `.an-footer__social-link` MUST have no border, and MUST be drawn like the Close button: the same gradient,
-  a 1px translucent white box-shadow ring for the edge, the same inset highlight and shade, drop shadow, and gloss
-  highlight. Hover MUST change its color and lighten the gradient with no underline. While pressed (`:active`) it MUST
-  move `translateX(2px) translateY(2px)` with the flattened shadow. Keyboard focus MUST show a solid 3px gold ring.
+- **FR-008**: `.an-footer__social-link` MUST have no border, and MUST be drawn like the Close button without its
+  background: a 1px translucent white box-shadow ring for the edge, the same inset highlight and shade, and drop shadow.
+  It MUST have no background: no gradient on the link, none on its hover state, and none on its `::before` gloss (removed
+  at the owner's request). Hover MUST change its color with no underline. While pressed (`:active`) it MUST move
+  `translateX(2px) translateY(2px)` with the flattened shadow. Keyboard focus MUST show a solid 3px gold ring.
 
 ### Key Entities
 
@@ -157,8 +159,8 @@ links, not buttons, and no existing button changes.
 - An earlier attempt to replace FontAwesome's stylesheet with a custom copy was rolled back because it would drift from
   the package. Overriding it with more specific rules, as here, does not copy any of it.
 - Square icons were chosen by the owner in this same work (spec 042's round-corner glyphs were swapped for the square
-  ones). The square glyph fills the whole 48px link, so it covers most of the gradient and gloss, which show mostly at the
-  edges. The owner expects to tweak the look after seeing it.
+  ones). The square glyph fills the whole 48px link, so it covers most of the link, and only the edge ring and shadow
+  show around it. The owner expects to tweak the look after seeing it.
 - A tap on a link that opens a new tab may be too brief to see the press, and iOS Safari applies `:active` to links in
   limited cases. The Close and call-to-action buttons have the same limits, so this matches them and adds no JavaScript.
 - Making every button 3D is a separate, later spec.

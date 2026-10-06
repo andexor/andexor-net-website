@@ -377,8 +377,8 @@
     margin-top: 18px;
 }
 
-/* The social links look like the Close button (spec 043): a black gloss gradient with a thin translucent white edge, an
- * inset highlight and shade, and a drop shadow. The edge is a box-shadow ring and not a border, so the link is exactly
+/* The social links look like the Close button (spec 043): a thin translucent white edge, an inset highlight and
+ * shade, and a drop shadow, with no background of its own (the gradient and gloss were removed). The edge is a box-shadow ring and not a border, so the link is exactly
  * --an-social-size wide and high and the icon fills it. The link presses 2px right and 2px down, flattening the
  * shadow, and keyboard focus draws a solid gold ring. Hover changes the color and never underlines. */
 .an-footer__social-link {
@@ -391,8 +391,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--blue-200);
-    background: linear-gradient(180deg, #3b3b3b 0%, #121212 48%, #000000 100%);
+    color: var(--blue-300);
     box-shadow:
         0 0 0 1px rgba(255, 255, 255, 0.28),
         inset 0 1px 0 rgba(255, 255, 255, 0.45),
@@ -400,7 +399,6 @@
         0 3px 6px rgba(0, 0, 0, 0.55),
         0 1px 1px rgba(0, 0, 0, 0.9);
     transition:
-        background 0.15s ease,
         color 0.15s ease,
         box-shadow 0.15s ease,
         transform 0.05s ease;
@@ -412,16 +410,15 @@
     z-index: -1;
     inset: 0 0 50% 0;
     border-radius: 7px 7px 40% 40% / 7px 7px 22% 22%;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0.06));
     pointer-events: none;
 }
 
 .an-footer__social-link:hover {
-    color: var(--blue-100);
-    background: linear-gradient(180deg, #4a4a4a 0%, #1c1c1c 48%, #0a0a0a 100%);
+    color: var(--blue-200);
 }
 
 .an-footer__social-link:active {
+    color: var(--blue-400);
     transform: translateX(2px) translateY(2px);
     box-shadow:
         0 0 0 1px rgba(255, 255, 255, 0.28),
