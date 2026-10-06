@@ -42,3 +42,7 @@ If you have not installed uv yet, install it first.
 ## Playwright System Dependencies
 
 > Run `bunx playwright install-deps webkit`
+
+## FontAwesome
+
+This is added by setup.sh.

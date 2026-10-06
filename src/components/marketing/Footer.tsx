@@ -3,7 +3,7 @@
 // Author: Ed Jenkins <ed@andexor.net>
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSquareGithub, faSquareLinkedin, faSquareXTwitter } from "@fortawesome/free-brands-svg-icons";
+import { faSquareGithub, faSquareLinkedin, faSquareXTwitter } from "@awesome.me/kit-0a6c11d394/icons/classic/brands";
 import { Logo } from "./Logo";
 
 const SOCIAL_LINKS = [

@@ -11,6 +11,10 @@ WORKDIR /app
 COPY package.json bun.lock ./
 # The `sharp` override in package.json points at this local stub (keeps LGPL libvips out).
 COPY stubs ./stubs
+
+# This file is needed for authorization to download the FontAwsome Pro icons.
+COPY ./.npmrc ./
+
 RUN bun install --frozen-lockfile
 
 COPY . .

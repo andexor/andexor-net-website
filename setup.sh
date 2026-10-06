@@ -6,11 +6,30 @@
 
 # Modify and run this to add new dependencies.
 
-# To get a license report, you can use pip-licenses.
+# FontAwesome
+bun add @fortawesome/react-fontawesome @fortawesome/fontawesome-svg-core
+bun add '@awesome.me/kit-0a6c11d394@latest'
+
+# bun add @fortawesome/pro-solid-svg-icons
+# bun add @fortawesome/pro-regular-svg-icons
+# bun add @fortawesome/pro-light-svg-icons
+# bun add @fortawesome/pro-thin-svg-icons
+# bun add @fortawesome/pro-duotone-svg-icons
+# bun add @fortawesome/duotone-regular-svg-icons
+# bun add @fortawesome/duotone-light-svg-icons
+# bun add @fortawesome/duotone-thin-svg-icons
+# bun add @fortawesome/sharp-solid-svg-icons
+# bun add @fortawesome/sharp-regular-svg-icons
+# bun add @fortawesome/sharp-light-svg-icons
+# bun add @fortawesome/sharp-thin-svg-icons
+# bun add @fortawesome/sharp-duotone-solid-svg-icons
+# bun add @fortawesome/sharp-duotone-regular-svg-icons
+# bun add @fortawesome/sharp-duotone-light-svg-icons
+# bun add @fortawesome/sharp-duotone-thin-svg-icons
+
+# To get a license report, you can use license-checker-rseidelsohn.
 # It is not required for the project to run,
 # but it is useful for auditing dependencies.
-# https://pypi.org/project/pip-licenses/
-
 mkdir -p reports
 bun add -d license-checker-rseidelsohn
 
