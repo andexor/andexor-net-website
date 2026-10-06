@@ -7,9 +7,9 @@ import { faSquareGithub, faSquareLinkedin, faSquareXTwitter } from "@fortawesome
 import { Logo } from "./Logo";
 
 const SOCIAL_LINKS = [
-    { key: "linkedin", label: "linkedin", href: "https://www.linkedin.com/in/ejenkins/", icon: faSquareLinkedin },
-    { key: "twitter", label: "twitter", href: "https://x.com/andexor", icon: faSquareXTwitter },
-    { key: "github", label: "github", href: "https://github.com/andexor", icon: faSquareGithub },
+    { key: "linkedin", label: "LinkedIn", href: "https://www.linkedin.com/in/ejenkins/", icon: faSquareLinkedin },
+    { key: "twitter", label: "X", href: "https://x.com/andexor", icon: faSquareXTwitter },
+    { key: "github", label: "GitHub", href: "https://github.com/andexor", icon: faSquareGithub },
 ];
 
 const COLUMNS = [
@@ -54,11 +54,10 @@ export function Footer() {
                             <a
                                 key={key}
                                 href={href}
-                                aria-label={label}
                                 className="an-footer__social-link"
                                 {...(href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                             >
-                                <FontAwesomeIcon icon={icon} aria-hidden="true" />
+                                <FontAwesomeIcon icon={icon} aria-label={label} />
                             </a>
                         ))}
                     </div>
