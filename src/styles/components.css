@@ -281,9 +281,7 @@
         border-color 0.18s ease;
 }
 .an-card--hover:hover {
-    box-shadow: var(--shadow-lg);
-    transform: translateY(-2px);
-    border-color: var(--blue-200);
+    box-shadow: 0 0 0 2px var(--gold-500);
 }
 .an-card--ink {
     background: var(--surface-ink);
