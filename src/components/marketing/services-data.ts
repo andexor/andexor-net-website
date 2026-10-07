@@ -2,9 +2,10 @@
 // Copyright 2026 Andexor Network, Inc.
 // Author: Ed Jenkins <ed@andexor.net>
 
-import { Bot, Code2, LineChart, Search, type LucideIcon } from "lucide-react";
+import { Bot, Code2, Filter, LineChart, Route, Search, Server, TrendingDown, type LucideIcon } from "lucide-react";
 
 export interface ServiceOffering {
+    kind: "technical" | "business";
     icon: LucideIcon;
     tag: string;
     badgeTone: "brand" | "accent";
@@ -14,11 +15,12 @@ export interface ServiceOffering {
     bullets: string[];
 }
 
-// Per data-model.md's "Service Offering" table and design/README.md's Services
-// section (FR-004). Exactly 4 entries, fixed content. Each card links to its
+// One entry per service page (spec 048), listed in the footer's order: the four
+// technical services, then the four business services. Each card links to its
 // page (spec 011), the same address as the footer entry of the same name.
 export const SERVICES: ServiceOffering[] = [
     {
+        kind: "technical",
         icon: Code2,
         tag: "Web",
         badgeTone: "brand",
@@ -29,6 +31,17 @@ export const SERVICES: ServiceOffering[] = [
         bullets: ["Brochure site, blog, forms, shop", "Content management system", "Web application"],
     },
     {
+        kind: "technical",
+        icon: Server,
+        tag: "Hosting",
+        badgeTone: "accent",
+        title: "Web Hosting",
+        href: "/web-hosting",
+        description: "We'll host your site on fast, reliable servers so it stays up when traffic spikes.",
+        bullets: ["Managed cloud servers", "Backups and monitoring", "Security updates"],
+    },
+    {
+        kind: "technical",
         icon: Search,
         tag: "SEO",
         badgeTone: "accent",
@@ -39,6 +52,7 @@ export const SERVICES: ServiceOffering[] = [
         bullets: ["Site audit", "Content strategy", "Maps, social media"],
     },
     {
+        kind: "technical",
         icon: Bot,
         tag: "AI",
         badgeTone: "brand",
@@ -49,6 +63,27 @@ export const SERVICES: ServiceOffering[] = [
         bullets: ["Knowledge Base", "Digital assistant, scheduling", "Workflow automation"],
     },
     {
+        kind: "business",
+        icon: TrendingDown,
+        tag: "Cost",
+        badgeTone: "brand",
+        title: "Cost Reduction",
+        href: "/cost-reduction",
+        description: "We'll find where your business spends more than it needs to and cut it without hurting quality.",
+        bullets: ["Spending review", "Vendor and tool consolidation", "Automation of manual work"],
+    },
+    {
+        kind: "business",
+        icon: Filter,
+        tag: "Leads",
+        badgeTone: "accent",
+        title: "Lead Generation",
+        href: "/lead-generation",
+        description: "We'll bring in prospective customers who fit your business and move them toward a sale.",
+        bullets: ["Targeted outreach", "Landing pages and forms", "Lead tracking and follow-up"],
+    },
+    {
+        kind: "business",
         icon: LineChart,
         tag: "Growth",
         badgeTone: "accent",
@@ -57,5 +92,15 @@ export const SERVICES: ServiceOffering[] = [
         description:
             "Campaigns made for impact, from brand awareness to lead generation to closed sales, with continuous monitoring.",
         bullets: ["Newsletters, branded email", "Social media marketing", "Paid advertising"],
+    },
+    {
+        kind: "business",
+        icon: Route,
+        tag: "Process",
+        badgeTone: "brand",
+        title: "Process Re-engineering",
+        href: "/process-re-engineering",
+        description: "We'll map how work gets done today and redesign it to reach your goals faster.",
+        bullets: ["Process mapping", "Bottleneck analysis", "Roadmap from A to B"],
     },
 ];
