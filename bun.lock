@@ -5,7 +5,7 @@
     "": {
       "name": "andexor-net-website",
       "dependencies": {
-        "@awesome.me/kit-0a6c11d394": "^1.0.5",
+        "@awesome.me/kit-0a6c11d394": "^1.0.15",
         "@fortawesome/fontawesome-svg-core": "^7.3.1",
         "@fortawesome/react-fontawesome": "^3.5.0",
         "gray-matter": "^4.0.3",
@@ -54,7 +54,7 @@
 
     "@asamuzakjp/css-color": ["@asamuzakjp/css-color@3.2.0", "", { "dependencies": { "@csstools/css-calc": "^2.1.3", "@csstools/css-color-parser": "^3.0.9", "@csstools/css-parser-algorithms": "^3.0.4", "@csstools/css-tokenizer": "^3.0.3", "lru-cache": "^10.4.3" } }, "sha512-K1A6z8tS3XsmCMM86xoWdn7Fkdn9m6RSVtocUrJYIwZnFVkng/PvkEoWtOWmP+Scc6saYWHWZYbndEEXxl24jw=="],
 
-    "@awesome.me/kit-0a6c11d394": ["@awesome.me/kit-0a6c11d394@1.0.5", "https://npm.fontawesome.com/@awesome.me/kit-0a6c11d394/-/kit-0a6c11d394-1.0.5.tgz", { "dependencies": { "@fortawesome/fontawesome-common-types": "^7.3.1" } }, "sha512-3HZVXI7oyFdQBxOnuXqN8Du/Tep8rPHz7dd5RuheA/SagZj2oKbnP/HaEG6df8+S524acYwDOkkeC517kNau1A=="],
+    "@awesome.me/kit-0a6c11d394": ["@awesome.me/kit-0a6c11d394@1.0.15", "https://npm.fontawesome.com/@awesome.me/kit-0a6c11d394/-/kit-0a6c11d394-1.0.15.tgz", { "dependencies": { "@fortawesome/fontawesome-common-types": "^7.3.1" } }, "sha512-kIssFbMZDuEbs/GDStU/l20IsCTpKpNm7rLS2spJkZyC1UZs78ckU61hMLxrxc0mAK/DjHyXRUoqApRgmQaxgA=="],
 
     "@axe-core/playwright": ["@axe-core/playwright@4.13.0", "", { "dependencies": { "axe-core": "~4.13.0" }, "peerDependencies": { "playwright-core": ">= 1.0.0" } }, "sha512-6YLx+kxXu5GJceG4ozFg+33a2EMTdjYwWGloJ3sb9Kta5pp+ZNS53uxGVog5JetIY8s++P5UrtX+cri+u0VAVg=="],
 
