@@ -291,7 +291,8 @@
 .an-services__card-top {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: 16px;
     margin-bottom: 16px;
 }
 
@@ -301,12 +302,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex: none;
     color: var(--blue-300);
 }
 
 .an-services__card-title {
     font-size: 20px;
-    margin: 0 0 6px;
+    margin: 0;
+    min-width: 0;
+    text-align: left;
     color: var(--text-heading);
 }
 

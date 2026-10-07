@@ -69,7 +69,8 @@ test.describe("Homepage content", () => {
         });
     }
 
-    // Spec 049: the service cards show no badge, and the top row is as tall as the icon tile, so it does not depend on one.
+    // Spec 049: the service cards show no badge. Spec 050: the title is in the top row, so the row is at least as tall as
+    // the icon tile, and taller when a title wraps onto two lines.
     test("service cards have no badge", async ({ page }) => {
         await page.goto("/");
         await expect(page.locator(".an-badge")).toHaveCount(0);
@@ -80,7 +81,7 @@ test.describe("Homepage content", () => {
             })),
         );
         for (const { row, tile } of rows) {
-            expect(row).toBe(tile);
+            expect(row).toBeGreaterThanOrEqual(tile);
         }
     });
 

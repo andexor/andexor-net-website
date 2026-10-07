@@ -54,8 +54,8 @@ export function Services() {
                                         <span className="an-services__icon-tile">
                                             <FontAwesomeIcon icon={service.icon} aria-hidden="true" />
                                         </span>
+                                        <h3 className="an-services__card-title">{service.title}</h3>
                                     </div>
-                                    <h3 className="an-services__card-title">{service.title}</h3>
                                     <p className="an-services__card-body">{service.description}</p>
                                     <ul className="an-services__bullets">
                                         {service.bullets.map((bullet) => (
