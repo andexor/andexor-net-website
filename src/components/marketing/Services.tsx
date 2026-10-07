@@ -2,6 +2,7 @@
 // Copyright 2026 Andexor Network, Inc.
 // Author: Ed Jenkins <ed@andexor.net>
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Check } from "lucide-react";
 import { Card } from "@/components/ui/Card";
 import { SERVICES } from "./services-data";
@@ -41,7 +42,6 @@ export function Services() {
                     </div>
                     <div className="an-services__grid">
                         {SERVICES.filter((service) => service.kind === section.kind).map((service) => {
-                            const Icon = service.icon;
                             return (
                                 <Card
                                     key={service.title}
@@ -52,7 +52,7 @@ export function Services() {
                                 >
                                     <div className="an-services__card-top">
                                         <span className="an-services__icon-tile">
-                                            <Icon size={22} aria-hidden="true" />
+                                            <FontAwesomeIcon icon={service.icon} aria-hidden="true" />
                                         </span>
                                     </div>
                                     <h3 className="an-services__card-title">{service.title}</h3>

@@ -296,14 +296,12 @@
 }
 
 .an-services__icon-tile {
-    width: 44px;
-    height: 44px;
-    border-radius: 11px;
-    background: var(--blue-50);
+    width: 48px;
+    height: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--blue-700);
+    color: var(--blue-300);
 }
 
 .an-services__card-title {
@@ -446,6 +444,18 @@
 .svg-inline--fa.fa-square-linkedin,
 .svg-inline--fa.fa-square-x-twitter,
 .svg-inline--fa.fa-square-github {
+    height: inherit;
+    width: inherit;
+}
+
+.svg-inline--fa.fa-code,
+.svg-inline--fa.fa-server,
+.svg-inline--fa.fa-magnifying-glass,
+.svg-inline--fa.fa-microchip-ai,
+.svg-inline--fa.fa-chart-line-down,
+.svg-inline--fa.fa-filter,
+.svg-inline--fa.fa-chart-line-up,
+.svg-inline--fa.fa-route {
     height: inherit;
     width: inherit;
 }
