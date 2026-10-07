@@ -279,8 +279,7 @@
 }
 
 /* Pressing a service card moves it 2px right and 2px down, like the buttons.
- * The extra class outranks the design system's hover lift, which is still in
- * effect while the pointer is down. */
+ * Hovering gives it a gold ring but does not move it. */
 .an-services__card.an-card--hover:active {
     transform: translateX(2px) translateY(2px);
     transition:
