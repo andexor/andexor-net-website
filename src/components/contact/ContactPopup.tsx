@@ -6,7 +6,7 @@
 
 import { faSquareCheck } from "@awesome.me/kit-0a6c11d394/icons/duotone/solid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { ArrowRight, X } from "lucide-react";
+import { X } from "lucide-react";
 import { type FormEvent, useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
@@ -212,13 +212,7 @@ export function ContactPopup({ open, onClose, onSubmit }: ContactPopupProps) {
                                 <a href="#privacy">Privacy</a> | <a href="#terms">Terms</a>
                             </span>
                         </p>
-                        <Button
-                            type="submit"
-                            variant="accent"
-                            size="lg"
-                            rightIcon={<ArrowRight size={18} aria-hidden="true" />}
-                            disabled={submitting}
-                        >
+                        <Button type="submit" variant="accent" size="lg" disabled={submitting}>
                             Send
                         </Button>
                     </form>

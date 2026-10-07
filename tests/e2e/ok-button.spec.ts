@@ -54,7 +54,7 @@ for (const [name, send] of Object.entries(WAYS)) {
     });
 }
 
-test("OK looks like Send without the arrow, and is centered", async ({ page }) => {
+test("OK looks like Send, and is centered", async ({ page }) => {
     await page.goto("/");
     await page.getByRole("button", { name: "Contact Us" }).first().click();
     await fillForm(page);
@@ -92,7 +92,8 @@ test("OK looks like Send without the arrow, and is centered", async ({ page }) =
         expect(ok[key], key).toBe(send[key]);
     }
     expect(ok.arrows).toBe(0);
-    expect(send.arrows).toBe(1);
+    // Spec 056: Send has no arrow either, so OK and Send differ in nothing but the label.
+    expect(send.arrows).toBe(0);
     expect(ok.width).toBeLessThan(ok.parentWidth / 2);
     expect(ok.centerGap).toBeLessThan(1);
 });
