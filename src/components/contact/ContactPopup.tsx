@@ -4,9 +4,8 @@
 
 "use client";
 
-import { faSquareCheck } from "@awesome.me/kit-0a6c11d394/icons/duotone/solid";
+import { faSquareCheck, faSquareX } from "@awesome.me/kit-0a6c11d394/icons/duotone/solid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { X } from "lucide-react";
 import { type FormEvent, useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
@@ -156,7 +155,7 @@ export function ContactPopup({ open, onClose, onSubmit }: ContactPopupProps) {
                     <img src="/logo/logo-gold.svg" alt="" className="an-contact-header__logo" />
                     <div className="an-contact-header__title">Contact Us</div>
                     <button onClick={onClose} aria-label="Close" className="an-contact-header__close">
-                        <X size={22} strokeWidth={3} aria-hidden="true" />
+                        <FontAwesomeIcon icon={faSquareX} aria-hidden="true" />
                     </button>
                 </div>
 

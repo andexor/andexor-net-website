@@ -623,10 +623,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    --fa-secondary-opacity: 0;
 }
 
 .an-contact-header__close svg {
     filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.8));
+}
+
+.an-contact-header__close .svg-inline--fa.fa-square-x {
+    height: 36px;
+    width: 36px;
+    flex: none;
+    background: transparent;
 }
 
 .an-contact-form {
