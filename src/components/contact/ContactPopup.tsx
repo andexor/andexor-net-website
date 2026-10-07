@@ -4,8 +4,10 @@
 
 "use client";
 
-import { ArrowRight, Check, X } from "lucide-react";
+import { faSquareCheck, faSquareX } from "@awesome.me/kit-0a6c11d394/icons/duotone/solid";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { type FormEvent, useEffect, useRef, useState } from "react";
+import { LOGO_ALT } from "@/components/marketing/Logo";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { PRIMARY_NEED_GROUPS, PRIMARY_NEED_OTHER } from "./primary-need-options";
@@ -151,17 +153,17 @@ export function ContactPopup({ open, onClose, onSubmit }: ContactPopupProps) {
                 <div className="an-contact-header">
                     <div aria-hidden="true" className="an-contact-header__glow" />
                     {/* eslint-disable-next-line @next/next/no-img-element -- static SVG asset, no next/image optimization needed for static export */}
-                    <img src="/logo/logo-gold.svg" alt="" className="an-contact-header__logo" />
+                    <img src="/logo/logo-gold.svg" alt={LOGO_ALT} className="an-contact-header__logo" />
                     <div className="an-contact-header__title">Contact Us</div>
                     <button onClick={onClose} aria-label="Close" className="an-contact-header__close">
-                        <X size={22} strokeWidth={3} aria-hidden="true" />
+                        <FontAwesomeIcon icon={faSquareX} aria-hidden="true" />
                     </button>
                 </div>
 
                 {sent ? (
                     <div className="an-contact-confirmation">
                         <div className="an-contact-confirmation__icon">
-                            <Check size={28} strokeWidth={2.5} aria-hidden="true" />
+                            <FontAwesomeIcon icon={faSquareCheck} aria-hidden="true" />
                         </div>
                         <h3 className="an-contact-confirmation__heading">Request received</h3>
                         <p className="an-contact-confirmation__body">
@@ -210,13 +212,7 @@ export function ContactPopup({ open, onClose, onSubmit }: ContactPopupProps) {
                                 <a href="#privacy">Privacy</a> | <a href="#terms">Terms</a>
                             </span>
                         </p>
-                        <Button
-                            type="submit"
-                            variant="accent"
-                            size="lg"
-                            rightIcon={<ArrowRight size={18} aria-hidden="true" />}
-                            disabled={submitting}
-                        >
+                        <Button type="submit" variant="accent" size="lg" disabled={submitting}>
                             Send
                         </Button>
                     </form>

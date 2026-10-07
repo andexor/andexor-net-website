@@ -121,8 +121,7 @@ Three families, all Google Fonts (self-host before production):
 
 ## 7 · Iconography and Logo
 
-- **Icon set: [Lucide](https://lucide.dev)** (`lucide@0.460.0`) — line style, 2px stroke, 24px grid, inline SVG with `stroke="currentColor"`. Matches the engineered Play + Source Code Pro pairing.
-- ⚠ **Substitution flag:** Lucide is CDN-loaded in the UI kit; self-host and pin before production.
+- **Icon set: [Font Awesome](https://fontawesome.com)** (the site's Font Awesome kit, used through `@fortawesome/react-fontawesome`) — inline SVG that takes its color from `currentColor`. The UI kit reference files still draw Lucide line icons; the site does not use Lucide.
 - **No emoji anywhere.** The mono `>>` prefix is the brand's textual "icon" for eyebrows.
 - **Logo:** bespoke BIMI-compliant 96×96 SVG combining the AND gate (D-body) and XOR gate (double back-curve).
   - `assets/logo/andexor-logo.svg` — solid Blue + Old Gold boxed mark.

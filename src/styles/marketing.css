@@ -291,24 +291,26 @@
 .an-services__card-top {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: 16px;
     margin-bottom: 16px;
 }
 
 .an-services__icon-tile {
-    width: 44px;
-    height: 44px;
-    border-radius: 11px;
-    background: var(--blue-50);
+    width: 48px;
+    height: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--blue-700);
+    flex: none;
+    color: var(--blue-300);
 }
 
 .an-services__card-title {
     font-size: 20px;
-    margin: 0 0 6px;
+    margin: 0;
+    min-width: 0;
+    text-align: left;
     color: var(--text-heading);
 }
 
@@ -332,12 +334,14 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 13px;
+    font-size: 14px;
     color: var(--text-body);
 }
 
 .an-services__bullet-icon {
-    color: var(--gold-600);
+    color: var(--gold-300);
+    background: transparent;
+    --fa-secondary-opacity: 0;
     flex: none;
 }
 
@@ -448,6 +452,23 @@
 .svg-inline--fa.fa-square-github {
     height: inherit;
     width: inherit;
+}
+
+.svg-inline--fa.fa-code,
+.svg-inline--fa.fa-server,
+.svg-inline--fa.fa-magnifying-glass,
+.svg-inline--fa.fa-microchip-ai,
+.svg-inline--fa.fa-chart-line-down,
+.svg-inline--fa.fa-filter,
+.svg-inline--fa.fa-chart-line-up,
+.svg-inline--fa.fa-route {
+    height: inherit;
+    width: inherit;
+}
+
+.svg-inline--fa.fa-square-check {
+    height: 24px;
+    width: 24px;
 }
 
 .an-footer__col-heading {
@@ -602,10 +623,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    --fa-secondary-opacity: 0;
 }
 
 .an-contact-header__close svg {
     filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.8));
+}
+
+.an-contact-header__close .svg-inline--fa.fa-square-x {
+    height: 36px;
+    width: 36px;
+    flex: none;
+    background: transparent;
 }
 
 .an-contact-form {
@@ -662,6 +691,14 @@
     justify-content: center;
     margin: 0 auto 16px;
     color: var(--success-600);
+    --fa-secondary-opacity: 0;
+}
+
+.an-contact-confirmation__icon .svg-inline--fa.fa-square-check {
+    height: 64px;
+    width: 64px;
+    flex: none;
+    background: transparent;
 }
 
 .an-contact-confirmation__heading {

@@ -5,11 +5,10 @@
     "": {
       "name": "andexor-net-website",
       "dependencies": {
-        "@awesome.me/kit-0a6c11d394": "^1.0.5",
+        "@awesome.me/kit-0a6c11d394": "^1.0.20",
         "@fortawesome/fontawesome-svg-core": "^7.3.1",
         "@fortawesome/react-fontawesome": "^3.5.0",
         "gray-matter": "^4.0.3",
-        "lucide-react": "^0.460.0",
         "next": "^15.5.27",
         "react": "^19.3.0",
         "react-dom": "^19.3.0",
@@ -54,7 +53,7 @@
 
     "@asamuzakjp/css-color": ["@asamuzakjp/css-color@3.2.0", "", { "dependencies": { "@csstools/css-calc": "^2.1.3", "@csstools/css-color-parser": "^3.0.9", "@csstools/css-parser-algorithms": "^3.0.4", "@csstools/css-tokenizer": "^3.0.3", "lru-cache": "^10.4.3" } }, "sha512-K1A6z8tS3XsmCMM86xoWdn7Fkdn9m6RSVtocUrJYIwZnFVkng/PvkEoWtOWmP+Scc6saYWHWZYbndEEXxl24jw=="],
 
-    "@awesome.me/kit-0a6c11d394": ["@awesome.me/kit-0a6c11d394@1.0.5", "https://npm.fontawesome.com/@awesome.me/kit-0a6c11d394/-/kit-0a6c11d394-1.0.5.tgz", { "dependencies": { "@fortawesome/fontawesome-common-types": "^7.3.1" } }, "sha512-3HZVXI7oyFdQBxOnuXqN8Du/Tep8rPHz7dd5RuheA/SagZj2oKbnP/HaEG6df8+S524acYwDOkkeC517kNau1A=="],
+    "@awesome.me/kit-0a6c11d394": ["@awesome.me/kit-0a6c11d394@1.0.20", "https://npm.fontawesome.com/@awesome.me/kit-0a6c11d394/-/kit-0a6c11d394-1.0.20.tgz", { "dependencies": { "@fortawesome/fontawesome-common-types": "^7.3.1" } }, "sha512-YnBDr0eRymX0Mvh50RcJ/A1BcHSSvh3AVAT3cBawOn/hlnSIRXf89aTW5dHywvIuCy4SR7iVttMGgBWvKCM38A=="],
 
     "@axe-core/playwright": ["@axe-core/playwright@4.13.0", "", { "dependencies": { "axe-core": "~4.13.0" }, "peerDependencies": { "playwright-core": ">= 1.0.0" } }, "sha512-6YLx+kxXu5GJceG4ozFg+33a2EMTdjYwWGloJ3sb9Kta5pp+ZNS53uxGVog5JetIY8s++P5UrtX+cri+u0VAVg=="],
 
@@ -951,8 +950,6 @@
     "loupe": ["loupe@3.2.1", "", {}, "sha512-CdzqowRJCeLU72bHvWqwRBBlLcMEtIvGrlvef74kMnV2AolS9Y8xUv1I0U/MNAWMhBlKIoyuEgoJ0t/bbwHbLQ=="],
 
     "lru-cache": ["lru-cache@11.5.3", "", {}, "sha512-U4N8FgzmWxc8k1VH8Kr6lQg18U7Fjvby6wXHVRX/ZZ7IwWbRMgrRbP0Wrb5q5NVinryp4SQampHKdvtecItxUg=="],
-
-    "lucide-react": ["lucide-react@0.460.0", "", { "peerDependencies": { "react": "^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0-rc" } }, "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg=="],
 
     "lz-string": ["lz-string@1.5.0", "", { "bin": { "lz-string": "bin/bin.js" } }, "sha512-h5bgJWpxJNswbU7qCrV0tIKQCaS3blPDrqKWx+QxzuzL1zGUzij9XCWLrSLsJPu5t+eWA/ycetzYAO5IOMcWAQ=="],
 

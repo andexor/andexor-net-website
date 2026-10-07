@@ -2,7 +2,6 @@
 // Copyright 2026 Andexor Network, Inc.
 // Author: Ed Jenkins <ed@andexor.net>
 
-import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 
 export interface CTABandProps {
@@ -23,12 +22,7 @@ export function CTABand({ onContactClick }: CTABandProps) {
                 <div className="an-cta-band__action">
                     <div aria-hidden="true" className="an-cta-band__glow" />
                     <div className="an-cta-band__button-wrap">
-                        <Button
-                            variant="accent"
-                            size="lg"
-                            rightIcon={<ArrowRight size={18} />}
-                            onClick={onContactClick}
-                        >
+                        <Button variant="accent" size="lg" onClick={onContactClick}>
                             Contact Us
                         </Button>
                     </div>

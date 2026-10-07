@@ -11,9 +11,18 @@ import { listContentSlugs } from "@/lib/content";
 
 // Spec 002 FR-013 / FR-023 / SC-007: only approved content pages are linked
 // from the home page and footer, and the links resolve. The owner approved the
-// nine footer pages in spec 010 and the four service card pages in spec 011.
-// The cards are a subset of the footer pages by design; there is no 1:1 mapping.
-const CARD_PAGES = ["/web-development", "/technical-seo", "/agentic-systems", "/growth-marketing"];
+// nine footer pages in spec 010 and the service card pages in spec 011. Since spec 048 there is a card
+// for each of the eight service pages, in the footer's order.
+const CARD_PAGES = [
+    "/web-development",
+    "/web-hosting",
+    "/technical-seo",
+    "/agentic-systems",
+    "/cost-reduction",
+    "/lead-generation",
+    "/growth-marketing",
+    "/process-re-engineering",
+];
 const FOOTER_PAGES = [
     "/about-us",
     "/agentic-systems",

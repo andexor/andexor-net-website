@@ -164,6 +164,6 @@ links, not buttons, and no existing button changes.
 - A tap on a link that opens a new tab may be too brief to see the press, and iOS Safari applies `:active` to links in
   limited cases. The Close and call-to-action buttons have the same limits, so this matches them and adds no JavaScript.
 - Making every button 3D is a separate, later spec.
-- The pattern is named for the icons now used. Other icons, such as ones in the service cards, are still Lucide and are
-  not covered until they move to FontAwesome.
+- The pattern is named for the icons now used. Other icons, such as ones in the service cards, were still Lucide when this
+  spec was written. They have since moved to FontAwesome, and `lucide-react` has been removed.
 - This is a small change on top of spec 042, on the same branch, with no new branch.
