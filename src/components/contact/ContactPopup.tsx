@@ -4,7 +4,9 @@
 
 "use client";
 
-import { ArrowRight, Check, X } from "lucide-react";
+import { faSquareCheck } from "@awesome.me/kit-0a6c11d394/icons/duotone/solid";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ArrowRight, X } from "lucide-react";
 import { type FormEvent, useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
@@ -161,7 +163,7 @@ export function ContactPopup({ open, onClose, onSubmit }: ContactPopupProps) {
                 {sent ? (
                     <div className="an-contact-confirmation">
                         <div className="an-contact-confirmation__icon">
-                            <Check size={28} strokeWidth={2.5} aria-hidden="true" />
+                            <FontAwesomeIcon icon={faSquareCheck} aria-hidden="true" />
                         </div>
                         <h3 className="an-contact-confirmation__heading">Request received</h3>
                         <p className="an-contact-confirmation__body">

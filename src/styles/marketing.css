@@ -334,12 +334,14 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 13px;
+    font-size: 14px;
     color: var(--text-body);
 }
 
 .an-services__bullet-icon {
-    color: var(--gold-600);
+    color: var(--gold-300);
+    background: transparent;
+    --fa-secondary-opacity: 0;
     flex: none;
 }
 
@@ -462,6 +464,11 @@
 .svg-inline--fa.fa-route {
     height: inherit;
     width: inherit;
+}
+
+.svg-inline--fa.fa-square-check {
+    height: 24px;
+    width: 24px;
 }
 
 .an-footer__col-heading {
@@ -676,6 +683,14 @@
     justify-content: center;
     margin: 0 auto 16px;
     color: var(--success-600);
+    --fa-secondary-opacity: 0;
+}
+
+.an-contact-confirmation__icon .svg-inline--fa.fa-square-check {
+    height: 64px;
+    width: 64px;
+    flex: none;
+    background: transparent;
 }
 
 .an-contact-confirmation__heading {

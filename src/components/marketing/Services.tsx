@@ -3,7 +3,7 @@
 // Author: Ed Jenkins <ed@andexor.net>
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Check } from "lucide-react";
+import { faSquareCheck } from "@awesome.me/kit-0a6c11d394/icons/duotone/solid";
 import { Card } from "@/components/ui/Card";
 import { SERVICES } from "./services-data";
 
@@ -60,8 +60,8 @@ export function Services() {
                                     <ul className="an-services__bullets">
                                         {service.bullets.map((bullet) => (
                                             <li key={bullet} className="an-services__bullet">
-                                                <Check
-                                                    size={15}
+                                                <FontAwesomeIcon
+                                                    icon={faSquareCheck}
                                                     aria-hidden="true"
                                                     className="an-services__bullet-icon"
                                                 />
