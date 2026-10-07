@@ -22,7 +22,7 @@ The token CSS (`styles.css`, `tokens/*.css`, `components/components.css`) **can*
 - **Avoid dashes in copy** (em, en, spaced hyphen). Split sentences or use a comma.
 - **Never "&" for "and"** in reader-facing copy.
 - **Hex colors UPPERCASE** everywhere (`#EAAA00`).
-- **No emoji.** Icons are Lucide line icons (2px stroke). Eyebrows are UPPERCASE mono, optionally prefixed `>>`.
+- **No emoji.** Icons are Font Awesome icons. Eyebrows are UPPERCASE mono, optionally prefixed `>>`.
 - Headlines and buttons use sentence case, except the brand CTA label "Contact Us".
 - Voice: "we" to "you", confident, precise, measured claims, no hype.
 
@@ -120,7 +120,7 @@ Each has `<Name>.jsx` (reference implementation), `<Name>.types.ts` (props), and
 - `assets/logo/logo-gold.svg`: Old Gold on transparent, for dark surfaces (hero, header)
 - `assets/logo/logo-outline.svg`: line variant
 - `assets/favicon/`: full favicon set with `site.webmanifest` and `browserconfig.xml`
-- Icons: Lucide `0.460.0` (CDN in the reference; install `lucide-react` in production)
+- Icons: Font Awesome (the site's kit, via `@fortawesome/react-fontawesome`); the UI kit reference still uses Lucide from a CDN
 
 ## Files
 - `styles.css`: single entry, imports all tokens and component CSS
@@ -131,7 +131,7 @@ Each has `<Name>.jsx` (reference implementation), `<Name>.types.ts` (props), and
 - `_ds_bundle.js`: prebuilt bundle so the reference HTML previews run
 - `ui_kits/marketing-site/index.html`: homepage (open in a browser to preview)
 - `ui_kits/marketing-site/contact-us.html`: popup, both states
-- `ui_kits/marketing-site/*.jsx`: `Hero`, `Services`, `CTA`, `Footer`, `ContactUs`, `Icon` (Lucide wrapper and logo lockup), `App` (composition). `Header`, `Results`, and `Testimonial` are legacy sections, loaded but not rendered.
+- `ui_kits/marketing-site/*.jsx`: `Hero`, `Services`, `CTA`, `Footer`, `ContactUs`, `Icon` (Lucide wrapper and logo lockup, reference only), `App` (composition). `Header`, `Results`, and `Testimonial` are legacy sections, loaded but not rendered.
 
 ## Suggested Claude Code setup
 Put this folder in your repo (for example `/design`) and add to your repo's `CLAUDE.md`:

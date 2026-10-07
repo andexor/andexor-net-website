@@ -13,11 +13,10 @@
     "test:e2e": "playwright test"
   },
   "dependencies": {
-    "@awesome.me/kit-0a6c11d394": "^1.0.15",
+    "@awesome.me/kit-0a6c11d394": "^1.0.20",
     "@fortawesome/fontawesome-svg-core": "^7.3.1",
     "@fortawesome/react-fontawesome": "^3.5.0",
     "gray-matter": "^4.0.3",
-    "lucide-react": "^0.460.0",
     "next": "^15.5.27",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",

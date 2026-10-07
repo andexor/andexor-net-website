@@ -37,8 +37,8 @@ links where it did before.
 
 ### Edge Cases
 
-- The other icons on the site (service cards, check marks, arrows, the close button) stay Lucide. Switching them is out
-  of scope.
+- The other icons on the site (service cards, check marks, arrows, the close button) stay Lucide when this spec is written. Switching them is out
+  of scope here. Later specs moved them all to FontAwesome, and `lucide-react` has since been removed.
 - The icons are inline SVG, so no icon font or extra network request is needed.
 
 ## Requirements *(mandatory)*
@@ -51,7 +51,7 @@ links where it did before.
   change. The icons MUST be hidden from assistive technology.
 - **FR-003**: FontAwesome's stylesheet MUST be loaded from the build, with automatic CSS injection turned off, so the
   icons are never oversized before the CSS arrives.
-- **FR-004**: The service, check, arrow, and close icons MUST stay on `lucide-react`.
+- **FR-004**: The service, check, arrow, and close icons MUST stay on `lucide-react` (when this spec was written; later specs moved them to FontAwesome).
 - **FR-005**: The new packages MUST pass the license check (`./setup.sh`): the FontAwesome code is MIT and the free icons
   are CC BY 4.0, with no GPL, LGPL, or AGPL license. The CC BY 4.0 attribution MUST be kept (the license comment inside
   the icon files and an entry in `NOTICE`).
