@@ -15,7 +15,7 @@ test.describe("Popup header logo", () => {
         const logo = page.locator(".an-contact-header__logo");
         const title = page.locator(".an-contact-header__title");
         await expect(logo).toHaveAttribute("src", "/logo/logo-gold.svg");
-        await expect(logo).toHaveAttribute("alt", "");
+        await expect(logo).toHaveAttribute("alt", "Andexor Network logo");
         expect(await logo.evaluate((el) => el instanceof HTMLImageElement && el.complete && el.naturalWidth > 0)).toBe(
             true,
         );
@@ -39,6 +39,7 @@ test.describe("Popup header logo", () => {
         await expect(page.getByRole("heading", { name: "Request received" })).toBeVisible();
         const logo = page.locator(".an-contact-header__logo");
         await expect(logo).toHaveAttribute("src", "/logo/logo-gold.svg");
+        await expect(logo).toHaveAttribute("alt", "Andexor Network logo");
         expect(await logo.evaluate((el) => el instanceof HTMLImageElement && el.complete && el.naturalWidth > 0)).toBe(
             true,
         );
