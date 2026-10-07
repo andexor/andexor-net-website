@@ -3,7 +3,6 @@
 // Author: Ed Jenkins <ed@andexor.net>
 
 import { Check } from "lucide-react";
-import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
 import { SERVICES } from "./services-data";
 
@@ -55,7 +54,6 @@ export function Services() {
                                         <span className="an-services__icon-tile">
                                             <Icon size={22} aria-hidden="true" />
                                         </span>
-                                        <Badge tone={service.badgeTone}>{service.tag}</Badge>
                                     </div>
                                     <h3 className="an-services__card-title">{service.title}</h3>
                                     <p className="an-services__card-body">{service.description}</p>

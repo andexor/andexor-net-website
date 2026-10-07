@@ -7,8 +7,6 @@ import { Bot, Code2, Filter, LineChart, Route, Search, Server, TrendingDown, typ
 export interface ServiceOffering {
     kind: "technical" | "business";
     icon: LucideIcon;
-    tag: string;
-    badgeTone: "brand" | "accent";
     title: string;
     href: string;
     description: string;
@@ -22,8 +20,6 @@ export const SERVICES: ServiceOffering[] = [
     {
         kind: "technical",
         icon: Code2,
-        tag: "Web",
-        badgeTone: "brand",
         title: "Web Development",
         href: "/web-development",
         description:
@@ -33,8 +29,6 @@ export const SERVICES: ServiceOffering[] = [
     {
         kind: "technical",
         icon: Server,
-        tag: "Hosting",
-        badgeTone: "accent",
         title: "Web Hosting",
         href: "/web-hosting",
         description: "We'll host your site on fast, reliable servers so it stays up when traffic spikes.",
@@ -43,8 +37,6 @@ export const SERVICES: ServiceOffering[] = [
     {
         kind: "technical",
         icon: Search,
-        tag: "SEO",
-        badgeTone: "accent",
         title: "Technical SEO",
         href: "/technical-seo",
         description:
@@ -54,8 +46,6 @@ export const SERVICES: ServiceOffering[] = [
     {
         kind: "technical",
         icon: Bot,
-        tag: "AI",
-        badgeTone: "brand",
         title: "Agentic Systems",
         href: "/agentic-systems",
         description:
@@ -65,8 +55,6 @@ export const SERVICES: ServiceOffering[] = [
     {
         kind: "business",
         icon: TrendingDown,
-        tag: "Cost",
-        badgeTone: "brand",
         title: "Cost Reduction",
         href: "/cost-reduction",
         description: "We'll find where your business spends more than it needs to and cut it without hurting quality.",
@@ -75,8 +63,6 @@ export const SERVICES: ServiceOffering[] = [
     {
         kind: "business",
         icon: Filter,
-        tag: "Leads",
-        badgeTone: "accent",
         title: "Lead Generation",
         href: "/lead-generation",
         description: "We'll bring in prospective customers who fit your business and move them toward a sale.",
@@ -85,8 +71,6 @@ export const SERVICES: ServiceOffering[] = [
     {
         kind: "business",
         icon: LineChart,
-        tag: "Growth",
-        badgeTone: "accent",
         title: "Growth Marketing",
         href: "/growth-marketing",
         description:
@@ -96,8 +80,6 @@ export const SERVICES: ServiceOffering[] = [
     {
         kind: "business",
         icon: Route,
-        tag: "Process",
-        badgeTone: "brand",
         title: "Process Re-engineering",
         href: "/process-re-engineering",
         description: "We'll map how work gets done today and redesign it to reach your goals faster.",

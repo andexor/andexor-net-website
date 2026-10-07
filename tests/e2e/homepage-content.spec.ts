@@ -69,6 +69,21 @@ test.describe("Homepage content", () => {
         });
     }
 
+    // Spec 049: the service cards show no badge, and the top row is as tall as the icon tile, so it does not depend on one.
+    test("service cards have no badge", async ({ page }) => {
+        await page.goto("/");
+        await expect(page.locator(".an-badge")).toHaveCount(0);
+        const rows = await page.locator(".an-services__card-top").evaluateAll((tops) =>
+            tops.map((top) => ({
+                row: top.getBoundingClientRect().height,
+                tile: top.querySelector(".an-services__icon-tile").getBoundingClientRect().height,
+            })),
+        );
+        for (const { row, tile } of rows) {
+            expect(row).toBe(tile);
+        }
+    });
+
     test("shows footer social links", async ({ page }) => {
         await page.goto("/");
         const footer = page.locator("footer");
