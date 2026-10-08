@@ -89,9 +89,15 @@ test.describe("Homepage content", () => {
         await page.goto("/");
         const footer = page.locator("footer");
         await footer.scrollIntoViewIfNeeded();
-        await expect(footer.getByRole("link", { name: "LinkedIn", exact: true })).toBeVisible();
-        await expect(footer.getByRole("link", { name: "X", exact: true })).toBeVisible();
-        await expect(footer.getByRole("link", { name: "GitHub", exact: true })).toBeVisible();
+        await expect(
+            footer.getByRole("link", { name: "LinkedIn logo, Andexor profile, opens in new tab", exact: true }),
+        ).toBeVisible();
+        await expect(
+            footer.getByRole("link", { name: "X logo, Andexor profile, opens in new tab", exact: true }),
+        ).toBeVisible();
+        await expect(
+            footer.getByRole("link", { name: "GitHub logo, Andexor organization, opens in new tab", exact: true }),
+        ).toBeVisible();
     });
 
     // SC-004 / FR-014: no visual defects from 320px to 1920px wide.

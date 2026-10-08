@@ -7,9 +7,24 @@ import { faSquareGithub, faSquareLinkedin, faSquareXTwitter } from "@awesome.me/
 import { Logo } from "./Logo";
 
 const SOCIAL_LINKS = [
-    { key: "linkedin", label: "LinkedIn", href: "https://www.linkedin.com/in/ejenkins/", icon: faSquareLinkedin },
-    { key: "twitter", label: "X", href: "https://x.com/andexor", icon: faSquareXTwitter },
-    { key: "github", label: "GitHub", href: "https://github.com/andexor", icon: faSquareGithub },
+    {
+        key: "linkedin",
+        label: "LinkedIn logo, Andexor profile, opens in new tab",
+        href: "https://www.linkedin.com/in/ejenkins/",
+        icon: faSquareLinkedin,
+    },
+    {
+        key: "twitter",
+        label: "X logo, Andexor profile, opens in new tab",
+        href: "https://x.com/andexor",
+        icon: faSquareXTwitter,
+    },
+    {
+        key: "github",
+        label: "GitHub logo, Andexor organization, opens in new tab",
+        href: "https://github.com/andexor",
+        icon: faSquareGithub,
+    },
 ];
 
 const COLUMNS = [

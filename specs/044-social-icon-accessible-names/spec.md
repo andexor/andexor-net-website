@@ -9,6 +9,9 @@
 **Input**: User description: "For the social media icons, let's remove the aria-hidden attribute and set the alt attribute
 to "LinkedIn", "X", and "GitHub"." Follow-up at planning: "Let's go with aria-label on the <svg> and not on the <a>."
 
+**Superseded in part**: the names "LinkedIn", "X", and "GitHub" were replaced by the full descriptions in
+`specs/061-social-icon-alt-text/spec.md`. The rest of this spec (the name on the svg, not the link; no `alt`) still holds.
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - The icons carry their own names (Priority: P1)

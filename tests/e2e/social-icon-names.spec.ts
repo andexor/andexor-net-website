@@ -6,7 +6,12 @@ import { expect, test } from "@playwright/test";
 
 // Spec 044: the footer's social icons are not hidden from assistive technology and carry their own names. The name is
 // on the <svg> (aria-label), not on the <a>, and no alt attribute is written anywhere (it is invalid on these elements).
-const NAMES = ["LinkedIn", "X", "GitHub"];
+// Spec 061 replaced the short names with these full descriptions.
+const NAMES = [
+    "LinkedIn logo, Andexor profile, opens in new tab",
+    "X logo, Andexor profile, opens in new tab",
+    "GitHub logo, Andexor organization, opens in new tab",
+];
 
 test.describe("Footer social icon names", () => {
     for (const name of NAMES) {
