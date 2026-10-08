@@ -5,7 +5,7 @@ layout: cards
 section: company
 eyebrow: Company
 image: /about-us.png
-image_alt: a building with employees
+image_alt: a building with employees and a heart
 ---
 
 <!--
