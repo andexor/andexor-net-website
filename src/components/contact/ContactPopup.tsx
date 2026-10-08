@@ -209,7 +209,12 @@ export function ContactPopup({ open, onClose, onSubmit }: ContactPopupProps) {
                         <p className="an-contact-form__note">
                             No obligation. We never share your personal information.{" "}
                             <span className="an-contact-form__legal">
-                                <a href="#privacy">Privacy</a> | <a href="#terms">Terms</a>
+                                {/* Ordinary links on purpose: every click loads a page fully, like the footer's. */}
+                                {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+                                <a href="/privacy">Privacy</a>
+                                {" | "}
+                                {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+                                <a href="/terms">Terms</a>
                             </span>
                         </p>
                         <Button type="submit" variant="accent" size="lg" disabled={submitting}>

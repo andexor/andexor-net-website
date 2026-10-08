@@ -20,10 +20,10 @@ const PAGES = [
 
 const START_PAGES = ["/", "/web-development", "/nope"];
 
-// FR-003 (spec 010, amended by spec 014): Privacy and Terms stay placeholders.
-const PLACEHOLDERS = [
-    ["Privacy", "#privacy"],
-    ["Terms", "#terms"],
+// Spec 062: Privacy and Terms open their pages. The page headings differ from the link text.
+const LEGAL = [
+    ["Privacy", "/privacy", "Privacy Policy"],
+    ["Terms", "/terms", "Terms Of Service"],
 ];
 
 test.describe("Footer links", () => {
@@ -37,12 +37,13 @@ test.describe("Footer links", () => {
             });
         }
 
-        test(`Privacy and Terms are still placeholders on ${start}`, async ({ page }) => {
-            await page.goto(start);
-            for (const [label, href] of PLACEHOLDERS) {
-                const link = page.locator("footer").getByRole("link", { name: label, exact: true });
-                await expect(link).toHaveAttribute("href", href);
-            }
-        });
+        for (const [label, path, heading] of LEGAL) {
+            test(`footer "${label}" opens ${path} from ${start}`, async ({ page }) => {
+                await page.goto(start);
+                await page.locator("footer").getByRole("link", { name: label, exact: true }).click();
+                await expect(page).toHaveURL(new RegExp(`${path}$`));
+                await expect(page.getByRole("heading", { level: 1, name: heading, exact: true })).toBeVisible();
+            });
+        }
     }
 });

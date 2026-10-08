@@ -49,14 +49,13 @@ const ITEM_HREFS: Record<string, string> = {
     "Growth Marketing": "/growth-marketing",
     "Process Re-engineering": "/process-re-engineering",
     "About Us": "/about-us",
-    Privacy: "#privacy",
-    Terms: "#terms",
+    Privacy: "/privacy",
+    Terms: "/terms",
 };
 
 // FR-006: navigation grouped into technical/business/company categories,
 // social media links, and a copyright line under the logo. The service and About Us entries
-// link to their pages (spec 010). Privacy and Terms remain placeholders per FR-017 — activating
-// them is a no-op.
+// link to their pages (spec 010), and so do Privacy and Terms (spec 062).
 export function Footer() {
     return (
         <footer className="an-footer">
