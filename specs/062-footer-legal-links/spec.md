@@ -8,6 +8,11 @@
 
 **Input**: User description: "I added the privacy and terms pages. Please hook up the links from the footer to point to these pages." Then: "Go ahead and update the links on the Contact Us popup too."
 
+**Superseded in part**: the Contact Us popup's Privacy and Terms links no longer open in the same tab. Spec 065
+(`specs/065-contact-legal-new-tab/spec.md`) makes them open in a new tab, with a new-tab icon and a label, so the Edge
+Cases entry here about the popup links leaving the page and the sentence "No new-tab behavior is added" no longer apply to
+the popup. The footer links and the rest of this spec still hold.
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Footer opens the Privacy and Terms pages (Priority: P1)

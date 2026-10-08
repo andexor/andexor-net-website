@@ -5,7 +5,8 @@
 import { expect, test } from "@playwright/test";
 
 // Spec 062: the Privacy and Terms links in the Contact Us popup open their pages. The page headings differ from the
-// link text.
+// link text. Spec 065: they open in a new tab, so the popup and the typed text stay in the original tab, and the links
+// are named "<label>, opens in new tab".
 const LEGAL = [
     ["Privacy", "/privacy", "Privacy Policy"],
     ["Terms", "/terms", "Terms Of Service"],
@@ -13,13 +14,19 @@ const LEGAL = [
 
 test.describe("Contact Us popup legal links", () => {
     for (const [label, path, heading] of LEGAL) {
-        test(`popup "${label}" opens ${path}`, async ({ page }) => {
+        test(`popup "${label}" opens ${path} in a new tab and keeps the form`, async ({ page }) => {
             await page.goto("/");
             await page.getByRole("button", { name: "Contact Us" }).first().click();
             const dialog = page.getByRole("dialog", { name: "Contact Us" });
-            await dialog.getByRole("link", { name: label, exact: true }).click();
-            await expect(page).toHaveURL(new RegExp(`${path}$`));
-            await expect(page.getByRole("heading", { level: 1, name: heading, exact: true })).toBeVisible();
+            await dialog.getByLabel("Full name").fill("Jordan Reyes");
+            const link = dialog.getByRole("link", { name: `${label}, opens in new tab`, exact: true });
+            const [newPage] = await Promise.all([page.context().waitForEvent("page"), link.click()]);
+            await newPage.waitForLoadState();
+            await expect(newPage).toHaveURL(new RegExp(`${path}$`));
+            await expect(newPage.getByRole("heading", { level: 1, name: heading, exact: true })).toBeVisible();
+            await expect(dialog).toBeVisible();
+            await expect(dialog.getByLabel("Full name")).toHaveValue("Jordan Reyes");
+            await newPage.close();
         });
     }
 });

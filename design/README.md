@@ -79,7 +79,7 @@ Sections in order: Hero → Services → CTA band → Footer. No sticky header. 
   - Company website ("company.com", required)
   - Primary need (select, required). Placeholder "Select a service…". Group "Technical Services": Web Development, Web Hosting, Technical SEO, Agentic Systems. Group "Business Services": Cost Reduction, Lead Generation, Growth Marketing, Process Re-engineering. Then "Something else".
   - "Send" accent button, block, lg, arrow-right icon.
-  - Note "No obligation. We never share your personal information." 12px `#E7EFF8`, centered.
+  - Note "We never share your personal information." 12px `#E7EFF8`, centered.
 - **Request received state** (padding 40px 28px, centered): 56px circle bg `--success-100` (`#D7F0E3`) with 28px check `--success-600` (`#167A4F`); H3 "Request received" 22px white; body "Thanks for reaching out. A strategist will review your site and contact you soon." 14px/1.55 `#E7EFF8`, max 34ch; "OK" button styled like Send (accent, lg, no arrow, no halo), centered, margin-top 22px, closes.
 
 ## Interactions and behavior
