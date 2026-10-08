@@ -17,6 +17,7 @@ import {
 export interface ServiceOffering {
     kind: "technical" | "business";
     icon: IconDefinition;
+    iconLabel: string;
     title: string;
     href: string;
     description: string;
@@ -30,6 +31,7 @@ export const SERVICES: ServiceOffering[] = [
     {
         kind: "technical",
         icon: faCode,
+        iconLabel: "source code icon",
         title: "Web Development",
         href: "/web-development",
         description:
@@ -39,6 +41,7 @@ export const SERVICES: ServiceOffering[] = [
     {
         kind: "technical",
         icon: faServer,
+        iconLabel: "web servers icon",
         title: "Web Hosting",
         href: "/web-hosting",
         description: "We'll host your site on fast, reliable servers so it stays up when traffic spikes.",
@@ -47,6 +50,7 @@ export const SERVICES: ServiceOffering[] = [
     {
         kind: "technical",
         icon: faMagnifyingGlass,
+        iconLabel: "magnifying glass icon",
         title: "Technical SEO",
         href: "/technical-seo",
         description:
@@ -56,6 +60,7 @@ export const SERVICES: ServiceOffering[] = [
     {
         kind: "technical",
         icon: faMicrochipAi,
+        iconLabel: "A.I. chip icon",
         title: "Agentic Systems",
         href: "/agentic-systems",
         description:
@@ -65,6 +70,7 @@ export const SERVICES: ServiceOffering[] = [
     {
         kind: "business",
         icon: faChartLineDown,
+        iconLabel: "line chart trending down icon",
         title: "Cost Reduction",
         href: "/cost-reduction",
         description: "We'll find where your business spends more than it needs to and cut it without hurting quality.",
@@ -73,6 +79,7 @@ export const SERVICES: ServiceOffering[] = [
     {
         kind: "business",
         icon: faFilter,
+        iconLabel: "sales funnel icon",
         title: "Lead Generation",
         href: "/lead-generation",
         description: "We'll bring in prospective customers who fit your business and move them toward a sale.",
@@ -81,6 +88,7 @@ export const SERVICES: ServiceOffering[] = [
     {
         kind: "business",
         icon: faChartLineUp,
+        iconLabel: "line chart trending up icon",
         title: "Growth Marketing",
         href: "/growth-marketing",
         description:
@@ -90,6 +98,7 @@ export const SERVICES: ServiceOffering[] = [
     {
         kind: "business",
         icon: faRoute,
+        iconLabel: "roadmap icon",
         title: "Process Re-engineering",
         href: "/process-re-engineering",
         description: "We'll map how work gets done today and redesign it to reach your goals faster.",
