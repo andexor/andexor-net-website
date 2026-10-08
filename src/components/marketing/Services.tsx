@@ -52,7 +52,7 @@ export function Services() {
                                 >
                                     <div className="an-services__card-top">
                                         <span className="an-services__icon-tile">
-                                            <FontAwesomeIcon icon={service.icon} aria-hidden="true" />
+                                            <FontAwesomeIcon icon={service.icon} aria-label={service.iconLabel} />
                                         </span>
                                         <h3 className="an-services__card-title">{service.title}</h3>
                                     </div>

@@ -466,6 +466,14 @@
     width: inherit;
 }
 
+/* Spec 065: the new-tab icon after the popup's Privacy and Terms links fits the 12px note line. */
+.svg-inline--fa.fa-arrow-up-right-from-square {
+    height: 0.85em;
+    width: 0.85em;
+    margin-left: 0.25em;
+    vertical-align: -0.1em;
+}
+
 .svg-inline--fa.fa-square-check {
     height: 24px;
     width: 24px;
@@ -674,6 +682,12 @@
 
 .an-contact-form__legal a:hover {
     color: var(--blue-200);
+}
+
+/* Spec 066: the new-tab icon follows its link rather than sitting inside it, so it is drawn in the link's resting
+ * color here. It has no hover color, because it is not part of the link. */
+.an-contact-form__legal .svg-inline--fa {
+    color: #ffffff;
 }
 
 .an-contact-confirmation {

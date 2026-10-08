@@ -5,7 +5,7 @@ layout: cards
 section: technical
 eyebrow: Technical Services
 image: /web-hosting.png
-image_alt: 3 web servers in a cloud
+image_alt: web servers running in a cloud datacenter
 ---
 
 <!--

@@ -1253,7 +1253,7 @@ function ContactUs({
       color: 'var(--blue-100)',
       textAlign: 'center'
     }
-  }, "No obligation. We never share your personal information.")));
+  }, "We never share your personal information.")));
   if (inline) return panel;
   return /*#__PURE__*/React.createElement("div", {
     role: "dialog",

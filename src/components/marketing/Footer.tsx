@@ -7,9 +7,24 @@ import { faSquareGithub, faSquareLinkedin, faSquareXTwitter } from "@awesome.me/
 import { Logo } from "./Logo";
 
 const SOCIAL_LINKS = [
-    { key: "linkedin", label: "LinkedIn", href: "https://www.linkedin.com/in/ejenkins/", icon: faSquareLinkedin },
-    { key: "twitter", label: "X", href: "https://x.com/andexor", icon: faSquareXTwitter },
-    { key: "github", label: "GitHub", href: "https://github.com/andexor", icon: faSquareGithub },
+    {
+        key: "linkedin",
+        label: "LinkedIn logo, Andexor profile, opens in new tab",
+        href: "https://www.linkedin.com/in/ejenkins/",
+        icon: faSquareLinkedin,
+    },
+    {
+        key: "twitter",
+        label: "X logo, Andexor profile, opens in new tab",
+        href: "https://x.com/andexor",
+        icon: faSquareXTwitter,
+    },
+    {
+        key: "github",
+        label: "GitHub logo, Andexor organization, opens in new tab",
+        href: "https://github.com/andexor",
+        icon: faSquareGithub,
+    },
 ];
 
 const COLUMNS = [
@@ -34,14 +49,13 @@ const ITEM_HREFS: Record<string, string> = {
     "Growth Marketing": "/growth-marketing",
     "Process Re-engineering": "/process-re-engineering",
     "About Us": "/about-us",
-    Privacy: "#privacy",
-    Terms: "#terms",
+    Privacy: "/privacy",
+    Terms: "/terms",
 };
 
 // FR-006: navigation grouped into technical/business/company categories,
 // social media links, and a copyright line under the logo. The service and About Us entries
-// link to their pages (spec 010). Privacy and Terms remain placeholders per FR-017 — activating
-// them is a no-op.
+// link to their pages (spec 010), and so do Privacy and Terms (spec 062).
 export function Footer() {
     return (
         <footer className="an-footer">

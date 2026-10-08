@@ -4,7 +4,7 @@
 
 "use client";
 
-import { faSquareCheck, faSquareX } from "@awesome.me/kit-0a6c11d394/icons/duotone/solid";
+import { faArrowUpRightFromSquare, faSquareCheck, faSquareX } from "@awesome.me/kit-0a6c11d394/icons/duotone/solid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { type FormEvent, useEffect, useRef, useState } from "react";
 import { LOGO_ALT } from "@/components/marketing/Logo";
@@ -207,9 +207,28 @@ export function ContactPopup({ open, onClose, onSubmit }: ContactPopupProps) {
                             </select>
                         </div>
                         <p className="an-contact-form__note">
-                            No obligation. We never share your personal information.{" "}
+                            We never share your personal information.{" "}
                             <span className="an-contact-form__legal">
-                                <a href="#privacy">Privacy</a> | <a href="#terms">Terms</a>
+                                {/* Ordinary links, opened in a new tab (spec 065) so the form stays. Each icon follows its link (spec 066). */}
+                                <a
+                                    href="/privacy"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label="Privacy, opens in new tab"
+                                >
+                                    Privacy
+                                </a>
+                                <FontAwesomeIcon icon={faArrowUpRightFromSquare} aria-hidden="true" />
+                                {" | "}
+                                <a
+                                    href="/terms"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label="Terms, opens in new tab"
+                                >
+                                    Terms
+                                </a>
+                                <FontAwesomeIcon icon={faArrowUpRightFromSquare} aria-hidden="true" />
                             </span>
                         </p>
                         <Button type="submit" variant="accent" size="lg" disabled={submitting}>

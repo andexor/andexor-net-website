@@ -45,4 +45,12 @@ If you have not installed uv yet, install it first.
 
 ## FontAwesome
 
-This is added by setup.sh.
+The packages are added by setup.sh.
+The Duotone icons are Font Awesome Pro,
+used under a commercial annual
+subscription held by Andexor Network, Inc.
+
+- Purchased: 08/25/2026.
+- Expires, or must be renewed: 08/25/2027. Renew before that date and update both dates here. After it lapses, a new install of the Pro icons fails, and so does the build.
+- The license file is `.npmrc`. It is excluded from GitHub by `.gitignore`. `build.sh` passes it to the Docker builder stage as a BuildKit secret, so it is not stored in the image.
+- NOTICE says the Pro icons are commercially licensed. It gives no dates.
