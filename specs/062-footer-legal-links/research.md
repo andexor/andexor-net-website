@@ -10,8 +10,9 @@ and `content/terms.md` to `/privacy` and `/terms` already.
 ## Decision 2: Same tab, plain anchors in the popup
 
 The popup links are ordinary `<a>` elements today; only `href` changes. Opening in the same tab matches the footer and
-keeps the focus order and accessible names unchanged. Navigating away discards the open form, which is accepted (spec
-edge case).
+keeps the focus order and accessible names unchanged. Navigating away may lose the open form, which is accepted (spec
+edge case). In practice the browser's back/forward cache usually restores it on Back (seen by the owner), but that is
+browser-dependent and not relied on.
 
 **Alternatives**: `target="_blank"` (would need "opens in new tab" in the names and changes behavior; not asked for);
 closing the popup first (nothing to close, the page unloads).

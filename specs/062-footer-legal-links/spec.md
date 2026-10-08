@@ -57,7 +57,8 @@ opens its page.
 
 - The links must not be `#privacy` or `#terms` placeholders any more, in the footer or the popup.
 - A link in the popup leaves the page it was opened on. The popup is plain navigation like the footer links, so it opens
-  in the same tab and the visitor's half-filled form is not kept (the visitor can use Back). No new-tab behavior is added.
+  in the same tab. When the visitor comes back with Back, the browser usually restores the half-filled form (the owner
+  saw this), but that depends on the browser and is not guaranteed or tested. No new-tab behavior is added.
 - Both pages exist already, so the links must not lead to a 404 page.
 
 ## Requirements *(mandatory)*
