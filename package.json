@@ -13,7 +13,7 @@
     "test:e2e": "playwright test"
   },
   "dependencies": {
-    "@awesome.me/kit-0a6c11d394": "^1.0.20",
+    "@awesome.me/kit-0a6c11d394": "^1.0.23",
     "@fortawesome/fontawesome-svg-core": "^7.3.1",
     "@fortawesome/react-fontawesome": "^3.5.0",
     "gray-matter": "^4.0.3",
@@ -31,7 +31,7 @@
   "devDependencies": {
     "@axe-core/playwright": "^4.13.0",
     "@eslint/eslintrc": "^3.3.7",
-    "@playwright/test": "^1.63.0",
+    "@playwright/test": "^1.64.0",
     "@testing-library/jest-dom": "^6.10.0",
     "@testing-library/react": "^16.3.3",
     "@testing-library/user-event": "^14.6.7",
