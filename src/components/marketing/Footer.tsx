@@ -36,7 +36,7 @@ const COLUMNS = [
         heading: "BUSINESS SERVICES",
         items: ["Cost Reduction", "Lead Generation", "Growth Marketing", "Process Re-engineering"],
     },
-    { heading: "COMPANY", items: ["About Us", "Privacy", "Terms"] },
+    { heading: "COMPANY", items: ["About Us", "Privacy", "Terms", "Security"] },
 ];
 
 const ITEM_HREFS: Record<string, string> = {
@@ -51,11 +51,12 @@ const ITEM_HREFS: Record<string, string> = {
     "About Us": "/about-us",
     Privacy: "/privacy",
     Terms: "/terms",
+    Security: "/security",
 };
 
 // FR-006: navigation grouped into technical/business/company categories,
 // social media links, and a copyright line under the logo. The service and About Us entries
-// link to their pages (spec 010), and so do Privacy and Terms (spec 062).
+// link to their pages (spec 010), and so do Privacy and Terms (spec 062) and Security (issue 33).
 export function Footer() {
     return (
         <footer className="an-footer">

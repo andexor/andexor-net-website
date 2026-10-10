@@ -20,10 +20,11 @@ const PAGES = [
 
 const START_PAGES = ["/", "/web-development", "/nope"];
 
-// Spec 062: Privacy and Terms open their pages. The page headings differ from the link text.
+// Spec 062 and issue 33: Privacy, Terms, and Security open their pages. The page headings differ from the link text.
 const LEGAL = [
     ["Privacy", "/privacy", "Privacy Policy"],
     ["Terms", "/terms", "Terms Of Service"],
+    ["Security", "/security", "Security Policy"],
 ];
 
 test.describe("Footer links", () => {
