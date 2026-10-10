@@ -1,0 +1,14 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Andexor Network, Inc.
+# Author: Ed Jenkins <ed@andexor.net>
+#
+# Andexor Network, Inc. security contact, RFC 9116.
+# Expires must stay less than a year out. Renew this file by 2027-09-01.
+
+Contact: mailto:security@andexor.net
+Contact: https://andexor.net/security
+Expires: 2027-10-01T00:00:00.000Z
+Policy: https://andexor.net/security
+Acknowledgments: https://andexor.net/security
+Preferred-Languages: en
+Canonical: https://andexor.net/.well-known/security.txt

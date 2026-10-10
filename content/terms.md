@@ -56,7 +56,7 @@ We grant you a limited, revocable, non-exclusive, non-transferable license to vi
 You agree not to:
 
 - use the Site for any unlawful purpose or in violation of these Terms;
-- attempt to gain unauthorized access to the Site, its servers, or any connected system, or probe, scan, or test the Site's security without our prior written permission;
+- attempt to gain unauthorized access to the Site, its servers, or any connected system, or probe, scan, or test the Site's security, except for good-faith security research that follows our [Security Policy](/security) or that we have authorized in writing;
 - interfere with the Site's operation, including through denial-of-service activity, excessive automated requests, or any attempt to bypass a measure we use to restrict access;
 - copy or extract Site content by automated means, including scraping, except as permitted below;
 - upload or transmit viruses or other malicious code;
