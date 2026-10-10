@@ -12,28 +12,11 @@ Spec-Driven Development (SDD).
 
 ## Spec-Driven Development workflow
 
-This project is driven by Spec Kit's slash-command workflow rather than ad-hoc coding. Work
-proceeds through these skills, in order, each producing artifacts consumed by the next:
-
-1. `speckit-constitution` — establish/update the project's governing principles in
-   `.specify/memory/constitution.md` (currently v1.4.0, eight principles). Read it before
-   specifying or planning; it holds the always-dark, no-link-underline, no-#top-link, graceful-shutdown,
-   Markdown-content, toolchain, license-header, and spec-policy rules.
-2. `speckit-specify` — turn a natural-language feature description into a spec, creating a new
-   numbered feature branch/directory (e.g. `specs/001-build-initial-home-page/`).
-3. `speckit-clarify` — resolve underspecified areas in the spec via targeted questions (run before
-   `speckit-plan` unless the user explicitly skips it).
-4. `speckit-plan` — generate the implementation plan and design artifacts from the spec.
-5. `speckit-tasks` — generate a dependency-ordered `tasks.md` from the plan.
-6. `speckit-analyze` — non-destructive cross-artifact consistency check across spec/plan/tasks
-   (optional, run before implementation).
-7. `speckit-checklist` — generate a custom requirements-quality checklist for the feature
-   (optional).
-8. `speckit-implement` — execute `tasks.md` to actually build the feature.
-9. `speckit-taskstoissues` — alternative to direct implementation: convert `tasks.md` into ordered
-   GitHub issues.
-10. `speckit-converge` — after implementation, diff the codebase against spec/plan/tasks and append
-    any remaining unbuilt work as new tasks.
+This project is driven by Spec Kit's slash-command workflow rather than ad-hoc coding. Order: constitution,
+specify, clarify (before plan unless the user skips it), plan, tasks, analyze and checklist (optional), implement
+(or taskstoissues instead), converge. Read `.specify/memory/constitution.md` (currently v1.4.0) before specifying
+or planning; it holds the always-dark, no-link-underline, no-#top-link, graceful-shutdown, Markdown-content,
+toolchain, license-header, and spec-policy rules.
 
 Feature branches and directories are numbered sequentially (`feature_numbering: sequential` in
 `.specify/init-options.json`); helper logic for branch/dir resolution lives in
@@ -43,19 +26,6 @@ by walking upward for a `.specify/` directory, so Spec Kit commands work from an
 
 Templates for each artifact type (spec, plan, tasks, checklist, constitution) live in
 `.specify/templates/`.
-
-## Re-running / updating Spec Kit itself
-
-`install-spec-kit.sh` records how Spec Kit was installed and initialized:
-
-```bash
-uv tool install specify-cli --from git+https://github.com/github/spec-kit.git@v1.0.12
-specify init --here --force --non-interactive --script sh --integration claude
-```
-
-It also appends `.claude/` to `.gitignore`. Note: as of this writing there is no root
-`.gitignore` file yet, so `.claude/` is currently untracked-but-not-ignored — re-running the
-install script (or manually creating `.gitignore`) is expected to fix that.
 
 ## Design System
 
