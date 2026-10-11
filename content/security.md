@@ -25,9 +25,9 @@ How to report a security issue.
 | Name               | Date             |
 | :----------------- | :--------------- |
 | **Author**         | Ed Jenkins       |
-| **Last Reviewed**  | October 10, 2026 |
-| **Last Updated**   | October 10, 2026 |
-| **Effective Date** | October 10, 2026 |
+| **Last Reviewed**  | October 11, 2026 |
+| **Last Updated**   | October 11, 2026 |
+| **Effective Date** | October 11, 2026 |
 
 ## 1. Our Commitment
 
@@ -58,10 +58,16 @@ The following are not covered by this policy. Please do not test them, and do no
 - denial of service, resource exhaustion, and brute-force attacks of any kind, including automated scanning at a rate that degrades service;
 - social engineering, phishing, or any attack directed at Andexor's staff, contractors, or clients;
 - physical attacks on offices, equipment, or data centers;
+- attacks that need physical access to a visitor's device, or a man-in-the-middle position between a visitor and our servers;
 - reports from automated tools without a demonstrated, specific impact;
 - missing security headers, missing best practices, or configuration observations that do not lead to a demonstrated vulnerability;
-- the presence or content of publicly published information, such as the names of staff or the software we use; and
-- clickjacking, self-XSS, and other issues that require a victim to take an unlikely action against their own interests.
+- email configuration findings, such as SPF, DKIM, and DMARC records, without a working demonstration of a specific flaw;
+- a dependency with a known vulnerability, without a working demonstration that this site is affected by it;
+- credentials, cookies, or session data found in breach dumps, paste sites, stealer logs, or other third-party leaks. Do not try them against our systems;
+- content spoofing or text injection that cannot change the HTML of the page;
+- the presence or content of publicly published information, such as the names of staff or the software we use;
+- clickjacking, self-XSS, and other issues that require a victim to take an unlikely action against their own interests; and
+- content quality problems, such as broken links and spelling errors. We are glad to hear about those via an email sent to security@andexor.net.
 
 ## 4. How to Report
 
@@ -78,10 +84,17 @@ To help us triage and respond quickly, please include:
 - a description of the vulnerability and where you found it (the URL, host, or service);
 - steps to reproduce it, with any request and response data, scripts, or screenshots that help;
 - the potential impact, and what an attacker could do with it;
-- the date and time of your testing, and the IP address you tested from, so we can match it to our logs; and
-- how you would like to be credited, if at all, and whether we may contact you with questions.
+- what an attacker needs to exploit it, such as an account, a position on the network, or an action by a victim;
+- whether the issue is already public, for example in a blog post, an advisory, or a CVE;
+- the date and time of your testing, and the IP address you tested from, so we can match it to our logs;
+- a confirmation that your testing did not touch a client, a third party, or anyone's data but your own; and
+- how you would like to be credited, if at all, the names of any collaborators who should share the credit, and whether we may contact you with questions.
 
-A suggested fix is welcome but not required.
+Please send one issue per report. If the same issue appears on several hosts or pages, combine them into one report rather than sending one for each.
+
+A proof of concept should be short and readable: a request, a few commands, or a short script that a reviewer can follow in a few minutes. If it is minified, obfuscated, or longer than it needs to be, we will return it and ask for a clearer one. You may use AI tools to help with your research and writing, but you must have verified the finding yourself and be able to explain it. We will close a report that reads as unverified AI output, or whose author cannot answer questions about it.
+
+A suggested fix is welcome, but not required.
 
 ## 6. What You Can Expect from Us
 
@@ -91,7 +104,8 @@ When you report a security issue by following this policy, we will:
 - tell you within 10 business days whether we have confirmed the issue, and how severe we consider it;
 - keep you informed about our progress at least every 30 days until the issue is resolved;
 - aim to fix a confirmed issue within 90 days of your report, and sooner for severe issues;
-- tell you when the fix is deployed; and
+- tell you when the fix is deployed, and welcome you to check it;
+- tell you if the issue was already known to us, or was reported first by someone else. When two reports describe the same issue, we credit the first one we received; and
 - credit you on this page, if you want to be credited, once the issue is resolved.
 
 We do not currently pay bounties or other rewards for security reports. We will say so plainly if that changes.
@@ -102,6 +116,8 @@ We ask that you give us 90 days from the date of your report before you discuss 
 
 If we do not respond to your report within the times in Section 6 and you cannot reach us after a reasonable second attempt, you may disclose the issue after the 90 days have passed. Please tell us first.
 
+If we decide that a report does not describe a vulnerability, or that we will not fix it, we still ask you to coordinate with us before publishing, so that we are prepared. What you publish, and when, is your decision once the time above has passed. We welcome a draft of a blog post, talk, or article before it goes out, and we may offer corrections or context.
+
 ## 8. Rules for Researchers
 
 To stay within this policy, you must:
@@ -110,9 +126,14 @@ To stay within this policy, you must:
 - test only systems in scope, and stop as soon as you have enough evidence to demonstrate the issue;
 - not access, modify, delete, or save data that does not belong to you. If you encounter personal information, client data, or credentials, stop, do not copy or keep them, and tell us in your report;
 - not disrupt or degrade our services, and not use denial of service, spam, or attacks on availability;
+- limit automated scanners to the hosts in scope, and run them at a rate that does not degrade service;
 - not use a vulnerability to gain further access, move to other systems, or install anything persistent;
+- not log in with, or otherwise use, any credential, key, or token of ours that you find. Tell us where you found it, and we will check it ourselves;
+- not upload, send, or link to malware or any other code meant to cause harm;
+- not impersonate Andexor, or claim to act for us, toward our clients, our staff, or anyone else;
 - not extort, threaten, or demand payment from us or our clients in exchange for a report or for not publishing;
-- not test from infrastructure you are not authorized to use; and
+- not test from infrastructure you are not authorized to use;
+- delete any data from our systems that you still hold once your report is submitted, and tell us that you have done so; and
 - give us the time in Section 7 before publishing.
 
 ## 9. Safe Harbor
@@ -130,6 +151,8 @@ Email: security@andexor.net
 Phone: 855-ANDEXOR
 
 For questions about this policy that are not themselves security reports, you may also use legal@andexor.net.
+
+If you believe we have not kept to this policy, for example by missing the times in Section 6 or by dismissing a report without a reason, write to legal@andexor.net and say so. We will review the matter separately from the report itself and reply within 10 business days.
 
 | Mailing Address             |
 | :-------------------------- |
