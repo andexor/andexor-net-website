@@ -317,7 +317,9 @@ export async function formatHtml(original: string, file: string): Promise<string
 
     // 3. Protect spaces and newlines inside text, so Prettier cannot re-wrap paragraphs.
     prepared = prepared
-        .split(/(<script\b[^>]*>[\s\S]*?<\/script\s*>|<style\b[^>]*>[\s\S]*?<\/style\s*>)/i)
+        .split(
+            /(<script\b[^>]*>[\s\S]*?<\/script(?:\s[^>]*)?>|<style\b[^>]*>[\s\S]*?<\/style(?:\s[^>]*)?>)/i,
+        )
         .map((part) =>
             /^<(script|style)/.test(part)
                 ? part
