@@ -94,7 +94,8 @@ To help us triage and respond quickly, please include:
 - the potential impact, and what an attacker could do with it;
 - what an attacker needs to exploit it, such as an account, a position on the network, or an action by a victim;
 - whether the issue is already public, for example in a blog post, an advisory, or a CVE;
-- the date and time of your testing, and the IP address you tested from, so we can match it to our logs;
+- the date and time of your testing, the IP address you tested from, and any accounts or usernames you used, so we can match your activity to our logs;
+- if the issue exposes personal information, what kind and roughly how much you believe is exposed. Include as little of it as possible, and redact names, addresses, and other identifying details in any text, output, and screenshots;
 - a confirmation that your testing did not touch a client, a third party, or anyone's data but your own; and
 - how you would like to be credited, if at all, the names of any collaborators who should share the credit, and whether we may contact you with questions.
 
@@ -132,7 +133,8 @@ To stay within this policy, you must:
 
 - act in good faith, with the goal of helping us protect our systems and the people who use them;
 - test only systems in scope, and stop as soon as you have enough evidence to demonstrate the issue;
-- not access, modify, delete, or save data that does not belong to you. If you encounter personal information, client data, or credentials, stop, do not copy or keep them, and tell us in your report;
+- not access, modify, delete, or save data that does not belong to you. If you encounter personal information, client data, or credentials, stop, do not copy or keep them, do not look for more, and tell us in your report;
+- test only with your own information if a system appears to expose personal information, and limit what a query returns to the least that proves the issue, for example one row from a database rather than the table. We will assess how much is exposed; you do not need to;
 - not disrupt or degrade our services, and not use denial of service, spam, or attacks on availability, or any attack that is noisy to visitors, clients, or administrators, such as flooding the Contact Us form or a notification channel;
 - limit automated scanners to the hosts in scope, and run them at a rate that does not degrade service;
 - not use a vulnerability to gain further access, move to other systems, or install anything persistent;
@@ -143,8 +145,10 @@ To stay within this policy, you must:
 - not test from infrastructure you are not authorized to use;
 - not reverse engineer, extract, train on, or copy a model, its instructions, or its data, whether to build a competing product or service or for any purpose beyond demonstrating the issue;
 - use what you learn from your research only to report it to us and to improve the security of the system, and not to exploit it, sell it, or pass it to anyone who would;
-- delete any data from our systems that you still hold once your report is submitted, and tell us that you have done so; and
+- delete any data from our systems that you still hold, including local, stored, and cached copies, once your report is submitted, and tell us that you have done so. We may ask you to confirm in writing what you accessed and that you have deleted it; and
 - give us the time in Section 7 before publishing.
+
+By personal information we mean anything that identifies a person or could be used against them: a name; a username, email address, or phone number tied to a person; financial, health, or government identifiers, such as account, insurance, and social security numbers; and details of a person's politics, religion, race, ethnicity, sex, gender, or sexual orientation.
 
 ## 9. Safe Harbor
 
