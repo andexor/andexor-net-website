@@ -1,6 +1,12 @@
 <!--
 Sync Impact Report
-- Version change: 1.5.0 → 1.6.0 (MINOR: Technology Constraints gains a Quotes rule: no curly, smart, or typographic
+- Version change: 1.6.0 → 1.7.0 (MINOR: the Technology Constraints Dependency audit rule changes materially.
+  `./setup.sh` now replaces `reports/license-report.md` with one dated section on each run instead of appending;
+  the report is a snapshot of the current dependency set, and earlier sets live in version history. The report
+  is still written only by `./setup.sh` and never by hand or another script. Owner decision,
+  specs/067-overwrite-license-report; no test, the report is information for people. Templates in
+  .specify/templates/ checked: none mention the report).
+  Earlier: 1.5.0 → 1.6.0 (MINOR: Technology Constraints gains a Quotes rule: no curly, smart, or typographic
   quote may appear in any file, as a character or as an HTML reference; only the straight apostrophe and double quote
   are used, and built pages write them as plain characters. Third-party text the owner has said not to alter, the Code
   of Conduct files, is the one exception. Owner decision, specs/040-straight-quotes-only; enforced by
@@ -173,10 +179,12 @@ out of customers' view.
   prohibited unless building a native app that requires it.
 - Setup: prerequisites are installed with the scripts described in `setup.md` (`install-bun.sh`,
   `install-docker.sh`, `install-spec-kit.sh`, and Playwright system dependencies).
-- Dependency audit: the license report is produced by running `./setup.sh`, which appends a dated
-  section to `reports/license-report.md` using `license-checker-rseidelsohn`. The report is
-  append-only and MUST NOT be overwritten, so `./setup.sh` is the only way to update it. Dependencies added
-  without a requirement in a spec or plan MUST be justified (Principle I).
+- Dependency audit: the license report is produced by running `./setup.sh`, which replaces
+  `reports/license-report.md` with one dated section listing the installed packages and their licenses,
+  using `license-checker-rseidelsohn`. The report describes the current dependency set only; earlier
+  sets are in version history. `./setup.sh` is the only thing that writes the report, and the report
+  MUST NOT be edited by hand or by any other script. Dependencies added without a requirement in a
+  spec or plan MUST be justified (Principle I).
 - Licenses: the project is Apache-2.0 (`package.json`, `LICENSE`, `NOTICE`) and is NOT marked
   `"private"`, so tools report its license correctly. Nothing is excluded from the license report.
   Dependencies MUST NOT use strong copyleft licenses (GPL, AGPL, LGPL); `./setup.sh` fails, and
@@ -237,4 +245,4 @@ MUST be explicitly justified in the relevant artifact rather than silently intro
 are companion documents for contributors; where they conflict with this constitution, this
 constitution wins until one of them is amended.
 
-**Version**: 1.6.0 | **Ratified**: 2026-09-28 | **Last Amended**: 2026-10-05
+**Version**: 1.7.0 | **Ratified**: 2026-09-28 | **Last Amended**: 2026-10-11

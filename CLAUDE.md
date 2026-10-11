@@ -14,7 +14,7 @@ Spec-Driven Development (SDD).
 
 This project is driven by Spec Kit's slash-command workflow rather than ad-hoc coding. Order: constitution,
 specify, clarify (before plan unless the user skips it), plan, tasks, analyze and checklist (optional), implement
-(or taskstoissues instead), converge. Read `.specify/memory/constitution.md` (currently v1.4.0) before specifying
+(or taskstoissues instead), converge. Read `.specify/memory/constitution.md` (currently v1.7.0) before specifying
 or planning; it holds the always-dark, no-link-underline, no-#top-link, graceful-shutdown, Markdown-content,
 toolchain, license-header, and spec-policy rules.
 
@@ -96,9 +96,10 @@ The project is Apache-2.0 (`license` in `package.json`, which is deliberately no
 dependency of Next.js (LGPL libvips) is replaced by the empty stub in `stubs/sharp` through
 `overrides` in `package.json`. The Dockerfile copies `stubs/` before `bun install
 --frozen-lockfile`, so keep that line. Update the license report by running `./setup.sh`, which
-appends a dated section to `reports/license-report.md` (append-only, never overwrite it, so
-do not add another script that writes the report) and fails if a GPL, LGPL, or AGPL license
-is found. Nothing is excluded from the report.
+replaces `reports/license-report.md` with one dated section for the installed packages (earlier
+sets are in git history; do not edit the report by hand or add another script that writes it)
+and fails, leaving the report unchanged, if a GPL, LGPL, or AGPL license is found. Nothing is
+excluded from the report. The report is information for people; it has no tests.
 
 Playwright e2e tests (`bun run test:e2e`) build the site and serve `out/` with `server.ts`
 (production mode), not `next dev`, because dev cannot serve the static-export 404 page. Port 3000
