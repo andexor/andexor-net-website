@@ -59,18 +59,20 @@ Before you report, ask whether the attack is realistic and what its security imp
 - denial of service, resource exhaustion, and brute-force attacks of any kind, including automated scanning at a rate that degrades service;
 - social engineering, phishing, or any attack directed at Andexor's staff, contractors, or clients, including a support request or Contact Us message sent under a false pretense;
 - physical attacks on offices, equipment, or data centers;
-- attacks that need physical access to a visitor's device, or a man-in-the-middle position between a visitor and our servers;
+- attacks that need physical access to a visitor's device, a rooted or jailbroken device, or a man-in-the-middle position between a visitor and our servers;
 - issues that affect only users of a browser or operating system that its maker no longer supports, such as a version past its end of life. This is about the maker's support, not about which browsers we choose to support;
 - reports from automated tools without a demonstrated, specific impact;
 - missing security headers, missing best practices, or configuration observations that do not lead to a demonstrated vulnerability;
 - email configuration findings, such as SPF, DKIM, and DMARC records, without a working demonstration of a specific flaw;
-- a cross-site request forgery (CSRF) on a form with no sensitive action, or a permissive cross-origin resource sharing (CORS) configuration, without a demonstrated impact;
+- a cross-site request forgery (CSRF) on a form with no sensitive action, including logout, or a permissive cross-origin resource sharing (CORS) configuration, without a demonstrated impact;
 - an open redirect, without a demonstrated further impact;
 - rate limiting, or the lack of it, without a demonstrated impact beyond the extra requests;
+- password policy observations, such as complexity rules or the lack of an account lockout, without a demonstrated impact;
 - CSV injection, that is, a spreadsheet formula placed in data that a system exports;
 - a dependency with a known vulnerability, without a working demonstration that this site is affected by it;
 - credentials, cookies, or session data found in breach dumps, paste sites, stealer logs, or other third-party leaks. Do not try them against our systems;
 - content spoofing or text injection that cannot change the HTML of the page;
+- prompt injection or other manipulation of an AI feature that affects only your own session, with no effect on other users, on data, or on the systems behind the feature. Getting a model to say something odd to you is not a security issue; getting it to act on another person's data, or to leak its instructions or data, is;
 - the presence or content of publicly published information, such as the names of staff or the software we use;
 - software version or banner disclosure, descriptive error messages, stack traces, and server headers, without a demonstrated impact;
 - broken link hijacking and tabnabbing, without a demonstrated impact. A link from our pages to an account or domain that has expired is a content problem; see the last item;
@@ -114,7 +116,8 @@ When you report a security issue by following this policy, we will:
 - keep you informed about our progress at least every 30 days until the issue is resolved;
 - aim to fix a confirmed issue within 90 days of your report, and sooner for severe issues;
 - tell you when the fix is deployed, and welcome you to check it;
-- tell you if the issue was already known to us, or was reported first by someone else. When two reports describe the same issue, we credit the first one we received; and
+- tell you if the issue was already known to us, or was reported first by someone else. When two reports describe the same issue, we credit the first one we received. If your report adds something we did not know, such as another way to exploit the issue or a greater impact, we credit you for that;
+- treat several reports that share one root cause as one issue, fixed and credited once; and
 - credit you on this page, if you want to be credited, once the issue is resolved.
 
 We do not currently pay bounties or other rewards for security reports. We will say so plainly if that changes.
@@ -129,9 +132,11 @@ If we decide that a report does not describe a vulnerability, or that we will no
 
 ## 8. Rules for Researchers
 
+You may take part under this policy if you are at least 18 years old, the law where you live allows you to, your employer does not forbid it, and we have not excluded you after an earlier report. If you do not agree to this policy, do not test our systems.
+
 To stay within this policy, you must:
 
-- act in good faith, with the goal of helping us protect our systems and the people who use them;
+- act in good faith, with the goal of helping us protect our systems and the people who use them, and obey the laws that apply to you;
 - test only systems in scope, and stop as soon as you have enough evidence to demonstrate the issue;
 - not access, modify, delete, or save data that does not belong to you. If you encounter personal information, client data, or credentials, stop, do not copy or keep them, do not look for more, and tell us in your report;
 - test only with your own information if a system appears to expose personal information, and limit what a query returns to the least that proves the issue, for example one row from a database rather than the table. We will assess how much is exposed; you do not need to;
@@ -144,9 +149,11 @@ To stay within this policy, you must:
 - not extort, threaten, or demand payment from us or our clients in exchange for a report or for not publishing;
 - not test from infrastructure you are not authorized to use;
 - not reverse engineer, extract, train on, or copy a model, its instructions, or its data, whether to build a competing product or service or for any purpose beyond demonstrating the issue;
-- use what you learn from your research only to report it to us and to improve the security of the system, and not to exploit it, sell it, or pass it to anyone who would;
+- use what you learn from your research, and what we tell you in our replies, only to report the issue to us and to improve the security of the system, and not to exploit it, sell it, or pass it to anyone who would;
 - delete any data from our systems that you still hold, including local, stored, and cached copies, once your report is submitted, and tell us that you have done so. We may ask you to confirm in writing what you accessed and that you have deleted it; and
 - give us the time in Section 7 before publishing.
+
+If you break these rules, this policy no longer protects you, including the safe harbor in Section 9, and we may decline to work with you on later reports.
 
 By personal information we mean anything that identifies a person or could be used against them: a name; a username, email address, or phone number tied to a person; financial, health, or government identifiers, such as account, insurance, and social security numbers; and details of a person's politics, religion, race, ethnicity, sex, gender, or sexual orientation.
 
