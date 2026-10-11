@@ -46,6 +46,7 @@ This policy applies to:
 - the machine-readable files we publish, such as [security.txt](/.well-known/security.txt)
 - email addresses at andexor.net
 - websites, applications, and other systems that Andexor hosts or operates for its clients, where Andexor controls the infrastructure
+- AI features in any of those systems, such as assistants, chat, and other model-backed features that we host or operate. Prompt injection, unsafe or unintended outputs, and leaks of data or instructions through such a feature are in scope
 
 If you are not sure whether a system is in scope, ask us first at the address in Section 10.
 
@@ -133,14 +134,16 @@ To stay within this policy, you must:
 - not impersonate Andexor, or claim to act for us, toward our clients, our staff, or anyone else;
 - not extort, threaten, or demand payment from us or our clients in exchange for a report or for not publishing;
 - not test from infrastructure you are not authorized to use;
+- not reverse engineer, extract, train on, or copy a model, its instructions, or its data, whether to build a competing product or service or for any purpose beyond demonstrating the issue;
+- use what you learn from your research only to report it to us and to improve the security of the system, and not to exploit it, sell it, or pass it to anyone who would;
 - delete any data from our systems that you still hold once your report is submitted, and tell us that you have done so; and
 - give us the time in Section 7 before publishing.
 
 ## 9. Safe Harbor
 
-If you conduct research and report it according to this policy, we consider your research authorized, lawful, and conducted in good faith. We will not initiate or support legal action against you under the Computer Fraud and Abuse Act, the Digital Millennium Copyright Act, state computer crime laws, or our [Terms of Service](/terms) for research that stays within this policy, and we will not report you to law enforcement for it. Where we agree that your research followed this policy, we will state that publicly on request.
+If you conduct research and report it according to this policy, we consider your research authorized, lawful, and conducted in good faith. By good faith research, we mean accessing a system in scope only to test, investigate, or correct a security flaw or unintended behavior, in a way designed to avoid harm to anyone, where what you learn is used only to improve the security of the system and the people who use it. We will not initiate or support legal action against you under the Computer Fraud and Abuse Act, the Digital Millennium Copyright Act, state computer crime laws, or our [Terms of Service](/terms) for research that stays within this policy, including for bypassing a technical measure that protects a system in scope when that is part of the research, and we will not report you to law enforcement for it. Where we agree that your research followed this policy, we will state that publicly on request.
 
-This safe harbor is a limited waiver of the Acceptable Use restrictions in our Terms of Service and controls over them for research covered by this policy. It does not bind third parties, and it does not apply to actions outside the scope or rules of this policy. If a third party starts legal action against you for research that followed this policy, we will make it known that your actions were authorized by us.
+This safe harbor is a limited waiver of the Acceptable Use restrictions in our Terms of Service and controls over them for research covered by this policy. It does not bind third parties, and it does not apply to actions outside the scope or rules of this policy. If a third party starts legal action against you for research that followed this policy, we will make it known that your actions were authorized by us, when you ask us to and to the extent we have the information to do so.
 
 If you are unsure whether something you plan to do is covered, ask us before you do it.
 
