@@ -25,7 +25,7 @@ export interface SplitScripts {
 export function splitDataScripts(html: string): SplitScripts | null {
     const match = TRAILING_RUN.exec(html);
     if (!match) return null;
-    const bodies = [...match[1].matchAll(/<script>([\s\S]*?)<\/script>/g)].map((script) => script[1]);
+    const bodies = [...match[1].matchAll(/<script>([\s\S]*?)<\/script>/gi)].map((script) => script[1]);
     return {
         before: html.slice(0, match.index),
         bodies,
