@@ -52,22 +52,29 @@ If you are not sure whether a system is in scope, ask us first at the address in
 
 ## 3. Out of Scope
 
-The following are not covered by this policy. Please do not test them, and do not report findings about them to us:
+Before you report, ask whether the attack is realistic and what its security impact would be. The following are not covered by this policy. Please do not test them, and do not report findings about them to us. The one exception is a finding that uses an excluded item as a step toward a demonstrated impact, for example an open redirect that leaks a token: then the impact is the finding, and you may include the excluded item as a step. We will close a report that describes an excluded item on its own:
 
 - third-party services we use or link to, including GitHub, LinkedIn, X, Google, our domain registrar, our DNS and email providers, and our hosting provider's own infrastructure. Report problems with those services to their owners;
 - a client's website or application where the client, not Andexor, controls the infrastructure. Report problems with those to the client;
 - denial of service, resource exhaustion, and brute-force attacks of any kind, including automated scanning at a rate that degrades service;
-- social engineering, phishing, or any attack directed at Andexor's staff, contractors, or clients;
+- social engineering, phishing, or any attack directed at Andexor's staff, contractors, or clients, including a support request or Contact Us message sent under a false pretense;
 - physical attacks on offices, equipment, or data centers;
 - attacks that need physical access to a visitor's device, or a man-in-the-middle position between a visitor and our servers;
+- issues that affect only users of a browser or operating system that its maker no longer supports, such as a version past its end of life. This is about the maker's support, not about which browsers we choose to support;
 - reports from automated tools without a demonstrated, specific impact;
 - missing security headers, missing best practices, or configuration observations that do not lead to a demonstrated vulnerability;
 - email configuration findings, such as SPF, DKIM, and DMARC records, without a working demonstration of a specific flaw;
+- a cross-site request forgery (CSRF) on a form with no sensitive action, or a permissive cross-origin resource sharing (CORS) configuration, without a demonstrated impact;
+- an open redirect, without a demonstrated further impact;
+- rate limiting, or the lack of it, without a demonstrated impact beyond the extra requests;
+- CSV injection, that is, a spreadsheet formula placed in data that a system exports;
 - a dependency with a known vulnerability, without a working demonstration that this site is affected by it;
 - credentials, cookies, or session data found in breach dumps, paste sites, stealer logs, or other third-party leaks. Do not try them against our systems;
 - content spoofing or text injection that cannot change the HTML of the page;
 - the presence or content of publicly published information, such as the names of staff or the software we use;
-- clickjacking, self-XSS, and other issues that require a victim to take an unlikely action against their own interests; and
+- software version or banner disclosure, descriptive error messages, stack traces, and server headers, without a demonstrated impact;
+- broken link hijacking and tabnabbing, without a demonstrated impact. A link from our pages to an account or domain that has expired is a content problem; see the last item;
+- clickjacking on a page with no sensitive action, self-XSS, self-DoS, and other issues that require a victim to take an unlikely action against their own interests; and
 - content quality problems, such as broken links and spelling errors. We are glad to hear about those via an email sent to security@andexor.net.
 
 ## 4. How to Report
@@ -126,7 +133,7 @@ To stay within this policy, you must:
 - act in good faith, with the goal of helping us protect our systems and the people who use them;
 - test only systems in scope, and stop as soon as you have enough evidence to demonstrate the issue;
 - not access, modify, delete, or save data that does not belong to you. If you encounter personal information, client data, or credentials, stop, do not copy or keep them, and tell us in your report;
-- not disrupt or degrade our services, and not use denial of service, spam, or attacks on availability;
+- not disrupt or degrade our services, and not use denial of service, spam, or attacks on availability, or any attack that is noisy to visitors, clients, or administrators, such as flooding the Contact Us form or a notification channel;
 - limit automated scanners to the hosts in scope, and run them at a rate that does not degrade service;
 - not use a vulnerability to gain further access, move to other systems, or install anything persistent;
 - not log in with, or otherwise use, any credential, key, or token of ours that you find. Tell us where you found it, and we will check it ourselves;
