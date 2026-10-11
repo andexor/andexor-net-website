@@ -44,11 +44,7 @@ if ! bunx license-checker-rseidelsohn --failOn "${FAIL_ON}" --markdown > "${LICE
     rm -f "${LICENSES_TMP}"
     exit 1
 fi
-echo " " >> reports/license-report.md
-date --iso-8601 seconds >> reports/license-report.md
+date --iso-8601 seconds > reports/license-report.md
 echo " " >> reports/license-report.md
 cat "${LICENSES_TMP}" >> reports/license-report.md
 rm -f "${LICENSES_TMP}"
-
-# Check for known vulnerabilities in dependencies.
-# uv --preview-features audit-command audit 2>> reports/uv-audit-report.txt
