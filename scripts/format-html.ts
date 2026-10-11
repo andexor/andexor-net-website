@@ -88,7 +88,9 @@ function plainQuotesInTag(tag: string): string {
  */
 export function plainQuotes(html: string): string {
     return html
-        .split(/(<script\b[\s\S]*?<\/script\s*>|<style\b[\s\S]*?<\/style\s*>|<noscript\b[\s\S]*?<\/noscript\s*>)/i)
+        .split(
+            /(<script\b[\s\S]*?<\/script(?:\s[^>]*)?>|<style\b[\s\S]*?<\/style(?:\s[^>]*)?>|<noscript\b[\s\S]*?<\/noscript(?:\s[^>]*)?>)/i,
+        )
         .map((part, index) =>
             index % 2 === 1
                 ? part
