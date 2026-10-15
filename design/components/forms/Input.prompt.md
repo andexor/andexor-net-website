@@ -6,3 +6,4 @@ Labelled text input with built-in label, hint, and error rendering.
 ```
 
 Pass any native input attribute. Supplying `error` swaps in the danger styling and message; otherwise `hint` shows.
+`required` also appends a "*" to the label, in the label's color and hidden from assistive technology.

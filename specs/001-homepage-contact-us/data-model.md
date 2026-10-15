@@ -14,8 +14,9 @@ feature.
 |---|---|---|---|
 | `fullName` | string | Yes | Non-empty (native `required`) |
 | `workEmail` | string | Yes | Non-empty, valid email format (native `type="email"` + `required`) |
-| `companyWebsite` | string | Yes | Non-empty (native `required`); no format enforcement beyond that, per design reference |
-| `primaryNeed` | enum or `"Something else"` | Yes | Must be one of the Service Offering names below, or the literal `"Something else"`; the placeholder ("Select a service…") is not a valid submission value |
+| `phoneNumber` | string | No | None; free text in a `type="tel"` field, empty string when blank (spec 068) |
+| `companyWebsite` | string | No | None (optional since spec 068) |
+| ~~`primaryNeed`~~ | ~~enum or `"Something else"`~~ | ~~Yes~~ | Removed by spec 070. Was: one of the Service Offering names below, or the literal `"Something else"` |
 
 **State transitions**:
 
@@ -28,8 +29,8 @@ feature.
 ## Service Offering
 
 Static, hard-coded content describing one of Andexor Network's four service disciplines.
-Rendered in the homepage Services section and reused as the option list in the Contact Request's
-`primaryNeed` field (technical services group).
+Rendered in the homepage Services section (it was also the option list of the Contact Request's
+primary need field until spec 070 removed that field).
 
 | Field | Type | Notes |
 |---|---|---|
@@ -50,6 +51,8 @@ Fixed content set (from `design/README.md`, Services section):
    advertising"
 
 ## Primary Need option list
+
+Removed by spec 070 with the field. Kept for history:
 
 Static enum used by the Contact Request form's "Primary need" field (not a separate persisted
 entity, just the selector's allowed values):

@@ -15,7 +15,6 @@ test("contact flow stays within its timing budgets", async ({ page }) => {
     await page.getByLabel("Full name").fill("Jordan Reyes");
     await page.getByLabel("Work email").fill("jordan@example.com");
     await page.getByLabel("Company website").fill("example.com");
-    await page.getByLabel("Primary need").selectOption("Web Development");
 
     const sendClickedAt = Date.now();
     await page.getByRole("button", { name: "Send" }).click();

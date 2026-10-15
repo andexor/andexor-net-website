@@ -54,6 +54,8 @@
 /* ---------------- Input ---------------- */
 .an-field { display: flex; flex-direction: column; gap: 0.4rem; }
 .an-label { font-size: var(--text-sm); font-weight: var(--weight-medium); color: var(--text-body); }
+.an-label__required { margin-left: 0.25em; }
+.an-label__required::after { content: "*"; }
 .an-input {
   font-family: var(--font-sans); font-size: var(--text-sm); color: var(--text-strong);
   background: var(--control-bg); border: 1px solid var(--border-default); border-radius: var(--radius-md);

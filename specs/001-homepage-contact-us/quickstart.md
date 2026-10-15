@@ -46,7 +46,8 @@ Open `http://localhost:3000`.
    - Click "Contact Us" in the CTA band instead. Confirm the same popup opens.
    - Try submitting with fields empty: confirm the browser blocks submission and highlights a
      required field.
-   - Fill in full name, work email, company website, and a primary need; submit. Confirm the
+   - Fill in full name and work email (phone number and company website are optional); submit.
+     Confirm the
      popup switches to the "Request received" confirmation without navigating away from the
      page, and that the whole flow (open popup to submit) takes under 60 seconds (SC-002) and
      the confirmation appears within 10 seconds of clicking "Send" (SC-003).
@@ -57,15 +58,12 @@ Open `http://localhost:3000`.
      Confirm both close the popup without submitting.
 
 3. **Service selection (User Story 3)**
-   - Open the popup and open the "Primary need" selector. Confirm it shows "Select a
-     service…" as a placeholder, grouped options ("Technical Services": Web Development, Web
-     Hosting, Technical SEO, Agentic Systems; "Business Services": Cost Reduction, Lead Generation,
-     Growth Marketing, Process Re-engineering), and a trailing "Something else" option.
+   - Removed by spec 070: the form no longer has a primary need selector.
    - Confirm submission is blocked while the placeholder is still selected.
 
 4. **Keyboard-only pass (SC-006, FR-015)**
    - Using only Tab/Shift+Tab/Enter/Space/Escape (no mouse), reach and activate: a "Contact Us"
-     button, every form field, the primary need selector, the submit button, and the popup close
+     button, every form field, the submit button, and the popup close
      control. Confirm a visible focus indicator at every stop.
 
 5. **Dark mode (SC-007, FR-016)**

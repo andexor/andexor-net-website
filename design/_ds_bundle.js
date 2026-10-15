@@ -167,6 +167,7 @@ function Input({
   hint,
   error,
   id,
+  required,
   className = '',
   ...rest
 }) {
@@ -176,10 +177,14 @@ function Input({
   }, label && /*#__PURE__*/React.createElement("label", {
     className: "an-label",
     htmlFor: fieldId
-  }, label), /*#__PURE__*/React.createElement("input", _extends({
+  }, label, required && /*#__PURE__*/React.createElement("span", {
+    className: "an-label__required",
+    "aria-hidden": "true"
+  })), /*#__PURE__*/React.createElement("input", _extends({
     id: fieldId,
     className: ['an-input', error && 'an-input--invalid', className].filter(Boolean).join(' '),
-    "aria-invalid": error ? 'true' : undefined
+    "aria-invalid": error ? 'true' : undefined,
+    required: required
   }, rest)), error ? /*#__PURE__*/React.createElement("span", {
     className: "an-hint an-hint--error"
   }, error) : hint ? /*#__PURE__*/React.createElement("span", {
@@ -1213,31 +1218,13 @@ function ContactUs({
     placeholder: "you@company.com",
     required: true
   }), /*#__PURE__*/React.createElement(Input, {
+    label: "Phone number",
+    type: "tel",
+    placeholder: "+1 212 555 0100"
+  }), /*#__PURE__*/React.createElement(Input, {
     label: "Company website",
-    placeholder: "company.com",
-    required: true
-  }), /*#__PURE__*/React.createElement("div", {
-    className: "an-field"
-  }, /*#__PURE__*/React.createElement("label", {
-    className: "an-label",
-    htmlFor: "svc"
-  }, "Primary need"), /*#__PURE__*/React.createElement("select", {
-    id: "svc",
-    className: "an-input",
-    defaultValue: "",
-    required: true,
-    style: {
-      appearance: 'none',
-      backgroundImage: 'none'
-    }
-  }, /*#__PURE__*/React.createElement("option", {
-    value: "",
-    disabled: true
-  }, "Select a service\u2026"), /*#__PURE__*/React.createElement("optgroup", {
-    label: "Technical Services"
-  }, /*#__PURE__*/React.createElement("option", null, "Web Development"), /*#__PURE__*/React.createElement("option", null, "Web Hosting"), /*#__PURE__*/React.createElement("option", null, "Technical SEO"), /*#__PURE__*/React.createElement("option", null, "Agentic Systems")), /*#__PURE__*/React.createElement("optgroup", {
-    label: "Business Services"
-  }, /*#__PURE__*/React.createElement("option", null, "Cost Reduction"), /*#__PURE__*/React.createElement("option", null, "Lead Generation"), /*#__PURE__*/React.createElement("option", null, "Growth Marketing"), /*#__PURE__*/React.createElement("option", null, "Process Re-engineering")), /*#__PURE__*/React.createElement("option", null, "Something else"))), /*#__PURE__*/React.createElement(Button, {
+    placeholder: "company.com"
+  }), /*#__PURE__*//*#__PURE__*/React.createElement(Button, {
     type: "submit",
     variant: "accent",
     block: true,

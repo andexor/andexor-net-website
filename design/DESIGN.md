@@ -137,7 +137,7 @@ React primitives, bundled to `window.AndexorNetworkDesignSystem_d67969`. Each sh
 **Forms**
 - **Button** — `variant` (primary / secondary / ghost / accent), `size` (sm / md / lg), `block`, `onInk` (light treatment for dark backgrounds), `as`/`href`. Primary = blue; accent = gold (reserve for the single highest-intent action).
 - **IconButton** — square icon-only control; same variant/size system.
-- **Input** — `label`, `type`, `placeholder`; hairline border, focus halo.
+- **Input** — `label`, `type`, `placeholder`; hairline border, focus halo. `required` adds a "*" after the label, in the label's color and hidden from assistive technology.
 - **Switch** — blue track when on; slate track off.
 
 **Data display**

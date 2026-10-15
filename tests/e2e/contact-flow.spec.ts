@@ -13,8 +13,8 @@ test.describe("Contact request flow", () => {
         await expect(page.getByRole("dialog", { name: "Contact Us" })).toBeVisible();
         await expect(page.getByLabel("Full name")).toBeVisible();
         await expect(page.getByLabel("Work email")).toBeVisible();
+        await expect(page.getByLabel("Phone number")).toBeVisible();
         await expect(page.getByLabel("Company website")).toBeVisible();
-        await expect(page.getByLabel("Primary need")).toBeVisible();
     });
 
     test("opens the same popup from the CTA band Contact Us button", async ({ page }) => {
@@ -36,27 +36,6 @@ test.describe("Contact request flow", () => {
         expect(isInvalid).toBe(true);
     });
 
-    test("shows the primary-need selector's grouped options with a disabled placeholder", async ({ page }) => {
-        await page.goto("/");
-        await page.getByRole("button", { name: "Contact Us" }).first().click();
-        const select = page.getByLabel("Primary need");
-        await expect(select.locator('option[value=""]')).toHaveText("Select a service…");
-        await expect(select.locator('option[value=""]')).toBeDisabled();
-        for (const option of [
-            "Web Development",
-            "Web Hosting",
-            "Technical SEO",
-            "Agentic Systems",
-            "Cost Reduction",
-            "Lead Generation",
-            "Growth Marketing",
-            "Process Re-engineering",
-            "Something else",
-        ]) {
-            await expect(select.locator("option", { hasText: option })).toHaveCount(1);
-        }
-    });
-
     test("submitting with all required fields completed shows the confirmation without navigating away", async ({
         page,
     }) => {
@@ -65,7 +44,6 @@ test.describe("Contact request flow", () => {
         await page.getByLabel("Full name").fill("Jordan Reyes");
         await page.getByLabel("Work email").fill("jordan@example.com");
         await page.getByLabel("Company website").fill("example.com");
-        await page.getByLabel("Primary need").selectOption("Web Development");
         await page.getByRole("button", { name: "Send" }).click();
 
         await expect(page.getByRole("heading", { name: "Request received" })).toBeVisible();
@@ -78,7 +56,6 @@ test.describe("Contact request flow", () => {
         await page.getByLabel("Full name").fill("Jordan Reyes");
         await page.getByLabel("Work email").fill("jordan@example.com");
         await page.getByLabel("Company website").fill("example.com");
-        await page.getByLabel("Primary need").selectOption("Web Development");
         await page.getByRole("button", { name: "Send" }).click();
         await page.getByRole("button", { name: "OK" }).click();
         await expect(page.getByRole("dialog", { name: "Contact Us" })).not.toBeVisible();
@@ -103,7 +80,6 @@ test.describe("Contact request flow", () => {
         await page.getByLabel("Full name").fill("Jordan Reyes");
         await page.getByLabel("Work email").fill("jordan@example.com");
         await page.getByLabel("Company website").fill("example.com");
-        await page.getByLabel("Primary need").selectOption("Web Development");
         await page.getByRole("button", { name: "Send" }).click();
         await expect(page.getByRole("heading", { name: "Request received" })).toBeVisible();
         await page.getByRole("button", { name: "OK" }).click();

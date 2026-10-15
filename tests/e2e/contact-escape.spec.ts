@@ -32,7 +32,6 @@ test.describe("Esc closes the Contact Us popup", () => {
         await page.getByLabel("Full name").fill("Jordan Reyes");
         await page.getByLabel("Work email").fill("jordan@example.com");
         await page.getByLabel("Company website").fill("example.com");
-        await page.getByLabel("Primary need").selectOption("Web Development");
         await page.getByRole("button", { name: "Send" }).click();
         await expect(page.getByRole("heading", { name: "Request received" })).toBeVisible();
         await page.keyboard.press("Escape");
@@ -70,7 +69,6 @@ test.describe("Esc closes the Contact Us popup", () => {
         await page.getByLabel("Full name").fill("Jordan Reyes");
         await page.getByLabel("Work email").fill("jordan@example.com");
         await page.getByLabel("Company website").fill("example.com");
-        await page.getByLabel("Primary need").selectOption("Web Development");
         await page.getByRole("button", { name: "Send" }).focus();
         await page.keyboard.press("Escape");
         await expect(page.getByRole("dialog", { name: "Contact Us" })).not.toBeVisible();
@@ -85,15 +83,4 @@ test.describe("Esc closes the Contact Us popup", () => {
             await expect(page).toHaveURL(new RegExp(`${path}$`));
         });
     }
-
-    test("the first Esc closes only the open Primary need list", async ({ page }, testInfo) => {
-        test.skip(testInfo.project.name !== "chromium", "Only desktop Chromium opens the native list headless");
-        await page.goto("/");
-        await page.getByRole("button", { name: "Contact Us" }).first().click();
-        await page.getByLabel("Primary need").click();
-        await page.keyboard.press("Escape");
-        await expect(page.getByRole("dialog", { name: "Contact Us" })).toBeVisible();
-        await page.keyboard.press("Escape");
-        await expect(page.getByRole("dialog", { name: "Contact Us" })).not.toBeVisible();
-    });
 });

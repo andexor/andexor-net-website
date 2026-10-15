@@ -25,11 +25,11 @@ test("full contact flow is operable using only the keyboard", async ({ page }) =
     await expect(page.getByLabel("Work email")).toBeFocused();
     await page.keyboard.type("jordan@example.com");
     await page.keyboard.press("Tab");
+    await expect(page.getByLabel("Phone number")).toBeFocused();
+    await page.keyboard.type("+1 212 555 0100");
+    await page.keyboard.press("Tab");
     await expect(page.getByLabel("Company website")).toBeFocused();
     await page.keyboard.type("example.com");
-    await page.keyboard.press("Tab");
-    await expect(page.getByLabel("Primary need")).toBeFocused();
-    await page.getByLabel("Primary need").selectOption("Web Development");
     // The note's Privacy and Terms links come before Send, in reading order.
     await page.keyboard.press("Tab");
     await expect(dialog.getByRole("link", { name: "Privacy" })).toBeFocused();

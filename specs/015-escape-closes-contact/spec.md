@@ -59,9 +59,9 @@ without touching anything else. It closes. Repeat after clicking into a text fie
 
 ### User Story 3 - Esc does nothing when the popup is closed, and does not interfere with the dropdown (Priority: P2)
 
-When the popup is not open, Esc has no effect on the site. When the visitor has the "Primary need"
+When the popup is not open, Esc has no effect on the site. ~~When the visitor has the "Primary need"
 list open, Esc closes that list first, the way it does in any browser, and does not also close the
-popup. A second Esc closes the popup.
+popup. A second Esc closes the popup.~~
 
 **Why this priority**: These are the two places the new shortcut could do something unwanted. They
 protect the rest of the page and the form, but the main behavior works without them.
@@ -73,10 +73,13 @@ With the popup open, open the "Primary need" list and press Esc: only the list c
 
 1. **Given** the popup is closed, **When** the visitor presses Esc, **Then** nothing on the page
    changes.
-2. **Given** the popup is open with the "Primary need" list expanded, **When** the visitor presses
-   Esc, **Then** the list closes and the popup stays open.
-3. **Given** the same popup after the list has closed, **When** the visitor presses Esc again,
-   **Then** the popup closes.
+2. ~~**Given** the popup is open with the "Primary need" list expanded, **When** the visitor presses
+   Esc, **Then** the list closes and the popup stays open.~~
+3. ~~**Given** the same popup after the list has closed, **When** the visitor presses Esc again,
+   **Then** the popup closes.~~
+
+**Withdrawn by 070 FR-006:** the Primary need list no longer exists, so Esc always closes the popup
+on the first press.
 
 ---
 
@@ -102,8 +105,9 @@ With the popup open, open the "Primary need" list and press Esc: only the list c
 - **FR-003**: Closing with Esc MUST have the same result as the close button: the typed text is
   discarded, nothing is submitted, and reopening the popup shows the empty form.
 - **FR-004**: While the popup is closed, Esc MUST have no effect on the site.
-- **FR-005**: When the "Primary need" list is expanded, Esc MUST close only the list. A further Esc
-  MUST then close the popup.
+- **FR-005**: ~~When the "Primary need" list is expanded, Esc MUST close only the list. A further Esc
+  MUST then close the popup.~~ **Withdrawn by 070 FR-006:** the Primary need list no longer exists,
+  so Esc always closes the popup on the first press.
 - **FR-006**: Pressing Esc MUST NOT scroll, navigate, or otherwise change the page behind the popup.
 - **FR-007**: The close button, "OK", and clicking outside the panel MUST keep working as before, and
   the popup's look and fields MUST be unchanged.
