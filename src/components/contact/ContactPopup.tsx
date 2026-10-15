@@ -13,10 +13,10 @@ import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 
 export interface ContactRequest {
-    fullName: string;
-    workEmail: string;
-    phoneNumber: string;
-    companyWebsite: string;
+    name: string;
+    email: string;
+    phone: string;
+    website: string;
     // Spec 071: the path of the page that opened the popup, not entered by the visitor.
     sourcePath: string;
 }
@@ -31,11 +31,11 @@ export interface ContactPopupProps {
 const FOCUSABLE =
     'a[href], button:not([disabled]), input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
-// Spec 072: the Full name placeholder is a random example name. The form mounts each time the popup is displayed, so
+// Spec 072: the Name placeholder is a random example name. The form mounts each time the popup is displayed, so
 // the name is chosen once per display and stays the same while the visitor types and clears the field.
 function FullNameInput() {
     const [exampleName] = useState(randomExampleName);
-    return <Input name="fullName" label="Full name" placeholder={exampleName} required autoFocus />;
+    return <Input name="name" label="Name" placeholder={exampleName} required autoFocus />;
 }
 
 // Implements the props/state/behavior contract from
@@ -136,10 +136,10 @@ export function ContactPopup({ open, onClose, sourcePath = "/", onSubmit }: Cont
 
         const formData = new FormData(event.currentTarget);
         const request: ContactRequest = {
-            fullName: String(formData.get("fullName") ?? ""),
-            workEmail: String(formData.get("workEmail") ?? ""),
-            phoneNumber: String(formData.get("phoneNumber") ?? ""),
-            companyWebsite: String(formData.get("companyWebsite") ?? ""),
+            name: String(formData.get("name") ?? ""),
+            email: String(formData.get("email") ?? ""),
+            phone: String(formData.get("phone") ?? ""),
+            website: String(formData.get("website") ?? ""),
             sourcePath: String(formData.get("sourcePath") ?? ""),
         };
 
@@ -180,8 +180,8 @@ export function ContactPopup({ open, onClose, sourcePath = "/", onSubmit }: Cont
                         {/* The form mounts each time the popup opens, so autoFocus moves keyboard focus into the dialog. */}
                         <FullNameInput />
                         <Input
-                            name="workEmail"
-                            label="Work email"
+                            name="email"
+                            label="Email"
                             type="email"
                             inputMode="email"
                             placeholder="you@company.com"
@@ -189,13 +189,13 @@ export function ContactPopup({ open, onClose, sourcePath = "/", onSubmit }: Cont
                         />
                         {/* Spec 068: optional. type="tel" brings up the keypad on phones; no format is enforced. */}
                         <Input
-                            name="phoneNumber"
-                            label="Phone number"
+                            name="phone"
+                            label="Phone"
                             type="tel"
-                            autoComplete="tel"
+                            autoComplete="tel-national"
                             placeholder="404-555-1212"
                         />
-                        <Input name="companyWebsite" label="Company website" placeholder="example.com" />
+                        <Input name="website" label="Website" placeholder="example.com" />
                         {/* Spec 071: not shown and not focusable; carries the page that opened the popup. */}
                         <input type="hidden" name="sourcePath" value={sourcePath} />
                         <p className="an-contact-form__note">

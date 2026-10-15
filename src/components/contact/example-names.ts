@@ -2,7 +2,7 @@
 // Copyright 2026 Andexor Network, Inc.
 // Author: Ed Jenkins <ed@andexor.net>
 
-// Spec 072: example names for the Contact Us Full name placeholder. First and last name only, plain English
+// Spec 072: example names for the Contact Us Name placeholder. First and last name only, plain English
 // letters. One is chosen at random each time the popup is displayed; the list is not customer data.
 export const EXAMPLE_NAMES: readonly string[] = [
     "Emily Carter",

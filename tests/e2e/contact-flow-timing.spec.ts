@@ -12,9 +12,9 @@ test("contact flow stays within its timing budgets", async ({ page }) => {
 
     const flowStart = Date.now();
     await page.getByRole("button", { name: "Contact Us" }).first().click();
-    await page.getByLabel("Full name").fill("Jordan Reyes");
-    await page.getByLabel("Work email").fill("jordan@example.com");
-    await page.getByLabel("Company website").fill("example.com");
+    await page.getByLabel("Name").fill("Jordan Reyes");
+    await page.getByLabel("Email").fill("jordan@example.com");
+    await page.getByLabel("Website").fill("example.com");
 
     const sendClickedAt = Date.now();
     await page.getByRole("button", { name: "Send" }).click();

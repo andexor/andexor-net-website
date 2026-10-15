@@ -18,14 +18,14 @@ test.describe("Contact Us popup legal links", () => {
             await page.goto("/");
             await page.getByRole("button", { name: "Contact Us" }).first().click();
             const dialog = page.getByRole("dialog", { name: "Contact Us" });
-            await dialog.getByLabel("Full name").fill("Jordan Reyes");
+            await dialog.getByLabel("Name").fill("Jordan Reyes");
             const link = dialog.getByRole("link", { name: `${label}, opens in new tab`, exact: true });
             const [newPage] = await Promise.all([page.context().waitForEvent("page"), link.click()]);
             await newPage.waitForLoadState();
             await expect(newPage).toHaveURL(new RegExp(`${path}$`));
             await expect(newPage.getByRole("heading", { level: 1, name: heading, exact: true })).toBeVisible();
             await expect(dialog).toBeVisible();
-            await expect(dialog.getByLabel("Full name")).toHaveValue("Jordan Reyes");
+            await expect(dialog.getByLabel("Name")).toHaveValue("Jordan Reyes");
             await newPage.close();
         });
     }

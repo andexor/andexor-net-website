@@ -11,10 +11,10 @@ test.describe("Contact request flow", () => {
         await page.goto("/");
         await page.getByRole("button", { name: "Contact Us" }).first().click();
         await expect(page.getByRole("dialog", { name: "Contact Us" })).toBeVisible();
-        await expect(page.getByLabel("Full name")).toBeVisible();
-        await expect(page.getByLabel("Work email")).toBeVisible();
-        await expect(page.getByLabel("Phone number")).toBeVisible();
-        await expect(page.getByLabel("Company website")).toBeVisible();
+        await expect(page.getByLabel("Name")).toBeVisible();
+        await expect(page.getByLabel("Email")).toBeVisible();
+        await expect(page.getByLabel("Phone")).toBeVisible();
+        await expect(page.getByLabel("Website")).toBeVisible();
     });
 
     test("opens the same popup from the CTA band Contact Us button", async ({ page }) => {
@@ -30,9 +30,9 @@ test.describe("Contact request flow", () => {
         // Confirmation must not appear; the browser's native validation UI
         // keeps focus on the first invalid field instead.
         await expect(page.getByRole("heading", { name: "Request received" })).not.toBeVisible();
-        const fullName = page.getByLabel("Full name");
+        const name = page.getByLabel("Name");
         // @ts-expect-error - Locator.evaluate's element param type doesn't include form validity
-        const isInvalid = await fullName.evaluate((el) => !el.validity.valid);
+        const isInvalid = await name.evaluate((el) => !el.validity.valid);
         expect(isInvalid).toBe(true);
     });
 
@@ -41,9 +41,9 @@ test.describe("Contact request flow", () => {
     }) => {
         await page.goto("/");
         await page.getByRole("button", { name: "Contact Us" }).first().click();
-        await page.getByLabel("Full name").fill("Jordan Reyes");
-        await page.getByLabel("Work email").fill("jordan@example.com");
-        await page.getByLabel("Company website").fill("example.com");
+        await page.getByLabel("Name").fill("Jordan Reyes");
+        await page.getByLabel("Email").fill("jordan@example.com");
+        await page.getByLabel("Website").fill("example.com");
         await page.getByRole("button", { name: "Send" }).click();
 
         await expect(page.getByRole("heading", { name: "Request received" })).toBeVisible();
@@ -53,9 +53,9 @@ test.describe("Contact request flow", () => {
     test('"OK" closes the popup', async ({ page }) => {
         await page.goto("/");
         await page.getByRole("button", { name: "Contact Us" }).first().click();
-        await page.getByLabel("Full name").fill("Jordan Reyes");
-        await page.getByLabel("Work email").fill("jordan@example.com");
-        await page.getByLabel("Company website").fill("example.com");
+        await page.getByLabel("Name").fill("Jordan Reyes");
+        await page.getByLabel("Email").fill("jordan@example.com");
+        await page.getByLabel("Website").fill("example.com");
         await page.getByRole("button", { name: "Send" }).click();
         await page.getByRole("button", { name: "OK" }).click();
         await expect(page.getByRole("dialog", { name: "Contact Us" })).not.toBeVisible();
@@ -77,15 +77,15 @@ test.describe("Contact request flow", () => {
     test("reopening after a submission shows the empty form, not a stale confirmation", async ({ page }) => {
         await page.goto("/");
         await page.getByRole("button", { name: "Contact Us" }).first().click();
-        await page.getByLabel("Full name").fill("Jordan Reyes");
-        await page.getByLabel("Work email").fill("jordan@example.com");
-        await page.getByLabel("Company website").fill("example.com");
+        await page.getByLabel("Name").fill("Jordan Reyes");
+        await page.getByLabel("Email").fill("jordan@example.com");
+        await page.getByLabel("Website").fill("example.com");
         await page.getByRole("button", { name: "Send" }).click();
         await expect(page.getByRole("heading", { name: "Request received" })).toBeVisible();
         await page.getByRole("button", { name: "OK" }).click();
 
         await page.getByRole("button", { name: "Contact Us" }).first().click();
         await expect(page.getByRole("heading", { name: "Request received" })).not.toBeVisible();
-        await expect(page.getByLabel("Full name")).toHaveValue("");
+        await expect(page.getByLabel("Name")).toHaveValue("");
     });
 });

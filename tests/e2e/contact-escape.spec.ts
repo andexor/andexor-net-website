@@ -19,26 +19,26 @@ test.describe("Esc closes the Contact Us popup", () => {
     test("discards typed text, so reopening shows the empty form", async ({ page }) => {
         await page.goto("/");
         await page.getByRole("button", { name: "Contact Us" }).first().click();
-        await page.getByLabel("Full name").fill("Jordan Reyes");
+        await page.getByLabel("Name").fill("Jordan Reyes");
         await page.keyboard.press("Escape");
         await expect(page.getByRole("dialog", { name: "Contact Us" })).not.toBeVisible();
         await page.getByRole("button", { name: "Contact Us" }).first().click();
-        await expect(page.getByLabel("Full name")).toHaveValue("");
+        await expect(page.getByLabel("Name")).toHaveValue("");
     });
 
     test("closes the confirmation, and reopening shows the form", async ({ page }) => {
         await page.goto("/");
         await page.getByRole("button", { name: "Contact Us" }).first().click();
-        await page.getByLabel("Full name").fill("Jordan Reyes");
-        await page.getByLabel("Work email").fill("jordan@example.com");
-        await page.getByLabel("Company website").fill("example.com");
+        await page.getByLabel("Name").fill("Jordan Reyes");
+        await page.getByLabel("Email").fill("jordan@example.com");
+        await page.getByLabel("Website").fill("example.com");
         await page.getByRole("button", { name: "Send" }).click();
         await expect(page.getByRole("heading", { name: "Request received" })).toBeVisible();
         await page.keyboard.press("Escape");
         await expect(page.getByRole("dialog", { name: "Contact Us" })).not.toBeVisible();
         await page.getByRole("button", { name: "Contact Us" }).first().click();
         await expect(page.getByRole("heading", { name: "Request received" })).not.toBeVisible();
-        await expect(page.getByLabel("Full name")).toHaveValue("");
+        await expect(page.getByLabel("Name")).toHaveValue("");
     });
 
     test("works after opening from the keyboard, with focus still on the page", async ({ page }) => {
@@ -53,7 +53,7 @@ test.describe("Esc closes the Contact Us popup", () => {
     test("works with focus in a field", async ({ page }) => {
         await page.goto("/");
         await page.getByRole("button", { name: "Contact Us" }).first().click();
-        await page.getByLabel("Work email").focus();
+        await page.getByLabel("Email").focus();
         await page.keyboard.press("Escape");
         await expect(page.getByRole("dialog", { name: "Contact Us" })).not.toBeVisible();
     });
@@ -66,9 +66,9 @@ test.describe("Esc closes the Contact Us popup", () => {
         await expect(page.getByRole("dialog", { name: "Contact Us" })).not.toBeVisible();
 
         await page.getByRole("button", { name: "Contact Us" }).first().click();
-        await page.getByLabel("Full name").fill("Jordan Reyes");
-        await page.getByLabel("Work email").fill("jordan@example.com");
-        await page.getByLabel("Company website").fill("example.com");
+        await page.getByLabel("Name").fill("Jordan Reyes");
+        await page.getByLabel("Email").fill("jordan@example.com");
+        await page.getByLabel("Website").fill("example.com");
         await page.getByRole("button", { name: "Send" }).focus();
         await page.keyboard.press("Escape");
         await expect(page.getByRole("dialog", { name: "Contact Us" })).not.toBeVisible();

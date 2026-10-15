@@ -110,10 +110,10 @@ describe("ContactProvider", () => {
             </ContactProvider>,
         );
         await userEvent.click(screen.getByRole("button", { name: "Open" }));
-        await userEvent.type(screen.getByLabelText("Full name"), "Jordan");
+        await userEvent.type(screen.getByLabelText("Name"), "Jordan");
         await userEvent.click(screen.getByRole("button", { name: "Close" }));
         await userEvent.click(screen.getByRole("button", { name: "Open" }));
-        expect(screen.getByLabelText("Full name")).toHaveValue("");
+        expect(screen.getByLabelText("Name")).toHaveValue("");
     });
 
     it("puts the home page path in the hidden field", async () => {

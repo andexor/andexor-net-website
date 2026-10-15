@@ -34,10 +34,10 @@ function ContactUs({ open, onClose, inline = false, initialSent = false }) {
           </div>
         ) : (
           <form className="an-modal-form" onSubmit={e=>{ e.preventDefault(); setSent(true); }} style={{ padding:'24px', display:'flex', flexDirection:'column', gap:'14px' }}>
-            <Input label="Full name" placeholder="Priya Sharma" required />{/* spec 072: the live site picks a random example name each time the popup opens */}
-            <Input label="Work email" type="email" placeholder="you@company.com" required />
-            <Input label="Phone number" type="tel" placeholder="404-555-1212" />
-            <Input label="Company website" placeholder="example.com" />
+            <Input label="Name" placeholder="Priya Sharma" required />{/* spec 072: the live site picks a random example name each time the popup opens */}
+            <Input label="Email" type="email" placeholder="you@company.com" required />
+            <Input label="Phone" type="tel" placeholder="404-555-1212" />
+            <Input label="Website" placeholder="example.com" />
             <Button type="submit" variant="accent" block size="lg" rightIcon={<Icon name="arrow-right" size={18} />}>Send</Button>
             <p style={{ margin:0, fontSize:'12px', color:'var(--blue-100)', textAlign:'center' }}>We never share your personal information.</p>
           </form>

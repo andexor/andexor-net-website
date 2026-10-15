@@ -4,14 +4,14 @@
 
 import { expect, test } from "@playwright/test";
 
-// Spec 072: the Full name placeholder is a different example name on different displays of the popup.
-test.describe("Full name example name", () => {
+// Spec 072: the Name placeholder is a different example name on different displays of the popup.
+test.describe("Name example name", () => {
     test("is a two-word name that is not the old fixed example, and changes between displays", async ({ page }) => {
         await page.goto("/");
         const seen = new Set();
         for (let i = 0; i < 20; i++) {
             await page.getByRole("button", { name: "Contact Us" }).first().click();
-            const field = page.getByLabel("Full name");
+            const field = page.getByLabel("Name");
             await expect(field).toBeVisible();
             const placeholder = (await field.getAttribute("placeholder")) ?? "";
             expect(placeholder).toMatch(/^[A-Z][a-z]+ [A-Z][a-z]+$/);
@@ -26,7 +26,7 @@ test.describe("Full name example name", () => {
     test("stays the same while the popup is open and the visitor types and clears the field", async ({ page }) => {
         await page.goto("/");
         await page.getByRole("button", { name: "Contact Us" }).first().click();
-        const field = page.getByLabel("Full name");
+        const field = page.getByLabel("Name");
         const before = await field.getAttribute("placeholder");
         await field.fill("Ada");
         await field.fill("");

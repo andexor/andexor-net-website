@@ -1209,20 +1209,20 @@ function ContactUs({
       gap: '14px'
     }
   }, /*#__PURE__*/React.createElement(Input, {
-    label: "Full name",
+    label: "Name",
     placeholder: "Priya Sharma",
     required: true
   }), /*#__PURE__*/React.createElement(Input, {
-    label: "Work email",
+    label: "Email",
     type: "email",
     placeholder: "you@company.com",
     required: true
   }), /*#__PURE__*/React.createElement(Input, {
-    label: "Phone number",
+    label: "Phone",
     type: "tel",
     placeholder: "404-555-1212"
   }), /*#__PURE__*/React.createElement(Input, {
-    label: "Company website",
+    label: "Website",
     placeholder: "example.com"
   }), /*#__PURE__*//*#__PURE__*/React.createElement(Button, {
     type: "submit",
