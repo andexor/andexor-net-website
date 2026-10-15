@@ -187,7 +187,7 @@ export function ContactPopup({ open, onClose, sourcePath = "/", onSubmit }: Cont
                             autoComplete="tel"
                             placeholder="404-555-1212"
                         />
-                        <Input name="companyWebsite" label="Company website" placeholder="company.com" />
+                        <Input name="companyWebsite" label="Company website" placeholder="example.com" />
                         {/* Spec 071: not shown and not focusable; carries the page that opened the popup. */}
                         <input type="hidden" name="sourcePath" value={sourcePath} />
                         <p className="an-contact-form__note">

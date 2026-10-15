@@ -1223,7 +1223,7 @@ function ContactUs({
     placeholder: "404-555-1212"
   }), /*#__PURE__*/React.createElement(Input, {
     label: "Company website",
-    placeholder: "company.com"
+    placeholder: "example.com"
   }), /*#__PURE__*//*#__PURE__*/React.createElement(Button, {
     type: "submit",
     variant: "accent",
