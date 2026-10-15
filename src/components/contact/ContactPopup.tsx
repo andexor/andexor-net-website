@@ -7,6 +7,7 @@
 import { faArrowUpRightFromSquare, faSquareCheck, faSquareX } from "@awesome.me/kit-0a6c11d394/icons/duotone/solid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { type FormEvent, useEffect, useRef, useState } from "react";
+import { randomExampleName } from "./example-names";
 import { LOGO_ALT } from "@/components/marketing/Logo";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
@@ -29,6 +30,13 @@ export interface ContactPopupProps {
 
 const FOCUSABLE =
     'a[href], button:not([disabled]), input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
+// Spec 072: the Full name placeholder is a random example name. The form mounts each time the popup is displayed, so
+// the name is chosen once per display and stays the same while the visitor types and clears the field.
+function FullNameInput() {
+    const [exampleName] = useState(randomExampleName);
+    return <Input name="fullName" label="Full name" placeholder={exampleName} required autoFocus />;
+}
 
 // Implements the props/state/behavior contract from
 // specs/001-homepage-contact-us/contracts/ui-contracts.md.
@@ -170,7 +178,7 @@ export function ContactPopup({ open, onClose, sourcePath = "/", onSubmit }: Cont
                 ) : (
                     <form ref={formRef} className="an-contact-form" onSubmit={handleSubmit}>
                         {/* The form mounts each time the popup opens, so autoFocus moves keyboard focus into the dialog. */}
-                        <Input name="fullName" label="Full name" placeholder="Jordan Reyes" required autoFocus />
+                        <FullNameInput />
                         <Input
                             name="workEmail"
                             label="Work email"
