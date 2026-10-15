@@ -185,7 +185,7 @@ export function ContactPopup({ open, onClose, sourcePath = "/", onSubmit }: Cont
                             label="Phone number"
                             type="tel"
                             autoComplete="tel"
-                            placeholder="+1 212 555 0100"
+                            placeholder="404-555-1212"
                         />
                         <Input name="companyWebsite" label="Company website" placeholder="company.com" />
                         {/* Spec 071: not shown and not focusable; carries the page that opened the popup. */}
