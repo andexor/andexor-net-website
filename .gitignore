@@ -34,3 +34,6 @@ Thumbs.db
 
 # License file for FontAwesome Pro icons
 .npmrc
+
+# Agent skills
+.agents/
