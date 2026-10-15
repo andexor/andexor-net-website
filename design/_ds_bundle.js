@@ -1220,7 +1220,7 @@ function ContactUs({
   }), /*#__PURE__*/React.createElement(Input, {
     label: "Phone number",
     type: "tel",
-    placeholder: "+1 212 555 0100"
+    placeholder: "404-555-1212"
   }), /*#__PURE__*/React.createElement(Input, {
     label: "Company website",
     placeholder: "company.com"
