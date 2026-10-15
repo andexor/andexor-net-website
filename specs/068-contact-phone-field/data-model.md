@@ -9,13 +9,15 @@ The only data shape that changes is the in-memory `ContactRequest` from spec 001
 | `workEmail` | string | Yes | Non-empty, valid email format | none |
 | `phoneNumber` | string | No | None. Free text in a `type="tel"` field; empty string when left blank | new |
 | `companyWebsite` | string | No | None | was required |
-| `primaryNeed` | enum or "Something else" | Yes | One of the service names or the literal "Something else" | none |
+| ~~`primaryNeed`~~ | ~~enum or "Something else"~~ | ~~Yes~~ | Removed by spec 070 | removed |
 
 Form order: `fullName`, `workEmail`, `phoneNumber`, `companyWebsite`, `primaryNeed` (spec 069 moved `primaryNeed` to
-third: `fullName`, `workEmail`, `primaryNeed`, `phoneNumber`, `companyWebsite`).
+third: `fullName`, `workEmail`, `primaryNeed`, `phoneNumber`, `companyWebsite`; spec 070 then removed `primaryNeed`:
+`fullName`, `workEmail`, `phoneNumber`, `companyWebsite`).
 
 ## Required mark
 
 Derived, not stored: a field's label shows the mark exactly when the control is `required`. In `Input` this follows
-from the `required` prop; for the hand-written Primary need label it is written next to the `required` select. The
+from the `required` prop; a hand-written label next to a required control carries the same span (the Primary need
+select was the example until spec 070). The
 unit tests check the two agree for every field.

@@ -32,7 +32,6 @@ test.describe("ContactPopup accessibility", () => {
         await expect(page.getByLabel("Full name")).toBeFocused();
         const order = [
             dialog.getByLabel("Work email"),
-            dialog.getByLabel("Primary need"),
             dialog.getByLabel("Phone number"),
             dialog.getByLabel("Company website"),
             dialog.getByRole("link", { name: "Privacy" }),
@@ -59,7 +58,6 @@ test.describe("ContactPopup accessibility", () => {
         await page.getByLabel("Full name").fill("Jordan Reyes");
         await page.getByLabel("Work email").fill("jordan@example.com");
         await page.getByLabel("Company website").fill("example.com");
-        await page.getByLabel("Primary need").selectOption("Web Development");
         await page.getByRole("button", { name: "Send" }).click();
         const dialog = page.getByRole("dialog", { name: "Contact Us" });
         await expect(page.getByRole("heading", { name: "Request received" })).toBeVisible();
@@ -106,7 +104,6 @@ test.describe("ContactPopup accessibility", () => {
         await page.getByLabel("Full name").fill("Jordan Reyes");
         await page.getByLabel("Work email").fill("jordan@example.com");
         await page.getByLabel("Company website").fill("example.com");
-        await page.getByLabel("Primary need").selectOption("Web Development");
         await page.getByRole("button", { name: "Send" }).click();
         await expect(page.getByRole("heading", { name: "Request received" })).toBeVisible();
 

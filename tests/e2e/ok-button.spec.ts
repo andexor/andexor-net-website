@@ -15,7 +15,6 @@ async function fillForm(page) {
     await page.getByLabel("Full name").fill("Jordan Reyes");
     await page.getByLabel("Work email").fill("jordan@example.com");
     await page.getByLabel("Company website").fill("example.com");
-    await page.getByLabel("Primary need").selectOption("Web Development");
 }
 
 async function expectOkFocusedAndVisible(page) {

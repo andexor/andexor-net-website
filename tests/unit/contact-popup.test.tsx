@@ -12,7 +12,6 @@ function fillValidForm() {
     fireEvent.change(screen.getByLabelText("Work email"), { target: { value: "jordan@example.com" } });
     fireEvent.change(screen.getByLabelText("Phone number"), { target: { value: "+1 212 555 0100" } });
     fireEvent.change(screen.getByLabelText("Company website"), { target: { value: "example.com" } });
-    fireEvent.change(screen.getByLabelText("Primary need"), { target: { value: "Web Development" } });
 }
 
 describe("ContactPopup", () => {
@@ -22,13 +21,14 @@ describe("ContactPopup", () => {
     });
 
     // Spec 068: Phone number is new and optional, and Company website became optional.
-    it("requires Full name, Work email, and Primary need, and nothing else", () => {
+    // Spec 070: the Primary need field is gone.
+    it("requires Full name and Work email, and nothing else", () => {
         render(<ContactPopup open onClose={vi.fn()} />);
         expect(screen.getByLabelText("Full name")).toBeRequired();
         expect(screen.getByLabelText("Work email")).toBeRequired();
         expect(screen.getByLabelText("Phone number")).not.toBeRequired();
         expect(screen.getByLabelText("Company website")).not.toBeRequired();
-        expect(screen.getByLabelText("Primary need")).toBeRequired();
+        expect(screen.queryByLabelText("Primary need")).toBeNull();
     });
 
     it("calls onSubmit and shows the confirmation on a valid submit, without any network request", () => {
@@ -43,7 +43,6 @@ describe("ContactPopup", () => {
             workEmail: "jordan@example.com",
             phoneNumber: "+1 212 555 0100",
             companyWebsite: "example.com",
-            primaryNeed: "Web Development",
         });
         expect(screen.getByRole("heading", { name: "Request received" })).toBeInTheDocument();
     });
@@ -78,7 +77,7 @@ describe("ContactPopup", () => {
     // Spec 068: a label ends with the asterisk exactly when its control is required. Each field is checked by name.
     it("marks exactly the required fields with the asterisk", () => {
         render(<ContactPopup open onClose={vi.fn()} />);
-        for (const name of ["Full name", "Work email", "Phone number", "Company website", "Primary need"]) {
+        for (const name of ["Full name", "Work email", "Phone number", "Company website"]) {
             const control = screen.getByLabelText(name) as HTMLInputElement | HTMLSelectElement;
             const label = control.labels?.[0];
             expect(label, name).toBeDefined();
@@ -88,18 +87,16 @@ describe("ContactPopup", () => {
     });
 
     // Spec 068: the phone field is a telephone input, optional, between Work email and Company website.
-    // Spec 069: Primary need comes third, so the required fields are the first three.
-    it("renders the Phone number field as an optional telephone field, after Primary need and before Company website", () => {
+    // Spec 070: Primary need is gone, so Phone number follows Work email directly.
+    it("renders the Phone number field as an optional telephone field, between Work email and Company website", () => {
         render(<ContactPopup open onClose={vi.fn()} />);
         const workEmail = screen.getByLabelText("Work email");
-        const need = screen.getByLabelText("Primary need");
         const phone = screen.getByLabelText("Phone number");
         const website = screen.getByLabelText("Company website");
         expect(phone).toHaveAttribute("type", "tel");
         expect(phone).toHaveAttribute("autocomplete", "tel");
         expect(phone).not.toBeRequired();
-        expect(workEmail.compareDocumentPosition(need) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
-        expect(need.compareDocumentPosition(phone) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+        expect(workEmail.compareDocumentPosition(phone) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
         expect(phone.compareDocumentPosition(website) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     });
 
@@ -182,18 +179,6 @@ describe("ContactPopup", () => {
             rerender(<ContactPopup open={false} onClose={onClose} />);
             fireEvent.keyDown(document, { key: "Escape" });
             expect(onClose).not.toHaveBeenCalled();
-        });
-
-        it("leaves Esc to the Primary need list while it is expanded", () => {
-            const onClose = vi.fn();
-            render(<ContactPopup open onClose={onClose} />);
-            const select = screen.getByLabelText("Primary need");
-            const matches = vi.spyOn(select, "matches").mockImplementation((selector) => selector === ":open");
-            fireEvent.keyDown(document, { key: "Escape" });
-            expect(onClose).not.toHaveBeenCalled();
-            matches.mockRestore();
-            fireEvent.keyDown(document, { key: "Escape" });
-            expect(onClose).toHaveBeenCalledTimes(1);
         });
 
         it("ignores an Esc another handler already used", () => {

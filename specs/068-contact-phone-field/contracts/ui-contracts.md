@@ -13,13 +13,13 @@ export interface ContactRequest {
     workEmail: string;
     phoneNumber: string; // new; "" when left blank
     companyWebsite: string;
-    primaryNeed: string;
+    // primaryNeed removed by spec 070
 }
 ```
 
 **Behavior contract**, point 2, becomes: rendering with `open=true` and `sent=false` renders the form with fields, in
 order: full name (required), work email (required), phone number (optional, `type="tel"`, `autocomplete="tel"`),
-company website (optional), primary need (required). Spec 069 then moved primary need to third, after work email.
+company website (optional), primary need (required). Spec 069 then moved primary need to third, after work email. Spec 070 then removed it.
 Point 3 passes `phoneNumber` in the `ContactRequest`. Point 4 is unchanged: only an empty or invalid required field
 blocks the send.
 
@@ -37,7 +37,8 @@ Every required control's label contains the required mark (below); no optional c
 - The label's text stays "Full name", so Testing Library's exact `getByLabelText("Full name")` matches (it reads the
   label's text content, not the accessibility tree), and `aria-hidden` keeps the span out of the accessible name.
 - Clicking it focuses the control, because it is inside the label.
-- Labels written by hand next to a required control (the Primary need `<select>`) render the same span.
+- Labels written by hand next to a required control render the same span (the Primary need `<select>` was the example
+  until spec 070 removed it).
 
 ## CSS
 

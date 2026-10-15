@@ -76,7 +76,6 @@ Sections in order: Hero → Services → CTA band → Footer. No sticky header. 
 - **Form state** (padding 24px, column, gap 14px). Labels in `--blue-100` (`#E7EFF8`). Required fields end with a "*" in the label color, hidden from assistive technology; optional fields have no mark (spec 068).
   - Full name (placeholder "Jordan Reyes", required)
   - Work email (email, "you@company.com", required)
-  - Primary need (select, required). Placeholder "Select a service…". Group "Technical Services": Web Development, Web Hosting, Technical SEO, Agentic Systems. Group "Business Services": Cost Reduction, Lead Generation, Growth Marketing, Process Re-engineering. Then "Something else".
   - Phone number (tel, "+1 212 555 0100", optional)
   - Company website ("company.com", optional)
   - "Send" accent button, block, lg, arrow-right icon.

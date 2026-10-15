@@ -24,10 +24,6 @@ test("full contact flow is operable using only the keyboard", async ({ page }) =
     await page.keyboard.press("Tab");
     await expect(page.getByLabel("Work email")).toBeFocused();
     await page.keyboard.type("jordan@example.com");
-    // Spec 069: the required Primary need comes before the two optional fields.
-    await page.keyboard.press("Tab");
-    await expect(page.getByLabel("Primary need")).toBeFocused();
-    await page.getByLabel("Primary need").selectOption("Web Development");
     await page.keyboard.press("Tab");
     await expect(page.getByLabel("Phone number")).toBeFocused();
     await page.keyboard.type("+1 212 555 0100");

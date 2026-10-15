@@ -34,7 +34,6 @@ test.describe("Popup header logo", () => {
         await page.getByLabel("Full name").fill("Jordan Reyes");
         await page.getByLabel("Work email").fill("jordan@example.com");
         await page.getByLabel("Company website").fill("example.com");
-        await page.getByLabel("Primary need").selectOption("Web Development");
         await page.getByRole("button", { name: "Send" }).click();
         await expect(page.getByRole("heading", { name: "Request received" })).toBeVisible();
         const logo = page.locator(".an-contact-header__logo");

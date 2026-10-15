@@ -7,3 +7,5 @@ Amends point 2 of the `ContactPopup` behavior contract (spec 001, as amended by 
    this order, then the Privacy and Terms links, then Send.
 
 Everything else in the contract, including `ContactRequest` and the required mark on labels, is unchanged.
+
+Spec 070 then removed primary need; see its contract.

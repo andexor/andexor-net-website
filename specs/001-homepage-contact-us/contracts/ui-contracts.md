@@ -46,8 +46,8 @@ Mirrors the design reference (`design/ui_kits/marketing-site/ContactUs.jsx.txt`)
 
 1. Rendering with `open=false` renders nothing (no DOM node, not just hidden).
 2. Rendering with `open=true` and `sent=false` renders the form with fields, in order: full name,
-   work email, primary need, phone number, company website (full name, work email, and primary need
-   `required`; phone number and company website optional; amended by specs 068 and 069).
+   work email, phone number, company website (full name and work email `required`; phone number and
+   company website optional; amended by specs 068, 069, and 070).
 3. Submitting the form with all required fields valid MUST call `onSubmit` (if provided) with
    the `ContactRequest` values, then set `sent=true`, replacing the form with the confirmation
    view. It MUST NOT perform a network request itself (FR-018).

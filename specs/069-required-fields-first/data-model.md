@@ -12,3 +12,5 @@ What changes is the order of fields on screen, which is also the keyboard order:
 | 3 | Phone number | Primary need | yes |
 | 4 | Company website | Phone number | no |
 | 5 | Primary need | Company website | no |
+
+Spec 070 then removed the Primary need field, leaving Full name, Work email, Phone number, Company website.

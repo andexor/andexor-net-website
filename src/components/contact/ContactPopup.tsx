@@ -10,14 +10,12 @@ import { type FormEvent, useEffect, useRef, useState } from "react";
 import { LOGO_ALT } from "@/components/marketing/Logo";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
-import { PRIMARY_NEED_GROUPS, PRIMARY_NEED_OTHER } from "./primary-need-options";
 
 export interface ContactRequest {
     fullName: string;
     workEmail: string;
     phoneNumber: string;
     companyWebsite: string;
-    primaryNeed: string;
 }
 
 export interface ContactPopupProps {
@@ -63,20 +61,11 @@ export function ContactPopup({ open, onClose, onSubmit }: ContactPopupProps) {
     // Spec 015: Esc is one more way to close the popup and calls the same
     // onClose as the close button. The listener is on the document because focus
     // may still be on the trigger behind the scrim. It stands aside when another
-    // handler used the key, when an input method is composing, and while the
-    // "Primary need" list is expanded (Chromium sends no Esc to the page then;
-    // Firefox does, so the :open check is what keeps the list's Esc its own).
+    // handler used the key and when an input method is composing.
     useEffect(() => {
         if (!open) return;
         function handleKeyDown(event: KeyboardEvent) {
             if (event.key !== "Escape" || event.defaultPrevented || event.isComposing) return;
-            let listOpen = false;
-            try {
-                listOpen = Boolean(document.getElementById("primaryNeed")?.matches(":open"));
-            } catch {
-                // Browsers that do not know :open throw a SyntaxError; treat as closed.
-            }
-            if (listOpen) return;
             onClose();
         }
         document.addEventListener("keydown", handleKeyDown);
@@ -140,7 +129,6 @@ export function ContactPopup({ open, onClose, onSubmit }: ContactPopupProps) {
             workEmail: String(formData.get("workEmail") ?? ""),
             phoneNumber: String(formData.get("phoneNumber") ?? ""),
             companyWebsite: String(formData.get("companyWebsite") ?? ""),
-            primaryNeed: String(formData.get("primaryNeed") ?? ""),
         };
 
         // FR-018: no network request is made; this demonstrates the full
@@ -187,29 +175,6 @@ export function ContactPopup({ open, onClose, onSubmit }: ContactPopupProps) {
                             placeholder="you@company.com"
                             required
                         />
-                        {/* Spec 069: required fields first. */}
-                        <div className="an-field">
-                            {/* Spec 068: the same required mark that Input renders for its required prop. */}
-                            <label className="an-label" htmlFor="primaryNeed">
-                                Primary need
-                                <span className="an-label__required" aria-hidden="true" />
-                            </label>
-                            <select id="primaryNeed" name="primaryNeed" className="an-input" defaultValue="" required>
-                                <option value="" disabled>
-                                    Select a service…
-                                </option>
-                                {PRIMARY_NEED_GROUPS.map((group) => (
-                                    <optgroup key={group.label} label={group.label}>
-                                        {group.options.map((option) => (
-                                            <option key={option} value={option}>
-                                                {option}
-                                            </option>
-                                        ))}
-                                    </optgroup>
-                                ))}
-                                <option value={PRIMARY_NEED_OTHER}>{PRIMARY_NEED_OTHER}</option>
-                            </select>
-                        </div>
                         {/* Spec 068: optional. type="tel" brings up the keypad on phones; no format is enforced. */}
                         <Input
                             name="phoneNumber"
