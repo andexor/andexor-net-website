@@ -54,3 +54,15 @@ subscription held by Andexor Network, Inc.
 - Expires, or must be renewed: 08/25/2027. Renew before that date and update both dates here. After it lapses, a new install of the Pro icons fails, and so does the build.
 - The license file is `.npmrc`. It is excluded from GitHub by `.gitignore`. `build.sh` passes it to the Docker builder stage as a BuildKit secret, so it is not stored in the image.
 - NOTICE says the Pro icons are commercially licensed. It gives no dates.
+
+## Higgsfield
+
+This project now has access to Higgsfield skills to create images and videos with AI.
+
+To install them,
+
+> Run `install-higgsfield.sh`
+
+Then
+
+> Run `./setup.sh`
