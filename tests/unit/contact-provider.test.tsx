@@ -8,6 +8,14 @@ import { useState } from "react";
 import { describe, expect, it, vi } from "vitest";
 import { ContactProvider, useContact } from "@/components/contact/ContactProvider";
 
+// Spec 071: the provider reads the pathname when the popup opens.
+let mockPathname = "/";
+vi.mock("next/navigation", () => ({ usePathname: () => mockPathname }));
+
+function sourcePathValue() {
+    return document.querySelector<HTMLInputElement>('input[name="sourcePath"]')?.value;
+}
+
 // Spec 014: one popup per page, opened through useContact(), with focus
 // returned to the control that opened it.
 function Opener() {
@@ -106,6 +114,38 @@ describe("ContactProvider", () => {
         await userEvent.click(screen.getByRole("button", { name: "Close" }));
         await userEvent.click(screen.getByRole("button", { name: "Open" }));
         expect(screen.getByLabelText("Full name")).toHaveValue("");
+    });
+
+    it("puts the home page path in the hidden field", async () => {
+        mockPathname = "/";
+        render(
+            <ContactProvider>
+                <OpenerNoArg />
+            </ContactProvider>,
+        );
+        await userEvent.click(screen.getByRole("button", { name: "Open no arg" }));
+        expect(sourcePathValue()).toBe("/");
+    });
+
+    it("reads the path again each time the popup opens", async () => {
+        mockPathname = "/web-development";
+        const { rerender } = render(
+            <ContactProvider>
+                <OpenerNoArg />
+            </ContactProvider>,
+        );
+        await userEvent.click(screen.getByRole("button", { name: "Open no arg" }));
+        expect(sourcePathValue()).toBe("/web-development");
+        await userEvent.click(screen.getByRole("button", { name: "Close" }));
+
+        mockPathname = "/about";
+        rerender(
+            <ContactProvider>
+                <OpenerNoArg />
+            </ContactProvider>,
+        );
+        await userEvent.click(screen.getByRole("button", { name: "Open no arg" }));
+        expect(sourcePathValue()).toBe("/about");
     });
 
     it("throws outside a provider", () => {

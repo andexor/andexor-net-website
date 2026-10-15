@@ -16,20 +16,23 @@ export interface ContactRequest {
     workEmail: string;
     phoneNumber: string;
     companyWebsite: string;
+    // Spec 071: the path of the page that opened the popup, not entered by the visitor.
+    sourcePath: string;
 }
 
 export interface ContactPopupProps {
     open: boolean;
     onClose: () => void;
+    sourcePath?: string;
     onSubmit?: (request: ContactRequest) => void;
 }
 
 const FOCUSABLE =
-    'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+    'a[href], button:not([disabled]), input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
 // Implements the props/state/behavior contract from
 // specs/001-homepage-contact-us/contracts/ui-contracts.md.
-export function ContactPopup({ open, onClose, onSubmit }: ContactPopupProps) {
+export function ContactPopup({ open, onClose, sourcePath = "/", onSubmit }: ContactPopupProps) {
     const [sent, setSent] = useState(false);
     const [submitting, setSubmitting] = useState(false);
     const formRef = useRef<HTMLFormElement>(null);
@@ -129,6 +132,7 @@ export function ContactPopup({ open, onClose, onSubmit }: ContactPopupProps) {
             workEmail: String(formData.get("workEmail") ?? ""),
             phoneNumber: String(formData.get("phoneNumber") ?? ""),
             companyWebsite: String(formData.get("companyWebsite") ?? ""),
+            sourcePath: String(formData.get("sourcePath") ?? ""),
         };
 
         // FR-018: no network request is made; this demonstrates the full
@@ -184,6 +188,8 @@ export function ContactPopup({ open, onClose, onSubmit }: ContactPopupProps) {
                             placeholder="+1 212 555 0100"
                         />
                         <Input name="companyWebsite" label="Company website" placeholder="company.com" />
+                        {/* Spec 071: not shown and not focusable; carries the page that opened the popup. */}
+                        <input type="hidden" name="sourcePath" value={sourcePath} />
                         <p className="an-contact-form__note">
                             We never share your personal information.{" "}
                             <span className="an-contact-form__legal">
