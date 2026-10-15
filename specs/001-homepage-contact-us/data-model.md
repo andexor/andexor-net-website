@@ -16,6 +16,7 @@ feature.
 | `workEmail` | string | Yes | Non-empty, valid email format (native `type="email"` + `required`) |
 | `phoneNumber` | string | No | None; free text in a `type="tel"` field, empty string when blank (spec 068) |
 | `companyWebsite` | string | No | None (optional since spec 068) |
+| `sourcePath` | string | Yes (set by the popup) | Pathname of the page that opened the popup, in a hidden field (spec 071) |
 | ~~`primaryNeed`~~ | ~~enum or `"Something else"`~~ | ~~Yes~~ | Removed by spec 070. Was: one of the Service Offering names below, or the literal `"Something else"` |
 
 **State transitions**:

@@ -4,6 +4,7 @@
 
 "use client";
 
+import { usePathname } from "next/navigation";
 import { createContext, type ReactNode, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { ContactPopup } from "./ContactPopup";
 
@@ -21,13 +22,20 @@ const ContactContext = createContext<ContactContextValue | null>(null);
 // page that shows the footer (home, content pages, not-found) can open it.
 export function ContactProvider({ children }: { children: ReactNode }) {
     const [open, setOpen] = useState(false);
+    // Spec 071: the page behind the popup, read each time it opens. Null outside the app router.
+    const pathname = usePathname() ?? "/";
+    const [sourcePath, setSourcePath] = useState("/");
     const returnFocusRef = useRef<HTMLElement | null>(null);
 
-    const openContact = useCallback((opener?: HTMLElement | null) => {
-        returnFocusRef.current =
-            opener ?? (document.activeElement instanceof HTMLElement ? document.activeElement : null);
-        setOpen(true);
-    }, []);
+    const openContact = useCallback(
+        (opener?: HTMLElement | null) => {
+            returnFocusRef.current =
+                opener ?? (document.activeElement instanceof HTMLElement ? document.activeElement : null);
+            setSourcePath(pathname);
+            setOpen(true);
+        },
+        [pathname],
+    );
 
     const closeContact = useCallback(() => {
         setOpen(false);
@@ -46,7 +54,7 @@ export function ContactProvider({ children }: { children: ReactNode }) {
     return (
         <ContactContext.Provider value={value}>
             {children}
-            <ContactPopup open={open} onClose={closeContact} />
+            <ContactPopup open={open} onClose={closeContact} sourcePath={sourcePath} />
         </ContactContext.Provider>
     );
 }

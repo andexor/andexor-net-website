@@ -43,8 +43,25 @@ describe("ContactPopup", () => {
             workEmail: "jordan@example.com",
             phoneNumber: "+1 212 555 0100",
             companyWebsite: "example.com",
+            sourcePath: "/",
         });
         expect(screen.getByRole("heading", { name: "Request received" })).toBeInTheDocument();
+    });
+
+    // Spec 071: a hidden field carries the path of the page that opened the popup.
+    it("sends the source path it was given, in a hidden field with no label", () => {
+        const onSubmit = vi.fn();
+        render(<ContactPopup open onClose={vi.fn()} onSubmit={onSubmit} sourcePath="/web-development" />);
+
+        const hidden = document.querySelector<HTMLInputElement>('input[name="sourcePath"]');
+        expect(hidden).not.toBeNull();
+        expect(hidden?.type).toBe("hidden");
+        expect(screen.queryByLabelText("Source path")).toBeNull();
+
+        fillValidForm();
+        fireEvent.click(screen.getByRole("button", { name: "Send" }));
+
+        expect(onSubmit).toHaveBeenCalledWith(expect.objectContaining({ sourcePath: "/web-development" }));
     });
 
     it("does not transition to confirmation when required fields are empty", () => {
