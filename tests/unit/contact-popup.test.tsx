@@ -5,6 +5,7 @@
 import { createEvent, fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
+import { EXAMPLE_NAMES } from "@/components/contact/example-names";
 import { ContactPopup } from "@/components/contact/ContactPopup";
 
 function fillValidForm() {
@@ -62,6 +63,39 @@ describe("ContactPopup", () => {
         fireEvent.click(screen.getByRole("button", { name: "Send" }));
 
         expect(onSubmit).toHaveBeenCalledWith(expect.objectContaining({ sourcePath: "/web-development" }));
+    });
+
+    // Spec 072: the Full name placeholder is a random name from the list, chosen each time the popup is displayed.
+    it("shows a name from the list as the Full name placeholder", () => {
+        render(<ContactPopup open onClose={vi.fn()} />);
+        const placeholder = screen.getByLabelText("Full name").getAttribute("placeholder") ?? "";
+        expect(EXAMPLE_NAMES).toContain(placeholder);
+    });
+
+    it("chooses the placeholder again each time the popup is displayed", () => {
+        const { rerender } = render(<ContactPopup open onClose={vi.fn()} />);
+        const seen = new Set<string>();
+        for (let i = 0; i < 50; i++) {
+            rerender(<ContactPopup open={false} onClose={vi.fn()} />);
+            rerender(<ContactPopup open onClose={vi.fn()} />);
+            seen.add(screen.getByLabelText("Full name").getAttribute("placeholder") ?? "");
+        }
+        expect(seen.size).toBeGreaterThan(1);
+    });
+
+    it("keeps the same placeholder while the popup stays open, including after typing and clearing", () => {
+        render(<ContactPopup open onClose={vi.fn()} />);
+        const field = screen.getByLabelText("Full name");
+        const before = field.getAttribute("placeholder");
+        fireEvent.change(field, { target: { value: "Ada" } });
+        fireEvent.change(field, { target: { value: "" } });
+        expect(field.getAttribute("placeholder")).toBe(before);
+    });
+
+    it("does not use the placeholder as the field's label or value", () => {
+        render(<ContactPopup open onClose={vi.fn()} />);
+        const field = screen.getByLabelText("Full name");
+        expect(field).toHaveValue("");
     });
 
     it("does not transition to confirmation when required fields are empty", () => {

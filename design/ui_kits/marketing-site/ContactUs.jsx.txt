@@ -34,7 +34,7 @@ function ContactUs({ open, onClose, inline = false, initialSent = false }) {
           </div>
         ) : (
           <form className="an-modal-form" onSubmit={e=>{ e.preventDefault(); setSent(true); }} style={{ padding:'24px', display:'flex', flexDirection:'column', gap:'14px' }}>
-            <Input label="Full name" placeholder="Jordan Reyes" required />
+            <Input label="Full name" placeholder="Priya Sharma" required />{/* spec 072: the live site picks a random example name each time the popup opens */}
             <Input label="Work email" type="email" placeholder="you@company.com" required />
             <Input label="Phone number" type="tel" placeholder="404-555-1212" />
             <Input label="Company website" placeholder="example.com" />

@@ -1210,7 +1210,7 @@ function ContactUs({
     }
   }, /*#__PURE__*/React.createElement(Input, {
     label: "Full name",
-    placeholder: "Jordan Reyes",
+    placeholder: "Priya Sharma",
     required: true
   }), /*#__PURE__*/React.createElement(Input, {
     label: "Work email",

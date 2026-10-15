@@ -74,7 +74,7 @@ Sections in order: Hero → Services → CTA band → Footer. No sticky header. 
 - Panel: `min(480px, 100%)`, bg `--blue-500` (`#1766B4`), radius 18px, `--shadow-xl`.
 - Header: bg `#002855`, padding 22px 24px, flex gap 12px. 260px gold radial glow top-left (offset -110px). Gold logo (`assets/logo/logo-gold.svg`, transparent) 34px, no radius (spec 016 replaced the boxed logo). Title "Contact Us" Play 700 30px/34px white. Close (x, 20px, `#C5D8EF`) at right.
 - **Form state** (padding 24px, column, gap 14px). Labels in `--blue-100` (`#E7EFF8`). Required fields end with a "*" in the label color, hidden from assistive technology; optional fields have no mark (spec 068).
-  - Full name (placeholder "Jordan Reyes", required)
+  - Full name (placeholder is a random example name from a list of 100, chosen each time the popup opens; required)
   - Work email (email, "you@company.com", required)
   - Phone number (tel, "404-555-1212", optional)
   - Company website ("example.com", optional)
