@@ -61,9 +61,9 @@ test.describe("Close button icon", () => {
         await page.getByRole("button", { name: "Contact Us" }).first().click();
         await expectSquareXInClose(page, "form");
 
-        await page.getByLabel("Full name").fill("Jordan Reyes");
-        await page.getByLabel("Work email").fill("jordan@example.com");
-        await page.getByLabel("Company website").fill("example.com");
+        await page.getByLabel("Name").fill("Jordan Reyes");
+        await page.getByLabel("Email").fill("jordan@example.com");
+        await page.getByLabel("Website").fill("example.com");
         await page.getByRole("button", { name: "Send" }).click();
         await expect(page.getByRole("heading", { name: "Request received" })).toBeVisible();
         await expectSquareXInClose(page, "confirmation");

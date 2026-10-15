@@ -9,10 +9,10 @@ import { EXAMPLE_NAMES } from "@/components/contact/example-names";
 import { ContactPopup } from "@/components/contact/ContactPopup";
 
 function fillValidForm() {
-    fireEvent.change(screen.getByLabelText("Full name"), { target: { value: "Jordan Reyes" } });
-    fireEvent.change(screen.getByLabelText("Work email"), { target: { value: "jordan@example.com" } });
-    fireEvent.change(screen.getByLabelText("Phone number"), { target: { value: "+1 212 555 0100" } });
-    fireEvent.change(screen.getByLabelText("Company website"), { target: { value: "example.com" } });
+    fireEvent.change(screen.getByLabelText("Name"), { target: { value: "Jordan Reyes" } });
+    fireEvent.change(screen.getByLabelText("Email"), { target: { value: "jordan@example.com" } });
+    fireEvent.change(screen.getByLabelText("Phone"), { target: { value: "+1 212 555 0100" } });
+    fireEvent.change(screen.getByLabelText("Website"), { target: { value: "example.com" } });
 }
 
 describe("ContactPopup", () => {
@@ -21,14 +21,14 @@ describe("ContactPopup", () => {
         expect(container).toBeEmptyDOMElement();
     });
 
-    // Spec 068: Phone number is new and optional, and Company website became optional.
+    // Spec 068: Phone is new and optional, and Website became optional.
     // Spec 070: the Primary need field is gone.
-    it("requires Full name and Work email, and nothing else", () => {
+    it("requires Name and Email, and nothing else", () => {
         render(<ContactPopup open onClose={vi.fn()} />);
-        expect(screen.getByLabelText("Full name")).toBeRequired();
-        expect(screen.getByLabelText("Work email")).toBeRequired();
-        expect(screen.getByLabelText("Phone number")).not.toBeRequired();
-        expect(screen.getByLabelText("Company website")).not.toBeRequired();
+        expect(screen.getByLabelText("Name")).toBeRequired();
+        expect(screen.getByLabelText("Email")).toBeRequired();
+        expect(screen.getByLabelText("Phone")).not.toBeRequired();
+        expect(screen.getByLabelText("Website")).not.toBeRequired();
         expect(screen.queryByLabelText("Primary need")).toBeNull();
     });
 
@@ -40,10 +40,10 @@ describe("ContactPopup", () => {
         fireEvent.click(screen.getByRole("button", { name: "Send" }));
 
         expect(onSubmit).toHaveBeenCalledWith({
-            fullName: "Jordan Reyes",
-            workEmail: "jordan@example.com",
-            phoneNumber: "+1 212 555 0100",
-            companyWebsite: "example.com",
+            name: "Jordan Reyes",
+            email: "jordan@example.com",
+            phone: "+1 212 555 0100",
+            website: "example.com",
             sourcePath: "/",
         });
         expect(screen.getByRole("heading", { name: "Request received" })).toBeInTheDocument();
@@ -65,10 +65,10 @@ describe("ContactPopup", () => {
         expect(onSubmit).toHaveBeenCalledWith(expect.objectContaining({ sourcePath: "/web-development" }));
     });
 
-    // Spec 072: the Full name placeholder is a random name from the list, chosen each time the popup is displayed.
-    it("shows a name from the list as the Full name placeholder", () => {
+    // Spec 072: the Name placeholder is a random name from the list, chosen each time the popup is displayed.
+    it("shows a name from the list as the Name placeholder", () => {
         render(<ContactPopup open onClose={vi.fn()} />);
-        const placeholder = screen.getByLabelText("Full name").getAttribute("placeholder") ?? "";
+        const placeholder = screen.getByLabelText("Name").getAttribute("placeholder") ?? "";
         expect(EXAMPLE_NAMES).toContain(placeholder);
     });
 
@@ -78,14 +78,14 @@ describe("ContactPopup", () => {
         for (let i = 0; i < 50; i++) {
             rerender(<ContactPopup open={false} onClose={vi.fn()} />);
             rerender(<ContactPopup open onClose={vi.fn()} />);
-            seen.add(screen.getByLabelText("Full name").getAttribute("placeholder") ?? "");
+            seen.add(screen.getByLabelText("Name").getAttribute("placeholder") ?? "");
         }
         expect(seen.size).toBeGreaterThan(1);
     });
 
     it("keeps the same placeholder while the popup stays open, including after typing and clearing", () => {
         render(<ContactPopup open onClose={vi.fn()} />);
-        const field = screen.getByLabelText("Full name");
+        const field = screen.getByLabelText("Name");
         const before = field.getAttribute("placeholder");
         fireEvent.change(field, { target: { value: "Ada" } });
         fireEvent.change(field, { target: { value: "" } });
@@ -94,7 +94,7 @@ describe("ContactPopup", () => {
 
     it("does not use the placeholder as the field's label or value", () => {
         render(<ContactPopup open onClose={vi.fn()} />);
-        const field = screen.getByLabelText("Full name");
+        const field = screen.getByLabelText("Name");
         expect(field).toHaveValue("");
     });
 
@@ -121,14 +121,14 @@ describe("ContactPopup", () => {
         rerender(<ContactPopup open onClose={vi.fn()} />);
 
         expect(screen.queryByRole("heading", { name: "Request received" })).not.toBeInTheDocument();
-        expect(screen.getByLabelText("Full name")).toHaveValue("");
-        expect(screen.getByLabelText("Phone number")).toHaveValue("");
+        expect(screen.getByLabelText("Name")).toHaveValue("");
+        expect(screen.getByLabelText("Phone")).toHaveValue("");
     });
 
     // Spec 068: a label ends with the asterisk exactly when its control is required. Each field is checked by name.
     it("marks exactly the required fields with the asterisk", () => {
         render(<ContactPopup open onClose={vi.fn()} />);
-        for (const name of ["Full name", "Work email", "Phone number", "Company website"]) {
+        for (const name of ["Name", "Email", "Phone", "Website"]) {
             const control = screen.getByLabelText(name) as HTMLInputElement | HTMLSelectElement;
             const label = control.labels?.[0];
             expect(label, name).toBeDefined();
@@ -137,17 +137,17 @@ describe("ContactPopup", () => {
         }
     });
 
-    // Spec 068: the phone field is a telephone input, optional, between Work email and Company website.
-    // Spec 070: Primary need is gone, so Phone number follows Work email directly.
-    it("renders the Phone number field as an optional telephone field, between Work email and Company website", () => {
+    // Spec 068: the phone field is a telephone input, optional, between Email and Website.
+    // Spec 070: Primary need is gone, so Phone follows Email directly.
+    it("renders the Phone field as an optional telephone field, between Email and Website", () => {
         render(<ContactPopup open onClose={vi.fn()} />);
-        const workEmail = screen.getByLabelText("Work email");
-        const phone = screen.getByLabelText("Phone number");
-        const website = screen.getByLabelText("Company website");
+        const email = screen.getByLabelText("Email");
+        const phone = screen.getByLabelText("Phone");
+        const website = screen.getByLabelText("Website");
         expect(phone).toHaveAttribute("type", "tel");
-        expect(phone).toHaveAttribute("autocomplete", "tel");
+        expect(phone).toHaveAttribute("autocomplete", "tel-national");
         expect(phone).not.toBeRequired();
-        expect(workEmail.compareDocumentPosition(phone) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+        expect(email.compareDocumentPosition(phone) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
         expect(phone.compareDocumentPosition(website) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     });
 
@@ -211,8 +211,8 @@ describe("ContactPopup", () => {
             const onClose = vi.fn();
             const onSubmit = vi.fn();
             render(<ContactPopup open onClose={onClose} onSubmit={onSubmit} />);
-            fireEvent.change(screen.getByLabelText("Full name"), { target: { value: "Jordan" } });
-            fireEvent.keyDown(screen.getByLabelText("Full name"), { key: "Escape" });
+            fireEvent.change(screen.getByLabelText("Name"), { target: { value: "Jordan" } });
+            fireEvent.keyDown(screen.getByLabelText("Name"), { key: "Escape" });
             expect(onClose).toHaveBeenCalledTimes(1);
             expect(onSubmit).not.toHaveBeenCalled();
         });
@@ -235,7 +235,7 @@ describe("ContactPopup", () => {
         it("ignores an Esc another handler already used", () => {
             const onClose = vi.fn();
             render(<ContactPopup open onClose={onClose} />);
-            const field = screen.getByLabelText("Full name");
+            const field = screen.getByLabelText("Name");
             const event = createEvent.keyDown(field, { key: "Escape" });
             event.preventDefault();
             fireEvent(field, event);

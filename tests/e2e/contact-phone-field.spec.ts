@@ -4,9 +4,9 @@
 
 import { expect, test } from "@playwright/test";
 
-// Spec 068: the Contact Us form gains an optional Phone number field, Company website becomes optional,
-// and required labels end with an asterisk. Since spec 070 removed Primary need, the form is Full name,
-// Work email, Phone number, Company website.
+// Spec 068: the Contact Us form gains an optional Phone field, Website becomes optional,
+// and required labels end with an asterisk. Since spec 070 removed Primary need, the form is Name,
+// Email, Phone, Website.
 
 async function openPopup(page) {
     await page.goto("/");
@@ -15,58 +15,58 @@ async function openPopup(page) {
 }
 
 test.describe("Contact phone field", () => {
-    test("shows an optional telephone field between Work email and Company website", async ({ page }) => {
+    test("shows an optional telephone field between Email and Website", async ({ page }) => {
         await openPopup(page);
-        const phone = page.getByLabel("Phone number");
+        const phone = page.getByLabel("Phone");
         await expect(phone).toBeVisible();
         await expect(phone).toHaveAttribute("type", "tel");
-        const emailBox = await page.getByLabel("Work email").boundingBox();
+        const emailBox = await page.getByLabel("Email").boundingBox();
         const phoneBox = await phone.boundingBox();
-        const websiteBox = await page.getByLabel("Company website").boundingBox();
+        const websiteBox = await page.getByLabel("Website").boundingBox();
         expect(phoneBox.y).toBeGreaterThan(emailBox.y);
         expect(websiteBox.y).toBeGreaterThan(phoneBox.y);
     });
 
-    test("Tab goes from Work email to Phone number, then Company website", async ({ page }) => {
+    test("Tab goes from Email to Phone, then Website", async ({ page }) => {
         await openPopup(page);
         await page.waitForFunction(() => document.hasFocus(), undefined, { timeout: 5000 });
-        await page.getByLabel("Work email").focus();
+        await page.getByLabel("Email").focus();
         await page.keyboard.press("Tab");
-        await expect(page.getByLabel("Phone number")).toBeFocused();
+        await expect(page.getByLabel("Phone")).toBeFocused();
         await page.keyboard.press("Tab");
-        await expect(page.getByLabel("Company website")).toBeFocused();
+        await expect(page.getByLabel("Website")).toBeFocused();
     });
 
     test("sends with the phone number filled, and clears it on reopen", async ({ page }) => {
         await openPopup(page);
-        await page.getByLabel("Full name").fill("Jordan Reyes");
-        await page.getByLabel("Work email").fill("jordan@example.com");
-        await page.getByLabel("Phone number").fill("+1 212 555 0100");
-        await page.getByLabel("Company website").fill("example.com");
+        await page.getByLabel("Name").fill("Jordan Reyes");
+        await page.getByLabel("Email").fill("jordan@example.com");
+        await page.getByLabel("Phone").fill("+1 212 555 0100");
+        await page.getByLabel("Website").fill("example.com");
         await page.getByRole("button", { name: "Send" }).click();
         await expect(page.getByRole("heading", { name: "Request received" })).toBeVisible();
 
         await page.getByRole("button", { name: "OK" }).click();
         await page.getByRole("button", { name: "Contact Us" }).first().click();
-        await expect(page.getByLabel("Phone number")).toHaveValue("");
+        await expect(page.getByLabel("Phone")).toHaveValue("");
     });
 });
 
 test.describe("Optional fields", () => {
-    test("sends with Phone number and Company website blank", async ({ page }) => {
+    test("sends with Phone and Website blank", async ({ page }) => {
         await openPopup(page);
-        await page.getByLabel("Full name").fill("Jordan Reyes");
-        await page.getByLabel("Work email").fill("jordan@example.com");
+        await page.getByLabel("Name").fill("Jordan Reyes");
+        await page.getByLabel("Email").fill("jordan@example.com");
         await page.getByRole("button", { name: "Send" }).click();
         await expect(page.getByRole("heading", { name: "Request received" })).toBeVisible();
     });
 
-    test("still stops a send with Work email blank", async ({ page }) => {
+    test("still stops a send with Email blank", async ({ page }) => {
         await openPopup(page);
-        await page.getByLabel("Full name").fill("Jordan Reyes");
+        await page.getByLabel("Name").fill("Jordan Reyes");
         await page.getByRole("button", { name: "Send" }).click();
         await expect(page.getByRole("heading", { name: "Request received" })).not.toBeVisible();
-        expect(await page.getByLabel("Work email").evaluate((el) => el.validity.valueMissing)).toBe(true);
+        expect(await page.getByLabel("Email").evaluate((el) => el.validity.valueMissing)).toBe(true);
     });
 
     // Spec 070: the Primary need list is gone.
@@ -78,8 +78,8 @@ test.describe("Optional fields", () => {
 
 test.describe("Required marks", () => {
     // Input builds each id from its label.
-    const required = ["an-full-name", "an-work-email"];
-    const optional = ["an-phone-number", "an-company-website"];
+    const required = ["an-name", "an-email"];
+    const optional = ["an-phone", "an-website"];
 
     test("shows an asterisk after each required label and none after optional ones", async ({ page }) => {
         await openPopup(page);
@@ -102,14 +102,14 @@ test.describe("Required marks", () => {
 
     test("keeps the accessible names", async ({ page }) => {
         await openPopup(page);
-        await expect(page.getByLabel("Full name", { exact: true })).toBeVisible();
-        await expect(page.getByLabel("Work email", { exact: true })).toBeVisible();
+        await expect(page.getByLabel("Name", { exact: true })).toBeVisible();
+        await expect(page.getByLabel("Email", { exact: true })).toBeVisible();
     });
 
     test("focuses the field when the asterisk is clicked", async ({ page }) => {
         await openPopup(page);
-        await page.getByLabel("Work email").focus();
-        await page.locator('label[for="an-full-name"] .an-label__required').click();
-        await expect(page.getByLabel("Full name")).toBeFocused();
+        await page.getByLabel("Email").focus();
+        await page.locator('label[for="an-name"] .an-label__required').click();
+        await expect(page.getByLabel("Name")).toBeFocused();
     });
 });

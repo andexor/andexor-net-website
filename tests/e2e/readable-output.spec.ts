@@ -70,7 +70,7 @@ test.describe("Page data in an external file", () => {
         await page.goto("/", { waitUntil: "commit" });
         const button = page.getByRole("button", { name: "Contact Us" }).first();
         await button.waitFor({ state: "visible" });
-        while (!(await page.getByLabel("Full name").isVisible())) {
+        while (!(await page.getByLabel("Name").isVisible())) {
             await button.click();
             await page.waitForTimeout(25);
         }

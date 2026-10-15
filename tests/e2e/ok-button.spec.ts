@@ -12,9 +12,9 @@ import { expect, test } from "@playwright/test";
 const ROUNDS = 5;
 
 async function fillForm(page) {
-    await page.getByLabel("Full name").fill("Jordan Reyes");
-    await page.getByLabel("Work email").fill("jordan@example.com");
-    await page.getByLabel("Company website").fill("example.com");
+    await page.getByLabel("Name").fill("Jordan Reyes");
+    await page.getByLabel("Email").fill("jordan@example.com");
+    await page.getByLabel("Website").fill("example.com");
 }
 
 async function expectOkFocusedAndVisible(page) {
@@ -32,7 +32,7 @@ const WAYS = {
         await page.keyboard.press("Space");
     },
     "Enter in a field": async (page) => {
-        await page.getByLabel("Company website").focus();
+        await page.getByLabel("Website").focus();
         await page.keyboard.press("Enter");
     },
 };

@@ -18,17 +18,17 @@ test("full contact flow is operable using only the keyboard", async ({ page }) =
     const dialog = page.getByRole("dialog", { name: "Contact Us" });
     await expect(dialog).toBeVisible();
 
-    await page.getByLabel("Full name").focus();
-    await expect(page.getByLabel("Full name")).toBeFocused();
+    await page.getByLabel("Name").focus();
+    await expect(page.getByLabel("Name")).toBeFocused();
     await page.keyboard.type("Jordan Reyes");
     await page.keyboard.press("Tab");
-    await expect(page.getByLabel("Work email")).toBeFocused();
+    await expect(page.getByLabel("Email")).toBeFocused();
     await page.keyboard.type("jordan@example.com");
     await page.keyboard.press("Tab");
-    await expect(page.getByLabel("Phone number")).toBeFocused();
+    await expect(page.getByLabel("Phone")).toBeFocused();
     await page.keyboard.type("+1 212 555 0100");
     await page.keyboard.press("Tab");
-    await expect(page.getByLabel("Company website")).toBeFocused();
+    await expect(page.getByLabel("Website")).toBeFocused();
     await page.keyboard.type("example.com");
     // The note's Privacy and Terms links come before Send, in reading order.
     await page.keyboard.press("Tab");
@@ -50,9 +50,9 @@ test("full contact flow is operable using only the keyboard", async ({ page }) =
     // Tab navigation to reach it (per FR-021's accessible name).
     await ctaButton.focus();
     await page.keyboard.press("Enter");
-    // The popup moves focus to Full name just after it appears; wait for that
+    // The popup moves focus to Name just after it appears; wait for that
     // before moving focus, or the late autofocus takes it back from Close.
-    await expect(page.getByLabel("Full name")).toBeFocused();
+    await expect(page.getByLabel("Name")).toBeFocused();
     await page.getByRole("button", { name: "Close" }).focus();
     await expect(page.getByRole("button", { name: "Close" })).toBeFocused();
     await page.keyboard.press("Enter");

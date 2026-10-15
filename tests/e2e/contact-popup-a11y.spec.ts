@@ -17,28 +17,28 @@ test.describe("ContactPopup accessibility", () => {
         expect(results.violations).toEqual([]);
     });
 
-    test("keyboard focus moves to the Full name field when the popup opens", async ({ page }) => {
+    test("keyboard focus moves to the Name field when the popup opens", async ({ page }) => {
         await page.goto("/");
         await page.getByRole("button", { name: "Contact Us" }).first().click();
         await expect(page.getByRole("dialog", { name: "Contact Us" })).toBeVisible();
-        await expect(page.getByLabel("Full name")).toBeFocused();
+        await expect(page.getByLabel("Name")).toBeFocused();
     });
 
-    test("Tab stays inside the popup: Send, then Close, then back to Full name", async ({ page }) => {
+    test("Tab stays inside the popup: Send, then Close, then back to Name", async ({ page }) => {
         await page.goto("/");
         await page.waitForFunction(() => document.hasFocus(), undefined, { timeout: 5000 });
         await page.getByRole("button", { name: "Contact Us" }).first().click();
         const dialog = page.getByRole("dialog", { name: "Contact Us" });
-        await expect(page.getByLabel("Full name")).toBeFocused();
+        await expect(page.getByLabel("Name")).toBeFocused();
         const order = [
-            dialog.getByLabel("Work email"),
-            dialog.getByLabel("Phone number"),
-            dialog.getByLabel("Company website"),
+            dialog.getByLabel("Email"),
+            dialog.getByLabel("Phone"),
+            dialog.getByLabel("Website"),
             dialog.getByRole("link", { name: "Privacy" }),
             dialog.getByRole("link", { name: "Terms" }),
             dialog.getByRole("button", { name: "Send" }),
             dialog.getByRole("button", { name: "Close" }),
-            dialog.getByLabel("Full name"),
+            dialog.getByLabel("Name"),
         ];
         for (const stop of order) {
             await page.keyboard.press("Tab");
@@ -55,9 +55,9 @@ test.describe("ContactPopup accessibility", () => {
         await page.goto("/");
         await page.waitForFunction(() => document.hasFocus(), undefined, { timeout: 5000 });
         await page.getByRole("button", { name: "Contact Us" }).first().click();
-        await page.getByLabel("Full name").fill("Jordan Reyes");
-        await page.getByLabel("Work email").fill("jordan@example.com");
-        await page.getByLabel("Company website").fill("example.com");
+        await page.getByLabel("Name").fill("Jordan Reyes");
+        await page.getByLabel("Email").fill("jordan@example.com");
+        await page.getByLabel("Website").fill("example.com");
         await page.getByRole("button", { name: "Send" }).click();
         const dialog = page.getByRole("dialog", { name: "Contact Us" });
         await expect(page.getByRole("heading", { name: "Request received" })).toBeVisible();
@@ -82,7 +82,7 @@ test.describe("ContactPopup accessibility", () => {
             if (document.activeElement instanceof HTMLElement) document.activeElement.blur();
         });
         await page.keyboard.press("Tab");
-        await expect(page.getByLabel("Full name")).toBeFocused();
+        await expect(page.getByLabel("Name")).toBeFocused();
     });
 
     test("the page behind the popup cannot take focus while it is open", async ({ page }) => {
@@ -101,9 +101,9 @@ test.describe("ContactPopup accessibility", () => {
     test("confirmation state has no WCAG 2.1 AA violations", async ({ page }) => {
         await page.goto("/");
         await page.getByRole("button", { name: "Contact Us" }).first().click();
-        await page.getByLabel("Full name").fill("Jordan Reyes");
-        await page.getByLabel("Work email").fill("jordan@example.com");
-        await page.getByLabel("Company website").fill("example.com");
+        await page.getByLabel("Name").fill("Jordan Reyes");
+        await page.getByLabel("Email").fill("jordan@example.com");
+        await page.getByLabel("Website").fill("example.com");
         await page.getByRole("button", { name: "Send" }).click();
         await expect(page.getByRole("heading", { name: "Request received" })).toBeVisible();
 

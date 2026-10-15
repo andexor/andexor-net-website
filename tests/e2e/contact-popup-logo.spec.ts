@@ -31,9 +31,9 @@ test.describe("Popup header logo", () => {
     test("the confirmation state shows the same gold logo", async ({ page }) => {
         await page.goto("/");
         await page.getByRole("button", { name: "Contact Us" }).first().click();
-        await page.getByLabel("Full name").fill("Jordan Reyes");
-        await page.getByLabel("Work email").fill("jordan@example.com");
-        await page.getByLabel("Company website").fill("example.com");
+        await page.getByLabel("Name").fill("Jordan Reyes");
+        await page.getByLabel("Email").fill("jordan@example.com");
+        await page.getByLabel("Website").fill("example.com");
         await page.getByRole("button", { name: "Send" }).click();
         await expect(page.getByRole("heading", { name: "Request received" })).toBeVisible();
         const logo = page.locator(".an-contact-header__logo");
