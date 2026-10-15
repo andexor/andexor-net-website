@@ -187,15 +187,7 @@ export function ContactPopup({ open, onClose, onSubmit }: ContactPopupProps) {
                             placeholder="you@company.com"
                             required
                         />
-                        {/* Spec 068: optional. type="tel" brings up the keypad on phones; no format is enforced. */}
-                        <Input
-                            name="phoneNumber"
-                            label="Phone number"
-                            type="tel"
-                            autoComplete="tel"
-                            placeholder="+1 212 555 0100"
-                        />
-                        <Input name="companyWebsite" label="Company website" placeholder="company.com" />
+                        {/* Spec 069: required fields first. */}
                         <div className="an-field">
                             {/* Spec 068: the same required mark that Input renders for its required prop. */}
                             <label className="an-label" htmlFor="primaryNeed">
@@ -218,6 +210,15 @@ export function ContactPopup({ open, onClose, onSubmit }: ContactPopupProps) {
                                 <option value={PRIMARY_NEED_OTHER}>{PRIMARY_NEED_OTHER}</option>
                             </select>
                         </div>
+                        {/* Spec 068: optional. type="tel" brings up the keypad on phones; no format is enforced. */}
+                        <Input
+                            name="phoneNumber"
+                            label="Phone number"
+                            type="tel"
+                            autoComplete="tel"
+                            placeholder="+1 212 555 0100"
+                        />
+                        <Input name="companyWebsite" label="Company website" placeholder="company.com" />
                         <p className="an-contact-form__note">
                             We never share your personal information.{" "}
                             <span className="an-contact-form__legal">

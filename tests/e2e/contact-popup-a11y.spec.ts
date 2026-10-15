@@ -32,9 +32,9 @@ test.describe("ContactPopup accessibility", () => {
         await expect(page.getByLabel("Full name")).toBeFocused();
         const order = [
             dialog.getByLabel("Work email"),
+            dialog.getByLabel("Primary need"),
             dialog.getByLabel("Phone number"),
             dialog.getByLabel("Company website"),
-            dialog.getByLabel("Primary need"),
             dialog.getByRole("link", { name: "Privacy" }),
             dialog.getByRole("link", { name: "Terms" }),
             dialog.getByRole("button", { name: "Send" }),

@@ -19,8 +19,9 @@ export interface ContactRequest {
 
 **Behavior contract**, point 2, becomes: rendering with `open=true` and `sent=false` renders the form with fields, in
 order: full name (required), work email (required), phone number (optional, `type="tel"`, `autocomplete="tel"`),
-company website (optional), primary need (required). Point 3 passes `phoneNumber` in the `ContactRequest`. Point 4 is
-unchanged: only an empty or invalid required field blocks the send.
+company website (optional), primary need (required). Spec 069 then moved primary need to third, after work email.
+Point 3 passes `phoneNumber` in the `ContactRequest`. Point 4 is unchanged: only an empty or invalid required field
+blocks the send.
 
 Every required control's label contains the required mark (below); no optional control's label does.
 

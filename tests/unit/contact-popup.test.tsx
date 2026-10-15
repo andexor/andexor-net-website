@@ -88,15 +88,18 @@ describe("ContactPopup", () => {
     });
 
     // Spec 068: the phone field is a telephone input, optional, between Work email and Company website.
-    it("renders the Phone number field as an optional telephone field between Work email and Company website", () => {
+    // Spec 069: Primary need comes third, so the required fields are the first three.
+    it("renders the Phone number field as an optional telephone field, after Primary need and before Company website", () => {
         render(<ContactPopup open onClose={vi.fn()} />);
         const workEmail = screen.getByLabelText("Work email");
+        const need = screen.getByLabelText("Primary need");
         const phone = screen.getByLabelText("Phone number");
         const website = screen.getByLabelText("Company website");
         expect(phone).toHaveAttribute("type", "tel");
         expect(phone).toHaveAttribute("autocomplete", "tel");
         expect(phone).not.toBeRequired();
-        expect(workEmail.compareDocumentPosition(phone) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+        expect(workEmail.compareDocumentPosition(need) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+        expect(need.compareDocumentPosition(phone) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
         expect(phone.compareDocumentPosition(website) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     });
 

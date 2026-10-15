@@ -14,22 +14,27 @@ async function openPopup(page) {
 }
 
 test.describe("Contact phone field", () => {
-    test("shows an optional telephone field between Work email and Company website", async ({ page }) => {
+    // Spec 069: the required fields come first, so Primary need sits between Work email and Phone number.
+    test("lists the required fields first: Primary need sits between Work email and Phone number", async ({ page }) => {
         await openPopup(page);
         const phone = page.getByLabel("Phone number");
         await expect(phone).toBeVisible();
         await expect(phone).toHaveAttribute("type", "tel");
         const emailBox = await page.getByLabel("Work email").boundingBox();
+        const needBox = await page.getByLabel("Primary need").boundingBox();
         const phoneBox = await phone.boundingBox();
         const websiteBox = await page.getByLabel("Company website").boundingBox();
-        expect(phoneBox.y).toBeGreaterThan(emailBox.y);
-        expect(phoneBox.y).toBeLessThan(websiteBox.y);
+        expect(needBox.y).toBeGreaterThan(emailBox.y);
+        expect(phoneBox.y).toBeGreaterThan(needBox.y);
+        expect(websiteBox.y).toBeGreaterThan(phoneBox.y);
     });
 
-    test("Tab goes from Work email to Phone number to Company website", async ({ page }) => {
+    test("Tab goes from Work email to Primary need, Phone number, then Company website", async ({ page }) => {
         await openPopup(page);
         await page.waitForFunction(() => document.hasFocus(), undefined, { timeout: 5000 });
         await page.getByLabel("Work email").focus();
+        await page.keyboard.press("Tab");
+        await expect(page.getByLabel("Primary need")).toBeFocused();
         await page.keyboard.press("Tab");
         await expect(page.getByLabel("Phone number")).toBeFocused();
         await page.keyboard.press("Tab");

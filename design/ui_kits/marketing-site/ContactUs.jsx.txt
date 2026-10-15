@@ -36,8 +36,6 @@ function ContactUs({ open, onClose, inline = false, initialSent = false }) {
           <form className="an-modal-form" onSubmit={e=>{ e.preventDefault(); setSent(true); }} style={{ padding:'24px', display:'flex', flexDirection:'column', gap:'14px' }}>
             <Input label="Full name" placeholder="Jordan Reyes" required />
             <Input label="Work email" type="email" placeholder="you@company.com" required />
-            <Input label="Phone number" type="tel" placeholder="+1 212 555 0100" />
-            <Input label="Company website" placeholder="company.com" />
             <div className="an-field">
               <label className="an-label" htmlFor="svc">Primary need</label>
               <select id="svc" className="an-input" defaultValue="" required style={{ appearance:'none', backgroundImage:'none' }}>
@@ -57,6 +55,8 @@ function ContactUs({ open, onClose, inline = false, initialSent = false }) {
                 <option>Something else</option>
               </select>
             </div>
+            <Input label="Phone number" type="tel" placeholder="+1 212 555 0100" />
+            <Input label="Company website" placeholder="company.com" />
             <Button type="submit" variant="accent" block size="lg" rightIcon={<Icon name="arrow-right" size={18} />}>Send</Button>
             <p style={{ margin:0, fontSize:'12px', color:'var(--blue-100)', textAlign:'center' }}>We never share your personal information.</p>
           </form>

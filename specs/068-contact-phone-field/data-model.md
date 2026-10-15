@@ -11,7 +11,8 @@ The only data shape that changes is the in-memory `ContactRequest` from spec 001
 | `companyWebsite` | string | No | None | was required |
 | `primaryNeed` | enum or "Something else" | Yes | One of the service names or the literal "Something else" | none |
 
-Form order: `fullName`, `workEmail`, `phoneNumber`, `companyWebsite`, `primaryNeed`.
+Form order: `fullName`, `workEmail`, `phoneNumber`, `companyWebsite`, `primaryNeed` (spec 069 moved `primaryNeed` to
+third: `fullName`, `workEmail`, `primaryNeed`, `phoneNumber`, `companyWebsite`).
 
 ## Required mark
 
