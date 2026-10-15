@@ -156,6 +156,14 @@
     font-weight: var(--weight-medium);
     color: var(--text-body);
 }
+/* Spec 068: the asterisk after a required label. The span is empty and aria-hidden; the glyph
+ * comes from here so the label's text stays the label alone. It inherits the label's color and size. */
+.an-label__required {
+    margin-left: 0.25em;
+}
+.an-label__required::after {
+    content: "*";
+}
 .an-input {
     font-family: var(--font-sans);
     font-size: var(--text-sm);

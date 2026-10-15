@@ -14,7 +14,8 @@ feature.
 |---|---|---|---|
 | `fullName` | string | Yes | Non-empty (native `required`) |
 | `workEmail` | string | Yes | Non-empty, valid email format (native `type="email"` + `required`) |
-| `companyWebsite` | string | Yes | Non-empty (native `required`); no format enforcement beyond that, per design reference |
+| `phoneNumber` | string | No | None; free text in a `type="tel"` field, empty string when blank (spec 068) |
+| `companyWebsite` | string | No | None (optional since spec 068) |
 | `primaryNeed` | enum or `"Something else"` | Yes | Must be one of the Service Offering names below, or the literal `"Something else"`; the placeholder ("Select a service…") is not a valid submission value |
 
 **State transitions**:

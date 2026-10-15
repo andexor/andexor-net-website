@@ -36,7 +36,8 @@ function ContactUs({ open, onClose, inline = false, initialSent = false }) {
           <form className="an-modal-form" onSubmit={e=>{ e.preventDefault(); setSent(true); }} style={{ padding:'24px', display:'flex', flexDirection:'column', gap:'14px' }}>
             <Input label="Full name" placeholder="Jordan Reyes" required />
             <Input label="Work email" type="email" placeholder="you@company.com" required />
-            <Input label="Company website" placeholder="company.com" required />
+            <Input label="Phone number" type="tel" placeholder="+1 212 555 0100" />
+            <Input label="Company website" placeholder="company.com" />
             <div className="an-field">
               <label className="an-label" htmlFor="svc">Primary need</label>
               <select id="svc" className="an-input" defaultValue="" required style={{ appearance:'none', backgroundImage:'none' }}>

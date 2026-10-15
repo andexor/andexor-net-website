@@ -113,7 +113,7 @@ the rest of the homepage content.
 
 1. **Given** a visitor is anywhere on the homepage, **When** they click a "Contact Us" button
    (hero or CTA band), **Then** a contact popup opens showing a form with fields for full name,
-   work email, company website, and primary need.
+   work email, phone number (spec 068), company website, and primary need.
 2. **Given** the contact popup is open, **When** the visitor submits the form without filling in
    a required field, **Then** the browser prevents submission and indicates which field needs
    attention.
@@ -193,9 +193,12 @@ service options are listed and grouped, and that a selection is retained when su
   may point to placeholder destinations for this feature.
 - **FR-007**: Every "Contact Us" call to action on the page, including the footer's "Contact Us"
   (spec 014), MUST open the same contact popup.
-- **FR-008**: The contact popup MUST present a form requesting: full name, work email, company
+- **FR-008**: ~~The contact popup MUST present a form requesting: full name, work email, company
   website, and primary need — with full name, work email, and company website required before
-  submission.
+  submission.~~ **Amended by 068 FR-001, FR-003, and FR-003a:** the form requests full name, work
+  email, phone number, company website, and primary need; full name, work email, and primary need
+  are required, phone number and company website are optional, and required labels end with an
+  asterisk.
 - **FR-009**: The primary need field MUST let the visitor either pick from the predefined list
   of service options (grouped by technical/business services) or indicate "something else".
 - **FR-010**: The system MUST NOT allow the contact form to be submitted while a required field
@@ -262,8 +265,9 @@ service options are listed and grouped, and that a selection is retained when su
 ### Key Entities
 
 - **Contact Request**: A prospective customer's inquiry submitted through the contact popup.
-  Attributes: full name, work email, company website, primary need (one of a predefined list of
-  services, or "something else"). Not persisted or transmitted anywhere by this feature.
+  Attributes: full name, work email, phone number (optional, spec 068), company website (optional
+  since spec 068), primary need (one of a predefined list of services, or "something else"). Not
+  persisted or transmitted anywhere by this feature.
 - **Service Offering**: One of the four disciplines Andexor Network presents on the homepage
   (Web Development, Technical SEO, Agentic Systems, Growth Marketing). Attributes: title,
   description, supporting bullet points.

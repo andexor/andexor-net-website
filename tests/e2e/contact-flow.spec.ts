@@ -13,6 +13,7 @@ test.describe("Contact request flow", () => {
         await expect(page.getByRole("dialog", { name: "Contact Us" })).toBeVisible();
         await expect(page.getByLabel("Full name")).toBeVisible();
         await expect(page.getByLabel("Work email")).toBeVisible();
+        await expect(page.getByLabel("Phone number")).toBeVisible();
         await expect(page.getByLabel("Company website")).toBeVisible();
         await expect(page.getByLabel("Primary need")).toBeVisible();
     });

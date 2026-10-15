@@ -73,10 +73,11 @@ Sections in order: Hero → Services → CTA band → Footer. No sticky header. 
 - Scrim: fixed, `rgba(0,19,43,0.55)`, `backdrop-filter: blur(3px)`, z-index 60, centers the panel with 24px padding. Clicking the scrim closes.
 - Panel: `min(480px, 100%)`, bg `--blue-500` (`#1766B4`), radius 18px, `--shadow-xl`.
 - Header: bg `#002855`, padding 22px 24px, flex gap 12px. 260px gold radial glow top-left (offset -110px). Gold logo (`assets/logo/logo-gold.svg`, transparent) 34px, no radius (spec 016 replaced the boxed logo). Title "Contact Us" Play 700 30px/34px white. Close (x, 20px, `#C5D8EF`) at right.
-- **Form state** (padding 24px, column, gap 14px). Labels in `--blue-100` (`#E7EFF8`):
+- **Form state** (padding 24px, column, gap 14px). Labels in `--blue-100` (`#E7EFF8`). Required fields end with a "*" in the label color, hidden from assistive technology; optional fields have no mark (spec 068).
   - Full name (placeholder "Jordan Reyes", required)
   - Work email (email, "you@company.com", required)
-  - Company website ("company.com", required)
+  - Phone number (tel, "+1 212 555 0100", optional)
+  - Company website ("company.com", optional)
   - Primary need (select, required). Placeholder "Select a service…". Group "Technical Services": Web Development, Web Hosting, Technical SEO, Agentic Systems. Group "Business Services": Cost Reduction, Lead Generation, Growth Marketing, Process Re-engineering. Then "Something else".
   - "Send" accent button, block, lg, arrow-right icon.
   - Note "We never share your personal information." 12px `#E7EFF8`, centered.

@@ -1,15 +1,22 @@
 import React from 'react';
 
 /** Labelled text input with optional hint / error message. */
-export function Input({ label, hint, error, id, className = '', ...rest }) {
+export function Input({ label, hint, error, id, required, className = '', ...rest }) {
   const fieldId = id || (label ? `an-${label.replace(/\s+/g, '-').toLowerCase()}` : undefined);
   return (
     <div className="an-field">
-      {label && <label className="an-label" htmlFor={fieldId}>{label}</label>}
+      {label && (
+        <label className="an-label" htmlFor={fieldId}>
+          {label}
+          {/* The asterisk is CSS content on an empty, aria-hidden span, so the label text stays the label alone. */}
+          {required && <span className="an-label__required" aria-hidden="true" />}
+        </label>
+      )}
       <input
         id={fieldId}
         className={['an-input', error && 'an-input--invalid', className].filter(Boolean).join(' ')}
         aria-invalid={error ? 'true' : undefined}
+        required={required}
         {...rest}
       />
       {error

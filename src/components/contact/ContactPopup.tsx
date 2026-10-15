@@ -15,6 +15,7 @@ import { PRIMARY_NEED_GROUPS, PRIMARY_NEED_OTHER } from "./primary-need-options"
 export interface ContactRequest {
     fullName: string;
     workEmail: string;
+    phoneNumber: string;
     companyWebsite: string;
     primaryNeed: string;
 }
@@ -137,6 +138,7 @@ export function ContactPopup({ open, onClose, onSubmit }: ContactPopupProps) {
         const request: ContactRequest = {
             fullName: String(formData.get("fullName") ?? ""),
             workEmail: String(formData.get("workEmail") ?? ""),
+            phoneNumber: String(formData.get("phoneNumber") ?? ""),
             companyWebsite: String(formData.get("companyWebsite") ?? ""),
             primaryNeed: String(formData.get("primaryNeed") ?? ""),
         };
@@ -185,10 +187,20 @@ export function ContactPopup({ open, onClose, onSubmit }: ContactPopupProps) {
                             placeholder="you@company.com"
                             required
                         />
-                        <Input name="companyWebsite" label="Company website" placeholder="company.com" required />
+                        {/* Spec 068: optional. type="tel" brings up the keypad on phones; no format is enforced. */}
+                        <Input
+                            name="phoneNumber"
+                            label="Phone number"
+                            type="tel"
+                            autoComplete="tel"
+                            placeholder="+1 212 555 0100"
+                        />
+                        <Input name="companyWebsite" label="Company website" placeholder="company.com" />
                         <div className="an-field">
+                            {/* Spec 068: the same required mark that Input renders for its required prop. */}
                             <label className="an-label" htmlFor="primaryNeed">
                                 Primary need
+                                <span className="an-label__required" aria-hidden="true" />
                             </label>
                             <select id="primaryNeed" name="primaryNeed" className="an-input" defaultValue="" required>
                                 <option value="" disabled>

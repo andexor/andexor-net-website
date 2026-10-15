@@ -46,7 +46,8 @@ Open `http://localhost:3000`.
    - Click "Contact Us" in the CTA band instead. Confirm the same popup opens.
    - Try submitting with fields empty: confirm the browser blocks submission and highlights a
      required field.
-   - Fill in full name, work email, company website, and a primary need; submit. Confirm the
+   - Fill in full name, work email, and a primary need (phone number and company website are
+     optional); submit. Confirm the
      popup switches to the "Request received" confirmation without navigating away from the
      page, and that the whole flow (open popup to submit) takes under 60 seconds (SC-002) and
      the confirmation appears within 10 seconds of clicking "Send" (SC-003).
