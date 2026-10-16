@@ -1,6 +1,11 @@
 <!--
 Sync Impact Report
-- Version change: 1.6.0 → 1.7.0 (MINOR: the Technology Constraints Dependency audit rule changes materially.
+- Version change: 1.7.0 → 1.8.0 (MINOR: the Technology Constraints Formatting rule no longer sets a hard line
+  length. About 120 characters stays as a guideline for generated and written code, and `.prettierrc.json` keeps
+  `printWidth: 120` so `bun run format` wraps at that width, but no test fails on line length or on Prettier's
+  output. The test "match Prettier's output" in tests/unit/formatting.test.ts is removed; the tab, minified, and
+  indentation checks stay. Owner decision. Templates in .specify/templates/ checked: none mention line length).
+  Earlier: 1.6.0 → 1.7.0 (MINOR: the Technology Constraints Dependency audit rule changes materially.
   `./setup.sh` now replaces `reports/license-report.md` with one dated section on each run instead of appending;
   the report is a snapshot of the current dependency set, and earlier sets live in version history. The report
   is still written only by `./setup.sh` and never by hand or another script. Owner decision,
@@ -152,9 +157,9 @@ out of customers' view.
   `andexor/<repo-dir-basename>:<VERSION>`. Alternate `docker build` or `docker run` invocations
   MUST NOT be invented.
 - Formatting: code written for the site (`.ts`, `.tsx`, `.js`, `.mjs`, `.css`) and the built site (HTML, the site
-  stylesheet, and the site's own script chunk) MUST be formatted with Prettier: 4 spaces per indent level, no tabs,
-  and lines under 120 characters where possible. The site's own CSS and JavaScript MUST stay in files separate from
-  third-party code and MUST NOT be minified. Third-party CSS and JavaScript MAY be combined and minified. Formatting
+  stylesheet, and the site's own script chunk) MUST be formatted with Prettier: 4 spaces per indent level, no tabs.
+  Lines SHOULD stay under about 120 characters; this is a guideline, not a rule, and no test checks it. The site's own CSS and
+  JavaScript MUST stay in files separate from third-party code and MUST NOT be minified. Third-party CSS and JavaScript MAY be combined and minified. Formatting
   MUST NOT change what a visitor sees or how a page behaves, and any step that adds whitespace to built HTML MUST
   prove the DOM is unchanged (the React hydration rule). `bun run test` MUST fail, naming the file, when a file breaks
   these rules.
@@ -245,4 +250,4 @@ MUST be explicitly justified in the relevant artifact rather than silently intro
 are companion documents for contributors; where they conflict with this constitution, this
 constitution wins until one of them is amended.
 
-**Version**: 1.7.0 | **Ratified**: 2026-09-28 | **Last Amended**: 2026-10-11
+**Version**: 1.8.0 | **Ratified**: 2026-09-28 | **Last Amended**: 2026-10-16

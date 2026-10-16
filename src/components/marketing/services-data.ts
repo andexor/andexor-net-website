@@ -44,8 +44,9 @@ export const SERVICES: ServiceOffering[] = [
         iconLabel: "web servers icon",
         title: "Web Hosting",
         href: "/web-hosting",
-        description: "We'll host your site on fast, reliable servers so it stays up when traffic spikes.",
-        bullets: ["Managed cloud servers", "Backups and monitoring", "Security updates"],
+        description:
+            "We'll host your site on fast, reliable servers so it keeps running smoothly even when traffic spikes.",
+        bullets: ["Managed cloud servers", "Backups, monitoring, analytics", "Security updates"],
     },
     {
         kind: "technical",

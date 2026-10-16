@@ -14,7 +14,7 @@ Spec-Driven Development (SDD).
 
 This project is driven by Spec Kit's slash-command workflow rather than ad-hoc coding. Order: constitution,
 specify, clarify (before plan unless the user skips it), plan, tasks, analyze and checklist (optional), implement
-(or taskstoissues instead), converge. Read `.specify/memory/constitution.md` (currently v1.7.0) before specifying
+(or taskstoissues instead), converge. Read `.specify/memory/constitution.md` (currently v1.8.0) before specifying
 or planning; it holds the always-dark, no-link-underline, no-#top-link, graceful-shutdown, Markdown-content,
 toolchain, license-header, and spec-policy rules.
 
@@ -145,8 +145,8 @@ Read `CONTRIBUTING.md` and `setup.md` (companions to the constitution, with `SEC
 
 ## Formatting
 
-All code written for this site is formatted with Prettier: 4 spaces per indent level, no tabs, lines under 120
-characters where possible (`.prettierrc.json`). Use `bun run format` and `bun run format:check`. This applies to the
+All code written for this site is formatted with Prettier: 4 spaces per indent level, no tabs, lines under about 120
+characters as a guideline, not a hard rule, with no test for it (`.prettierrc.json`). Use `bun run format` and `bun run format:check`. This applies to the
 source (`.ts`, `.tsx`, `.js`, `.mjs`, `.css`) and to the built site in `out/`. `design/`, `content/`, `specs/`,
 and Markdown are not formatted. Anchor `.prettierignore` patterns with a leading `/`: an unanchored `content/` also
 skips `src/components/content/`.
