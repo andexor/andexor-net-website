@@ -35,7 +35,7 @@ const FOCUSABLE =
 // the name is chosen once per display and stays the same while the visitor types and clears the field.
 function FullNameInput() {
     const [exampleName] = useState(randomExampleName);
-    return <Input name="name" label="Name" placeholder={exampleName} required autoFocus />;
+    return <Input name="name" label="Name" autoComplete="name" placeholder={exampleName} required autoFocus />;
 }
 
 // Implements the props/state/behavior contract from
@@ -184,6 +184,7 @@ export function ContactPopup({ open, onClose, sourcePath = "/", onSubmit }: Cont
                             label="Email"
                             type="email"
                             inputMode="email"
+                            autoComplete="email"
                             placeholder="you@company.com"
                             required
                         />
@@ -195,7 +196,7 @@ export function ContactPopup({ open, onClose, sourcePath = "/", onSubmit }: Cont
                             autoComplete="tel-national"
                             placeholder="404-555-1212"
                         />
-                        <Input name="website" label="Website" placeholder="example.com" />
+                        <Input name="website" label="Website" autoComplete="url" placeholder="example.com" />
                         {/* Spec 071: not shown and not focusable; carries the page that opened the popup. */}
                         <input type="hidden" name="sourcePath" value={sourcePath} />
                         <p className="an-contact-form__note">
