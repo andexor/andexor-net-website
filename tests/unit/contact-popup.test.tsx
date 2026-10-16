@@ -151,6 +151,20 @@ describe("ContactPopup", () => {
         expect(phone.compareDocumentPosition(website) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     });
 
+    // Issue 69: each field says what it collects, so browsers can fill it accurately.
+    it("sets autocomplete on every field, by id", () => {
+        render(<ContactPopup open onClose={vi.fn()} />);
+        const expected = {
+            "an-name": "name",
+            "an-email": "email",
+            "an-phone": "tel-national",
+            "an-website": "url",
+        };
+        for (const [id, autocomplete] of Object.entries(expected)) {
+            expect(document.getElementById(id), id).toHaveAttribute("autocomplete", autocomplete);
+        }
+    });
+
     it("disables the submit control after send and re-enables it on reopen (FR-023)", () => {
         const { rerender } = render(<ContactPopup open onClose={vi.fn()} />);
         fillValidForm();
