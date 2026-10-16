@@ -34,6 +34,7 @@ test.describe("ContactPopup accessibility", () => {
             dialog.getByLabel("Email"),
             dialog.getByLabel("Phone"),
             dialog.getByLabel("Website"),
+            dialog.getByLabel("How can we help you?"),
             dialog.getByRole("link", { name: "Privacy" }),
             dialog.getByRole("link", { name: "Terms" }),
             dialog.getByRole("button", { name: "Send" }),

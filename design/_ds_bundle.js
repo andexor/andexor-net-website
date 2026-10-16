@@ -1224,7 +1224,22 @@ function ContactUs({
   }), /*#__PURE__*/React.createElement(Input, {
     label: "Website",
     placeholder: "example.com"
-  }), /*#__PURE__*//*#__PURE__*/React.createElement(Button, {
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "an-field"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "an-field__head"
+  }, /*#__PURE__*/React.createElement("label", {
+    className: "an-label",
+    htmlFor: "help"
+  }, "How can we help you?"), /*#__PURE__*/React.createElement("span", {
+    className: "an-field__counter"
+  }, "0/250")), /*#__PURE__*/React.createElement("textarea", {
+    id: "help",
+    name: "help",
+    rows: 4,
+    maxLength: 250,
+    className: "an-input"
+  })), /*#__PURE__*/React.createElement(Button, {
     type: "submit",
     variant: "accent",
     block: true,

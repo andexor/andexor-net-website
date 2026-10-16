@@ -79,7 +79,7 @@ test.describe("Optional fields", () => {
 test.describe("Required marks", () => {
     // Input builds each id from its label.
     const required = ["an-name", "an-email"];
-    const optional = ["an-phone", "an-website"];
+    const optional = ["an-phone", "an-website", "help"];
 
     test("shows an asterisk after each required label and none after optional ones", async ({ page }) => {
         await openPopup(page);

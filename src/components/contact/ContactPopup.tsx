@@ -10,13 +10,14 @@ import { type FormEvent, useEffect, useRef, useState } from "react";
 import { randomExampleName } from "./example-names";
 import { LOGO_ALT } from "@/components/marketing/Logo";
 import { Button } from "@/components/ui/Button";
-import { Input } from "@/components/ui/Input";
+import { Input, Textarea } from "@/components/ui/Input";
 
 export interface ContactRequest {
     name: string;
     email: string;
     phone: string;
     website: string;
+    help: string;
     // Spec 071: the path of the page that opened the popup, not entered by the visitor.
     sourcePath: string;
 }
@@ -140,6 +141,7 @@ export function ContactPopup({ open, onClose, sourcePath = "/", onSubmit }: Cont
             email: String(formData.get("email") ?? ""),
             phone: String(formData.get("phone") ?? ""),
             website: String(formData.get("website") ?? ""),
+            help: String(formData.get("help") ?? ""),
             sourcePath: String(formData.get("sourcePath") ?? ""),
         };
 
@@ -197,6 +199,8 @@ export function ContactPopup({ open, onClose, sourcePath = "/", onSubmit }: Cont
                             placeholder="404-555-1212"
                         />
                         <Input name="website" label="Website" autoComplete="url" placeholder="example.com" />
+                        {/* Spec 073: optional, four lines, at most 250 characters with a count. The id is set because the label would make a long one. */}
+                        <Textarea id="help" name="help" label="How can we help you?" rows={4} maxLength={250} />
                         {/* Spec 071: not shown and not focusable; carries the page that opened the popup. */}
                         <input type="hidden" name="sourcePath" value={sourcePath} />
                         <p className="an-contact-form__note">

@@ -155,6 +155,7 @@
     font-size: var(--text-sm);
     font-weight: var(--weight-medium);
     color: var(--text-body);
+    padding: 0rem 0.5rem;
 }
 /* Spec 068: the asterisk after a required label. The span is empty and aria-hidden; the glyph
  * comes from here so the label's text stays the label alone. It inherits the label's color and size. */
@@ -176,6 +177,49 @@
     transition:
         border-color 0.15s ease,
         box-shadow 0.15s ease;
+}
+/* Spec 073: a label strip with a counter at its right. Its background is a progress bar, filled from the left
+ * to --an-fill (set from the text's length). Both properties are registered so the fill and its color animate. */
+@property --an-fill {
+    syntax: "<percentage>";
+    inherits: false;
+    initial-value: 0%;
+}
+@property --an-fill-color {
+    syntax: "<color>";
+    inherits: false;
+    initial-value: transparent;
+}
+.an-field__head {
+    --an-fill-color: color-mix(in srgb, var(--blue-500) 55%, transparent);
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0rem 0.5rem 0rem 0rem;
+    border-radius: var(--radius-md);
+    background: linear-gradient(to right, var(--an-fill-color) var(--an-fill), transparent var(--an-fill));
+    transition:
+        --an-fill 0.2s ease,
+        --an-fill-color 0.3s ease;
+}
+/* Near the limit the fill turns a quiet gold. */
+.an-field__head[data-near-limit] {
+    --an-fill-color: color-mix(in srgb, var(--gold-700) 50%, transparent);
+}
+.an-field__counter {
+    font-family: var(--font-mono);
+    font-size: var(--text-md);
+    color: var(--text-muted);
+}
+@media (prefers-reduced-motion: reduce) {
+    .an-field__head {
+        transition: none;
+    }
+}
+/* Spec 073: a text area is dragged taller, never wider than its form. */
+textarea.an-input {
+    resize: vertical;
 }
 .an-input::placeholder {
     color: var(--text-muted);
