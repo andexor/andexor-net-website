@@ -30,6 +30,10 @@ test("full contact flow is operable using only the keyboard", async ({ page }) =
     await page.keyboard.press("Tab");
     await expect(page.getByLabel("Website")).toBeFocused();
     await page.keyboard.type("example.com");
+    // Spec 073: the How can we help you? box follows Website.
+    await page.keyboard.press("Tab");
+    await expect(page.getByLabel("How can we help you?")).toBeFocused();
+    await page.keyboard.type("A new site.");
     // The note's Privacy and Terms links come before Send, in reading order.
     await page.keyboard.press("Tab");
     await expect(dialog.getByRole("link", { name: "Privacy" })).toBeFocused();

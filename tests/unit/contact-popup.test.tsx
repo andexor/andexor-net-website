@@ -44,6 +44,7 @@ describe("ContactPopup", () => {
             email: "jordan@example.com",
             phone: "+1 212 555 0100",
             website: "example.com",
+            help: "",
             sourcePath: "/",
         });
         expect(screen.getByRole("heading", { name: "Request received" })).toBeInTheDocument();
@@ -163,6 +164,57 @@ describe("ContactPopup", () => {
         for (const [id, autocomplete] of Object.entries(expected)) {
             expect(document.getElementById(id), id).toHaveAttribute("autocomplete", autocomplete);
         }
+    });
+
+    // Spec 073: an optional four-line "How can we help you?" box directly under Website.
+    it("renders the help box under Website, optional, four lines, named and identified as help", () => {
+        render(<ContactPopup open onClose={vi.fn()} />);
+        const website = screen.getByLabelText("Website");
+        const help = screen.getByLabelText("How can we help you?");
+        expect(help.tagName).toBe("TEXTAREA");
+        expect(help).toHaveAttribute("name", "help");
+        expect(help).toHaveAttribute("id", "help");
+        expect(help).toHaveAttribute("rows", "4");
+        expect(help).not.toBeRequired();
+        expect(website.compareDocumentPosition(help) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+        const note = document.querySelector(".an-contact-form__note") as Element;
+        expect(help.compareDocumentPosition(note) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    });
+
+    it("limits the help box to 250 characters and shows the count with the label", () => {
+        render(<ContactPopup open onClose={vi.fn()} />);
+        const help = screen.getByLabelText("How can we help you?");
+        expect(help).toHaveAttribute("maxlength", "250");
+        const head = document.querySelector(".an-field__head") as HTMLElement;
+        expect(head.querySelector("label")).toHaveTextContent("How can we help you?");
+        expect(head.querySelector(".an-field__counter")).toHaveTextContent("0/250");
+        fireEvent.change(help, { target: { value: "Hello" } });
+        expect(head.querySelector(".an-field__counter")).toHaveTextContent("5/250");
+    });
+
+    it("sends the help text in the request, empty when left blank", () => {
+        const onSubmit = vi.fn();
+        render(<ContactPopup open onClose={vi.fn()} onSubmit={onSubmit} />);
+        fillValidForm();
+        fireEvent.change(screen.getByLabelText("How can we help you?"), { target: { value: "A new site.\nSoon." } });
+        fireEvent.click(screen.getByRole("button", { name: "Send" }));
+        expect(onSubmit).toHaveBeenCalledWith(expect.objectContaining({ help: "A new site.\nSoon." }));
+    });
+
+    it("sends an empty help value when the box is left blank", () => {
+        const onSubmit = vi.fn();
+        render(<ContactPopup open onClose={vi.fn()} onSubmit={onSubmit} />);
+        fillValidForm();
+        fireEvent.click(screen.getByRole("button", { name: "Send" }));
+        expect(onSubmit).toHaveBeenCalledWith(expect.objectContaining({ help: "" }));
+    });
+
+    it("empties the help box when the popup is displayed again", () => {
+        const { rerender } = render(<ContactPopup open onClose={vi.fn()} />);
+        fireEvent.change(screen.getByLabelText("How can we help you?"), { target: { value: "Hello" } });
+        rerender(<ContactPopup open={false} onClose={vi.fn()} />);
+        rerender(<ContactPopup open onClose={vi.fn()} />);
+        expect(screen.getByLabelText("How can we help you?")).toHaveValue("");
     });
 
     it("disables the submit control after send and re-enables it on reopen (FR-023)", () => {

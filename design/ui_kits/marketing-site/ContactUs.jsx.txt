@@ -38,6 +38,8 @@ function ContactUs({ open, onClose, inline = false, initialSent = false }) {
             <Input label="Email" type="email" placeholder="you@company.com" required />
             <Input label="Phone" type="tel" placeholder="404-555-1212" />
             <Input label="Website" placeholder="example.com" />
+            {/* spec 073: optional text area, 4 rows, 250 characters; the label strip shows X/250 and fills like a progress bar */}
+            <div className="an-field"><div className="an-field__head"><label className="an-label" htmlFor="help">How can we help you?</label><span className="an-field__counter">0/250</span></div><textarea id="help" name="help" rows={4} maxLength={250} className="an-input" /></div>
             <Button type="submit" variant="accent" block size="lg" rightIcon={<Icon name="arrow-right" size={18} />}>Send</Button>
             <p style={{ margin:0, fontSize:'12px', color:'var(--blue-100)', textAlign:'center' }}>We never share your personal information.</p>
           </form>

@@ -78,6 +78,7 @@ Sections in order: Hero → Services → CTA band → Footer. No sticky header. 
   - Email (email, "you@company.com", required)
   - Phone (tel, "404-555-1212", optional)
   - Website ("example.com", optional)
+  - How can we help you? (text area, 4 rows, id and name "help", optional, at most 250 characters; same border, hover, and focus halo as the other fields, resizable in height only. The label is only as wide as its text, with a counter "X/250" in Source Code Pro at the right of the same line. The label and counter sit in a strip whose background fills from the left X% of the way across as a progress bar: a quiet blue tint, a warm gold tint from 90%; spec 073)
   - "Send" accent button, block, lg, arrow-right icon.
   - Note "We never share your personal information." 12px `#E7EFF8`, centered.
 - **Request received state** (padding 40px 28px, centered): 56px circle bg `--success-100` (`#D7F0E3`) with 28px check `--success-600` (`#167A4F`); H3 "Request received" 22px white; body "Thanks for reaching out. A strategist will review your site and contact you soon." 14px/1.55 `#E7EFF8`, max 34ch; "OK" button styled like Send (accent, lg, no arrow, no halo), centered, margin-top 22px, closes.

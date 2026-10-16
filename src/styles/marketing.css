@@ -652,7 +652,8 @@
     gap: 14px;
 }
 
-.an-contact-form .an-label {
+.an-contact-form .an-label,
+.an-contact-form .an-field__counter {
     color: var(--blue-100);
 }
 
