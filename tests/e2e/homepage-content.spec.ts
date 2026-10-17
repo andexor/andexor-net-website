@@ -14,9 +14,9 @@ test.describe("Homepage content", () => {
     ];
     const BUSINESS = [
         ["Cost Reduction", "/cost-reduction"],
+        ["Process Re-engineering", "/process-re-engineering"],
         ["Lead Generation", "/lead-generation"],
         ["Growth Marketing", "/growth-marketing"],
-        ["Process Re-engineering", "/process-re-engineering"],
     ];
 
     // Spec 048: technical cards in one section, business cards in another, each in the footer's order.

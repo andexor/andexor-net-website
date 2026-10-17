@@ -80,6 +80,16 @@ export const SERVICES: ServiceOffering[] = [
     },
     {
         kind: "business",
+        icon: faRoute,
+        iconLabel: "roadmap icon",
+        title: "Process Re-engineering",
+        href: "/process-re-engineering",
+        description:
+            "We'll observe and document how work gets done today, redesign it to reach your goals, and lead your team through every step.",
+        bullets: ["Process analysis and design", "Leadership from start to finish", "Training, monitoring, support"],
+    },
+    {
+        kind: "business",
         icon: faFilter,
         iconLabel: "sales funnel icon",
         title: "Lead Generation",
@@ -97,15 +107,5 @@ export const SERVICES: ServiceOffering[] = [
         description:
             "We'll create campaigns made for impact, from brand awareness to closed sales, with continuous monitoring.",
         bullets: ["Branded email, newsletter", "Blog and social media posts", "Reviews, ads, sponsorships"],
-    },
-    {
-        kind: "business",
-        icon: faRoute,
-        iconLabel: "roadmap icon",
-        title: "Process Re-engineering",
-        href: "/process-re-engineering",
-        description:
-            "We'll observe and document how work gets done today, redesign it to reach your goals, and lead your team through every step.",
-        bullets: ["Process analysis and design", "Leadership from start to finish", "Training, monitoring, support"],
     },
 ];

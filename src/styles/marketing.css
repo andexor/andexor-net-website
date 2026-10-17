@@ -499,7 +499,7 @@
 }
 
 .an-footer__col-link {
-    font-size: 14px;
+    font-size: 16px;
     color: var(--blue-200);
     text-decoration: none;
 }
@@ -727,7 +727,7 @@
     margin: 0 auto;
     max-width: 34ch;
     color: var(--blue-100);
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1.55;
 }
 

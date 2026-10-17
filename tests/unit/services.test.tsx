@@ -12,7 +12,7 @@ import { SERVICES } from "@/components/marketing/services-data";
 describe("Services", () => {
     // Spec 048: two sections, technical then business, each in the footer's order.
     const TECHNICAL = ["Web Development", "Web Hosting", "Technical SEO", "Agentic Systems"];
-    const BUSINESS = ["Cost Reduction", "Lead Generation", "Growth Marketing", "Process Re-engineering"];
+    const BUSINESS = ["Cost Reduction", "Process Re-engineering", "Lead Generation", "Growth Marketing"];
     const PAGES: Record<string, string> = {
         "Web Development": "/web-development",
         "Web Hosting": "/web-hosting",

@@ -34,7 +34,7 @@ const COLUMNS = [
     },
     {
         heading: "BUSINESS SERVICES",
-        items: ["Cost Reduction", "Lead Generation", "Growth Marketing", "Process Re-engineering"],
+        items: ["Cost Reduction", "Process Re-engineering", "Lead Generation", "Growth Marketing"],
     },
     { heading: "COMPANY", items: ["About Us", "Privacy", "Terms", "Security"] },
 ];

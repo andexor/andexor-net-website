@@ -20,7 +20,7 @@ const SECTIONS = [
         kind: "business",
         id: "business-services",
         heading: "Business services that drive growth",
-        lede: "Let's lower your operating costs. Find new customers. Reach a wider audience. And make processes more efficient.",
+        lede: "Let's lower your operating costs. Make processes more efficient. Find new customers. And reach a wider audience.",
     },
 ] as const;
 
