@@ -165,7 +165,7 @@
     position: relative;
     max-width: var(--container-2xl);
     margin: -56px auto 0;
-    padding: 0 24px var(--space-16);
+    padding: 0 24px var(--space-8);
     display: grid;
     grid: auto / 1fr 1fr;
     grid-gap: var(--space-6);
@@ -192,7 +192,7 @@
     --text-body: var(--slate-50);
     --text-link: var(--blue-400);
     color: var(--text-body);
-    font-size: var(--text-md);
+    font-size: var(--text-lg);
     line-height: var(--leading-relaxed);
 }
 
@@ -240,7 +240,7 @@
     grid-template-columns: 16px 1fr;
     gap: 10px;
     align-items: start;
-    font-size: var(--text-md);
+    font-size: var(--text-lg);
 }
 
 /* A round bullet in the accent gold (spec 032). The home page's service cards

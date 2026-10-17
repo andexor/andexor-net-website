@@ -137,6 +137,16 @@ describe("cards layout", () => {
         for (const title of ["First?", "Second?", "Third?"]) expect(cards.cardsHtml).toContain(title);
     });
 
+    // Spec 074: the Contact Us band appears only on a page that has cta_heading.
+    it("reads cta_heading and leaves the band off without one", async () => {
+        write("with.md", md.replace("eyebrow: Tech", "eyebrow: Tech\ncta_heading: Let's talk."));
+        write("without.md", md);
+        write("blank.md", md.replace("eyebrow: Tech", "eyebrow: Tech\ncta_heading: "));
+        expect((await getContentPage(["with"], dir))!.cards!.ctaHeading).toBe("Let's talk.");
+        expect((await getContentPage(["without"], dir))!.cards!.ctaHeading).toBeUndefined();
+        expect((await getContentPage(["blank"], dir))!.cards!.ctaHeading).toBeUndefined();
+    });
+
     // Spec 039: a column break splits a row into a left and a right column, each in written order.
     it("puts the cards before || in the left column and the cards after it in the right, in written order", async () => {
         write(

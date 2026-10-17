@@ -6,6 +6,7 @@ section: technical
 eyebrow: Technical Services
 image: /technical-seo.png
 image_alt: an SEO audit report
+cta_heading: Let's discuss how buyers are finding you now. And how to be more visible.
 ---
 
 <!--

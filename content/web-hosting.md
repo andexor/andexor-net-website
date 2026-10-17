@@ -6,6 +6,7 @@ section: technical
 eyebrow: Technical Services
 image: /web-hosting.png
 image_alt: web servers running in a cloud datacenter
+cta_heading: We'll select the right infrastructure to support your needs.
 ---
 
 <!--
@@ -64,11 +65,11 @@ dashboards, snapshots, and alerts using:
 
 We have more than 5 years of experience with:
 
-- BigQuery Studio
-- Bigtable
-- VM instances
-- Cloud Run
-- IAM
+- Creating and querying datasets in BigQuery Studio
+- Querying tables in Bigtable
+- Running services in VM instances
+- Running automation scripts in Cloud Run
+- Managing service users and permissions in IAM
 
 ## Cloudflare
 
