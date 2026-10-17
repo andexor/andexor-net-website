@@ -50,13 +50,6 @@ function linkUnderlineRules(css: string): string[] {
 describe("no underline on links", () => {
     const files = ROOTS.flatMap(cssFiles);
 
-    it("detects an underlined link rule (guards the checker itself)", () => {
-        expect(linkUnderlineRules(".x a { text-decoration: underline; }")).toEqual([".x a"]);
-        expect(linkUnderlineRules("a:hover { text-decoration: underline; }")).toEqual(["a:hover"]);
-        expect(linkUnderlineRules(".x a { color: red; }")).toEqual([]);
-        expect(linkUnderlineRules(".an-a { text-decoration: underline; }")).toEqual([]);
-    });
-
     for (const file of files) {
         it(`${path.relative(process.cwd(), file)} does not underline links`, () => {
             expect(linkUnderlineRules(fs.readFileSync(file, "utf8"))).toEqual([]);
@@ -66,11 +59,6 @@ describe("no underline on links", () => {
 
 describe("no underline on hover", () => {
     const files = ROOTS.flatMap(cssFiles);
-
-    it("detects a hover underline rule (guards the checker itself)", () => {
-        expect(hoverUnderlineRules("a:hover { text-decoration: underline; }")).toEqual(["a:hover"]);
-        expect(hoverUnderlineRules("@media (x) { a:hover { color: red; } }")).toEqual([]);
-    });
 
     for (const file of files) {
         it(`${path.relative(process.cwd(), file)} has no hover underline`, () => {

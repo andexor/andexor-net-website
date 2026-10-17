@@ -10,17 +10,6 @@ import { SERVICES } from "@/components/marketing/services-data";
 // FR-004: each service offering has a title, description, and supporting
 // bullet points.
 describe("Services", () => {
-    it("renders each service's title, description, and bullets", () => {
-        render(<Services />);
-        for (const service of SERVICES) {
-            expect(screen.getByRole("heading", { name: service.title, level: 3 })).toBeInTheDocument();
-            expect(screen.getByText(service.description)).toBeInTheDocument();
-            for (const bullet of service.bullets) {
-                expect(screen.getByText(bullet)).toBeInTheDocument();
-            }
-        }
-    });
-
     // Spec 048: two sections, technical then business, each in the footer's order.
     const TECHNICAL = ["Web Development", "Web Hosting", "Technical SEO", "Agentic Systems"];
     const BUSINESS = ["Cost Reduction", "Lead Generation", "Growth Marketing", "Process Re-engineering"];
@@ -41,12 +30,6 @@ describe("Services", () => {
         const business = screen.getByRole("region", { name: "Business services that drive growth" });
         expect(within(technical).getByRole("heading", { level: 2 })).toBeInTheDocument();
         expect(within(business).getByRole("heading", { level: 2 })).toBeInTheDocument();
-        expect(
-            within(technical).getByText("Web, hosting, search, and AI that stay fast as you grow."),
-        ).toBeInTheDocument();
-        expect(
-            within(business).getByText("Lower costs, more leads, and better processes, with campaigns to match."),
-        ).toBeInTheDocument();
     });
 
     it("puts each card in the section of its kind, in the footer's order", () => {

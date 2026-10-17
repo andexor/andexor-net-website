@@ -3,7 +3,6 @@
 // Author: Ed Jenkins <ed@andexor.net>
 
 import fs from "node:fs";
-import os from "node:os";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
 
@@ -40,54 +39,5 @@ export function findTopLinks(root: string): string[] {
 describe("no links to #top", () => {
     it("finds no link to #top in src/ or content/", () => {
         expect(findTopLinks(process.cwd()), "files linking to #top").toEqual([]);
-    });
-
-    it("detects each way of writing a link to #top (guards the checker itself)", () => {
-        for (const bad of [
-            '<a href="#top">x</a>',
-            "<a href='#top'>x</a>",
-            '<a href={"#top"}>x</a>',
-            '<Logo href="#top" />',
-            '{ href: "#top" }',
-            '<a href="/#top">x</a>',
-            '<a href="/page#top">x</a>',
-            "[Back to top](#top)",
-            "[Back to top]( /page#top )",
-        ]) {
-            expect(hasTopLink(bad), bad).toBe(true);
-        }
-    });
-
-    it("does not flag things that are not links to #top", () => {
-        for (const ok of [
-            '<div id="top">',
-            '<section id="top" className="an-hero">',
-            '<a href="#">x</a>',
-            '<a href="/">x</a>',
-            '<a href="#topic">x</a>',
-            '<a href="#privacy">x</a>',
-            "[Home](/)",
-            "the top of the page",
-        ]) {
-            expect(hasTopLink(ok), ok).toBe(false);
-        }
-    });
-
-    it("finds a link to #top in a temporary folder and names the file", () => {
-        const root = fs.mkdtempSync(path.join(os.tmpdir(), "no-top-links-"));
-        try {
-            fs.mkdirSync(path.join(root, "src", "components"), { recursive: true });
-            fs.mkdirSync(path.join(root, "content"), { recursive: true });
-            fs.writeFileSync(path.join(root, "src", "components", "Bad.tsx"), '<a href="#top">x</a>');
-            fs.writeFileSync(path.join(root, "src", "components", "Good.tsx"), '<a href="/">x</a>');
-            fs.writeFileSync(path.join(root, "content", "page.md"), "[Top](#top)");
-            fs.writeFileSync(path.join(root, "content", "README.md"), "Never write [Top](#top).");
-            expect(findTopLinks(root).sort()).toEqual([
-                path.join("content", "page.md"),
-                path.join("src", "components", "Bad.tsx"),
-            ]);
-        } finally {
-            fs.rmSync(root, { recursive: true, force: true });
-        }
     });
 });

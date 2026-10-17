@@ -14,13 +14,6 @@ import NotFound from "@/app/not-found";
 // Spec 003: one shared logo lockup with a single-line "Andexor Network"
 // wordmark, used by every header, hero, and footer.
 describe("Logo", () => {
-    it("shows the wordmark once, on one line, with no 'Network, Inc.' text", () => {
-        const { container } = render(<Logo href="/" />);
-        expect(screen.getAllByText("Andexor Network")).toHaveLength(1);
-        expect(container.textContent).toBe("Andexor Network");
-        expect(container.textContent).not.toContain("Network, Inc.");
-    });
-
     // Spec 059: the mark is named, so the link's name is the alt text plus the wordmark.
     it("names the image Andexor Network logo", () => {
         const { container } = render(<Logo href="/" />);

@@ -14,7 +14,7 @@ const SECTIONS = [
         kind: "technical",
         id: "technical-services",
         heading: "Technical services built to scale",
-        lede: "Web, hosting, search, and AI that stay fast as you grow.",
+        lede: "Web, hosting, search, and AI that grow with you.",
     },
     {
         kind: "business",

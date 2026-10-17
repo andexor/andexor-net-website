@@ -14,7 +14,7 @@ Spec-Driven Development (SDD).
 
 This project is driven by Spec Kit's slash-command workflow rather than ad-hoc coding. Order: constitution,
 specify, clarify (before plan unless the user skips it), plan, tasks, analyze and checklist (optional), implement
-(or taskstoissues instead), converge. Read `.specify/memory/constitution.md` (currently v1.8.0) before specifying
+(or taskstoissues instead), converge. Read `.specify/memory/constitution.md` (currently v1.9.0) before specifying
 or planning; it holds the always-dark, no-link-underline, no-#top-link, graceful-shutdown, Markdown-content,
 toolchain, license-header, and spec-policy rules.
 
@@ -142,6 +142,14 @@ Read `CONTRIBUTING.md` and `setup.md` (companions to the constitution, with `SEC
 - AI-generated code and text are reviewed before acceptance: no tests that pass but prove
   nothing, and no machine-sounding prose.
 - Report security issues per `SECURITY.md`, never in public issues or PRs.
+
+## Tests
+
+Write tests for behavior and for the rules in this file and the constitution (no link underlines, no `#top` links,
+straight quotes, always dark, keyboard and focus behavior, accessibility). Do not write tests for copy or wording,
+exact pixel sizes, colors, or spacing, for what the build already checks, or for a checker itself. Spec Kit specs,
+plans, and tasks must not add such tests either. Changing copy must never mean changing a test. If a test breaks only
+because the wording changed, delete the test. The owner has said the suite had far more tests than needed.
 
 ## Formatting
 

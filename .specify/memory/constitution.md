@@ -1,6 +1,11 @@
 <!--
 Sync Impact Report
-- Version change: 1.7.0 → 1.8.0 (MINOR: the Technology Constraints Formatting rule no longer sets a hard line
+- Version change: 1.8.0 → 1.9.0 (MINOR: Principle V gains a limit on what tests are written. Tests are for
+  behavior and for rules the owner has written down; they MUST NOT assert copy or wording, exact pixel values,
+  colors, or spacing, or restate what the build already checks, and tests that only check a checker are not
+  written. The rule applies to generated specs and tasks too. Owner decision, after a test audit removed about
+  490 lines of low-value tests. Templates in .specify/templates/ checked: none require such tests.)
+  Earlier: 1.7.0 → 1.8.0 (MINOR: the Technology Constraints Formatting rule no longer sets a hard line
   length. About 120 characters stays as a guideline for generated and written code, and `.prettierrc.json` keeps
   `printWidth: 120` so `bun run format` wraps at that width, but no test fails on line length or on Prettier's
   output. The test "match Prettier's output" in tests/unit/formatting.test.ts is removed; the tab, minified, and
@@ -100,6 +105,12 @@ Automated checks (at minimum: build/type checks and any tests defined for a feat
 before a feature is considered complete. Where a feature's spec defines testable acceptance
 criteria, corresponding tests MUST exist and MUST be written before or alongside the
 implementation they verify, not deferred to a later cleanup pass.
+
+Tests are for behavior and for rules this constitution or CLAUDE.md states (no link underlines,
+no `#top` links, straight quotes, always dark, keyboard and focus behavior, accessibility). Do
+NOT write tests for copy or wording, exact pixel sizes, colors, or spacing, for what the build
+already checks, or for a checker itself. Specs, plans, and task lists MUST NOT add such tests.
+Editing copy must never require editing a test.
 
 Rationale: Without a test suite as a safety net, a marketing site accumulates silent regressions
 (broken links, broken forms, layout breaks) that go unnoticed until a visitor hits them.
@@ -250,4 +261,4 @@ MUST be explicitly justified in the relevant artifact rather than silently intro
 are companion documents for contributors; where they conflict with this constitution, this
 constitution wins until one of them is amended.
 
-**Version**: 1.8.0 | **Ratified**: 2026-09-28 | **Last Amended**: 2026-10-16
+**Version**: 1.9.0 | **Ratified**: 2026-09-28 | **Last Amended**: 2026-10-17

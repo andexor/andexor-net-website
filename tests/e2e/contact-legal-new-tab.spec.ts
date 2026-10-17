@@ -72,14 +72,6 @@ test.describe("Contact Us popup legal links", () => {
             expect(look.iconMiddle).toBeLessThan(look.linkBottom);
         });
     }
-
-    test("the note still reads as before and has no No obligation", async ({ page }) => {
-        await openPopup(page);
-        await expect(page.locator(".an-contact-form__note")).toHaveText(
-            "We never share your personal information. Privacy | Terms",
-        );
-        await expect(page.locator("body")).not.toContainText("No obligation");
-    });
 });
 
 test.describe("Footer legal links", () => {
