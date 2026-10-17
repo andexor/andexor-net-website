@@ -43,6 +43,24 @@ If you have not installed uv yet, install it first.
 
 > Run `bunx playwright install-deps webkit`
 
+Here are some additional optional dependencies
+you can install if you want, but Firefox is low priority,
+so it is not included by default.
+
+> Run `bunx playwright install firefox`
+> Run `bunx playwright install-deps firefox`
+
+Likewise, if you want to run tests for iPhone and iPad,
+you can install these optional dependencies.
+This hangs on my current development machine,
+so they are not included by default at this time.
+In the mean time, I use the device browser
+in Chrome Dev Tools.
+
+> Run `bunx playwright install webkit`
+> Run `bunx playwright install-deps webkit`
+
+
 ## FontAwesome
 
 The packages are added by setup.sh.

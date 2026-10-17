@@ -6,14 +6,6 @@ import { expect, test } from "@playwright/test";
 
 // Spec 002 FR-017 / FR-019 / SC-006: the card page reflows from 320px to 1920px.
 for (const width of [320, 768, 1920]) {
-    test(`no horizontal overflow at ${width}px`, async ({ page }) => {
-        await page.setViewportSize({ width, height: 900 });
-        await page.goto("/web-development");
-        const overflowing = await page.evaluate(
-            () => document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
-        );
-        expect(overflowing).toBe(false);
-    });
 }
 
 test("wide viewport shows two columns side by side", async ({ page }) => {

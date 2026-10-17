@@ -240,6 +240,7 @@
     grid-template-columns: 16px 1fr;
     gap: 10px;
     align-items: start;
+    font-size: var(--text-md);
 }
 
 /* A round bullet in the accent gold (spec 032). The home page's service cards

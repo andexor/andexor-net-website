@@ -5,7 +5,7 @@
 import { expect, test } from "@playwright/test";
 
 // Specs 051, 052, and 053: each bullet in a home page service card starts with the FontAwesome square-check icon, 24 by
-// 24 pixels, centered against its text, with 14px bullet text equal to the card description's size, in --gold-300, with its square layer fully clear so only the check mark shows, on a transparent background,
+// 24 pixels, centered against its text, with 16px bullet text equal to the card description's size, in --gold-300, with its square layer fully clear so only the check mark shows, on a transparent background,
 // hidden from assistive technology, with the text 8px after it. These check the icons that are found, not how many
 // there are. Playwright's loader here fails on TypeScript type annotations, so none are used.
 for (const width of [1440, 360]) {
@@ -62,7 +62,7 @@ for (const width of [1440, 360]) {
             expect(bullet.bulletBackground, `${bullet.name}: bullet background`).toBe("rgba(0, 0, 0, 0)");
             expect(bullet.secondaryOpacity, `${bullet.name}: square layer is clear`).toBe("0");
             expect(bullet.primaryOpacity, `${bullet.name}: check mark is solid`).toBe("1");
-            expect(bullet.textSize, `${bullet.name}: text size`).toBe("14px");
+            expect(bullet.textSize, `${bullet.name}: text size`).toBe("16px");
             expect(bullet.textSize, `${bullet.name}: text size matches the description`).toBe(bullet.bodySize);
             expect(bullet.centerOffset, `${bullet.name}: icon is centered`).toBeLessThanOrEqual(1);
             expect(bullet.insideCard, `${bullet.name}: bullet is inside the card`).toBe(true);

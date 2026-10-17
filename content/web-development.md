@@ -111,7 +111,7 @@ Whether we build a new site or spruce up an existing one,
 it needs to be found by search engines and AI agents.
 Let's talk about the many strategies that can make you
 more visible and help you be seen automatically.
-See our [Technical SEO](/technical-seo) options today.
+See our list of [Technical SEO](/technical-seo) options today.
 
 ||
 

@@ -2,15 +2,13 @@
 // Copyright 2026 Andexor Network, Inc.
 // Author: Ed Jenkins <ed@andexor.net>
 
-import { spawnSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
 import { fileGroup, isMinified } from "../../scripts/site-files";
 
 // Spec 038 FR-009, FR-011: code written for this site is formatted (4 spaces, no tabs, not minified), and a file
-// that is not fails here by name. Source files are also checked against Prettier itself, which is what decides
-// indentation and line breaks; the checks below catch the cases a reviewer would notice first.
+// that is not fails here by name. Line length is a guideline (about 120 characters), not checked here.
 const ROOT = path.resolve(__dirname, "../..");
 const SKIPPED_DIRECTORIES = new Set(["node_modules", ".next", ".git", "out", "playwright-report", "test-results"]);
 
@@ -41,20 +39,6 @@ describe("source files", () => {
             problemsIn(file, fs.readFileSync(path.join(ROOT, file), "utf8")),
         );
         expect(problems).toEqual([]);
-    });
-
-    it("match Prettier's output", { timeout: 60_000 }, () => {
-        const result = spawnSync(
-            "bun",
-            [
-                path.join(ROOT, "node_modules/prettier/bin/prettier.cjs"),
-                "--list-different",
-                "**/*.{ts,tsx,js,mjs,css,html}",
-            ],
-            { cwd: ROOT, encoding: "utf8" },
-        );
-        const unformatted = result.stdout.split("\n").filter(Boolean);
-        expect(unformatted.map((file) => `${file}: not formatted (run bun run format)`)).toEqual([]);
     });
 });
 

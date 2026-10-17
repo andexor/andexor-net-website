@@ -45,7 +45,7 @@ export function findBannedQuotes(text: string): QuoteProblem[] {
     return problems;
 }
 
-const SKIPPED_DIRECTORIES = ["node_modules", ".next", ".git", "out", "playwright-report", "test-results"];
+const SKIPPED_DIRECTORIES = [".agents", "node_modules", ".next", ".git", "out", "playwright-report", "test-results"];
 // Third-party text the owner has said not to alter.
 const THIRD_PARTY_FILES = ["CODE_OF_CONDUCT.md", "CODE_OF_CONDUCT.adoc"];
 const BINARY_EXTENSIONS = /\.(png|jpe?g|gif|ico|webp|woff2?|ttf|otf|eot|zip|gz|pdf|mp4|webm|tsbuildinfo)$/i;

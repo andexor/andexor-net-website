@@ -315,7 +315,8 @@
 }
 
 .an-services__card-body {
-    font-size: 14px;
+    font-family: var(--font-display);
+    font-size: 16px;
     color: var(--text-body);
     line-height: 1.55;
     margin: 0 0 14px;
@@ -334,7 +335,7 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 14px;
+    font-size: 16px;
     color: var(--text-body);
 }
 
@@ -498,7 +499,7 @@
 }
 
 .an-footer__col-link {
-    font-size: 14px;
+    font-size: 16px;
     color: var(--blue-200);
     text-decoration: none;
 }
@@ -726,7 +727,7 @@
     margin: 0 auto;
     max-width: 34ch;
     color: var(--blue-100);
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1.55;
 }
 

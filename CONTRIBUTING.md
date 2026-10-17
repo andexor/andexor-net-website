@@ -122,8 +122,8 @@ Depending on what language the code is written in, it may provide a linter and i
 Depending on what language the code is written in, it may provide a formatter and instructions on how to use it.
 
 For this site, Prettier formats all TypeScript, TSX, JavaScript, and CSS with 4 spaces per indent level, no tabs, and
-lines under 120 characters where possible. Run `bun run format` to fix files and `bun run format:check` to check them;
-`bun run test` also fails, naming the file, when one is not formatted. The built site is formatted too, so reviewers can
+lines under 120 characters as a guideline, not a rule. Run `bun run format` to format files and `bun run format:check`
+to check them; no test fails on line length or on Prettier's output. The built site is formatted too, so reviewers can
 read the HTML, CSS, and the site's own script file. See "Formatting" in `CLAUDE.md` for how that works.
 
 ## Documentation Guidelines

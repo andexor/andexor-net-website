@@ -14,13 +14,13 @@ const SECTIONS = [
         kind: "technical",
         id: "technical-services",
         heading: "Technical services built to scale",
-        lede: "Web, hosting, search, and AI that stay fast as you grow.",
+        lede: "Let's build it. Run it. Monitor it. Make it searchable. And move it into the agentic era.",
     },
     {
         kind: "business",
         id: "business-services",
         heading: "Business services that drive growth",
-        lede: "Lower costs, more leads, and better processes, with campaigns to match.",
+        lede: "Let's lower your operating costs. Make processes more efficient. Find new customers. And reach a wider audience.",
     },
 ] as const;
 

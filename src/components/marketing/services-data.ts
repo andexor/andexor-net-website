@@ -35,8 +35,8 @@ export const SERVICES: ServiceOffering[] = [
         title: "Web Development",
         href: "/web-development",
         description:
-            "We'll create or update your site with a strong technical foundation to handle an increase in traffic and sales.",
-        bullets: ["Brochure site, blog, forms, shop", "Content management system", "Web application"],
+            "We'll create or update your website with a strong technical foundation to support an increase in traffic and sales.",
+        bullets: ["Brochure, blog, forms, shop", "Content management system", "Custom web applications"],
     },
     {
         kind: "technical",
@@ -44,8 +44,9 @@ export const SERVICES: ServiceOffering[] = [
         iconLabel: "web servers icon",
         title: "Web Hosting",
         href: "/web-hosting",
-        description: "We'll host your site on fast, reliable servers so it stays up when traffic spikes.",
-        bullets: ["Managed cloud servers", "Backups and monitoring", "Security updates"],
+        description:
+            "We'll host your site, services, and agents on fast, reliable servers that keep running smoothly even when traffic spikes.",
+        bullets: ["Managed cloud servers", "Backups, monitoring, analytics", "Security updates"],
     },
     {
         kind: "technical",
@@ -54,8 +55,8 @@ export const SERVICES: ServiceOffering[] = [
         title: "Technical SEO",
         href: "/technical-seo",
         description:
-            "We'll assess your site's structure and brand identity, then improve visibility in search engines and AI agents.",
-        bullets: ["Site audit", "Content strategy", "Maps, social media"],
+            "We'll assess your site's structure and brand identity, then routinely improve visibility in search engines and AI agents.",
+        bullets: ["Site audit", "Content strategy", "Google Business Profile, maps"],
     },
     {
         kind: "technical",
@@ -65,7 +66,7 @@ export const SERVICES: ServiceOffering[] = [
         href: "/agentic-systems",
         description:
             "We'll build the agents you need so you can adapt to emerging trends as AI agents handle business transactions.",
-        bullets: ["Knowledge Base", "Digital assistant, scheduling", "Workflow automation"],
+        bullets: ["Knowledge base, chatbot", "Answer calls, book meetings", "Agent-to-agent sales"],
     },
     {
         kind: "business",
@@ -73,8 +74,19 @@ export const SERVICES: ServiceOffering[] = [
         iconLabel: "line chart trending down icon",
         title: "Cost Reduction",
         href: "/cost-reduction",
-        description: "We'll find where your business spends more than it needs to and cut it without hurting quality.",
-        bullets: ["Spending review", "Vendor and tool consolidation", "Automation of manual work"],
+        description:
+            "We'll find where your business spends more than it needs to on software and cut it without compromising quality.",
+        bullets: ["Spending review", "Lower cost alternatives", "Workflow automation"],
+    },
+    {
+        kind: "business",
+        icon: faRoute,
+        iconLabel: "roadmap icon",
+        title: "Process Re-engineering",
+        href: "/process-re-engineering",
+        description:
+            "We'll observe and document how work gets done today, redesign it to reach your goals, and lead your team through every step.",
+        bullets: ["Process analysis and design", "Leadership from start to finish", "Training, monitoring, support"],
     },
     {
         kind: "business",
@@ -82,7 +94,8 @@ export const SERVICES: ServiceOffering[] = [
         iconLabel: "sales funnel icon",
         title: "Lead Generation",
         href: "/lead-generation",
-        description: "We'll bring in prospective customers who fit your business and move them toward a sale.",
+        description:
+            "We'll find new sources of customers and qualify them with criteria you specify. Pause and resume when you need to.",
         bullets: ["Targeted outreach", "Landing pages and forms", "Lead tracking and follow-up"],
     },
     {
@@ -92,16 +105,7 @@ export const SERVICES: ServiceOffering[] = [
         title: "Growth Marketing",
         href: "/growth-marketing",
         description:
-            "Campaigns made for impact, from brand awareness to lead generation to closed sales, with continuous monitoring.",
-        bullets: ["Newsletters, branded email", "Social media marketing", "Paid advertising"],
-    },
-    {
-        kind: "business",
-        icon: faRoute,
-        iconLabel: "roadmap icon",
-        title: "Process Re-engineering",
-        href: "/process-re-engineering",
-        description: "We'll map how work gets done today and redesign it to reach your goals faster.",
-        bullets: ["Process mapping", "Bottleneck analysis", "Roadmap from A to B"],
+            "We'll create campaigns made for impact, from brand awareness to closed sales, with continuous monitoring.",
+        bullets: ["Branded email, newsletter", "Blog and social media posts", "Reviews, ads, sponsorships"],
     },
 ];

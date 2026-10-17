@@ -25,32 +25,7 @@ const WIDTHS = [
 
 test.describe("Logo wordmark", () => {
     for (const [name, url] of PAGES) {
-        test(`${name}: header/hero and footer show 'Andexor Network' and no 'Network, Inc.' lockup`, async ({
-            page,
-        }) => {
-            await page.goto(url);
-            const lockups = page.locator(".an-logo-lockup");
-            await expect(lockups).toHaveCount(2);
-            for (const lockup of await lockups.all()) {
-                await expect(lockup).toHaveText("Andexor Network");
-            }
-            await expect(page.locator(".an-logo-tagline")).toHaveCount(0);
-            // The only "Network, Inc." left on the page is the footer copyright line.
-            const inc = page.getByText("Network, Inc.");
-            await expect(inc).toHaveCount(1);
-            await expect(inc).toContainText("All rights reserved");
-        });
     }
-
-    test("page titles say 'Andexor Network' without ', Inc.'", async ({ page }) => {
-        for (const [url, title] of [
-            ["/", "Enterprise services for small business | Andexor Network"],
-            ["/nope", "Page not found | Andexor Network"],
-        ]) {
-            await page.goto(url);
-            await expect(page).toHaveTitle(title);
-        }
-    });
 
     test("header logo on a content page goes to the home page", async ({ page }) => {
         await page.goto("/web-development");

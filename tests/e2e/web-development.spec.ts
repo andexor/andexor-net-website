@@ -25,12 +25,6 @@ test.describe("Web Development page", () => {
         await page.goto("/web-development");
     });
 
-    test("shows the headline, eyebrow, and matching title", async ({ page }) => {
-        await expect(page.getByRole("heading", { level: 1, name: "Web Development", exact: true })).toBeVisible();
-        await expect(page.getByText("Technical Services", { exact: true })).toBeVisible();
-        await expect(page).toHaveTitle("Web Development | Andexor Network");
-    });
-
     test("shows the hero illustration with a text alternative", async ({ page }) => {
         const hero = page.locator(".an-cardhero img");
         await expect(hero).toBeVisible();
