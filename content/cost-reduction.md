@@ -67,6 +67,8 @@ so you will have only what you need, when you need it.
 This not only makes applications far easier to maintain,
 it costs less too.
 
+See how we can [use Grafana to manage logs](/web-hosting) efficiently.
+
 ||
 
 ## Application
@@ -77,13 +79,21 @@ We can examine usage metrics
 and recommend configuration changes
 to scale up or down automatically as needed.
 There are a lot more options available
-that what comes with default settings.
+than what comes with default settings.
 
 In some cases, this can be a long road,
 as optimizations for one service
 may not be realized until an entire
-cluster can be scaled down.
+cluster can be scaled down to use fewer nodes.
 We can find out if that applies to you.
+
+If we [host your applications for you](/web-hosting),
+we will match your services to the right infrastructure
+for maximum performance and maintainability.
+We will also attempt to get the lowest cost.
+Many factors go into selecting the right platforms,
+so the one with the absolute lowest cost might not
+be the best fit.
 
 ## Metrics
 
@@ -97,12 +107,14 @@ at a fraction of the cost.
 
 Keeping large amounts of metric data for a long time
 is another source of high costs.
-In keeping with scheduled reporting requirements,
+In keeping with scheduled reporting needs,
 this data can be automatically summarized
-at regular intervals, such as weekly,
-monthly, quarterly, and annually.
-Combine that with reports built to use multiple data sources
-and you can keep more data for a longer time at a lower cost.
+at regular intervals, allowing you to keep
+more data for a longer time at a lower cost.
+
+Managing your logs, metrics, and alerts efficiently
+paves the way for [effective process re-engineering](/process-re-engineering),
+leading to further growth.
 
 ---
 
@@ -158,5 +170,9 @@ Can your alerts explain basic information like:
 - What are the likely causes that would make this happen?
 
 If your alerts can answer questions like those,
-then they have the actionable intelligence you need.
-If they don't, give us a call. We can help.
+then they have what you need for fast, effective incident response.
+If they don't, contact us today. We can teach your teams
+how to write effective logs and use metrics to
+create alerts with actionable intelligence, leading to
+a faster Mean Time To Recovery (MTTR) and
+a longer Mean Time Between Failure (MTBF).

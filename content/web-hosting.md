@@ -90,6 +90,8 @@ plus one year in:
   in multiple environments and tunnelling it to remote Alloy servers
 - proxying logs to Loki, metrics to Mimir, and traces to Tempo
 - building dashboards and alerts in Grafana
+- strategically minimizing log retention for less valuable data
+  while maximizing log retention for more important data
 
 ---
 
