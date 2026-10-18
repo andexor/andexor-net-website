@@ -179,6 +179,17 @@ or understand what makes you better.
 It's even better when this analysis is done by an
 independent third party.
 
+Once you have the analysis and writing done,
+you can give the report away as a free download.
+The report can also include an invitation
+to read your blog or join your newsletter.
+You can promote the report in you blog
+and newsletter too. In this way,
+customers who find you one way
+can read more about you from another channel,
+helping to drive them through the sales funnel
+in a deliberate manner.
+
 Contact us today and we'll get started.
 
 ## Have you setup a Google Business Profile (GBP)?

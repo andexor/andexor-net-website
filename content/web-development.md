@@ -129,6 +129,15 @@ Knowing what your applications are doing is a great starting point for
 [re-engineering complex business processes](/process-re-engineering)
 for a smoother experience for your employees and your customers.
 
+## Need relief from alert fatigue?
+
+There is nothing quite like having
+so many alerts setup that nothing
+is important anymore. We know how to
+cut through the weeds to reduce or eliminate
+excess alerts so you can focus your time on
+what really matters.
+
 ||
 
 ## Is it time for a re-design?
@@ -225,25 +234,45 @@ exponentially more time than it would have
 to write the requirements and test them
 in the first place.
 
-## Need relief from alert fatigue?
-
-There is nothing quite like having
-so many alerts setup that nothing
-is important anymore. We know how to
-cut through the weeds to reduce or eliminate
-excess alerts so you can focus your time on
-what really matters.
-
-Maning alerts is one way to
-[reduce your operating costs](/cost-reduction).
-
-## Security Vulnerability Remediation
+## Are your apps plagued with security vulnerabilities?
 
 We can scan source code and build artifacts
 to find hidden potential security issues
 and work with you to resolve them.
 Then we can enact policies or routine scans
 to make sure the issue does not happen again.
+
+You know what's better than reducing costs?
+Eliminating costs before they happen.
+Why spend time cleaning up a mess
+resulting from a security breach
+when you could prevent it from happening instead?
+Security doesn't just begin and end
+in the development phases.
+New flaws are found every day while your apps
+continue to run on aging infrastructure.
+You can lower your risk of exposure
+through continual scanning and upgrading.
+
+It is by far much cheaper and less risky
+to make little updates on a routine basis
+than it is to let the vulnerabilities
+build up to a level where complexity multiplies.
+When components are allowed to
+become obsolete, you could face
+a situation that requires a re-design.
+
+Since software vendors release new versions
+of components with bug fixes on a frequent basis,
+let us de-risk your upgrades through routine maintenance.
+We can bend the reason for the eventual re-design
+towards supporting what you want to do
+rather than allowing it to drift by default
+towards what must be done in the wake of
+an incident.
+
+This is an easy and excellent way to
+[reduce your operating costs](/cost-reduction).
 
 ---
 
