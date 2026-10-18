@@ -33,6 +33,11 @@ Using a consistent brand name strategy in your website,
 email address, newsletters, and social media accounts
 forms a solid foundation on which to work and be seen.
 
+If you don't have a domain name, we can help you get one.
+It's yours. We'll just manage it for you.
+Once you obtain your own domain name, you'll want to use it
+for [hosting your website](/web-hosting), applications, services, and agents.
+
 ## How can I obtain brand authority across the Internet?
 
 For businesses that were founded before the Internet
@@ -62,7 +67,8 @@ it may be time to give some careful consideration
 to a rebranding effort.
 You may need to pick a new name that isn't
 being used anywhere and start using it everywhere.
-Ask a [Growth Marketing](/growth-marketing) specialist
+
+Ask our [Growth Marketing](/growth-marketing) specialist
 how we can help you make that transition.
 
 ## Have you done a Use Case Analysis?
@@ -78,8 +84,7 @@ individual web pages or a series of blog posts
 dedicated to detailing a single use case in each one.
 You can even choose multiple formats for better reach.
 
-Ask a [Growth Marketing](/growth-marketing) specialist
-how we can boost that reach even further.
+Contact us to day to see how we can boost that reach even further.
 
 It's one thing for potential buyers to know
 that you have an offering.
@@ -93,6 +98,11 @@ A single insight into how well you integrate
 with other systems is all it takes to bring
 you customers who would not otherwise
 have found you or considered you.
+
+Let us help you research and publish
+a Use Case Analysis document that you can
+give away to potential buyers to aid them
+in their decision making process.
 
 ## What if I have a page that is crawled, but not indexed?
 
@@ -135,15 +145,15 @@ for job applicants. It hasn't diminished their
 brand authority one bit. In fact, this technique
 actually helps expand the main domain's authority
 as customers see it in multiple contexts.
-This is another way to rank pages with different keywords.
-Talk to a [Growth Marketing](/growth-marketing) specialist
-to explore your options.
+This way, your company can be found for different search terms.
+
+Contact us today to explore your options.
 
 ## What is Topical Authority (TA)?
 
 One of the key ingredients to being discovered and promoted
 by search engines and answer engines is to build up
-a reputation for dispensing knowledge on a specific subject.
+a reputation for dispensing helpful knowledge on a specific subject.
 This is known as Topical Authority (TA).
 It's not something you can get all at once.
 This is something you have to earn and build up over time.
@@ -155,7 +165,8 @@ with ongoing insights and inspiration
 on what to write next.
 You are an expert in your field.
 Let us help you become one of THE experts in your field.
-Call us today and we will explain how.
+
+Contact us today and we will explain how.
 
 ## Need help with Competitive Analysis?
 
@@ -166,7 +177,9 @@ you provide a better product or service than others do,
 but no one knows you exist or they don't know you are in the game
 or understand what makes you better.
 It's even better when this analysis is done by an
-independent third party. Call us today and we'll get started.
+independent third party.
+
+Contact us today and we'll get started.
 
 ## Have you setup a Google Business Profile (GBP)?
 
@@ -185,7 +198,7 @@ before setting up your profile.
 Google Analytics and Google Search Console
 are excellent places to start.
 
-Speak to an SEO Specialist today to get started.
+Speak to our SEO Specialist today to get started.
 
 ## Are you listed on Google Maps?
 
@@ -198,6 +211,9 @@ know you exist and where to find you.
 After customers buy from you, they can
 use this location on the map to write a review.
 
+Let us put you on the map and associate the location
+with your GBP.
+
 ## What if my business appears, but I didn't put it there?
 
 We'll help you claim the business location
@@ -205,14 +221,22 @@ and tie it to your profile.
 In this way, you can take control of the listing
 and make it work fo you.
 
-## What about other map services?
+## Should I also be found on other map services?
 
-Additionally, getting listed in Apple Maps
+Yes! Being listed in Apple Maps
 can get you found by iPhone users, especially
 when they use CarPlay in their car.
 
-By the way, it may also help to be listed in
-Bing Maps in order to be seen by ChatGPT.
+Being listed on Bing Maps can also help with
+some AI answer engine queries, like ChatGPT.
+
+## What if I already use an SEO firm?
+
+We can work with them.
+With so many tools and techniques available,
+it is not uncommon for one firm to find and fix
+issues that another firm does not.
+Sometimes we complement one another in different areas.
 
 ---
 
