@@ -93,6 +93,9 @@ describe("renderMarkdown", () => {
     it("leaves list items that hold a paragraph or a nested list unwrapped", async () => {
         const loose = await renderMarkdown("- one\n\n- two [x](/)\n");
         expect(loose).not.toContain("<span>");
+        // A hyphenated word becomes a span, so a plain-text item is wrapped too and stays one grid item.
+        const hyphenated = await renderMarkdown("- a long-term plan\n");
+        expect(hyphenated).toMatch(/<li><span>a <span class="an-nobreak">long-term<\/span> plan<\/span><\/li>/);
         const nested = await renderMarkdown("- outer [x](/)\n  - inner\n");
         expect(nested).toMatch(/<li>outer <a href="\/">x<\/a>\s*<ul>/);
         expect(nested).not.toContain("<span>");

@@ -153,7 +153,8 @@ function rehypeWrapMarkedListItems() {
 }
 
 // Wraps each hyphenated word in a span that does not wrap (see src/lib/hyphenated.tsx). Code is left alone. This runs
-// after rehypeWrapMarkedListItems, so the spans do not change which list items get wrapped.
+// before rehypeWrapMarkedListItems: a list item that is plain text becomes text and spans here, and each piece would be
+// its own grid item in a card list, so that step must see the spans and wrap the item's content in one.
 function rehypeKeepHyphenatedWordsTogether() {
     const keep = (node: Element | Root): void => {
         if (node.type === "element" && (node.tagName === "code" || node.tagName === "pre")) return;
@@ -194,8 +195,8 @@ function markdownProcessor() {
             .use(remarkRehype)
             .use(rehypeSlug)
             .use(rehypeExternalLinks, { target: "_blank", rel: ["noopener", "noreferrer"] })
-            .use(rehypeWrapMarkedListItems)
             .use(rehypeKeepHyphenatedWordsTogether)
+            .use(rehypeWrapMarkedListItems)
             .use(rehypeStringify)
     );
 }

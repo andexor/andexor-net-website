@@ -106,6 +106,15 @@ cut through the weeds to reduce or eliminate
 excess alerts so you can focus your time on
 what really matters.
 
+## Web Hosting
+
+We have many tools at our disposal
+when it comes to architecting, running,
+and monitoring websites and web applications.
+
+Check out our [Web Hosting](/web-hosting) options
+in the design phase and when it's time for deployment.
+
 ## Technical SEO
 
 Whether we build a new site or spruce up an existing one,
@@ -155,10 +164,39 @@ We test applications for data throughput and latency,
 then recommend, implement, and monitor changes
 in code, configuration, or deployment as needed.
 
-## Analytics
+## Do you know what your applications are doing?
 
-It is important to always keep an eye on
-application tasks and tie them back to business events.
+It is important to always keep an eye on application tasks
+and tie completed work back to business events.
+Creating and monitoring these metrics
+is an essential step in figuring out where
+customers are encountering friction
+and dropping out of the sales funnel.
+
+You would be surprised to know how many applications
+are encountering errors at an astronomical rate
+and hiding them so that sales are lost and no one knows why.
+
+Without a clear, written set of requirements,
+customers can fall into so-called "edge cases"
+where two or more events outside their control
+happen to collide and make a process fail.
+Broken processes leave work incomplete
+until fixed by a manual intervention
+that most people are unaware of.
+
+There are patterns. There are clues.
+Many of them are completely hidden though.
+In the absence of a high priority, the task of
+identifying and remediating design flaws
+tends to languish at the bottom of a
+a backlog of issues indefinitely.
+Even once prioritized, finding the
+trigger patterns and fixing them takes
+exponentially more time than it would have
+to write the requirements and test them
+in the first place.
+
 We can surface information about your
 systems and your customers that you
 may not have been able to see before
@@ -175,15 +213,6 @@ We can surface hidden potential security issues
 and work with you to resolve them.
 Then we can enact policies or routine scans
 to make sure the issue does not happen again.
-
-## Web Hosting
-
-We have many tools at our disposal
-when it comes to architecting and running
-websites and web applications.
-
-Check out our [Web Hosting](/web-hosting) options
-in the design phase and when it's time for deployment.
 
 ## Growth Marketing
 
