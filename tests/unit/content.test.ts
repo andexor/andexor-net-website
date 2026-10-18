@@ -93,6 +93,9 @@ describe("renderMarkdown", () => {
     it("leaves list items that hold a paragraph or a nested list unwrapped", async () => {
         const loose = await renderMarkdown("- one\n\n- two [x](/)\n");
         expect(loose).not.toContain("<span>");
+        // A hyphenated word becomes a span, so a plain-text item is wrapped too and stays one grid item.
+        const hyphenated = await renderMarkdown("- a long-term plan\n");
+        expect(hyphenated).toMatch(/<li><span>a <span class="an-nobreak">long-term<\/span> plan<\/span><\/li>/);
         const nested = await renderMarkdown("- outer [x](/)\n  - inner\n");
         expect(nested).toMatch(/<li>outer <a href="\/">x<\/a>\s*<ul>/);
         expect(nested).not.toContain("<span>");
@@ -135,6 +138,16 @@ describe("cards layout", () => {
         expect(cards.eyebrow).toBe("Tech");
         expect(cards.image).toEqual({ src: "/pic.svg", alt: "A picture" });
         for (const title of ["First?", "Second?", "Third?"]) expect(cards.cardsHtml).toContain(title);
+    });
+
+    // Spec 074: the Contact Us band appears only on a page that has cta_heading.
+    it("reads cta_heading and leaves the band off without one", async () => {
+        write("with.md", md.replace("eyebrow: Tech", "eyebrow: Tech\ncta_heading: Let's talk."));
+        write("without.md", md);
+        write("blank.md", md.replace("eyebrow: Tech", "eyebrow: Tech\ncta_heading: "));
+        expect((await getContentPage(["with"], dir))!.cards!.ctaHeading).toBe("Let's talk.");
+        expect((await getContentPage(["without"], dir))!.cards!.ctaHeading).toBeUndefined();
+        expect((await getContentPage(["blank"], dir))!.cards!.ctaHeading).toBeUndefined();
     });
 
     // Spec 039: a column break splits a row into a left and a right column, each in written order.

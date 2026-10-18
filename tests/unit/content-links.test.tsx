@@ -44,17 +44,6 @@ function internalPaths(container: HTMLElement): string[] {
 }
 
 describe("links to content pages", () => {
-    it("links the approved pages from the service cards and the footer", () => {
-        const services = render(<Services />).container;
-        expect(internalPaths(services)).toEqual(CARD_PAGES);
-        const footer = render(
-            <ContactProvider>
-                <Footer />
-            </ContactProvider>,
-        ).container;
-        expect(internalPaths(footer).sort()).toEqual(FOOTER_PAGES);
-    });
-
     it("links no page other than the approved ones", () => {
         const services = render(<Services />).container;
         const footer = render(

@@ -13,6 +13,7 @@ import remarkGfm from "remark-gfm";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import { unified } from "unified";
+import { HYPHENATED } from "@/lib/hyphenated";
 
 // Markdown content pages. Every `.md` file under `content/` becomes a static
 // page at the route matching its path (`content/about.md` -> `/about`,
@@ -38,6 +39,8 @@ export interface CardsLayout {
     // Picks the hero's backdrop pattern (`an-cardhero--<section>`). A hero with
     // no section (the not-found page) has a plain backdrop.
     section?: CardsSection;
+    // Heading of the Contact Us band at the bottom of the page. No heading, no band.
+    ctaHeading?: string;
 }
 
 export interface ContentPage {
@@ -52,6 +55,7 @@ interface CardsOptions {
     eyebrow?: string;
     section?: CardsSection;
     image?: { src: string; alt: string };
+    ctaHeading?: string;
 }
 
 interface RawPage {
@@ -103,6 +107,7 @@ function readRaw(dir: string, slug: string[]): RawPage {
                   eyebrow: str(data.eyebrow),
                   section: CARDS_SECTIONS.find((x) => x === data.section),
                   image: str(data.image) ? { src: str(data.image)!, alt: str(data.image_alt) ?? "" } : undefined,
+                  ctaHeading: str(data.cta_heading)?.trim() || undefined,
               }
             : undefined;
     return {
@@ -147,6 +152,40 @@ function rehypeWrapMarkedListItems() {
     return (tree: Root) => wrap(tree);
 }
 
+// Wraps each hyphenated word in a span that does not wrap (see src/lib/hyphenated.tsx). Code is left alone. This runs
+// before rehypeWrapMarkedListItems: a list item that is plain text becomes text and spans here, and each piece would be
+// its own grid item in a card list, so that step must see the spans and wrap the item's content in one.
+function rehypeKeepHyphenatedWordsTogether() {
+    const keep = (node: Element | Root): void => {
+        if (node.type === "element" && (node.tagName === "code" || node.tagName === "pre")) return;
+        const children: (Element | RootContent)[] = [];
+        for (const child of node.children) {
+            if (child.type === "text" && HYPHENATED.test(child.value)) {
+                HYPHENATED.lastIndex = 0;
+                let last = 0;
+                for (const match of child.value.matchAll(HYPHENATED)) {
+                    if (match.index > last)
+                        children.push({ type: "text", value: child.value.slice(last, match.index) });
+                    children.push({
+                        type: "element",
+                        tagName: "span",
+                        properties: { className: ["an-nobreak"] },
+                        children: [{ type: "text", value: match[0] }],
+                    });
+                    last = match.index + match[0].length;
+                }
+                if (last < child.value.length) children.push({ type: "text", value: child.value.slice(last) });
+            } else {
+                HYPHENATED.lastIndex = 0;
+                if (isElement(child)) keep(child);
+                children.push(child);
+            }
+        }
+        node.children = children as ElementContent[];
+    };
+    return (tree: Root) => keep(tree);
+}
+
 function markdownProcessor() {
     return (
         unified()
@@ -156,6 +195,7 @@ function markdownProcessor() {
             .use(remarkRehype)
             .use(rehypeSlug)
             .use(rehypeExternalLinks, { target: "_blank", rel: ["noopener", "noreferrer"] })
+            .use(rehypeKeepHyphenatedWordsTogether)
             .use(rehypeWrapMarkedListItems)
             .use(rehypeStringify)
     );
@@ -309,6 +349,7 @@ async function renderCards(markdown: string, options: CardsOptions): Promise<Car
         eyebrow: options.eyebrow,
         section: options.section,
         image: options.image,
+        ctaHeading: options.ctaHeading,
         headingHtml: html(heading),
         introHtml: html(intro),
         cardsHtml: html(columns),

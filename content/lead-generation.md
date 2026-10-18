@@ -6,6 +6,7 @@ section: business
 eyebrow: Business Services
 image: /lead-generation.png
 image_alt: prospective customers in a sales funnel
+cta_heading: Let's identify new sources of customers and how you can serve them.
 ---
 
 <!--
@@ -24,15 +25,22 @@ More qualified customers. More sales.
 
 ## Every business needs more customers.
 
-For some, it's a numbers game.
-Get all of them you can get.
-We can help with this if that's what you want.
+Let's start by thinking about the
+kind of audience you want to attract
+and how to identify them.
 
-Other business owners desire a select number
-of only those who are a good fit for them.
-If that is you, let's talk about the target audience
-you are aiming for and how to identify them.
-We can use this to bring you more qualified leads.
+- Who are they?
+- What are they like?
+- What do they do?
+- Where do they operate?
+- What are their needs?
+- What products or services do you offer that they might find useful?
+- What other deciding factors separate you from the competition?
+
+We can either give you a raw list of contacts
+that you call and qualify,
+or we can qualify them before handing them to you.
+Just let us know.
 
 We have a few tools and methods available to
 find more leads for you. We may use several of them

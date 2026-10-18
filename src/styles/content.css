@@ -191,3 +191,8 @@
     color: var(--text-heading);
     background: var(--surface-brand-soft);
 }
+
+/* A hyphenated word stays on one line (rehypeKeepHyphenatedWordsTogether in src/lib/content.ts). */
+.an-nobreak {
+    white-space: nowrap;
+}

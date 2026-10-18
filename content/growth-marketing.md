@@ -6,6 +6,7 @@ section: business
 eyebrow: Business Services
 image: /growth-marketing.png
 image_alt: bar chart showing a trend of sales going up
+cta_heading: Let's expand your brand awareness in all the right channels.
 ---
 
 <!--
@@ -18,7 +19,7 @@ Please create a modern 3D isometric icon illustration that shows a chart with an
 
 # Growth Marketing
 
-Let's tell everyone about you. In all the right channels.
+We want to tell everyone about you. And reach them where they are.
 
 ## Do you need branded email?
 
@@ -80,8 +81,8 @@ question comes up.
 ## Need help with social media campaigns?
 
 Let's take a look at which social media platforms
-you are currently on and think about whether these
-are the right platforms for your company,
+you are currently on and review others to see
+which ones are the right platforms for your company,
 your products, your services, and your industry.
 If there is another platform that might serve you better,
 let's get you setup there and start using it.
@@ -104,7 +105,7 @@ and make sure it adds value to the reader.
 
 Talk to a Marketing Specialist today to get started.
 
-## Press Releases
+## Want to issue press releases?
 
 You may think that press releases are just for
 big companies making big announcements.

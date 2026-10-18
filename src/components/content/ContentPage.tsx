@@ -3,6 +3,7 @@
 // Author: Ed Jenkins <ed@andexor.net>
 
 import type { CardsLayout } from "@/lib/content";
+import { ContentCTABand } from "@/components/content/ContentCTABand";
 import { Footer } from "@/components/marketing/Footer";
 import { Logo } from "@/components/marketing/Logo";
 
@@ -67,6 +68,7 @@ export function ContentPage({ html, cards }: ContentPageProps) {
                             dangerouslySetInnerHTML={{ __html: cards.cardsHtml }}
                         />
                     )}
+                    {cards.ctaHeading && <ContentCTABand heading={cards.ctaHeading} />}
                 </main>
             ) : (
                 <main className="an-content">
