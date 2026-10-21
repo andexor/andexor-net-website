@@ -22,12 +22,12 @@ How to report a security issue.
 
 ## Document History
 
-| Name               | Date             |
+| Name               | Value            |
 | :----------------- | :--------------- |
 | **Author**         | Ed Jenkins       |
-| **Last Reviewed**  | October 11, 2026 |
-| **Last Updated**   | October 11, 2026 |
-| **Effective Date** | October 11, 2026 |
+| **Last Reviewed**  | October 21, 2026 |
+| **Last Updated**   | October 21, 2026 |
+| **Effective Date** | October 21, 2026 |
 
 ## 1. Our Commitment
 
@@ -50,7 +50,7 @@ This policy applies to:
 
 If you are not sure whether a system is in scope, ask us first at the address in Section 10.
 
-## 3. Out of Scope
+## 3. Out Of Scope
 
 Before you report, ask whether the attack is realistic and what its security impact would be. The following are not covered by this policy. Please do not test them, and do not report findings about them to us. The one exception is a finding that uses an excluded item as a step toward a demonstrated impact, for example an open redirect that leaks a token: then the impact is the finding, and you may include the excluded item as a step. We will close a report that describes an excluded item on its own:
 
@@ -79,7 +79,7 @@ Before you report, ask whether the attack is realistic and what its security imp
 - clickjacking on a page with no sensitive action, self-XSS, self-DoS, and other issues that require a victim to take an unlikely action against their own interests; and
 - content quality problems, such as broken links and spelling errors. We are glad to hear about those via an email sent to security@andexor.net.
 
-## 4. How to Report
+## 4. How To Report
 
 Send your report by email to security@andexor.net.
 
@@ -87,7 +87,7 @@ Do not report security issues through the Contact Us form, through social media,
 
 Please report in English.
 
-## 5. What to Include
+## 5. What To Include
 
 To help us triage and respond quickly, please include:
 
@@ -107,7 +107,7 @@ A proof of concept should be short and readable: a request, a few commands, or a
 
 A suggested fix is welcome, but not required.
 
-## 6. What You Can Expect from Us
+## 6. What You Can Expect From Us
 
 When you report a security issue by following this policy, we will:
 
@@ -130,7 +130,7 @@ If we do not respond to your report within the times in Section 6 and you cannot
 
 If we decide that a report does not describe a vulnerability, or that we will not fix it, we still ask you to coordinate with us before publishing, so that we are prepared. What you publish, and when, is your decision once the time above has passed. We welcome a draft of a blog post, talk, or article before it goes out, and we may offer corrections or context.
 
-## 8. Rules for Researchers
+## 8. Rules For Researchers
 
 You may take part under this policy if you are at least 18 years old, the law where you live allows you to, your employer does not forbid it, and we have not excluded you after an earlier report. If you do not agree to this policy, do not test our systems.
 
@@ -175,13 +175,9 @@ For questions about this policy that are not themselves security reports, you ma
 
 If you believe we have not kept to this policy, for example by missing the times in Section 6 or by dismissing a report without a reason, write to legal@andexor.net and say so. We will review the matter separately from the report itself and reply within 10 business days.
 
-| Mailing Address             |
-| :-------------------------- |
-| Andexor Network, Inc.       |
-| ATTN: Ed Jenkins, President |
-| 860 Johnson Ferry RD NE     |
-| #140-386                    |
-| Atlanta, GA 30342           |
+| Mailing Address |
+| :-------------- |
+| Andexor Network, Inc.<br>ATTN: Ed Jenkins, President<br>860 Johnson Ferry RD NE<br>#140-386<br>Atlanta, GA 30342 |
 
 ## 11. Changes to This Policy
 

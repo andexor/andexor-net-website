@@ -42,7 +42,8 @@
 .an-prose h1,
 .an-prose h2,
 .an-prose h3,
-.an-prose h4 {
+.an-prose h4,
+.an-prose h5 {
     font-family: var(--font-display);
     font-weight: 700;
     color: var(--text-heading);
@@ -70,6 +71,12 @@
 
 .an-prose h4 {
     font-size: var(--text-lg);
+    line-height: var(--leading-snug);
+    margin: var(--space-6) 0 var(--space-2);
+}
+
+.an-prose h5 {
+    font-size: var(--text-md);
     line-height: var(--leading-snug);
     margin: var(--space-6) 0 var(--space-2);
 }
@@ -179,7 +186,7 @@
 .an-prose th,
 .an-prose td {
     padding: var(--space-2) var(--space-4);
-    border: 1px solid var(--border-subtle);
+    border: 1px solid var(--border-strong);
     text-align: left;
 }
 
@@ -189,10 +196,14 @@
     letter-spacing: var(--tracking-caps);
     text-transform: uppercase;
     color: var(--text-heading);
-    background: var(--surface-brand-soft);
+    background: var(--blue-800);
 }
 
 /* A hyphenated word stays on one line (rehypeKeepHyphenatedWordsTogether in src/lib/content.ts). */
 .an-nobreak {
     white-space: nowrap;
+}
+
+.an-phone {
+    letter-spacing: var(--tracking-caps);
 }

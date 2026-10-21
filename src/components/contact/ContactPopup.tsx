@@ -204,7 +204,7 @@ export function ContactPopup({ open, onClose, sourcePath = "/", onSubmit }: Cont
                         {/* Spec 071: not shown and not focusable; carries the page that opened the popup. */}
                         <input type="hidden" name="sourcePath" value={sourcePath} />
                         <p className="an-contact-form__note">
-                            We never share your personal information.{" "}
+                            We never sell your personal information.{" "}
                             <span className="an-contact-form__legal">
                                 {/* Ordinary links, opened in a new tab (spec 065) so the form stays. Each icon follows its link (spec 066). */}
                                 <a

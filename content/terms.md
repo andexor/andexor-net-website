@@ -22,24 +22,24 @@ These are the terms that govern the use of this website.
 
 ## Document History
 
-| Name               | Date             |
+| Name               | Value            |
 | :----------------- | :--------------- |
 | **Author**         | Ed Jenkins       |
-| **Last Reviewed**  | October 10, 2026 |
-| **Last Updated**   | October 10, 2026 |
-| **Effective Date** | October 10, 2026 |
+| **Last Reviewed**  | October 21, 2026 |
+| **Last Updated**   | October 21, 2026 |
+| **Effective Date** | October 21, 2026 |
 
 ## 1. Acceptance
 
 These Terms of Service (the "Terms") are a binding agreement between you and Andexor Network, Inc. ("Andexor," "we," "us," or "our"). By accessing or using https://andexor.net/, including every page under that address (the "Site"), you agree to these Terms and to our [Privacy Policy](/privacy). If you do not agree, do not use the Site. Submitting the Contact Us form is a further, affirmative acceptance of these Terms.
 
-The Site is not directed to children under 13, and we do not knowingly collect personal information from them. If you are under 18, you may use the Site only with the consent of a parent or guardian.
+The Site is not directed to children under 18, and we do not knowingly collect personal information from them. If you are under 18, you may use the Site only with the consent of a parent or guardian.
 
-## 2. The Site and Our Services
+## 2. The Site And Our Services
 
 The Site provides information about Andexor Network, Inc. and the services it offers. **These Terms govern use of the Site only.** If you engage us, that engagement is governed by the Andexor Network, Inc. Services Agreement presented at signup, which controls over these Terms with respect to the services.
 
-## 3. Changes to These Terms
+## 3. Changes To These Terms
 
 We may revise these Terms at any time by posting a revised version on this page and updating the dates in the Document History section above. Revisions take effect on the Effective Date shown. Your continued use of the Site on or after that date constitutes acceptance of the revised Terms. A revision does not apply to a dispute that arose before its Effective Date; the version in effect when the dispute arose governs it. Please check this page from time to time.
 
@@ -75,9 +75,9 @@ Apart from the training use above, this permission does not allow copying the Si
 
 We may investigate suspected violations and may suspend or block access to the Site, without notice, by anyone we reasonably believe has violated these Terms. We may also refer unlawful activity to law enforcement.
 
-## 6. Submissions and Communications
+## 6. Submissions And Communications
 
-If you submit information through the Site, such as through the Contact Us form, you represent that it is accurate and that you have the right to share it. We may use the information you submit, including information about your website, to respond to you and to prepare any audit, proposal, or quote you request. Personal information is handled as described in our Privacy Policy (Section 9).
+If you submit information through the Site, such as through the Contact Us form, you represent that it is accurate and that you have the right to share it. We may use the information you submit, including information about your website, to respond to you and to prepare any audit, proposal, or quote you request. Personal information is handled as described in our Privacy Policy (Section 11).
 
 Do not send us confidential or proprietary information through the Site. Unless we have agreed in writing to treat it as confidential, information submitted through the Site is not confidential, and we have no obligation to protect it as such.
 
@@ -93,7 +93,7 @@ We do not guarantee any result from the services we describe. Search rankings, t
 
 Site content may be incomplete or out of date. We may correct, update, or remove content at any time without notice.
 
-## 8. Third-Party Links and Services
+## 8. Third-Party Links And Services
 
 The Site may link to third-party websites, tools, and services. We do not control them, we are not responsible for their content, availability, accuracy, policies, or practices, and a link does not mean we endorse them. Your use of a third-party site or service is governed by its own terms and privacy policy, and is at your own risk.
 
@@ -111,7 +111,7 @@ THE SITE AND ITS CONTENT ARE PROVIDED "AS IS" AND "AS AVAILABLE," WITH ALL FAULT
 
 Some jurisdictions do not allow the exclusion of certain warranties, so some of the above exclusions may not apply to you. In that case they apply to the greatest extent the law allows.
 
-## 12. Limitation of Liability
+## 12. Limitation Of Liability
 
 TO THE MAXIMUM EXTENT PERMITTED BY LAW, ANDEXOR NETWORK, INC. AND ITS OFFICERS, DIRECTORS, EMPLOYEES, CONTRACTORS, AND LICENSORS WILL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, EXEMPLARY, OR PUNITIVE DAMAGES, OR FOR ANY LOSS OF PROFITS, REVENUE, DATA, GOODWILL, OR BUSINESS OPPORTUNITY, ARISING OUT OF OR RELATING TO THE SITE, ITS CONTENT, OR THESE TERMS, WHETHER BASED ON CONTRACT, TORT (INCLUDING NEGLIGENCE), STRICT LIABILITY, OR ANY OTHER THEORY, EVEN IF WE WERE ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. OUR TOTAL LIABILITY FOR ALL CLAIMS ARISING OUT OF OR RELATING TO THE SITE OR THESE TERMS WILL NOT EXCEED ONE HUNDRED U.S. DOLLARS ($100). THESE LIMITATIONS APPLY EVEN IF A REMEDY FAILS OF ITS ESSENTIAL PURPOSE.
 
@@ -121,7 +121,7 @@ Nothing in these Terms limits liability that cannot be limited under applicable 
 
 You agree to defend, indemnify, and hold harmless Andexor Network, Inc. and its officers, directors, employees, and contractors from and against any claim, demand, loss, liability, damage, cost, or expense, including reasonable attorneys' fees, arising out of or relating to (a) your use of the Site in violation of these Terms or applicable law; (b) information you submit through the Site; or (c) your infringement of any intellectual property or other right of any person. We may assume the exclusive defense and control of any matter subject to indemnification, at your expense, and you agree to cooperate with that defense.
 
-## 14. Governing Law and Disputes
+## 14. Governing Law And Disputes
 
 **Governing law.** These Terms and any dispute arising out of or relating to them or the Site are governed by the laws of the State of Georgia, without regard to its conflict-of-laws rules. The Federal Arbitration Act governs the arbitration agreement in this Section. The United Nations Convention on Contracts for the International Sale of Goods does not apply.
 
@@ -169,10 +169,6 @@ Email: legal@andexor.net
 
 Phone: 855-ANDEXOR
 
-| Mailing Address             |
-| :-------------------------- |
-| Andexor Network, Inc.       |
-| ATTN: Ed Jenkins, President |
-| 860 Johnson Ferry RD NE     |
-| #140-386                    |
-| Atlanta, GA 30342           |
+| Mailing Address |
+| :-------------- |
+| Andexor Network, Inc.<br>ATTN: Ed Jenkins, President<br>860 Johnson Ferry RD NE<br>#140-386<br>Atlanta, GA 30342 |

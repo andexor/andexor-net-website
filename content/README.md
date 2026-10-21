@@ -98,7 +98,8 @@ no dashes in copy, "and" instead of "&", sentence case headlines with no trailin
 
 - Start the body with a single `# Heading`; it is the page headline.
 - GitHub-flavored Markdown works (tables, task lists, strikethrough, autolinks).
-- Raw HTML is not rendered.
+- Raw HTML is not rendered, with one exception: `<br>` inside a table cell is a line break, for example
+  `| Line one<br>Line two |`.
 - Images go in `public/` and are referenced by absolute path, for example `![Team](/images/team.jpg)`.
 - Links to other pages use the route, for example `[About Us](/about)`. Links starting with `http`
   open in a new tab.

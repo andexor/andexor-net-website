@@ -17,7 +17,7 @@
     "@awesome.me/kit-0a6c11d394": "^1.0.23",
     "@fortawesome/fontawesome-svg-core": "^7.3.1",
     "@fortawesome/react-fontawesome": "^3.5.0",
-    "@higgsfield/cli": "^1.1.26",
+    "@higgsfield/cli": "^1.2.2",
     "gray-matter": "^4.0.3",
     "next": "^15.5.28",
     "react": "^19.3.1",
@@ -28,11 +28,11 @@
     "remark-gfm": "^4.0.1",
     "remark-parse": "^11.0.0",
     "remark-rehype": "^11.1.2",
-    "skills": "^1.7.2",
+    "skills": "^1.7.4",
     "unified": "^11.0.5"
   },
   "devDependencies": {
-    "@axe-core/playwright": "^4.13.0",
+    "@axe-core/playwright": "^4.14.0",
     "@eslint/eslintrc": "^3.3.7",
     "@playwright/test": "^1.64.1",
     "@testing-library/jest-dom": "^6.10.0",
@@ -50,7 +50,7 @@
     "prettier": "^3.9.10",
     "typescript": "^5.9.3",
     "vite": "^7.3.7",
-    "vitest": "^4.1.11"
+    "vitest": "^4.1.12"
   },
   "trustedDependencies": [
     "@higgsfield/cli",

@@ -6,6 +6,7 @@ import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
 import type { Element, ElementContent, Root, RootContent } from "hast";
+import type { Nodes as MdastNode } from "mdast";
 import rehypeExternalLinks from "rehype-external-links";
 import rehypeSlug from "rehype-slug";
 import rehypeStringify from "rehype-stringify";
@@ -152,6 +153,9 @@ function rehypeWrapMarkedListItems() {
     return (tree: Root) => wrap(tree);
 }
 
+// A vanity phone number such as 855-ANDEXOR: three digits, a hyphen, then letters. It gets `an-phone` (content.css).
+const PHONE_NUMBER = /^\d{3}-\p{L}+$/u;
+
 // Wraps each hyphenated word in a span that does not wrap (see src/lib/hyphenated.tsx). Code is left alone. This runs
 // before rehypeWrapMarkedListItems: a list item that is plain text becomes text and spans here, and each piece would be
 // its own grid item in a card list, so that step must see the spans and wrap the item's content in one.
@@ -169,7 +173,9 @@ function rehypeKeepHyphenatedWordsTogether() {
                     children.push({
                         type: "element",
                         tagName: "span",
-                        properties: { className: ["an-nobreak"] },
+                        properties: {
+                            className: PHONE_NUMBER.test(match[0]) ? ["an-nobreak", "an-phone"] : ["an-nobreak"],
+                        },
                         children: [{ type: "text", value: match[0] }],
                     });
                     last = match.index + match[0].length;
@@ -186,11 +192,27 @@ function rehypeKeepHyphenatedWordsTogether() {
     return (tree: Root) => keep(tree);
 }
 
+// Raw HTML is dropped, but a table cell cannot hold a line break any other way, so `<br>` inside a table cell (a
+// mailing address, say) becomes a line break. Anywhere else it is dropped like all raw HTML.
+function remarkTableCellLineBreaks() {
+    const BR = /^<br\s*\/?>$/i;
+    const walk = (node: MdastNode, inCell: boolean): void => {
+        if (!("children" in node)) return;
+        const cell = inCell || node.type === "tableCell";
+        node.children = node.children.map((child) =>
+            cell && child.type === "html" && BR.test(child.value.trim()) ? { type: "break" } : child,
+        ) as typeof node.children;
+        for (const child of node.children) walk(child, cell);
+    };
+    return (tree: MdastNode) => walk(tree, false);
+}
+
 function markdownProcessor() {
     return (
         unified()
             .use(remarkParse)
             .use(remarkGfm)
+            .use(remarkTableCellLineBreaks)
             // Raw HTML in Markdown is dropped (not passed through) by default.
             .use(remarkRehype)
             .use(rehypeSlug)
