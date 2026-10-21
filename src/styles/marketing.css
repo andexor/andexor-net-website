@@ -668,7 +668,7 @@
 
 .an-contact-form__note {
     margin: 0;
-    font-size: 12px;
+    font-size: var(--text-sm);
     color: var(--blue-100);
     text-align: center;
 }

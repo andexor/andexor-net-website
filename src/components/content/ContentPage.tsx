@@ -63,7 +63,7 @@ export function ContentPage({ html, cards }: ContentPageProps) {
                     </section>
                     {hasCards && (
                         <div
-                            className="an-cards"
+                            className={`an-cards${cards.section ? ` an-cards--${cards.section}` : ""}`}
                             data-raw-html=""
                             dangerouslySetInnerHTML={{ __html: cards.cardsHtml }}
                         />

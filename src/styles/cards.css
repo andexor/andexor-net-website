@@ -226,6 +226,54 @@
     margin: 0 0 var(--space-3);
 }
 
+.an-tile h3,
+.an-tile h4,
+.an-tile h5 {
+    margin: 0 0 var(--space-3);
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: var(--leading-snug);
+    letter-spacing: -0.01em;
+    color: var(--text-heading);
+    text-wrap: balance;
+}
+
+.an-tile h3 {
+    font-size: var(--text-xl);
+    color: var(--blue-300);
+}
+
+.an-tile h4 {
+    font-size: var(--text-lg);
+}
+
+.an-tile h5 {
+    font-size: var(--text-md);
+}
+
+/* A table has a border around it and every cell, and a shaded header row. */
+.an-tile table {
+    display: block;
+    overflow-x: auto;
+    margin: 0 0 var(--space-3);
+    border-collapse: collapse;
+    line-height: var(--leading-normal);
+}
+
+.an-tile th,
+.an-tile td {
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--border-strong);
+    text-align: left;
+    vertical-align: top;
+}
+
+.an-tile th {
+    font-size: var(--text-lg);
+    color: var(--text-heading);
+    background: var(--blue-700);
+}
+
 .an-tile ul {
     margin: 0 0 var(--space-3);
     padding: 0;
@@ -269,6 +317,12 @@
     column-count: 2;
     column-width: 16rem;
     column-gap: var(--space-8);
+}
+
+/* Company pages keep their lists in a single column. */
+.an-cards--company .an-tile--wide ul {
+    column-count: 1;
+    column-width: auto;
 }
 
 .an-tile--wide li {
