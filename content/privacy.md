@@ -281,8 +281,8 @@ You may ask us to:
 - The records are client billing records that we must keep for tax and accounting purposes, as the retention periods in Section 9 describe. We delete everything else and tell you what we kept.
 - The record is your entry on our suppression list. Keeping it is what prevents your information from coming back to us from another source, so we keep the minimum needed for that purpose, as Section 6 describes.
 - The records are tied to an open security investigation or legal dispute. We act when it is closed.
-- The information belongs to a client and we hold it only as the client’s service provider, as Section 3 describes. We direct you to the client and help the client respond.
-- Giving you a copy of a record would also disclose another person’s information. We give you what is yours and withhold the rest.
+- The information belongs to a client and we hold it only as the client's service provider, as Section 3 describes. We direct you to the client and help the client respond.
+- Giving you a copy of a record would also disclose another person's information. We give you what is yours and withhold the rest.
 
 In every case, we will tell you which of these applies and what we did with the rest of your request.
 
