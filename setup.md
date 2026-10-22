@@ -107,14 +107,25 @@ Then
 
 > Run `./setup.sh`
 
-## Cloudflare Workers And OpenNext
+## Cloudflare Workers
 
-Install these to be able to deploy to Cloudflare.
+The site deploys to Cloudflare Workers as static assets. Wrangler uploads the built `out/` directory and
+Cloudflare serves it; there is no Worker code and no OpenNext. The settings are in `wrangler.jsonc`, and the
+`preview`, `deploy`, and `undeploy` scripts in `package.json` run Wrangler. Wrangler is a dev dependency,
+installed by `bun install`; its `workerd` package has a trusted install script. Wrangler runs on Node, so install
+Node (above) before using it. Bun still builds the site.
 
-> Run `bun install @opennextjs/cloudflare@latest`<br/>
-> Run `bun install -d wrangler@latest`
+> Run `bunx wrangler login`
 
-Then run `./setup.sh` to update the license report.
+Then `bun run deploy`. See the README for the commands.
+
+### www redirect
+
+The Worker answers only at andexor.net (a Custom Domain matches the exact hostname). A zone Redirect Rule, created
+once on 2026-10-22 and independent of the Worker, sends www.andexor.net to andexor.net with a 301, keeping the path and
+query string. The proxied www DNS record stays so Cloudflare can answer. To recreate the rule:
+
+> Run `cf rulesets entrypoint update http_request_dynamic_redirect --zone andexor.net --body '{"name":"Redirect rules","rules":[{"ref":"redirect_www_to_root","description":"Redirect www.andexor.net to andexor.net","expression":"(http.host eq \"www.andexor.net\")","action":"redirect","action_parameters":{"from_value":{"target_url":{"expression":"concat(\"https://andexor.net\", http.request.uri.path)"},"status_code":301,"preserve_query_string":true}}}]}'`
 
 If you do not have Cloudflare installed and integrated with Claude Code,
 then open Claud Code and paste this text into the prompt.
