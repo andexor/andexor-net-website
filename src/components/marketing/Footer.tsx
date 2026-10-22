@@ -59,7 +59,7 @@ const ITEM_HREFS: Record<string, string> = {
 // link to their pages (spec 010), and so do Privacy and Terms (spec 062) and Security (issue 33).
 export function Footer() {
     return (
-        <footer className="an-footer">
+        <footer role="contentinfo" className="an-footer">
             <div className="an-footer__grid">
                 <div>
                     <Logo light />
@@ -78,7 +78,7 @@ export function Footer() {
                     </div>
                 </div>
                 {COLUMNS.map((column) => (
-                    <div key={column.heading}>
+                    <nav key={column.heading} role="navigation" aria-label={column.heading}>
                         <div className="an-footer__col-heading">{column.heading}</div>
                         <ul className="an-footer__col-list">
                             {column.items.map((item) => (
@@ -89,7 +89,7 @@ export function Footer() {
                                 </li>
                             ))}
                         </ul>
-                    </div>
+                    </nav>
                 ))}
             </div>
         </footer>

@@ -23,13 +23,13 @@ export function ContentPage({ html, cards }: ContentPageProps) {
     const hasCards = Boolean(cards && cards.cardsHtml);
     return (
         <div id="top">
-            <header className="an-content-header">
+            <header role="banner" className="an-content-header">
                 <div className="an-content-header__inner">
                     <Logo href="/" />
                 </div>
             </header>
             {cards ? (
-                <main>
+                <main role="main">
                     <section
                         className={`an-cardhero${cards.section ? ` an-cardhero--${cards.section}` : ""}${hasCards ? "" : " an-cardhero--solo"}`}
                     >
@@ -71,7 +71,7 @@ export function ContentPage({ html, cards }: ContentPageProps) {
                     {cards.ctaHeading && <ContentCTABand heading={cards.ctaHeading} />}
                 </main>
             ) : (
-                <main className="an-content">
+                <main role="main" className="an-content">
                     <article className="an-prose" data-raw-html="" dangerouslySetInnerHTML={{ __html: html }} />
                 </main>
             )}
