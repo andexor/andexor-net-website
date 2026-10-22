@@ -19,8 +19,10 @@ export default function HomePage() {
     return (
         <>
             <Hero />
-            <Services />
-            <CTABand onContactClick={() => openContact()} />
+            <main role="main">
+                <Services />
+                <CTABand onContactClick={() => openContact()} />
+            </main>
             <Footer />
         </>
     );

@@ -8,7 +8,7 @@ import { Logo } from "./Logo";
 // the CTA band only.
 export function Hero() {
     return (
-        <section id="top" className="an-hero">
+        <header id="top" role="banner" className="an-hero">
             <div aria-hidden="true" className="an-hero__grid-overlay" />
             <div className="an-hero__inner">
                 <div className="an-hero__brand-row">
@@ -18,6 +18,6 @@ export function Hero() {
                 <h1 className="an-hero__headline">Enterprise services for small business</h1>
                 <p className="an-hero__subhead">We create and manage solutions to help your business grow.</p>
             </div>
-        </section>
+        </header>
     );
 }
