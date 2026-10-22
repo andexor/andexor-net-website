@@ -37,3 +37,7 @@ Take the site down. This deletes the Worker, its assets, the Custom Domain, and 
 confirmation. Add `--force` after the command to skip the question in a script:
 
 > `bun run undeploy`
+
+For a quick build and deploy,
+
+> Run `./deploy.sh`
