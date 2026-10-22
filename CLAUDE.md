@@ -91,6 +91,16 @@ don't invent alternate `docker build`/`docker run` invocations):
 - `debug.sh` — same image and port mapping, but runs `/bin/bash` instead of the app, for
   poking around inside the container.
 
+Production hosting is Cloudflare Workers with static assets: `wrangler.jsonc` names the Worker
+(`andexor-net-website`) and points `assets.directory` at `out/`, with no `main` and no Worker code. OpenNext and
+vinext are not used and must not be added: the site is a static export, and the readable-output pipeline below depends
+on `next build` writing `out/`. `bun run preview` runs `wrangler dev` on the built `out/` (port 8787),
+`bun run deploy` builds and runs `wrangler deploy`, and `bun run undeploy` runs `wrangler delete`. The Custom Domain
+`andexor.net` is a route in `wrangler.jsonc`: deploy makes Cloudflare create its DNS record and certificate, and delete
+removes them, so there is no separate DNS command and no A record to manage. Wrangler is a
+dev dependency and runs on Node (installed with nvm, see `setup.md`); Bun still builds the site. Because the project
+has a Wrangler configuration file, use Wrangler, not the `cf` CLI, for dev, build, and deploy.
+
 The project is Apache-2.0 (`license` in `package.json`, which is deliberately not marked
 `"private"` so tools report the license correctly). No copyleft dependencies: the optional `sharp`
 dependency of Next.js (LGPL libvips) is replaced by the empty stub in `stubs/sharp` through

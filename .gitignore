@@ -37,3 +37,7 @@ Thumbs.db
 
 # Agent skills
 .agents/
+
+# Wrangler
+.wrangler/
+.dev.vars*

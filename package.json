@@ -6,6 +6,9 @@
     "dev": "next dev",
     "sitemap": "bun scripts/generate-sitemap.ts",
     "build": "next build && bun scripts/copy-crawler-files.ts && bun scripts/format-site.ts",
+    "preview": "wrangler dev",
+    "deploy": "bun run build && wrangler deploy",
+    "undeploy": "wrangler delete",
     "lint": "eslint .",
     "format": "prettier --write \"**/*.{ts,tsx,js,mjs,css,html}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx,js,mjs,css,html}\"",
@@ -50,11 +53,13 @@
     "prettier": "^3.9.10",
     "typescript": "^5.9.3",
     "vite": "^7.3.7",
-    "vitest": "^4.1.12"
+    "vitest": "^4.1.12",
+    "wrangler": "^4.151.3"
   },
   "trustedDependencies": [
     "@higgsfield/cli",
-    "unrs-resolver"
+    "unrs-resolver",
+    "workerd"
   ],
   "overrides": {
     "sharp": "file:./stubs/sharp"

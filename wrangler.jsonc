@@ -1,0 +1,31 @@
+// SPDX-License-Identifier: Apache-2.0
+// Copyright 2026 Andexor Network, Inc.
+// Author: Ed Jenkins <ed@andexor.net>
+
+// Cloudflare Workers deployment. The site is a static export (next.config.ts, output: "export"), so the
+// Worker has no code of its own: Workers Static Assets serves the built out/ directory. Build with
+// "bun run build" first; "wrangler dev" and "wrangler deploy" read out/ as it is.
+{
+    "$schema": "./node_modules/wrangler/config-schema.json",
+    "name": "andexor-net-website",
+    "compatibility_date": "2026-10-22",
+    "assets": {
+        "directory": "./out",
+        // /about-us serves about-us.html and /about-us/ redirects to /about-us, the same as server.ts.
+        "html_handling": "auto-trailing-slash",
+        // An unknown path gets out/404.html with status 404.
+        "not_found_handling": "404-page"
+    },
+    // Custom Domain. On deploy Cloudflare creates the DNS record for andexor.net (there is no IP to point an A
+    // record at: the record points at the Worker itself) and issues the certificate. Deleting the Worker removes
+    // the domain and its record. Only the exact hostname matches, so www.andexor.net is not covered.
+    "routes": [
+        {
+            "pattern": "andexor.net",
+            "custom_domain": true
+        }
+    ],
+    "observability": {
+        "enabled": true
+    }
+}
