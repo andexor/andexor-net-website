@@ -46,7 +46,7 @@
 .an-prose h5 {
     font-family: var(--font-display);
     font-weight: 700;
-    color: var(--text-heading);
+    color: var(--blue-300);
     letter-spacing: -0.02em;
     text-wrap: balance;
 }

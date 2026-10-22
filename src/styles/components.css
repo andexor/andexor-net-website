@@ -179,9 +179,11 @@
         box-shadow 0.15s ease;
 }
 /* Spec 073: a label strip with a counter at its right. Its background is a progress bar, filled from the left
- * to --an-fill (set from the text's length). Both properties are registered so the fill and its color animate. */
+ * to --an-fill (set from the text's length). Both properties are registered so the fill and its color animate.
+ * The syntax allows a length as well as a percentage because the build minifies the initial 0% to a bare 0, which
+ * is not a valid percentage, and Chrome then ignores the whole rule. */
 @property --an-fill {
-    syntax: "<percentage>";
+    syntax: "<length-percentage>";
     inherits: false;
     initial-value: 0%;
 }

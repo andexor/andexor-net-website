@@ -37,6 +37,9 @@ const keepSiteChunkReadable = {
 
 const nextConfig: NextConfig = {
     output: "export",
+    // This directory is the workspace root. Without this, Next looks upward for lockfiles and may pick a stray one
+    // outside the repository (such as /lab/package-lock.json) as the root, with a warning on every build.
+    outputFileTracingRoot: __dirname,
     images: {
         unoptimized: true,
     },
