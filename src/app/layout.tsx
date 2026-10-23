@@ -55,6 +55,7 @@ const FONT_LOADER_SCRIPT = `
     }
     Promise.all([
         document.fonts.load('700 60px Play'),
+        document.fonts.load('400 16px Play'),
         document.fonts.load('400 16px Roboto'),
         document.fonts.load('600 12px "Source Code Pro"'),
     ])
@@ -70,11 +71,23 @@ const FONT_LOADER_SCRIPT = `
 })();
 `;
 
+// Preloaded so the browser fetches the fonts in parallel with the stylesheet
+// instead of waiting for it to be parsed. Keep in step with src/styles/fonts.css.
+const FONT_FILES = [
+    "/fonts/play-400.woff2",
+    "/fonts/play-700.woff2",
+    "/fonts/roboto-variable.woff2",
+    "/fonts/source-code-pro-variable.woff2",
+];
+
 export default function RootLayout({ children }: { children: ReactNode }) {
     return (
         <html lang="en">
             <head>
                 <script dangerouslySetInnerHTML={{ __html: FONT_LOADER_SCRIPT }} />
+                {FONT_FILES.map((file) => (
+                    <link key={file} rel="preload" as="font" type="font/woff2" crossOrigin="anonymous" href={file} />
+                ))}
                 <noscript>
                     <style>{`body { visibility: visible !important; }`}</style>
                 </noscript>
