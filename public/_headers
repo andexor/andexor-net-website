@@ -15,3 +15,29 @@
 # and the new name set in src/styles/fonts.css and src/app/layout.tsx.
 /fonts/*
   Cache-Control: public, max-age=31536000, immutable
+
+# Images, logos, and icons also have no hash in their filenames. 30 days, and not immutable, so a browser still
+# revalidates on a hard reload and a replaced file shows up at the latest after 30 days.
+/images/*
+  Cache-Control: public, max-age=2592000
+
+/logo/*
+  Cache-Control: public, max-age=2592000
+
+/favicon*
+  Cache-Control: public, max-age=2592000
+
+/android-chrome-*
+  Cache-Control: public, max-age=2592000
+
+/apple-touch-icon.png
+  Cache-Control: public, max-age=2592000
+
+/mstile-*
+  Cache-Control: public, max-age=2592000
+
+/site.webmanifest
+  Cache-Control: public, max-age=2592000
+
+/browserconfig.xml
+  Cache-Control: public, max-age=2592000

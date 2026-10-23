@@ -4,14 +4,14 @@ description: Process Re-engineering
 layout: cards
 section: business
 eyebrow: Business Services
-image: /process-re-engineering.png
+image: /images/process-re-engineering.png
 image_alt: a roadmap showing how to get from point "A" to point "B"
 cta_heading: You need a leader who can untangle complex business processes. Let's do this.
 ---
 
 <!--
 
-Here is the prompt I used to create public/process-re-engineering.png using recraft.ai:
+Here is the prompt I used to create public/images/process-re-engineering.png using recraft.ai:
 
 Please create a modern 3D isometric icon illustration that depicts business process re-engineering as a roadmap from point "A" to point "B".
 

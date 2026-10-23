@@ -4,14 +4,14 @@ description: Lead Generation
 layout: cards
 section: business
 eyebrow: Business Services
-image: /lead-generation.png
+image: /images/lead-generation.png
 image_alt: prospective customers in a sales funnel
 cta_heading: Let's identify new sources of customers and how you can serve them.
 ---
 
 <!--
 
-Here is the prompt I used to create public/lead-generation.png using recraft.ai:
+Here is the prompt I used to create public/images/lead-generation.png using recraft.ai:
 
 Please create a modern 3D isometric icon that illustrates the concept of lead generation, or the art of finding new customers.
 

@@ -4,14 +4,14 @@ description: Technical SEO
 layout: cards
 section: technical
 eyebrow: Technical Services
-image: /technical-seo.png
+image: /images/technical-seo.png
 image_alt: an SEO audit report
 cta_heading: Let's discuss how buyers are finding you now. And how to be more visible.
 ---
 
 <!--
 
-Here is the prompt I used to create public/web-hosting.png using recraft.ai:
+Here is the prompt I used to create public/images/web-hosting.png using recraft.ai:
 
 Please create a modern 3D isometric icon illustration that represents Technical SEO. Depict that in a way that non-technical users can understand it and without using the word "SEO" in the image.
 

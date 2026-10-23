@@ -155,7 +155,7 @@ illustration has a text description and the page still reports "not found".
   Development hero is not changed.
 - The current wording stays: headline "Page not found" and the sentence "We could not find that
   page. Go to the home page."
-- The 404 illustration is `public/404.png`, already in the project. Its text description will
+- The 404 illustration is `public/images/404.png`, already in the project. Its text description will
   describe a gold laptop showing 404 beside a magnifying glass with a question mark.
 - The hero's extra bottom space, which exists on the Web Development page so cards can overlap it,
   is reduced here because no cards follow.

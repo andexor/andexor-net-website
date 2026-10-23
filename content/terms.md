@@ -4,13 +4,13 @@ description: Terms Of Service
 layout: cards
 section: company
 eyebrow: Company
-image: /terms.png
+image: /images/terms.png
 image_alt: Terms Of Service document
 ---
 
 <!--
 
-Here is the prompt I used to create public/terms.png using recraft.ai:
+Here is the prompt I used to create public/images/terms.png using recraft.ai:
 
 Please create a modern 3D isometric icon illustration that represents a Terms Of Service document.
 

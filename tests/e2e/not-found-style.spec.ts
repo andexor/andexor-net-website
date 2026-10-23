@@ -26,7 +26,7 @@ test.describe("Not-found page style", () => {
         const img = page.locator(".an-cardhero__art img");
         await expect(img).toBeVisible();
         const loaded = await page.evaluate(() => {
-            const found = Array.from(document.images).find((i) => i.src.endsWith("/404.png"));
+            const found = Array.from(document.images).find((i) => i.src.endsWith("/images/404.png"));
             return Boolean(found && found.complete && found.naturalWidth > 0);
         });
         expect(loaded, "404.png loaded").toBe(true);

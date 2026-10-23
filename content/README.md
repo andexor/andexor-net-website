@@ -40,7 +40,7 @@ first `##` becomes the hero lede.
 layout: cards
 section: technical
 eyebrow: Technical Services
-image: /web-development.png
+image: /images/web-development.png
 image_alt: Describe the illustration
 cta_heading: Let's talk about your project, then plan the way forward.
 ---

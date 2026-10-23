@@ -4,13 +4,13 @@ description: Privacy Policy
 layout: cards
 section: company
 eyebrow: Company
-image: /privacy.png
+image: /images/privacy.png
 image_alt: Privacy Policy document
 ---
 
 <!--
 
-Here is the prompt I used to create public/privacy.png using recraft.ai:
+Here is the prompt I used to create public/images/privacy.png using recraft.ai:
 
 Please create a modern 3D isometric icon illustration that represents a Privacy Policy document.
 

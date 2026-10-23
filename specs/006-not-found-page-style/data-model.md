@@ -7,7 +7,7 @@ No stored data. The one entity is a page layout description.
 | Field | Not-found value | Notes |
 |-------|-----------------|-------|
 | `eyebrow` | omitted | No label above the headline (FR-004). |
-| `image` | `{ src: "/404.png", alt: "Gold isometric laptop showing 404 next to a magnifying glass with a question mark" }` | FR-002. |
+| `image` | `{ src: "/images/404.png", alt: "Gold isometric laptop showing 404 next to a magnifying glass with a question mark" }` | FR-002. |
 | `headingHtml` | `Page not found` | Same headline as today. |
 | `introHtml` | `<p>We could not find that page. <a href="/">Go to the home page</a>.</p>` | Same wording as today. |
 | `cardsHtml` | `""` | Empty means no cards block (FR-003). |

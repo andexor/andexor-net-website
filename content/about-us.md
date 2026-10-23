@@ -4,13 +4,13 @@ description: About Us
 layout: cards
 section: company
 eyebrow: Company
-image: /about-us.png
+image: /images/about-us.png
 image_alt: a building with employees and a heart
 ---
 
 <!--
 
-Here is the prompt I used to create public/about-us.png using recraft.ai:
+Here is the prompt I used to create public/images/about-us.png using recraft.ai:
 
 Please create a modern 3D isometric icon illustration that would be appropriate for an "About Us" page.
 
