@@ -2,7 +2,8 @@
 // Copyright 2026 Andexor Network, Inc.
 // Author: Ed Jenkins <ed@andexor.net>
 
-import { chromium, expect, test } from "@playwright/test";
+import { chromium } from "@playwright/test";
+import { expect, stubCookiebot, test } from "./fixtures";
 
 // SC-005: Largest Contentful Paint under 2.5 seconds on a simulated fast 4G
 // connection (~1.6 Mbps down, 150ms RTT — standard Lighthouse mobile
@@ -14,6 +15,7 @@ test("Largest Contentful Paint is under 2.5s on a simulated fast 4G connection",
 
     const browser = await chromium.launch();
     const page = await browser.newPage();
+    await stubCookiebot(page.context());
     const client = await page.context().newCDPSession(page);
 
     // Fast 4G, per Lighthouse's mobile throttling preset.

@@ -2,7 +2,7 @@
 // Copyright 2026 Andexor Network, Inc.
 // Author: Ed Jenkins <ed@andexor.net>
 
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 
 // Spec 008: the footer logo is plain branding (not a link, no tab stop), and no
 // link anywhere goes to #top. `/nope` stands for any address the site does not

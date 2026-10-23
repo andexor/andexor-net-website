@@ -2,7 +2,7 @@
 // Copyright 2026 Andexor Network, Inc.
 // Author: Ed Jenkins <ed@andexor.net>
 
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 
 // Spec 045: the footer social links are blue-300 at rest, blue-200 on hover, and blue-400 while pressed. The press
 // color wins when the pointer is also over the link. The expected colors are resolved from the tokens on the page, so

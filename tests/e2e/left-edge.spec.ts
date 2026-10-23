@@ -2,7 +2,7 @@
 // Copyright 2026 Andexor Network, Inc.
 // Author: Ed Jenkins <ed@andexor.net>
 
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 
 // Spec 009: every page has the same left edge, whether or not it scrolls.
 //

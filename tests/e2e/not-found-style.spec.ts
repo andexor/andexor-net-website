@@ -2,7 +2,7 @@
 // Copyright 2026 Andexor Network, Inc.
 // Author: Ed Jenkins <ed@andexor.net>
 
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 
 // Spec 006: the not-found page uses the Web Development style hero with the 404
 // image, and no card, eyebrow, or grid. It keeps the requested address (no

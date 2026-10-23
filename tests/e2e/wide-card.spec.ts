@@ -2,7 +2,7 @@
 // Copyright 2026 Andexor Network, Inc.
 // Author: Ed Jenkins <ed@andexor.net>
 
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 
 // Specs 033 and 039: on the Web Development page the row after the `---` follows the
 // two columns, each of its cards at full width, and its list flows in two columns that fold to one

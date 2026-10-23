@@ -2,7 +2,7 @@
 // Copyright 2026 Andexor Network, Inc.
 // Author: Ed Jenkins <ed@andexor.net>
 
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 
 // Specs 057 and 058: the glossy black Close button holds the FontAwesome square-x in white, 36 by 36 pixels, with its square layer
 // clear and a transparent icon background, so only the X mark shows, on both the form screen and the Request received

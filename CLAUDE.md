@@ -174,8 +174,9 @@ skips `src/components/content/`.
 - Formats every built HTML page, the site stylesheet, and the site's own script chunk. The vendor chunks (React,
   Next.js, polyfills) stay minified.
 - Relies on `next.config.ts`, which puts all `src/` code in one `site-*.js` chunk and tells Next's minifier to skip it.
-- Adds one small inline script first in each page's `<head>`. React rejects the whitespace that pretty-printed HTML
-  adds between elements (hydration error #418), so the script strips it before hydration. The formatter fails the build
+- Adds the Cookiebot consent script (spec 076) first in each page's `<head>`, then one small inline script. React
+  rejects the whitespace that pretty-printed HTML adds between elements (hydration error #418), so that inline script
+  strips it before hydration. The formatter fails the build
   if the formatted page would not have the same DOM as the original (`scripts/format-html.ts`).
 
 Rules to keep in mind:

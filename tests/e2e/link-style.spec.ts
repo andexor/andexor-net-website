@@ -2,7 +2,7 @@
 // Copyright 2026 Andexor Network, Inc.
 // Author: Ed Jenkins <ed@andexor.net>
 
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 
 // Spec 007: no link is underlined, at rest, on hover, or on focus. Body and
 // card links stay distinguishable by color (--blue-400 on --slate-50 text) and

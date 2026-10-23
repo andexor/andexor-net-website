@@ -2,7 +2,7 @@
 // Copyright 2026 Andexor Network, Inc.
 // Author: Ed Jenkins <ed@andexor.net>
 
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 
 // Spec 043: the 48px box is on the link, and the icon's <svg> inherits it through the override rules in marketing.css.
 // The link has no border (its edge is a box-shadow ring), so the icon is the full 48px.

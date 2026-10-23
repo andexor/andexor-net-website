@@ -2,7 +2,7 @@
 // Copyright 2026 Andexor Network, Inc.
 // Author: Ed Jenkins <ed@andexor.net>
 
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 
 // Spec 063: the icon beside each home page service card's title has a label that says what the picture shows. The label
 // is an aria-label on the <svg>, because an inline SVG has no alt attribute. The icon is exposed as an image (not

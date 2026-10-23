@@ -2,7 +2,7 @@
 // Copyright 2026 Andexor Network, Inc.
 // Author: Ed Jenkins <ed@andexor.net>
 
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 
 // Spec 056: the Contact Us button in the call-to-action band and the Send button in the popup show only their labels,
 // centered, with no icon. These check the buttons that are found, not how many there are. Playwright's loader here fails

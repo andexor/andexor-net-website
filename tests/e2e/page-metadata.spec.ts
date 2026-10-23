@@ -4,7 +4,7 @@
 
 import fs from "node:fs";
 import path from "node:path";
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 
 // Specs 028, 029, 030: on every page the title is the H1 text followed by
 // " | Andexor Network", the meta description is the H1 text, and only the
@@ -49,8 +49,8 @@ test.describe("Page metadata", () => {
         });
     }
 
-    test("an unknown address still answers 404, and there is no robots.txt", async ({ request }) => {
+    test("an unknown address still answers 404, and robots.txt is served", async ({ request }) => {
         expect((await request.get("/nope")).status()).toBe(404);
-        expect((await request.get("/robots.txt")).status()).toBe(404);
+        expect([200, 304]).toContain((await request.get("/robots.txt")).status());
     });
 });

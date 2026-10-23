@@ -2,7 +2,7 @@
 // Copyright 2026 Andexor Network, Inc.
 // Author: Ed Jenkins <ed@andexor.net>
 
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 
 // Spec 068: the Contact Us form gains an optional Phone field, Website becomes optional,
 // and required labels end with an asterisk. Since spec 070 removed Primary need, the form is Name,

@@ -4,7 +4,7 @@
 
 import fs from "node:fs";
 import path from "node:path";
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 
 // Spec 032: list items in content page cards show a round bullet, and the home
 // page's service cards keep their checkmarks. The marker is a mask image on

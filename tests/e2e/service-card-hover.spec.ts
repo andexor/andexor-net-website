@@ -2,7 +2,7 @@
 // Copyright 2026 Andexor Network, Inc.
 // Author: Ed Jenkins <ed@andexor.net>
 
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 
 // Spec 047: a home page service card gets a 2px gold ring on hover, does not move, and keeps its border color. While
 // pressed it moves 2px right and 2px down, like the buttons. The gold is resolved from the token on the page, so this

@@ -2,7 +2,7 @@
 // Copyright 2026 Andexor Network, Inc.
 // Author: Ed Jenkins <ed@andexor.net>
 
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 
 // Specs 051, 052, and 053: each bullet in a home page service card starts with the FontAwesome square-check icon, 24 by
 // 24 pixels, centered against its text, with 16px bullet text equal to the card description's size, in --gold-300, with its square layer fully clear so only the check mark shows, on a transparent background,

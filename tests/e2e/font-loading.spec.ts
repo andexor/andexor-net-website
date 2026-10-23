@@ -2,7 +2,7 @@
 // Copyright 2026 Andexor Network, Inc.
 // Author: Ed Jenkins <ed@andexor.net>
 
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 
 // FR-024: if the custom fonts don't load within 3 seconds, the page commits
 // permanently to the system-font fallback — no visible swap/reflow once
