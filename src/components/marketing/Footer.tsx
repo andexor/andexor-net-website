@@ -36,7 +36,7 @@ const COLUMNS = [
         heading: "BUSINESS SERVICES",
         items: ["Cost Reduction", "Process Re-engineering", "Lead Generation", "Growth Marketing"],
     },
-    { heading: "COMPANY", items: ["About Us", "Privacy", "Terms", "Security"] },
+    { heading: "COMPANY", items: ["About Us", "Privacy", "Terms", "Security", "Cookies"] },
 ];
 
 const ITEM_HREFS: Record<string, string> = {
@@ -52,18 +52,12 @@ const ITEM_HREFS: Record<string, string> = {
     Privacy: "/privacy",
     Terms: "/terms",
     Security: "/security",
+    Cookies: "/cookies",
 };
-
-// Spec 077: Cookiebot's Cookie Declaration. Cookiebot's script finds this element by its id and adds the declaration
-// beside it. The element is rendered from a string so React leaves the container's content alone: nodes it did not
-// render cannot cause a hydration mismatch, and the browser runs the script as it parses the page.
-const COOKIE_DECLARATION_SCRIPT =
-    '<script id="CookieDeclaration" src="https://consent.cookiebot.com/ba75dc6a-d85e-4740-891e-dd0cc31a62dd/cd.js" ' +
-    'type="text/javascript" async></script>';
 
 // FR-006: navigation grouped into technical/business/company categories,
 // social media links, and a copyright line under the logo. The service and About Us entries
-// link to their pages (spec 010), and so do Privacy and Terms (spec 062) and Security (issue 33).
+// link to their pages (spec 010), and so do Privacy and Terms (spec 062), Security (issue 33), and Cookies (spec 078).
 export function Footer() {
     return (
         <footer role="contentinfo" className="an-footer">
@@ -71,7 +65,6 @@ export function Footer() {
                 <div>
                     <Logo light />
                     <p className="an-footer__copyright">© 2026 Andexor Network, Inc. All rights reserved.</p>
-                    <div data-raw-html="" dangerouslySetInnerHTML={{ __html: COOKIE_DECLARATION_SCRIPT }} />
                     <div className="an-footer__social-row">
                         {SOCIAL_LINKS.map(({ key, label, href, icon }) => (
                             <a

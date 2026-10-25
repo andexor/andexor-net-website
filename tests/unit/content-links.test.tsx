@@ -26,6 +26,7 @@ const CARD_PAGES = [
 const FOOTER_PAGES = [
     "/about-us",
     "/agentic-systems",
+    "/cookies",
     "/cost-reduction",
     "/growth-marketing",
     "/lead-generation",

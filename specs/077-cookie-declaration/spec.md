@@ -4,7 +4,7 @@
 
 **Created**: 2026-10-23
 
-**Status**: Draft
+**Status**: Draft (the footer placement was replaced by spec 078, the Cookies page)
 
 **Input**: User description: "Add this to the footer, just below the copyright line.
 <script id="CookieDeclaration" src="https://consent.cookiebot.com/ba75dc6a-d85e-4740-891e-dd0cc31a62dd/cd.js"
