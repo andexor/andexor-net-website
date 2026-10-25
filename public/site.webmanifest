@@ -1,6 +1,18 @@
 {
+  "lang": "en",
   "name": "Andexor Network",
   "short_name": "Andexor",
+  "start_url": "https://andexor.net/",
+  "id": "https://andexor.net/",
+  "theme_color": "#EAAA00",
+  "background_color": "#002855",
+  "color_scheme_dark": {
+    "theme_color": "#EAAA00",
+    "background_color": "#002855"
+  },
+  "display": "standalone",
+  "description": "Enterprise services for small business",
+  "scope": "/",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",
@@ -11,9 +23,36 @@
       "src": "/android-chrome-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
+    },
+    {
+      "src": "/favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-48x48.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon.ico",
+      "sizes": "16x16 32x32 48x48",
+      "type": "image/vnd.microsoft.icon"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "150x150",
+      "type": "image/svg+xml"
     }
-  ],
-  "theme_color": "#002855",
-  "background_color": "#002855",
-  "display": "standalone"
+  ]
 }
