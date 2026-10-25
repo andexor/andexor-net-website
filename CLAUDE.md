@@ -176,7 +176,9 @@ skips `src/components/content/`.
 - Relies on `next.config.ts`, which puts all `src/` code in one `site-*.js` chunk and tells Next's minifier to skip it.
 - Adds the Cookiebot consent script (spec 076) first in each page's `<head>`, then one small inline script. React
   rejects the whitespace that pretty-printed HTML adds between elements (hydration error #418), so that inline script
-  strips it before hydration. The formatter fails the build
+  strips it before hydration. A second small inline script follows it: it takes focus off Cookiebot's answer buttons
+  on click, so Cookiebot's `aria-hidden` on the closing dialog does not trigger Chrome's "Blocked aria-hidden on an
+  element because its descendant retained focus" warning. The formatter fails the build
   if the formatted page would not have the same DOM as the original (`scripts/format-html.ts`).
 
 Rules to keep in mind:
@@ -188,6 +190,9 @@ Rules to keep in mind:
   build runs the original scripts and the new one in a sandbox and fails, naming the page, if the data differs. The
   head's inline scripts (the whitespace script and the font loader) stay inline and first, and the framework's script
   files are not touched. The site's links are ordinary links, so every click loads a page fully with its own data file.
+- The footer's Cookie Declaration script (spec 077) is also rendered with `dangerouslySetInnerHTML` and `data-raw-html=""`,
+  on purpose: Cookiebot adds the declaration beside the element, and React must not try to hydrate those nodes. Do not turn
+  it into plain JSX.
 - Markdown-generated HTML is rendered with `dangerouslySetInnerHTML`. Give such an element `data-raw-html=""`: the
   formatter formats its content with whitespace-safe settings, and the script leaves it alone, because a newline
   between inline elements there is a visible space.

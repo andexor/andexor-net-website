@@ -61,6 +61,25 @@ export const WHITESPACE_SCRIPT = `<script>
 </script>`;
 
 /**
+ * Injected after the whitespace script. When a visitor answers the Cookiebot banner, Cookiebot hides the dialog with
+ * aria-hidden while the clicked button still has focus, and Chrome logs "Blocked aria-hidden on an element because its
+ * descendant retained focus". Taking focus off that button first (capture phase, so before Cookiebot's own handler)
+ * avoids the warning. Only the answer buttons are touched, so keyboard use of the rest of the dialog is unchanged.
+ */
+export const COOKIEBOT_FOCUS_SCRIPT = `<script>
+(function () {
+    document.addEventListener(
+        "click",
+        function (event) {
+            var button = event.target && event.target.closest && event.target.closest("#CybotCookiebotDialog button");
+            if (button && /Allow|Decline|Accept/.test(button.id) && document.activeElement === button) button.blur();
+        },
+        true
+    );
+})();
+</script>`;
+
+/**
  * What the script does to one text node: remove a newline and the indentation around it at the edges.
  * Spaces before a trailing newline are kept, because a trailing space in the original (as in "page. <a>")
  * is followed by the newline the formatter added, never preceded by one.
@@ -242,7 +261,9 @@ function firstDifference(expected: string[], actual: string[]): string | null {
 export function assertSameDom(original: string, formatted: string, file: string): void {
     const before = extractRegions(original);
     // The two injected scripts are the intended differences; compare without them.
-    const after = extractRegions(formatted.replace(WHITESPACE_SCRIPT, "").replace(COOKIEBOT_SCRIPT, ""));
+    const after = extractRegions(
+        formatted.replace(COOKIEBOT_FOCUS_SCRIPT, "").replace(WHITESPACE_SCRIPT, "").replace(COOKIEBOT_SCRIPT, ""),
+    );
 
     for (const token of tokenize(before.skeleton)) {
         if (token.startsWith("<") || token.startsWith("RAW:")) continue;
@@ -353,11 +374,14 @@ export async function formatHtml(original: string, file: string): Promise<string
     });
     formatted = await restoreRegions(formatted, regions, file);
 
-    // 6. Add the Cookiebot script and then the whitespace script first in <head>, glued to the next tag so they add no
+    // 6. Add the Cookiebot script and then the whitespace and focus scripts first in <head>, glued to the next tag so they add no
     // whitespace of their own.
     if (!/<head>\s*/.test(formatted))
         throw new Error(`${file}: no <head> to add the Cookiebot and whitespace scripts to`);
-    formatted = formatted.replace(/<head>\s*/, () => `<head>${COOKIEBOT_SCRIPT}${WHITESPACE_SCRIPT}`);
+    formatted = formatted.replace(
+        /<head>\s*/,
+        () => `<head>${COOKIEBOT_SCRIPT}${WHITESPACE_SCRIPT}${COOKIEBOT_FOCUS_SCRIPT}`,
+    );
 
     // 7. Prove the DOM is the same.
     assertSameDom(original, formatted, file);
