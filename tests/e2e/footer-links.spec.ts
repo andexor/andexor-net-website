@@ -20,15 +20,23 @@ const PAGES = [
 
 const START_PAGES = ["/", "/web-development", "/nope"];
 
-// Spec 062, issue 33, and spec 078: Privacy, Terms, Security, and Cookies open their pages. The page headings differ from the link text.
+// Spec 062 and issue 33: Privacy, Terms, and Security open their pages. The page headings differ from the link text.
 const LEGAL = [
     ["Privacy", "/privacy", "Privacy Policy"],
     ["Terms", "/terms", "Terms Of Service"],
     ["Security", "/security", "Security Policy"],
-    ["Cookies", "/cookies", "Cookies"],
 ];
 
 test.describe("Footer links", () => {
+    test("the Do Not Sell or Share link under the copyright line opens the Cookie Policy page", async ({ page }) => {
+        await page.goto("/");
+        await page
+            .locator("footer")
+            .getByRole("link", { name: "Do Not Sell or Share My Personal Information", exact: true })
+            .click();
+        await expect(page).toHaveURL(/\/cookies$/);
+    });
+
     for (const start of START_PAGES) {
         for (const [label, path] of PAGES) {
             test(`footer "${label}" opens ${path} from ${start}`, async ({ page }) => {

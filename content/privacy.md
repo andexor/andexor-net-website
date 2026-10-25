@@ -52,9 +52,9 @@ How we handle personal information.
 | Name               | Value            |
 | :----------------- | :--------------- |
 | **Author**         | Ed Jenkins       |
-| **Last Reviewed**  | October 21, 2026 |
-| **Last Updated**   | October 21, 2026 |
-| **Effective Date** | October 21, 2026 |
+| **Last Reviewed**  | October 25, 2026 |
+| **Last Updated**   | October 25, 2026 |
+| **Effective Date** | October 25, 2026 |
 
 ## Executive Summary
 
@@ -66,7 +66,7 @@ This is how we handle personal information. In short, three separate things happ
 
 ## 1. Who We Are
 
-Andexor Network, Inc. ("Andexor," "we," "us," or "our") operates https://andexor.net/, including every page under that address (the "Site"). This Privacy Policy explains how we handle personal information. It is incorporated into our [Terms of Service](/terms), and words defined there have the same meaning here.
+Andexor Network, Inc. ("Andexor," "we," "us," or "our") operates https://andexor.net/, including every page under that address (the "Site"). This Privacy Policy explains how we handle personal information. It is incorporated into our [Terms of Service](/terms), and words defined there have the same meaning here. Our [Cookie Policy](/cookies) is part of this Privacy Policy.
 
 Andexor is the business, or "controller," responsible for the personal information this policy covers. Our contact details are in Section 19.
 
@@ -113,7 +113,7 @@ You are not required by law to give us any information. If you choose not to, we
 
 ## 5. Cookies, Analytics, And Advertising Technologies
 
-A cookie is a small file that a website stores in your browser. A pixel is a small piece of code that tells a third party that a page was loaded or an action was taken. We use three kinds of these technologies.
+A cookie is a small file that a website stores in your browser. A pixel is a small piece of code that tells a third party that a page was loaded or an action was taken. We use three kinds of these technologies. Our [Cookie Policy](/cookies), which is part of this Privacy Policy, lists every cookie the Site uses and lets you change your choice.
 
 | Type                  | What it does                                                                                                           | Provider             | When it runs                 |
 | :-------------------- | :--------------------------------------------------------------------------------------------------------------------- | :------------------- | :--------------------------- |
@@ -125,7 +125,7 @@ A cookie is a small file that a website stores in your browser. A pixel is a sma
 
 **Meta Pixel.** The Meta Pixel is operated by Meta Platforms, Inc. ("Meta"). When it is allowed to run, it tells Meta that your browser visited the Site and what you did here, such as viewing a page or submitting the Contact Us form, together with cookie identifiers, your IP address, and browser information. If you have a Facebook or Instagram account, Meta may associate this activity with it. Meta uses this information to report results to us, to let us show our advertisements to people who have visited the Site and to people similar to them, and for its own purposes described in the [Meta Privacy Policy](https://www.facebook.com/privacy/policy). We do not send Meta the content of your message or the contact details you type into our forms. You can control whether Meta uses activity shared by websites and apps to personalize your experience through the Activity from other businesses setting in Meta's Accounts Center (Settings > Accounts Center > Ad preferences), as described in [Meta's Help Center](https://www.facebook.com/help/1455040619735222/).
 
-**Your choice comes first.** Analytics and advertising technologies stay off until you allow them in the cookie banner. You can change your choice at any time through the **Your Privacy Choices** link in the footer of every page. Declining has no effect on your ability to use the Site.
+**Your choice comes first.** Analytics and advertising technologies stay off until you allow them in the cookie banner. You can change your choice at any time through the **Do Not Sell or Share My Personal Information** link in the footer of every page, which opens our [Cookie Policy](/cookies). Declining has no effect on your ability to use the Site.
 
 **What the cookie banner does not do.** The cookie banner controls only the analytics and advertising technologies on this Site. It does not identify you, and declining it does not tell us who you are. It does not cause and cannot stop an email or telephone call from us. If we contact your business and you have never dealt with us, it is because we found your business contact details as Section 6 describes, not because of anything you did or did not do on the Site. If you received a marketing email and do not wish to receive more, use the one-click unsubscribe link in the email. If you received a marketing phone call and do not wish to be called again, please tell us on the call. Or you may write to us, as Section 11 describes.
 
@@ -203,7 +203,7 @@ We do not use personal information to make decisions about you by solely automat
 
 **Two practices that some laws treat as a "sale," "sharing," or "targeted advertising."** Some privacy laws define these terms broadly enough to cover the following, so we describe them plainly and give you a way to opt out of each:
 
-- **Advertising technologies.** If you allow advertising in the cookie banner, the Meta Pixel discloses identifiers and Site activity to Meta, as described in Section 5. Opt out through the **Your Privacy Choices** link or a Global Privacy Control signal.
+- **Advertising technologies.** If you allow advertising in the cookie banner, the Meta Pixel discloses identifiers and Site activity to Meta, as described in Section 5. Opt out through the **Do Not Sell or Share My Personal Information** link or a Global Privacy Control signal.
 - **Lead Data delivered to clients.** As described in Section 6, and never about people or businesses located in California, Oregon, Texas, or Vermont. Opt out by writing to privacy@andexor.net.
 
 **Other disclosures.** We disclose personal information to:
@@ -243,7 +243,7 @@ If you believe you have found a security problem, please report it as our [Secur
 
 ## 11. Your Choices
 
-- **Cookies and advertising.** Use the cookie banner, the **Your Privacy Choices** link in the footer of every page, or a Global Privacy Control signal. See Section 5.
+- **Cookies and advertising.** Use the cookie banner, the **Do Not Sell or Share My Personal Information** link in the footer of every page, or a Global Privacy Control signal. See Section 5.
 - **Marketing email.** Use the one-click unsubscribe link in any marketing email, or write to us. We may still send you messages about an inquiry or engagement you started.
 - **Telephone calls.** Our calls are placed manually by a person; we do not use an autodialer or prerecorded or artificial-voice messages. Tell us on the call, or write to us, and we will stop, and we will add your number to our internal do-not-call list.
 - **Lead Data.** See Section 6.
@@ -263,7 +263,7 @@ You may ask us to:
 - opt out of the sale or sharing of your personal information, of targeted advertising, and of profiling that produces legal or similarly significant effects (we do not engage in that kind of profiling); and
 - appeal a decision we make about your request.
 
-**How to make a request.** Write to privacy@andexor.net, call 855-ANDEXOR, or write to the mailing address in Section 19. To opt out of advertising technologies, you can also use the **Your Privacy Choices** link or a Global Privacy Control signal; those do not require you to identify yourself.
+**How to make a request.** Write to privacy@andexor.net, call 855-ANDEXOR, or write to the mailing address in Section 19. To opt out of advertising technologies, you can also use the **Do Not Sell or Share My Personal Information** link or a Global Privacy Control signal; those do not require you to identify yourself.
 
 **How we verify.** To protect you, we need to confirm that a request to access, correct, or delete comes from the person the information is about. We usually do that by replying to the email address we have on file for you, and we may ask for a small amount of additional information if what we hold is sensitive. We use what you give us for verification only. We do not verify opt-out requests.
 
@@ -324,7 +324,7 @@ This Section applies to you if you are in the European Economic Area (EEA), the 
 | Purpose                                                                                     | Legal basis                                                                                                 |
 | :------------------------------------------------------------------------------------------ | :---------------------------------------------------------------------------------------------------------- |
 | Responding to your inquiry; preparing an audit, proposal, or quote; providing services      | Steps taken at your request before entering into a contract, and performance of a contract                  |
-| Analytics and advertising technologies                                                      | Your consent, which you may withdraw at any time through the **Your Privacy Choices** link                  |
+| Analytics and advertising technologies                                                      | Your consent, which you may withdraw at any time through the **Do Not Sell or Share My Personal Information** link                  |
 | Server and security logs; preventing abuse; handling security reports                        | Our legitimate interests in keeping the Site and our systems secure                                         |
 | Contacting business contacts about our services; maintaining and improving the Site         | Our legitimate interests in operating and growing our business, or your consent where the law requires it   |
 | Keeping records; responding to lawful requests; honoring your privacy requests              | Compliance with a legal obligation                                                                          |

@@ -36,7 +36,7 @@ const COLUMNS = [
         heading: "BUSINESS SERVICES",
         items: ["Cost Reduction", "Process Re-engineering", "Lead Generation", "Growth Marketing"],
     },
-    { heading: "COMPANY", items: ["About Us", "Privacy", "Terms", "Security", "Cookies"] },
+    { heading: "COMPANY", items: ["About Us", "Privacy", "Terms", "Security"] },
 ];
 
 const ITEM_HREFS: Record<string, string> = {
@@ -52,12 +52,14 @@ const ITEM_HREFS: Record<string, string> = {
     Privacy: "/privacy",
     Terms: "/terms",
     Security: "/security",
-    Cookies: "/cookies",
 };
+
+const COOKIES_HREF = "/cookies";
 
 // FR-006: navigation grouped into technical/business/company categories,
 // social media links, and a copyright line under the logo. The service and About Us entries
-// link to their pages (spec 010), and so do Privacy and Terms (spec 062), Security (issue 33), and Cookies (spec 078).
+// link to their pages (spec 010), and so do Privacy and Terms (spec 062), Security (issue 33), and the Do Not Sell or Share My Personal Information link under the copyright line opens the
+// Cookies page (spec 078), which has no other footer link.
 export function Footer() {
     return (
         <footer role="contentinfo" className="an-footer">
@@ -65,6 +67,9 @@ export function Footer() {
                 <div>
                     <Logo light />
                     <p className="an-footer__copyright">© 2026 Andexor Network, Inc. All rights reserved.</p>
+                    <a href={COOKIES_HREF} className="an-footer__legal-link">
+                        Do Not Sell or Share My Personal Information
+                    </a>
                     <div className="an-footer__social-row">
                         {SOCIAL_LINKS.map(({ key, label, href, icon }) => (
                             <a

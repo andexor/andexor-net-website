@@ -4,7 +4,9 @@
 
 **Created**: 2026-10-25
 
-**Status**: Draft
+**Status**: Draft. The Company column's "Cookies" link was removed on 2026-10-25 to keep one route to the page: the
+footer link "Do Not Sell or Share My Personal Information" under the copyright line opens `/cookies`. User Story 2 and
+FR-005 below describe the removed link.
 
 **Input**: User description: "Use the marker in content/cookies.md. Add a link to the new page in the Company column in
 the footer. Let the link text be "Cookies"."

@@ -50,3 +50,27 @@ development, hosting, SEO, lead generation,
 and marketing.
 And looking forward to introducing you
 to other business leaders too!
+
+---
+
+## Vision
+
+To help business owners grow their business and thrive.
+
+## Mission
+
+To help businesses cut costs, simplify processes, and be seen everywhere.
+
+## Core Values
+
+Every business should
+
+- have a fast, secure, responsive, accessible, mobile-friendly, website
+- have a blog
+- have a newsletter
+- issue press releases
+- be found in every relevant social media platform
+- be found in Google and Bing
+- be found in Perplexity, ChatGPT, etc.
+- have agents that facilitate every level of the sales funnel
+- support the local community
