@@ -25,13 +25,13 @@ These are the terms that govern the use of this website.
 | Name               | Value            |
 | :----------------- | :--------------- |
 | **Author**         | Ed Jenkins       |
-| **Last Reviewed**  | October 21, 2026 |
-| **Last Updated**   | October 21, 2026 |
-| **Effective Date** | October 21, 2026 |
+| **Last Reviewed**  | October 26, 2026 |
+| **Last Updated**   | October 26, 2026 |
+| **Effective Date** | October 26, 2026 |
 
 ## 1. Acceptance
 
-These Terms of Service (the "Terms") are a binding agreement between you and Andexor Network, Inc. ("Andexor," "we," "us," or "our"). By accessing or using https://andexor.net/, including every page under that address (the "Site"), you agree to these Terms and to our [Privacy Policy](/privacy). If you do not agree, do not use the Site. Submitting the Contact Us form is a further, affirmative acceptance of these Terms.
+These Terms of Service (the "Terms") are a binding agreement between you and Andexor Network, Inc. ("Andexor," "we," "us," or "our"). By accessing or using https://andexor.net/, including every page under that address (the "Site"), you agree to these Terms and to our [Privacy Policy](/privacy-policy). If you do not agree, do not use the Site. Submitting the Contact Us form is a further, affirmative acceptance of these Terms.
 
 The Site is not directed to children under 18, and we do not knowingly collect personal information from them. If you are under 18, you may use the Site only with the consent of a parent or guardian.
 
@@ -54,7 +54,7 @@ We grant you a limited, revocable, non-exclusive, non-transferable license to vi
 You agree not to:
 
 - use the Site for any unlawful purpose or in violation of these Terms;
-- attempt to gain unauthorized access to the Site, its servers, or any connected system, or probe, scan, or test the Site's security, except for good-faith security research that follows our [Security Policy](/security), which is incorporated into these Terms by reference, or that we have authorized in writing;
+- attempt to gain unauthorized access to the Site, its servers, or any connected system, or probe, scan, or test the Site's security, except for good-faith security research that follows our [Security Policy](/security-policy), which is incorporated into these Terms by reference, or that we have authorized in writing;
 - interfere with the Site's operation, including through denial-of-service activity, excessive automated requests, or any attempt to bypass a measure we use to restrict access;
 - copy or extract Site content by automated means, including scraping, except as permitted below;
 - upload or transmit viruses or other malicious code;
@@ -99,7 +99,7 @@ The Site may link to third-party websites, tools, and services. We do not contro
 
 ## 9. Privacy
 
-Our collection and use of personal information through the Site is described in our [Privacy Policy](/privacy), which is incorporated into these Terms by reference. The Site is operated from the United States, and information you submit is processed and stored in the United States.
+Our collection and use of personal information through the Site is described in our [Privacy Policy](/privacy-policy), which is incorporated into these Terms by reference. The Site is operated from the United States, and information you submit is processed and stored in the United States.
 
 ## 10. Copyright Complaints
 

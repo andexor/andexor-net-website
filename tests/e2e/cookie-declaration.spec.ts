@@ -6,19 +6,20 @@ import fs from "node:fs";
 import path from "node:path";
 import { expect, test } from "./fixtures";
 
-// Spec 078: Cookiebot's Cookie Declaration script is on /cookies only, at the marker in content/cookies.md, and the page
-// does not scroll sideways on a phone. The raw HTML is checked, because the browser's own parsing would hide the order.
+// Specs 078 and 081: Cookiebot's Cookie Declaration script is on /privacy-policy only, at the marker in
+// content/privacy-policy.md, and the page does not scroll sideways on a phone. The raw HTML is checked, because the
+// browser's own parsing would hide the order.
 // The declaration's text is not checked: it comes from Cookiebot. Playwright's loader here fails on TypeScript type
 // annotations, so callbacks rely on contextual typing.
 const contentDir = path.join(process.cwd(), "content");
 const otherRoutes = fs
     .readdirSync(contentDir)
-    .filter((f) => f.endsWith(".md") && f.toLowerCase() !== "readme.md" && f !== "cookies.md")
+    .filter((f) => f.endsWith(".md") && f.toLowerCase() !== "readme.md" && f !== "privacy-policy.md")
     .map((f) => "/" + f.replace(/\.md$/, ""));
 
 test.describe("Cookie Declaration", () => {
-    test("/cookies: has the script element", async ({ request }) => {
-        const html = await (await request.get("/cookies")).text();
+    test("/privacy-policy: has the script element", async ({ request }) => {
+        const html = await (await request.get("/privacy-policy")).text();
         const match = /<script\s+([^>]*\bid="CookieDeclaration"[^>]*)><\/script>/.exec(html);
         expect(match).not.toBeNull();
         const attributes = match ? match[1] : "";
@@ -35,14 +36,14 @@ test.describe("Cookie Declaration", () => {
         });
     }
 
-    test("/cookies: does not scroll sideways on a phone, and the footer still works", async ({ page }) => {
+    test("/privacy-policy: does not scroll sideways on a phone, and the footer still works", async ({ page }) => {
         await page.setViewportSize({ width: 360, height: 800 });
-        await page.goto("/cookies");
+        await page.goto("/privacy-policy");
         await page.waitForLoadState("networkidle");
         const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
         expect(overflow).toBeLessThanOrEqual(0);
         const footer = page.getByRole("contentinfo");
-        await expect(footer.getByRole("link", { name: "Privacy" })).toBeVisible();
+        await expect(footer.getByRole("link", { name: "Privacy Policy", exact: true })).toBeVisible();
         await expect(footer.locator(".an-footer__social-link").first()).toBeVisible();
     });
 });

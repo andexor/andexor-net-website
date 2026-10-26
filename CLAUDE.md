@@ -184,6 +184,9 @@ skips `src/components/content/`.
   on click, so Cookiebot's `aria-hidden` on the closing dialog does not trigger Chrome's "Blocked aria-hidden on an
   element because its descendant retained focus" warning. The formatter fails the build
   if the formatted page would not have the same DOM as the original (`scripts/format-html.ts`).
+- Removes the React Server Components payload Next writes beside each page (`about-us.txt` beside `about-us.html`).
+  The site's links are ordinary anchors, so nothing requests them. A `.txt` file with no page of the same name
+  (`robots.txt`, `.well-known/security.txt`) stays.
 
 Rules to keep in mind:
 
@@ -194,10 +197,11 @@ Rules to keep in mind:
   build runs the original scripts and the new one in a sandbox and fails, naming the page, if the data differs. The
   head's inline scripts (the whitespace script and the font loader) stay inline and first, and the framework's script
   files are not touched. The site's links are ordinary links, so every click loads a page fully with its own data file.
-- The Cookie Declaration (spec 078) lives on `/cookies`: the line `<!-- cookie-declaration -->` in `content/cookies.md` is
-  turned into Cookiebot's script element by `src/lib/content.ts`, built from the syntax tree because raw HTML in Markdown
-  is still dropped. It sits inside the page's `data-raw-html` content, so React does not hydrate what Cookiebot adds beside
-  it. It is not in the footer any more; the footer only links to the page.
+- The Cookie Declaration (specs 078 and 081) is the last section of the Privacy Policy, `/privacy-policy`: the line
+  `<!-- cookie-declaration -->` in `content/privacy-policy.md` is turned into Cookiebot's script element by
+  `src/lib/content.ts`, built from the syntax tree because raw HTML in Markdown is still dropped. It sits inside the
+  page's `data-raw-html` content, so React does not hydrate what Cookiebot adds beside it. It is not in the footer any
+  more; the footer's Do Not Sell or Share link opens that section, and its Privacy Settings link reopens the banner.
 - Markdown-generated HTML is rendered with `dangerouslySetInnerHTML`. Give such an element `data-raw-html=""`: the
   formatter formats its content with whitespace-safe settings, and the script leaves it alone, because a newline
   between inline elements there is a visible space.

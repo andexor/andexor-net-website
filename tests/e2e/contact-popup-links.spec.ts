@@ -8,8 +8,8 @@ import { expect, test } from "./fixtures";
 // link text. Spec 065: they open in a new tab, so the popup and the typed text stay in the original tab, and the links
 // are named "<label>, opens in new tab".
 const LEGAL = [
-    ["Privacy", "/privacy", "Privacy Policy"],
-    ["Terms", "/terms", "Terms Of Service"],
+    ["Privacy", "/privacy-policy", "Privacy Policy"],
+    ["Terms", "/terms-of-service", "Terms Of Service"],
 ];
 
 test.describe("Contact Us popup legal links", () => {

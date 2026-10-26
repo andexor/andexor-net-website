@@ -5,6 +5,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSquareGithub, faSquareLinkedin, faSquareXTwitter } from "@awesome.me/kit-0a6c11d394/icons/classic/brands";
 import { Logo } from "./Logo";
+import { PrivacySettingsLink } from "./PrivacySettingsLink";
 
 const SOCIAL_LINKS = [
     {
@@ -27,6 +28,8 @@ const SOCIAL_LINKS = [
     },
 ];
 
+const PRIVACY_SETTINGS = "Privacy Settings";
+
 const COLUMNS = [
     {
         heading: "TECHNICAL SERVICES",
@@ -36,7 +39,10 @@ const COLUMNS = [
         heading: "BUSINESS SERVICES",
         items: ["Cost Reduction", "Process Re-engineering", "Lead Generation", "Growth Marketing"],
     },
-    { heading: "COMPANY", items: ["About Us", "Privacy", "Terms", "Security"] },
+    {
+        heading: "COMPANY",
+        items: ["About Us", "Terms Of Service", "Security Policy", "Privacy Policy", PRIVACY_SETTINGS],
+    },
 ];
 
 const ITEM_HREFS: Record<string, string> = {
@@ -49,17 +55,21 @@ const ITEM_HREFS: Record<string, string> = {
     "Growth Marketing": "/growth-marketing",
     "Process Re-engineering": "/process-re-engineering",
     "About Us": "/about-us",
-    Privacy: "/privacy",
-    Terms: "/terms",
-    Security: "/security",
+    "Terms Of Service": "/terms-of-service",
+    "Security Policy": "/security-policy",
+    "Privacy Policy": "/privacy-policy",
 };
 
-const COOKIES_HREF = "/cookies";
+// Spec 081: the Do Not Sell or Share link lands on the Cookie Declaration, Section 25 of the Privacy Policy, where the
+// consent controls are. The fragment is the id rehype-slug gives that heading, so it changes if the section is renumbered;
+// tests/e2e/footer-links.spec.ts checks that the fragment still names an element on the page.
+const DO_NOT_SELL_HREF = "/privacy-policy#25-cookie-declaration";
 
 // FR-006: navigation grouped into technical/business/company categories,
 // social media links, and a copyright line under the logo. The service and About Us entries
-// link to their pages (spec 010), and so do Privacy and Terms (spec 062), Security (issue 33), and the Do Not Sell or Share My Personal Information link under the copyright line opens the
-// Cookies page (spec 078), which has no other footer link.
+// link to their pages (spec 010), and so do the Terms Of Service, Security Policy, and Privacy Policy entries (specs 062
+// and 081). Privacy Settings is not a page: it reopens the cookie banner (spec 081). The Do Not Sell or Share My
+// Personal Information link under the copyright line opens the Cookie Declaration section of the Privacy Policy (spec 081).
 export function Footer() {
     return (
         <footer role="contentinfo" className="an-footer">
@@ -67,7 +77,7 @@ export function Footer() {
                 <div>
                     <Logo light />
                     <p className="an-footer__copyright">© 2026 Andexor Network, Inc. All rights reserved.</p>
-                    <a href={COOKIES_HREF} className="an-footer__legal-link">
+                    <a href={DO_NOT_SELL_HREF} className="an-footer__legal-link">
                         Do Not Sell or Share My Personal Information
                     </a>
                     <div className="an-footer__social-row">
@@ -89,9 +99,13 @@ export function Footer() {
                         <ul className="an-footer__col-list">
                             {column.items.map((item) => (
                                 <li key={item}>
-                                    <a href={ITEM_HREFS[item]} className="an-footer__col-link">
-                                        {item}
-                                    </a>
+                                    {item === PRIVACY_SETTINGS ? (
+                                        <PrivacySettingsLink className="an-footer__col-link" />
+                                    ) : (
+                                        <a href={ITEM_HREFS[item]} className="an-footer__col-link">
+                                            {item}
+                                        </a>
+                                    )}
                                 </li>
                             ))}
                         </ul>

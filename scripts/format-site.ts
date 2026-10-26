@@ -6,7 +6,7 @@
 // Run after `next build` by `bun run build`. Formats the HTML pages, the site stylesheet, and the
 // site's own script chunk. Third-party chunks are left minified.
 
-import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, readdir, readFile, unlink, writeFile } from "node:fs/promises";
 import { join, relative } from "node:path";
 import { format } from "prettier";
 import { combineDataScripts, externalizeDataScript } from "./combine-scripts";
@@ -56,9 +56,27 @@ async function formatPage(source: string, name: string): Promise<string> {
     return formatHtml(moved.html, name);
 }
 
+// Next.js writes a React Server Components payload beside each page (`about-us.txt` beside `about-us.html`) for
+// client-side navigation with next/link and for prefetching. The site's links are ordinary anchors (spec 041), so
+// nothing ever requests them, and they are removed after the pages are formatted. A .txt file with no page of the same
+// name, such as robots.txt or .well-known/security.txt, is not a payload and stays.
+async function removePagePayloads(pages: Set<string>, textFiles: string[]): Promise<number> {
+    let removed = 0;
+    for (const path of textFiles) {
+        if (!pages.has(path.slice(0, -".txt".length))) continue;
+        await unlink(path);
+        removed += 1;
+    }
+    return removed;
+}
+
 async function main(): Promise<void> {
     const changed: Record<string, number> = {};
+    const pages = new Set<string>();
+    const textFiles: string[] = [];
     for await (const path of walk(OUT)) {
+        if (path.endsWith(".html")) pages.add(path.slice(0, -".html".length));
+        else if (path.endsWith(".txt")) textFiles.push(path);
         const name = relative(ROOT, path).split("\\").join("/");
         const group = fileGroup(name);
         if (group !== "built-html" && group !== "built-site-css" && group !== "built-site-js") continue;
@@ -82,10 +100,11 @@ async function main(): Promise<void> {
     for (const group of ["built-html", "built-site-css", "built-site-js"]) {
         if (!changed[group]) throw new Error(`No ${group} files were found in out/; did next build run?`);
     }
+    const removed = await removePagePayloads(pages, textFiles);
     console.log(
         `Formatted built site: ${Object.entries(changed)
             .map(([g, n]) => `${n} ${g}`)
-            .join(", ")}`,
+            .join(", ")}; removed ${removed} page payload .txt files`,
     );
 }
 

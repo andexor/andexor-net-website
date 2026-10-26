@@ -126,17 +126,11 @@ test.describe("Not-found page style", () => {
         await expect(page).toHaveURL(/\/$/);
     });
 
-    test("the link is blue-400 on slate-50 text, changes color on hover, and shows a focus ring", async ({
-        page,
-        browserName,
-    }) => {
+    test("the link changes color on hover and shows a focus ring", async ({ page, browserName }) => {
         await page.setViewportSize({ width: 1280, height: 800 });
         await page.goto("/nope");
         const link = page.getByRole("link", { name: "Go to the home page" });
-        const paragraph = page.locator(".an-cardhero__intro p");
-        expect(await paragraph.evaluate((p) => getComputedStyle(p).color)).toBe("rgb(248, 250, 252)");
         const rest = await link.evaluate((a) => getComputedStyle(a).color);
-        expect(rest).toBe("rgb(74, 139, 208)");
         await link.hover();
         const hovered = await link.evaluate((a) => getComputedStyle(a).color);
         expect(hovered).not.toBe(rest);

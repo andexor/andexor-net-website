@@ -25,9 +25,9 @@ How to report a security issue.
 | Name               | Value            |
 | :----------------- | :--------------- |
 | **Author**         | Ed Jenkins       |
-| **Last Reviewed**  | October 21, 2026 |
-| **Last Updated**   | October 21, 2026 |
-| **Effective Date** | October 21, 2026 |
+| **Last Reviewed**  | October 26, 2026 |
+| **Last Updated**   | October 26, 2026 |
+| **Effective Date** | October 26, 2026 |
 
 ## 1. Our Commitment
 
@@ -159,7 +159,7 @@ By personal information we mean anything that identifies a person or could be us
 
 ## 9. Safe Harbor
 
-If you conduct research and report it according to this policy, we consider your research authorized, lawful, and conducted in good faith. By good faith research, we mean accessing a system in scope only to test, investigate, or correct a security flaw or unintended behavior, in a way designed to avoid harm to anyone, where what you learn is used only to improve the security of the system and the people who use it. We will not initiate or support legal action against you under the Computer Fraud and Abuse Act, the Digital Millennium Copyright Act, state computer crime laws, or our [Terms of Service](/terms) for research that stays within this policy, including for bypassing a technical measure that protects a system in scope when that is part of the research, and we will not report you to law enforcement for it. Where we agree that your research followed this policy, we will state that publicly on request.
+If you conduct research and report it according to this policy, we consider your research authorized, lawful, and conducted in good faith. By good faith research, we mean accessing a system in scope only to test, investigate, or correct a security flaw or unintended behavior, in a way designed to avoid harm to anyone, where what you learn is used only to improve the security of the system and the people who use it. We will not initiate or support legal action against you under the Computer Fraud and Abuse Act, the Digital Millennium Copyright Act, state computer crime laws, or our [Terms of Service](/terms-of-service) for research that stays within this policy, including for bypassing a technical measure that protects a system in scope when that is part of the research, and we will not report you to law enforcement for it. Where we agree that your research followed this policy, we will state that publicly on request.
 
 This safe harbor is a limited waiver of the Acceptable Use restrictions in our Terms of Service and controls over them for research covered by this policy. It does not bind third parties, and it does not apply to actions outside the scope or rules of this policy. If a third party starts legal action against you for research that followed this policy, we will make it known that your actions were authorized by us, when you ask us to and to the extent we have the information to do so.
 

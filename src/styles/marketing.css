@@ -363,6 +363,14 @@
     gap: 32px;
 }
 
+/* Spec 081: the four columns need about 812px (the logo lockup alone is 256px, and the column links do not wrap), so
+ * tablet widths get two columns in two rows: brand and Technical Services, then Business Services and Company. */
+@media (max-width: 860px) {
+    .an-footer__grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
 @media (max-width: 720px) {
     .an-footer__grid {
         grid-template-columns: 1fr;
