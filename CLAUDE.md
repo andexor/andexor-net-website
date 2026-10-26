@@ -184,6 +184,9 @@ skips `src/components/content/`.
   on click, so Cookiebot's `aria-hidden` on the closing dialog does not trigger Chrome's "Blocked aria-hidden on an
   element because its descendant retained focus" warning. The formatter fails the build
   if the formatted page would not have the same DOM as the original (`scripts/format-html.ts`).
+- Removes the React Server Components payload Next writes beside each page (`about-us.txt` beside `about-us.html`).
+  The site's links are ordinary anchors, so nothing requests them. A `.txt` file with no page of the same name
+  (`robots.txt`, `.well-known/security.txt`) stays.
 
 Rules to keep in mind:
 
