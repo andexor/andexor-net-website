@@ -52,9 +52,9 @@ How we handle personal information.
 | Name               | Value            |
 | :----------------- | :--------------- |
 | **Author**         | Ed Jenkins       |
-| **Last Reviewed**  | October 25, 2026 |
-| **Last Updated**   | October 25, 2026 |
-| **Effective Date** | October 25, 2026 |
+| **Last Reviewed**  | October 26, 2026 |
+| **Last Updated**   | October 26, 2026 |
+| **Effective Date** | October 26, 2026 |
 
 ## Executive Summary
 
@@ -66,7 +66,7 @@ This is how we handle personal information. In short, three separate things happ
 
 ## 1. Who We Are
 
-Andexor Network, Inc. ("Andexor," "we," "us," or "our") operates https://andexor.net/, including every page under that address (the "Site"). This Privacy Policy explains how we handle personal information. It is incorporated into our [Terms of Service](/terms), and words defined there have the same meaning here. Our [Cookie Policy](/cookies) is part of this Privacy Policy.
+Andexor Network, Inc. ("Andexor," "we," "us," or "our") operates https://andexor.net/, including every page under that address (the "Site"). This Privacy Policy explains how we handle personal information. It is incorporated into our [Terms of Service](/terms-of-service), and words defined there have the same meaning here. Sections 20 through 25 explain how we use cookies and similar technologies on the Site.
 
 Andexor is the business, or "controller," responsible for the personal information this policy covers. Our contact details are in Section 19.
 
@@ -80,7 +80,7 @@ This policy covers personal information about:
 - people who contact us, through the Contact Us form, by email, by telephone, or by mail;
 - client contacts, meaning the people who represent a business that has engaged us;
 - prospects, meaning people whose contact details we obtained from a source other than the person, as described in Section 6; and
-- security researchers who report an issue under our [Security Policy](/security).
+- security researchers who report an issue under our [Security Policy](/security-policy).
 
 ## 3. What This Policy Does Not Cover
 
@@ -113,7 +113,7 @@ You are not required by law to give us any information. If you choose not to, we
 
 ## 5. Cookies, Analytics, And Advertising Technologies
 
-A cookie is a small file that a website stores in your browser. A pixel is a small piece of code that tells a third party that a page was loaded or an action was taken. We use three kinds of these technologies. Our [Cookie Policy](/cookies), which is part of this Privacy Policy, lists every cookie the Site uses and lets you change your choice.
+A cookie is a small file that a website stores in your browser. A pixel is a small piece of code that tells a third party that a page was loaded or an action was taken. We use three kinds of these technologies. Sections 20 through 25 explain them in more detail, and the [Cookie Declaration](#25-cookie-declaration) in Section 25 lists every cookie the Site uses and lets you change your choice.
 
 | Type                  | What it does                                                                                                           | Provider             | When it runs                 |
 | :-------------------- | :--------------------------------------------------------------------------------------------------------------------- | :------------------- | :--------------------------- |
@@ -125,7 +125,7 @@ A cookie is a small file that a website stores in your browser. A pixel is a sma
 
 **Meta Pixel.** The Meta Pixel is operated by Meta Platforms, Inc. ("Meta"). When it is allowed to run, it tells Meta that your browser visited the Site and what you did here, such as viewing a page or submitting the Contact Us form, together with cookie identifiers, your IP address, and browser information. If you have a Facebook or Instagram account, Meta may associate this activity with it. Meta uses this information to report results to us, to let us show our advertisements to people who have visited the Site and to people similar to them, and for its own purposes described in the [Meta Privacy Policy](https://www.facebook.com/privacy/policy). We do not send Meta the content of your message or the contact details you type into our forms. You can control whether Meta uses activity shared by websites and apps to personalize your experience through the Activity from other businesses setting in Meta's Accounts Center (Settings > Accounts Center > Ad preferences), as described in [Meta's Help Center](https://www.facebook.com/help/1455040619735222/).
 
-**Your choice comes first.** Analytics and advertising technologies stay off until you allow them in the cookie banner. You can change your choice at any time through the **Do Not Sell or Share My Personal Information** link in the footer of every page, which opens our [Cookie Policy](/cookies). Declining has no effect on your ability to use the Site.
+**Your choice comes first.** Analytics and advertising technologies stay off until you allow them in the cookie banner. You can change your choice at any time through the **Privacy Settings** link in the footer of every page, which opens the cookie banner again, or the **Do Not Sell or Share My Personal Information** link beside the copyright line, which opens the [Cookie Declaration](#25-cookie-declaration) in Section 25. Declining has no effect on your ability to use the Site.
 
 **What the cookie banner does not do.** The cookie banner controls only the analytics and advertising technologies on this Site. It does not identify you, and declining it does not tell us who you are. It does not cause and cannot stop an email or telephone call from us. If we contact your business and you have never dealt with us, it is because we found your business contact details as Section 6 describes, not because of anything you did or did not do on the Site. If you received a marketing email and do not wish to receive more, use the one-click unsubscribe link in the email. If you received a marketing phone call and do not wish to be called again, please tell us on the call. Or you may write to us, as Section 11 describes.
 
@@ -239,11 +239,11 @@ We use administrative, technical, and physical safeguards designed to protect pe
 
 If we learn of a security incident that affects your personal information, we will notify you and the appropriate authorities as the law requires.
 
-If you believe you have found a security problem, please report it as our [Security Policy](/security) describes, by email to security@andexor.net.
+If you believe you have found a security problem, please report it as our [Security Policy](/security-policy) describes, by email to security@andexor.net.
 
 ## 11. Your Choices
 
-- **Cookies and advertising.** Use the cookie banner, the **Do Not Sell or Share My Personal Information** link in the footer of every page, or a Global Privacy Control signal. See Section 5.
+- **Cookies and advertising.** Use the cookie banner, the **Privacy Settings** or **Do Not Sell or Share My Personal Information** link in the footer of every page, or a Global Privacy Control signal. See Sections 5 and 24.
 - **Marketing email.** Use the one-click unsubscribe link in any marketing email, or write to us. We may still send you messages about an inquiry or engagement you started.
 - **Telephone calls.** Our calls are placed manually by a person; we do not use an autodialer or prerecorded or artificial-voice messages. Tell us on the call, or write to us, and we will stop, and we will add your number to our internal do-not-call list.
 - **Lead Data.** See Section 6.
@@ -358,7 +358,7 @@ We may revise this policy at any time by posting a revised version on this page 
 
 ## 19. Contact
 
-If you have a question about this policy, or want to use any of the rights or choices it describes, contact us anytime.
+If you have a question about this policy, or want to use any of the rights or choices it describes, contact us anytime. That includes a question about cookies, or a cookie choice you cannot make work.
 
 Email: privacy@andexor.net
 
@@ -369,3 +369,43 @@ If you believe we have not kept to this policy, for example by missing the times
 | Mailing Address |
 | :-------------- |
 | Andexor Network, Inc.<br>ATTN: Ed Jenkins, President<br>860 Johnson Ferry RD NE<br>#140-386<br>Atlanta, GA 30342 |
+
+## 20. Cookie Scope
+
+This section and the ones that follow explain how we use cookies and similar technologies on the Site, and how to change your choice.
+
+Your choice is stored in your browser for this Site only. A choice you make here does not carry over to other websites, to another browser or device, or to a different address such as a subdomain.
+
+## 21. What Cookies Are
+
+A cookie is a small text file that a website stores in your browser. Similar technologies do the same kind of job: pixels, tags, scripts, and the browser's local and session storage. We call all of them "cookies" in this policy.
+
+Websites use cookies to keep the site working, to remember choices, to measure how the site is used, and to measure advertising. Blocking the ones a site needs can break parts of it.
+
+## 22. The Four Cookie Categories
+
+The cookie banner sorts cookies into categories. Only the first is always on.
+
+- **Necessary.** Keep the Site working and secure, and remember your cookie choice. You cannot turn these off here, and the Site does not work properly without them.
+- **Preferences.** Remember choices you make, such as how the Site looks or behaves for you. If you turn them off, some features may be less convenient.
+- **Statistics.** Measure how many people visit, which pages they view, and how they arrived, so we can improve the Site. This data can include online identifiers, so we do not treat it as anonymous.
+- **Marketing.** Measure how well our advertising works and let us show our advertisements to people who have visited the Site.
+
+Statistics and Marketing stay off until you allow them. Each cookie is placed in the category that matches what it actually does on this Site, even when its provider also offers other services.
+
+## 23. Who Sets Cookies
+
+Some cookies come from us. Others come from companies we use for analytics and advertising, such as Google (Google Analytics) and Meta (the Meta Pixel). Those companies have their own policies for what they collect, and Section 5 describes how each one is used on the Site. The [Cookie Declaration](#25-cookie-declaration) in Section 25 lists every cookie the Site uses, with its category, provider, purpose, and how long it lasts. A scan of the Site keeps that list current.
+
+## 24. Your Cookie Choices
+
+- **Change or withdraw your consent.** Use the **Privacy Settings** link in the footer of every page, which opens the cookie banner again, or the consent controls in the [Cookie Declaration](#25-cookie-declaration) in Section 25. You can do this at any time. Withdrawing consent applies from then on; it does not undo what was collected while you had allowed it, and it does not ask the companies that already received the data to delete it.
+- **Global Privacy Control.** If your browser or an extension sends a Global Privacy Control signal, we treat it as a request to opt out of the sale and sharing of personal information and of targeted advertising, and advertising cookies stay off for that browser.
+- **Browser settings.** Your browser lets you block or delete cookies and site storage. Private browsing, clearing your browser data, or switching browsers or devices can reset your choice, and we will ask again on your next visit.
+- **Do Not Track.** This older browser signal has no common standard, so the Site does not respond to it. Use Global Privacy Control instead.
+
+Declining has no effect on your ability to use the Site.
+
+## 25. Cookie Declaration
+
+<!-- cookie-declaration -->

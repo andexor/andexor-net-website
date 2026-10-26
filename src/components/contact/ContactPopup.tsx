@@ -208,7 +208,7 @@ export function ContactPopup({ open, onClose, sourcePath = "/", onSubmit }: Cont
                             <span className="an-contact-form__legal">
                                 {/* Ordinary links, opened in a new tab (spec 065) so the form stays. Each icon follows its link (spec 066). */}
                                 <a
-                                    href="/privacy"
+                                    href="/privacy-policy"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     aria-label="Privacy, opens in new tab"
@@ -218,7 +218,7 @@ export function ContactPopup({ open, onClose, sourcePath = "/", onSubmit }: Cont
                                 <FontAwesomeIcon icon={faArrowUpRightFromSquare} aria-hidden="true" />
                                 {" | "}
                                 <a
-                                    href="/terms"
+                                    href="/terms-of-service"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     aria-label="Terms, opens in new tab"

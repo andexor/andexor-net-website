@@ -5,8 +5,7 @@
 import { expect, test } from "./fixtures";
 
 // Spec 007: no link is underlined, at rest, on hover, or on focus. Body and
-// card links stay distinguishable by color (--blue-400 on --slate-50 text) and
-// change color on hover. Playwright's loader here fails on TypeScript type
+// card links change color on hover. Exact colors are not tested (project rule). Playwright's loader here fails on TypeScript type
 // annotations, so callbacks rely on contextual typing.
 const PAGES = ["/", "/web-development", "/nope"];
 
@@ -54,18 +53,12 @@ test.describe("Link style", () => {
         }
     });
 
-    test("the not-found link is blue-400 on slate-50 text, and changes color on hover", async ({ page }) => {
+    test("the not-found link changes color on hover", async ({ page }) => {
         await page.goto("/nope");
         const link = page.getByRole("link", { name: "Go to the home page" });
-        // The not-found page's text sits in the hero intro (spec 006), which uses the same colors as .an-prose and .an-tile.
-        const paragraph = page.locator(".an-cardhero__intro p");
-        expect(await paragraph.evaluate((p) => getComputedStyle(p).color)).toBe("rgb(248, 250, 252)");
         const rest = await link.evaluate((a) => getComputedStyle(a).color);
-        expect(rest).toBe("rgb(74, 139, 208)");
         await link.hover();
-        const hovered = await link.evaluate((a) => getComputedStyle(a).color);
-        expect(hovered).toBe("rgb(143, 182, 226)");
-        expect(hovered).not.toBe(rest);
+        expect(await link.evaluate((a) => getComputedStyle(a).color)).not.toBe(rest);
     });
 
     test("card links change color on hover", async ({ page }) => {

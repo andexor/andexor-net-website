@@ -112,5 +112,5 @@ add links when a page is ready to be used.
 ## Cookie declaration
 
 The line `<!-- cookie-declaration -->`, alone on its own line, inserts Cookiebot's Cookie Declaration (the list of cookies and
-the control to change consent) at that spot. It is used in `cookies.md`. Use it once per page; a repeat is removed. Raw HTML
+the control to change consent) at that spot. It is used in `privacy-policy.md`, as the last section. Use it once per page; a repeat is removed. Raw HTML
 is still dropped everywhere else.

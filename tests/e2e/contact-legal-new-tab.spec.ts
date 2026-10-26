@@ -10,8 +10,8 @@ import { expect, test } from "./fixtures";
 // links do not change. Playwright's loader here fails on TypeScript type
 // annotations, so none are used.
 const LINKS = [
-    ["Privacy", "Privacy, opens in new tab"],
-    ["Terms", "Terms, opens in new tab"],
+    ["Privacy", "Privacy, opens in new tab", "Privacy Policy"],
+    ["Terms", "Terms, opens in new tab", "Terms Of Service"],
 ];
 
 async function openPopup(page) {
@@ -75,10 +75,11 @@ test.describe("Contact Us popup legal links", () => {
 });
 
 test.describe("Footer legal links", () => {
-    for (const [label] of LINKS) {
-        test(`footer "${label}" is unchanged: same tab, no label, no icon`, async ({ page }) => {
+    // Spec 081: the footer names the pages in full (Privacy Policy, Terms Of Service).
+    for (const [, , footerLabel] of LINKS) {
+        test(`footer "${footerLabel}" is unchanged: same tab, no label, no icon`, async ({ page }) => {
             await page.goto("/");
-            const link = page.locator("footer").getByRole("link", { name: label, exact: true });
+            const link = page.locator("footer").getByRole("link", { name: footerLabel, exact: true });
             await expect(link).not.toHaveAttribute("target", /.*/);
             await expect(link).not.toHaveAttribute("aria-label", /.*/);
             await expect(link.locator("svg")).toHaveCount(0);

@@ -32,8 +32,8 @@ describe("cookie declaration marker", () => {
         expect(html).not.toContain("example.com");
     });
 
-    it("is present in the real Cookies page", async () => {
-        const page = await getContentPage(["cookies"]);
+    it("is present in the real Privacy Policy page", async () => {
+        const page = await getContentPage(["privacy-policy"]);
         expect(`${page?.html}${page?.cards?.cardsHtml}`).toMatch(/<script[^>]*\bid="CookieDeclaration"/);
     });
 });
