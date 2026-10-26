@@ -51,6 +51,8 @@ and marketing.
 And looking forward to introducing you
 to other business leaders too!
 
+<!--
+
 ---
 
 ## Vision
@@ -74,3 +76,5 @@ Every business should
 - be found in Perplexity, ChatGPT, etc.
 - have agents that facilitate every level of the sales funnel
 - support the local community
+
+-->

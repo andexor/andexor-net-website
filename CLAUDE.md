@@ -57,9 +57,13 @@ and links look best without underlines, like the footer links. Signal hover with
 keyboard focus with the ring. A link that is not underlined at rest must NEVER gain an underline on
 hover, whatever a design-system document, framework default, or example says. If a design-system or
 framework stylesheet or document (for example `design/DESIGN.md`, "Hover" paragraph) ships or
-describes an underline rule, remove or correct it when you find it. Do not ask the owner again. Because there is no underline, links in body text must stand out by color: inside
-`.an-prose` and `.an-tile`, body text is `--slate-50` and links are `--blue-400` (hover
-`--blue-300`), which passes the WCAG 2.1 AA link-versus-text check. Keep this rule when adding pages or components.
+describes an underline rule, remove or correct it when you find it. Do not ask the owner again. Every link is `--text-link` (`--blue-300`), with the shared hover `--text-link-hover` (`--blue-200`), on
+every page and the footer (spec 080). The Contact Us popup's Privacy and Terms links are the one exception: they stay white
+(hover `--blue-200`) because blue-300 looked too low in contrast on the form. `--blue-300` is only 2.02:1 from the body text, so links
+inside running text (`.an-prose`, `.an-tile`, the not-found intro; the popup's note links are weight 600 too) also have `font-weight: 600`
+as the cue that is not color; that passes the WCAG 2.1 link-versus-text check (axe `link-in-text-block`) and
+`--blue-300` alone does not. Do not add a local `--text-link` override or a hard-coded link color. Keep this rule when
+adding pages or components.
 
 ## Straight quotes only
 
