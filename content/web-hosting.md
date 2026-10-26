@@ -4,14 +4,14 @@ description: Web Hosting
 layout: cards
 section: technical
 eyebrow: Technical Services
-image: /web-hosting.png
+image: /images/web-hosting.png
 image_alt: web servers running in a cloud datacenter
 cta_heading: We'll select the right infrastructure to support your needs.
 ---
 
 <!--
 
-Here is the prompt I used to create public/web-hosting.png using recraft.ai:
+Here is the prompt I used to create public/images/web-hosting.png using recraft.ai:
 
 Please create a modern 3D isometric icon illustration that represents web hosting on a cloud service.
 

@@ -3,7 +3,7 @@
 // Author: Ed Jenkins <ed@andexor.net>
 
 import AxeBuilder from "@axe-core/playwright";
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 
 // FR-025: the contact popup MUST conform to WCAG 2.1 Level AA, in both its
 // form state and its confirmation state.

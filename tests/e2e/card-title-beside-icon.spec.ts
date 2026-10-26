@@ -2,7 +2,7 @@
 // Copyright 2026 Andexor Network, Inc.
 // Author: Ed Jenkins <ed@andexor.net>
 
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 
 // Spec 050: in each home page service card the title is in the top row, to the right of the icon with a gap, centered
 // against it, left-aligned, and inside the card. These check where things are, not how many cards there are.

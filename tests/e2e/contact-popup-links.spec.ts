@@ -2,7 +2,7 @@
 // Copyright 2026 Andexor Network, Inc.
 // Author: Ed Jenkins <ed@andexor.net>
 
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 
 // Spec 062: the Privacy and Terms links in the Contact Us popup open their pages. The page headings differ from the
 // link text. Spec 065: they open in a new tab, so the popup and the typed text stay in the original tab, and the links

@@ -2,7 +2,7 @@
 // Copyright 2026 Andexor Network, Inc.
 // Author: Ed Jenkins <ed@andexor.net>
 
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 
 // Spec 006: the not-found page uses the Web Development style hero with the 404
 // image, and no card, eyebrow, or grid. It keeps the requested address (no
@@ -26,7 +26,7 @@ test.describe("Not-found page style", () => {
         const img = page.locator(".an-cardhero__art img");
         await expect(img).toBeVisible();
         const loaded = await page.evaluate(() => {
-            const found = Array.from(document.images).find((i) => i.src.endsWith("/404.png"));
+            const found = Array.from(document.images).find((i) => i.src.endsWith("/images/404.png"));
             return Boolean(found && found.complete && found.naturalWidth > 0);
         });
         expect(loaded, "404.png loaded").toBe(true);

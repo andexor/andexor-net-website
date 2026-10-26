@@ -130,7 +130,7 @@ none shows the blocks.
   pages have today; it does not ask for new work.
 - The image is a single tile of 10 columns and 6 rows of blocks, 700 by 340 units, scaled to the
   hero's height. The owner chose it for its varied block sizes, "like a spreadsheet or the big stone
-  blocks on an old city building". It is a file the owner can edit directly (`public/city-grid.svg`).
+  blocks on an old city building". It is a file the owner can edit directly (`public/images/city-grid.svg`).
 - The section is set in each page's front matter (`section: business`). The backdrops for
   Technical Services (line grid, spec 017) and Company (concentric rings) are separate from this
   spec.

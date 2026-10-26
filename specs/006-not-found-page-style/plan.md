@@ -20,7 +20,7 @@ files in `src/`, no new dependencies, and the Web Development page renders exact
 
 **Primary Dependencies**: none added
 
-**Storage**: `public/404.png` (already in the repo, 1024x1024 with transparency)
+**Storage**: `public/images/404.png` (already in the repo, 1024x1024 with transparency)
 
 **Testing**: Vitest + Testing Library (unit), Playwright + axe (e2e, six projects), ESLint. The
 e2e spec also asserts the URL stays as requested and the status is 404 (FR-013).

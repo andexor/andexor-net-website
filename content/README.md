@@ -40,7 +40,7 @@ first `##` becomes the hero lede.
 layout: cards
 section: technical
 eyebrow: Technical Services
-image: /web-development.png
+image: /images/web-development.png
 image_alt: Describe the illustration
 cta_heading: Let's talk about your project, then plan the way forward.
 ---
@@ -108,3 +108,9 @@ no dashes in copy, "and" instead of "&", sentence case headlines with no trailin
 
 Rebuild with `./build.sh`. Pages are not linked from the home page or footer automatically;
 add links when a page is ready to be used.
+
+## Cookie declaration
+
+The line `<!-- cookie-declaration -->`, alone on its own line, inserts Cookiebot's Cookie Declaration (the list of cookies and
+the control to change consent) at that spot. It is used in `cookies.md`. Use it once per page; a repeat is removed. Raw HTML
+is still dropped everywhere else.

@@ -2,7 +2,7 @@
 // Copyright 2026 Andexor Network, Inc.
 // Author: Ed Jenkins <ed@andexor.net>
 
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 
 // Spec 044: the footer's social icons are not hidden from assistive technology and carry their own names. The name is
 // on the <svg> (aria-label), not on the <a>, and no alt attribute is written anywhere (it is invalid on these elements).

@@ -3,7 +3,7 @@
 // Author: Ed Jenkins <ed@andexor.net>
 
 import AxeBuilder from "@axe-core/playwright";
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 
 // Spec 073: an optional four-line "How can we help you?" box under Website.
 async function openPopup(page) {

@@ -2,7 +2,7 @@
 // Copyright 2026 Andexor Network, Inc.
 // Author: Ed Jenkins <ed@andexor.net>
 
-import { expect, test } from "@playwright/test";
+import { expect, stubCookiebot, test } from "./fixtures";
 
 // Spec 038: the built HTML is pretty-printed, and a small script strips the whitespace that adds before React
 // hydrates. If the formatting ever breaks hydration, React logs a minified error (#418) and re-renders the page,
@@ -53,6 +53,7 @@ test.describe("Page data in an external file", () => {
     test("the Contact button works within the time budget on a slow connection", async ({ browser, browserName }) => {
         test.skip(browserName !== "chromium", "network throttling needs Chromium");
         const context = await browser.newContext();
+        await stubCookiebot(context);
         const page = await context.newPage();
         const session = await context.newCDPSession(page);
         await session.send("Network.enable");

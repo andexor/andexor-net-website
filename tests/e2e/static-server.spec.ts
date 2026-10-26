@@ -2,7 +2,7 @@
 // Copyright 2026 Andexor Network, Inc.
 // Author: Ed Jenkins <ed@andexor.net>
 
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 
 // server.ts serves the static export. Next.js chunk names contain brackets
 // (app/[...slug]/page-*.js), which arrive percent-encoded; if they are not

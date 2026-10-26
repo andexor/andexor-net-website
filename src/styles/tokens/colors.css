@@ -159,6 +159,7 @@
     --text-strong: var(--slate-50);
     --text-accent: var(--gold-400); /* brighter gold for dark surfaces */
     --text-link: var(--blue-300);
+    --text-link-hover: var(--blue-200);
 
     /* Surfaces (dark blue-blacks, lifted in steps) */
     --surface-page: #0a1322;

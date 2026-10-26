@@ -2,7 +2,7 @@
 // Copyright 2026 Andexor Network, Inc.
 // Author: Ed Jenkins <ed@andexor.net>
 
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 
 // Spec 015: Esc closes the Contact Us popup wherever focus is. Playwright's
 // loader here fails on TypeScript type annotations, so callbacks rely on

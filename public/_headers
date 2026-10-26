@@ -1,0 +1,43 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Andexor Network, Inc.
+# Author: Ed Jenkins <ed@andexor.net>
+
+# Cloudflare Workers Static Assets reads this file from the assets directory (out/) and does not serve it.
+# Next.js copies public/ to out/ at build time.
+
+# Next.js puts a content hash in every filename here (scripts, stylesheets, the combined data script), so a
+# changed file always gets a new address and the old one never needs to be fetched again. The lifetime is 30
+# days so that files from old builds do not stay in visitors' caches for a year.
+/_next/static/*
+  Cache-Control: public, max-age=2592000, immutable
+
+# Font filenames have no hash, so a changed font must be given a new filename (for example play-400-v2.woff2),
+# and the new name set in src/styles/fonts.css and src/app/layout.tsx.
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Images, logos, and icons also have no hash in their filenames. 30 days, and not immutable, so a browser still
+# revalidates on a hard reload and a replaced file shows up at the latest after 30 days.
+/images/*
+  Cache-Control: public, max-age=2592000
+
+/logo/*
+  Cache-Control: public, max-age=2592000
+
+/favicon*
+  Cache-Control: public, max-age=2592000
+
+/android-chrome-*
+  Cache-Control: public, max-age=2592000
+
+/apple-touch-icon.png
+  Cache-Control: public, max-age=2592000
+
+/mstile-*
+  Cache-Control: public, max-age=2592000
+
+/site.webmanifest
+  Cache-Control: public, max-age=2592000
+
+/browserconfig.xml
+  Cache-Control: public, max-age=2592000

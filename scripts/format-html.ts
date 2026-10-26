@@ -17,7 +17,15 @@ const TEXT_NEWLINE = "\uE001";
 /** Elements whose content is raw text (or not compared as text). */
 const RAW_ELEMENTS = ["script", "style", "noscript"];
 
-/** The script injected first in <head>. It must match `stripAddedWhitespace` below. */
+/**
+ * The Cookiebot consent script (spec 076). It must be the first element in <head> so that its automatic blocking runs
+ * before any other script, so it goes in front of the whitespace script. No async or defer.
+ */
+export const COOKIEBOT_SCRIPT =
+    '<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" ' +
+    'data-cbid="ba75dc6a-d85e-4740-891e-dd0cc31a62dd" type="text/javascript"></script>';
+
+/** The script injected in <head>, right after the Cookiebot script. It must match `stripAddedWhitespace` below. */
 export const WHITESPACE_SCRIPT = `<script>
 (function () {
     var SKIP = /^(PRE|TEXTAREA|SCRIPT|STYLE|NOSCRIPT)$/;
@@ -49,6 +57,25 @@ export const WHITESPACE_SCRIPT = `<script>
         }
     }).observe(document, { childList: true, subtree: true });
     sweep(document.documentElement);
+})();
+</script>`;
+
+/**
+ * Injected after the whitespace script. When a visitor answers the Cookiebot banner, Cookiebot hides the dialog with
+ * aria-hidden while the clicked button still has focus, and Chrome logs "Blocked aria-hidden on an element because its
+ * descendant retained focus". Taking focus off that button first (capture phase, so before Cookiebot's own handler)
+ * avoids the warning. Only the answer buttons are touched, so keyboard use of the rest of the dialog is unchanged.
+ */
+export const COOKIEBOT_FOCUS_SCRIPT = `<script>
+(function () {
+    document.addEventListener(
+        "click",
+        function (event) {
+            var button = event.target && event.target.closest && event.target.closest("#CybotCookiebotDialog button");
+            if (button && /Allow|Decline|Accept/.test(button.id) && document.activeElement === button) button.blur();
+        },
+        true
+    );
 })();
 </script>`;
 
@@ -233,8 +260,10 @@ function firstDifference(expected: string[], actual: string[]): string | null {
 /** Throws unless the original page is safe to strip and the formatted page has the same DOM as the original. */
 export function assertSameDom(original: string, formatted: string, file: string): void {
     const before = extractRegions(original);
-    // The injected script is the one intended difference; compare without it.
-    const after = extractRegions(formatted.replace(WHITESPACE_SCRIPT, ""));
+    // The two injected scripts are the intended differences; compare without them.
+    const after = extractRegions(
+        formatted.replace(COOKIEBOT_FOCUS_SCRIPT, "").replace(WHITESPACE_SCRIPT, "").replace(COOKIEBOT_SCRIPT, ""),
+    );
 
     for (const token of tokenize(before.skeleton)) {
         if (token.startsWith("<") || token.startsWith("RAW:")) continue;
@@ -345,9 +374,14 @@ export async function formatHtml(original: string, file: string): Promise<string
     });
     formatted = await restoreRegions(formatted, regions, file);
 
-    // 6. Add the whitespace script first in <head>, glued to the next tag so it adds no whitespace of its own.
-    if (!/<head>\s*/.test(formatted)) throw new Error(`${file}: no <head> to add the whitespace script to`);
-    formatted = formatted.replace(/<head>\s*/, () => `<head>${WHITESPACE_SCRIPT}`);
+    // 6. Add the Cookiebot script and then the whitespace and focus scripts first in <head>, glued to the next tag so they add no
+    // whitespace of their own.
+    if (!/<head>\s*/.test(formatted))
+        throw new Error(`${file}: no <head> to add the Cookiebot and whitespace scripts to`);
+    formatted = formatted.replace(
+        /<head>\s*/,
+        () => `<head>${COOKIEBOT_SCRIPT}${WHITESPACE_SCRIPT}${COOKIEBOT_FOCUS_SCRIPT}`,
+    );
 
     // 7. Prove the DOM is the same.
     assertSameDom(original, formatted, file);

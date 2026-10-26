@@ -2,7 +2,7 @@
 // Copyright 2026 Andexor Network, Inc.
 // Author: Ed Jenkins <ed@andexor.net>
 
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 
 // Spec 039: the card area is a grid of two equal columns, each a stack of cards in written order, and the spacing
 // and edges are what they were before the grid and flexbox columns. The numbers below were measured on the

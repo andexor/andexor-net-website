@@ -3,7 +3,7 @@
 // Author: Ed Jenkins <ed@andexor.net>
 
 import AxeBuilder from "@axe-core/playwright";
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 
 // Spec 002 SC-008 / constitution Principle III: content pages meet WCAG 2.1 AA
 // and are keyboard operable.

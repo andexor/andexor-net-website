@@ -2,7 +2,7 @@
 // Copyright 2026 Andexor Network, Inc.
 // Author: Ed Jenkins <ed@andexor.net>
 
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 
 // The site always renders the dark look, whatever the OS color-scheme
 // preference is (deliberate divergence from FR-016; see src/styles/tokens/colors.css).

@@ -9,8 +9,8 @@ import { describe, expect, it } from "vitest";
 // The Business Services hero backdrop is an SVG loaded as a CSS background
 // image. A browser silently draws nothing if the file is not valid XML (for
 // example, a double hyphen inside the header comment), so check that it parses.
-describe("public/city-grid.svg", () => {
-    const svg = fs.readFileSync(path.join(process.cwd(), "public", "city-grid.svg"), "utf8");
+describe("public/images/city-grid.svg", () => {
+    const svg = fs.readFileSync(path.join(process.cwd(), "public", "images", "city-grid.svg"), "utf8");
 
     it("is valid XML with an svg root", () => {
         const doc = new DOMParser().parseFromString(svg, "image/svg+xml");

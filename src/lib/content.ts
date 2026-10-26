@@ -207,12 +207,57 @@ function remarkTableCellLineBreaks() {
     return (tree: MdastNode) => walk(tree, false);
 }
 
+// Spec 078: the one line `<!-- cookie-declaration -->` becomes Cookiebot's Cookie Declaration script element. The element
+// is built here from the syntax tree, not copied from the page, so Markdown still cannot carry any other raw HTML.
+// Only the first marker counts; a repeat is removed. Cookiebot's script finds its element by id and adds the declaration
+// beside it, which is safe because Markdown output is not hydrated (see ContentPage).
+export const COOKIE_DECLARATION_MARKER = "<!-- cookie-declaration -->";
+export const COOKIE_DECLARATION_SRC = "https://consent.cookiebot.com/ba75dc6a-d85e-4740-891e-dd0cc31a62dd/cd.js";
+
+function remarkCookieDeclaration() {
+    return (tree: MdastNode) => {
+        let found = false;
+        const walk = (node: MdastNode): void => {
+            if (!("children" in node)) return;
+            const kept: MdastNode[] = [];
+            for (const child of node.children) {
+                if (child.type === "html" && child.value.trim() === COOKIE_DECLARATION_MARKER) {
+                    if (found) {
+                        console.warn("Skipped a repeated cookie-declaration marker: it is used once per page.");
+                        continue;
+                    }
+                    found = true;
+                    kept.push({
+                        type: "paragraph",
+                        children: [],
+                        data: {
+                            hName: "script",
+                            hProperties: {
+                                id: "CookieDeclaration",
+                                src: COOKIE_DECLARATION_SRC,
+                                type: "text/javascript",
+                                async: true,
+                            },
+                        },
+                    });
+                    continue;
+                }
+                walk(child);
+                kept.push(child);
+            }
+            node.children = kept as typeof node.children;
+        };
+        walk(tree);
+    };
+}
+
 function markdownProcessor() {
     return (
         unified()
             .use(remarkParse)
             .use(remarkGfm)
             .use(remarkTableCellLineBreaks)
+            .use(remarkCookieDeclaration)
             // Raw HTML in Markdown is dropped (not passed through) by default.
             .use(remarkRehype)
             .use(rehypeSlug)

@@ -2,7 +2,7 @@
 // Copyright 2026 Andexor Network, Inc.
 // Author: Ed Jenkins <ed@andexor.net>
 
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 
 // Specs 054 and 055: the round badge on the Request received screen holds the FontAwesome square-check, 64 by 64 pixels, in
 // --success-600, with its square layer clear and a transparent icon background, so only the check mark shows over the

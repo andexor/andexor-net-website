@@ -2,7 +2,7 @@
 // Copyright 2026 Andexor Network, Inc.
 // Author: Ed Jenkins <ed@andexor.net>
 
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 
 // Spec 010: each footer entry opens the page of the same name. Playwright's
 // loader here fails on TypeScript type annotations, so callbacks rely on
@@ -28,6 +28,15 @@ const LEGAL = [
 ];
 
 test.describe("Footer links", () => {
+    test("the Do Not Sell or Share link under the copyright line opens the Cookie Policy page", async ({ page }) => {
+        await page.goto("/");
+        await page
+            .locator("footer")
+            .getByRole("link", { name: "Do Not Sell or Share My Personal Information", exact: true })
+            .click();
+        await expect(page).toHaveURL(/\/cookies$/);
+    });
+
     for (const start of START_PAGES) {
         for (const [label, path] of PAGES) {
             test(`footer "${label}" opens ${path} from ${start}`, async ({ page }) => {

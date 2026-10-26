@@ -4,14 +4,14 @@ description: Growth Marketing
 layout: cards
 section: business
 eyebrow: Business Services
-image: /growth-marketing.png
+image: /images/growth-marketing.png
 image_alt: bar chart showing a trend of sales going up
 cta_heading: Let's expand your brand awareness in all the right channels.
 ---
 
 <!--
 
-Here is the prompt I used to create public/growth-marketing.png using recraft.ai:
+Here is the prompt I used to create public/images/growth-marketing.png using recraft.ai:
 
 Please create a modern 3D isometric icon illustration that shows a chart with an upward trend, meaning that we have achieved an increase in customers or revenue.
 

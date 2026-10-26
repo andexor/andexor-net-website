@@ -2,7 +2,7 @@
 // Copyright 2026 Andexor Network, Inc.
 // Author: Ed Jenkins <ed@andexor.net>
 
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 
 // Spec 002 FR-017 / FR-019 / SC-006: the card page reflows from 320px to 1920px.
 for (const width of [320, 768, 1920]) {

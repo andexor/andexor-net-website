@@ -2,7 +2,7 @@
 // Copyright 2026 Andexor Network, Inc.
 // Author: Ed Jenkins <ed@andexor.net>
 
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 
 // Spec 003: single-line "Andexor Network" wordmark (26px) beside the 38px mark in the
 // header and footer, one shared lockup on every page; ", Inc." only in the footer.

@@ -2,7 +2,7 @@
 // Copyright 2026 Andexor Network, Inc.
 // Author: Ed Jenkins <ed@andexor.net>
 
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 
 // Spec 035: the Send button looks like the Contact Us button, without the halo.
 // Playwright's loader in this repo fails on TypeScript type annotations, so this

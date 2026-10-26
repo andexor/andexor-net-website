@@ -4,13 +4,13 @@ description: Security Policy
 layout: cards
 section: company
 eyebrow: Company
-image: /security.png
+image: /images/security.png
 image_alt: Security Policy document with a shield
 ---
 
 <!--
 
-Here is the prompt I used to create public/security.png using recraft.ai:
+Here is the prompt I used to create public/images/security.png using recraft.ai:
 
 Please create a modern 3D isometric icon illustration that represents a Security Policy document with a shield.
 

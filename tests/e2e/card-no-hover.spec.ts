@@ -2,7 +2,7 @@
 // Copyright 2026 Andexor Network, Inc.
 // Author: Ed Jenkins <ed@andexor.net>
 
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 
 // Spec 046: a card is not a link or a button, so nothing about it changes when the pointer is over it. A link inside a
 // card still changes color on hover.

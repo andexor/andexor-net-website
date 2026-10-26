@@ -3,7 +3,7 @@
 // Author: Ed Jenkins <ed@andexor.net>
 
 import AxeBuilder from "@axe-core/playwright";
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 
 // FR-025: the homepage MUST conform to WCAG 2.1 Level AA.
 test("homepage has no WCAG 2.1 AA violations", async ({ page }) => {

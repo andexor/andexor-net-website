@@ -2,7 +2,7 @@
 // Copyright 2026 Andexor Network, Inc.
 // Author: Ed Jenkins <ed@andexor.net>
 
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 
 // User Story 2 Acceptance Scenarios 1-6, and User Story 3 Acceptance
 // Scenarios 1-2 (spec.md).

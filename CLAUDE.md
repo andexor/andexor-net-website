@@ -57,9 +57,13 @@ and links look best without underlines, like the footer links. Signal hover with
 keyboard focus with the ring. A link that is not underlined at rest must NEVER gain an underline on
 hover, whatever a design-system document, framework default, or example says. If a design-system or
 framework stylesheet or document (for example `design/DESIGN.md`, "Hover" paragraph) ships or
-describes an underline rule, remove or correct it when you find it. Do not ask the owner again. Because there is no underline, links in body text must stand out by color: inside
-`.an-prose` and `.an-tile`, body text is `--slate-50` and links are `--blue-400` (hover
-`--blue-300`), which passes the WCAG 2.1 AA link-versus-text check. Keep this rule when adding pages or components.
+describes an underline rule, remove or correct it when you find it. Do not ask the owner again. Every link is `--text-link` (`--blue-300`), with the shared hover `--text-link-hover` (`--blue-200`), on
+every page and the footer (spec 080). The Contact Us popup's Privacy and Terms links are the one exception: they stay white
+(hover `--blue-200`) because blue-300 looked too low in contrast on the form. `--blue-300` is only 2.02:1 from the body text, so links
+inside running text (`.an-prose`, `.an-tile`, the not-found intro; the popup's note links are weight 600 too) also have `font-weight: 600`
+as the cue that is not color; that passes the WCAG 2.1 link-versus-text check (axe `link-in-text-block`) and
+`--blue-300` alone does not. Do not add a local `--text-link` override or a hard-coded link color. Keep this rule when
+adding pages or components.
 
 ## Straight quotes only
 
@@ -174,8 +178,11 @@ skips `src/components/content/`.
 - Formats every built HTML page, the site stylesheet, and the site's own script chunk. The vendor chunks (React,
   Next.js, polyfills) stay minified.
 - Relies on `next.config.ts`, which puts all `src/` code in one `site-*.js` chunk and tells Next's minifier to skip it.
-- Adds one small inline script first in each page's `<head>`. React rejects the whitespace that pretty-printed HTML
-  adds between elements (hydration error #418), so the script strips it before hydration. The formatter fails the build
+- Adds the Cookiebot consent script (spec 076) first in each page's `<head>`, then one small inline script. React
+  rejects the whitespace that pretty-printed HTML adds between elements (hydration error #418), so that inline script
+  strips it before hydration. A second small inline script follows it: it takes focus off Cookiebot's answer buttons
+  on click, so Cookiebot's `aria-hidden` on the closing dialog does not trigger Chrome's "Blocked aria-hidden on an
+  element because its descendant retained focus" warning. The formatter fails the build
   if the formatted page would not have the same DOM as the original (`scripts/format-html.ts`).
 
 Rules to keep in mind:
@@ -187,6 +194,10 @@ Rules to keep in mind:
   build runs the original scripts and the new one in a sandbox and fails, naming the page, if the data differs. The
   head's inline scripts (the whitespace script and the font loader) stay inline and first, and the framework's script
   files are not touched. The site's links are ordinary links, so every click loads a page fully with its own data file.
+- The Cookie Declaration (spec 078) lives on `/cookies`: the line `<!-- cookie-declaration -->` in `content/cookies.md` is
+  turned into Cookiebot's script element by `src/lib/content.ts`, built from the syntax tree because raw HTML in Markdown
+  is still dropped. It sits inside the page's `data-raw-html` content, so React does not hydrate what Cookiebot adds beside
+  it. It is not in the footer any more; the footer only links to the page.
 - Markdown-generated HTML is rendered with `dangerouslySetInnerHTML`. Give such an element `data-raw-html=""`: the
   formatter formats its content with whitespace-safe settings, and the script leaves it alone, because a newline
   between inline elements there is a visible space.

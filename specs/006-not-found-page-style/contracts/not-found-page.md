@@ -9,7 +9,7 @@
     <section class="an-cardhero an-cardhero--solo">
       (no .an-cardhero__grid)
       <div class="an-cardhero__inner">
-        <div class="an-cardhero__art"> <img src="/404.png" alt="Gold isometric laptop ..." width=1024 height=1024> </div>
+        <div class="an-cardhero__art"> <img src="/images/404.png" alt="Gold isometric laptop ..." width=1024 height=1024> </div>
         <div class="an-cardhero__text">
           (no .an-cardhero__eyebrow)
           <h1>Page not found</h1>

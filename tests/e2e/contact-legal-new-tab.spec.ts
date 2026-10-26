@@ -2,7 +2,7 @@
 // Copyright 2026 Andexor Network, Inc.
 // Author: Ed Jenkins <ed@andexor.net>
 
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 
 // Spec 065: the Privacy and Terms links in the Contact Us popup open in a new tab, are named by an aria-label that says
 // so (with a comma, as the social icons are), and show a small hidden arrow-up-right-from-square icon just after their

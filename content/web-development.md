@@ -4,14 +4,14 @@ description: Web Development
 layout: cards
 section: technical
 eyebrow: Technical Services
-image: /web-development.png
+image: /images/web-development.png
 image_alt: a laptop showing source code with a browser window floating beside it
 cta_heading: What do you need your site, app, or agent to do? Let's make it happen.
 ---
 
 <!--
 
-Here is the prompt I used to create public/web-development.png using recraft.ai:
+Here is the prompt I used to create public/images/web-development.png using recraft.ai:
 
 Please create a modern 3D isometric icon illustration that represents web development services.
 

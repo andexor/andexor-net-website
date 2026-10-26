@@ -2,7 +2,8 @@
 // Copyright 2026 Andexor Network, Inc.
 // Author: Ed Jenkins <ed@andexor.net>
 
-import { devices, expect, test } from "@playwright/test";
+import { devices } from "@playwright/test";
+import { expect, stubCookiebot, test } from "./fixtures";
 
 // SC-004: no visual defects (overlapping text, cut-off content, unusable
 // controls) at viewport widths from 320px to 1920px wide.
@@ -28,6 +29,7 @@ for (const [name, device] of Object.entries({
 })) {
     test(`homepage and contact flow work on ${name} (device emulation)`, async ({ browser }) => {
         const context = await browser.newContext({ ...device });
+        await stubCookiebot(context);
         const page = await context.newPage();
         await page.goto("/");
 
