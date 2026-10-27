@@ -23,7 +23,7 @@ const RAW_ELEMENTS = ["script", "style", "noscript"];
  */
 export const COOKIEBOT_SCRIPT =
     '<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" ' +
-    'data-cbid="ba75dc6a-d85e-4740-891e-dd0cc31a62dd" type="text/javascript"></script>';
+    'data-cbid="ba75dc6a-d85e-4740-891e-dd0cc31a62dd" data-blockingmode="auto" type="text/javascript"></script>';
 
 /** The script injected in <head>, right after the Cookiebot script. It must match `stripAddedWhitespace` below. */
 export const WHITESPACE_SCRIPT = `<script>

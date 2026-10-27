@@ -88,6 +88,10 @@ which is the default when the attribute is left out, touches no scripts. Built l
 6 of 6 in manual mode. If the site ever adds scripts that set cookies, mark them for Cookiebot by hand
 (`type="text/plain" data-cookieconsent="..."`); do not go back to automatic mode without a test on the live domain.
 
+**Update (2026-10-27, spec 082):** automatic mode is back on. The cause above was the external data script, so spec 041
+is retired and the data scripts stay inline. FR-002 and the "no `data-blockingmode`" wording in this spec no longer
+apply; spec 082 has the current rule. `tests/e2e/cookiebot.spec.ts` now expects `data-blockingmode="auto"`.
+
 ## Success Criteria *(mandatory)*
 
 ### Measurable Outcomes

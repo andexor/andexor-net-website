@@ -4,7 +4,16 @@
 
 **Created**: 2026-10-05
 
-**Status**: Implemented
+**Status**: Implemented, then retired (see the note below)
+
+> **Note (2026-10-26): no longer needed, and it interferes with Cookiebot.** With Cookiebot's automatic blocking
+> mode (`data-blockingmode="auto"` on its script element, spec 076), the combined data script moved into
+> `out/_next/static/data/<hash>.js` makes pages fail to load. Cookiebot handles an external script after the browser
+> has finished parsing the page, and by then the framework has closed its data stream, so React starts with no page
+> data ("Connection closed") and removes the page content. Leaving the framework's small inline data scripts in
+> the page, as Next.js writes them, fixes it. The build therefore no longer combines or moves the data scripts, and
+> no `data/` files are written. Do not bring the step back while Cookiebot runs in automatic mode. The tidier page
+> source this feature gave was a convenience, not a requirement.
 
 **Input**: User description: "If it's not going to break anything, let's go ahead and add the build task to combine all of the script elements in the HTML files into a single script element. And if it's not going to break anything, let's move the script content of this new combined element into an external .js file."
 

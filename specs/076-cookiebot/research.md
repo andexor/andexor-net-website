@@ -29,6 +29,7 @@
 - **Decision**: Use the element as given, `type="text/javascript"` included, no `async`/`defer`, but without `data-blockingmode`.
 - **Rationale**: The owner supplied the element with `data-blockingmode="auto"`. The attribute was removed after launch (Cookiebot then uses its default, manual mode) because
   automatic mode delayed the page's data script and stopped hydration (spec.md, Changes after launch).
+  Reversed by spec 082: automatic mode is on again, with the data scripts inline.
 
 ## 5. Which pages
 

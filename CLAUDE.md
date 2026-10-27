@@ -190,13 +190,11 @@ skips `src/components/content/`.
 
 Rules to keep in mind:
 
-- The framework's data for each page, a dozen or more small inline scripts at the end of the body, is combined into one
-  script and moved to `out/_next/static/data/<hash>.js` (`scripts/combine-scripts.ts`, spec 041). The file is
-  formatted, named by the hash of its content, and referred to by one plain script element at the end of the body, with
-  a preload hint first in the head (it costs about 30 ms on a slow connection, without the hint about 60 ms). The
-  build runs the original scripts and the new one in a sandbox and fails, naming the page, if the data differs. The
-  head's inline scripts (the whitespace script and the font loader) stay inline and first, and the framework's script
-  files are not touched. The site's links are ordinary links, so every click loads a page fully with its own data file.
+- The framework's data for each page, a dozen or more small inline scripts at the end of the body, stays inline, as
+  Next.js writes it. Do not combine those scripts or move them to an external file (spec 041, retired): with
+  Cookiebot's automatic blocking mode (`data-blockingmode="auto"`, spec 076) an external data script runs after the
+  framework has closed its data stream, React starts with no page data ("Connection closed"), and the page goes blank.
+  `tests/unit/build-output.test.ts` fails if a built page refers to `/_next/static/data/`.
 - The Cookie Declaration (specs 078 and 081) is the last section of the Privacy Policy, `/privacy-policy`: the line
   `<!-- cookie-declaration -->` in `content/privacy-policy.md` is turned into Cookiebot's script element by
   `src/lib/content.ts`, built from the syntax tree because raw HTML in Markdown is still dropped. It sits inside the
