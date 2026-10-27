@@ -4,7 +4,7 @@
 
 **Created**: 2026-10-27
 
-**Status**: In progress. The Privacy Policy page still fails in automatic mode (see Open problem).
+**Status**: Implemented. The Privacy Policy page problem is fixed (see Open problem, fixed).
 
 **Input**: User description: "For Cookiebot, I know we tried auto mode before and it didn't work. I want to try it again.
 Edit the Cookiebot script to add data-blockingmode="auto"." Then: "It looks like the big blocker was the build script
@@ -65,16 +65,52 @@ The owner views the source of any built page and finds the Cookiebot element fir
   `scripts/combine-scripts.ts`, its tests, and the `built-data-js` file group are removed.
 - **FR-003**: `CLAUDE.md` and spec 041 MUST say the combine step is retired and why.
 - **FR-004**: A test MUST fail if a built page refers to `/_next/static/data/`.
+- **FR-005**: The Cookie Declaration script element MUST NOT be in the page HTML. The marker in
+  `content/privacy-policy.md` produces the empty slot, and the browser adds the script after hydration.
+- **FR-006**: A test MUST fail if `/privacy-policy` has the script element in its HTML, lacks the slot, or throws a
+  hydration error on load.
+- **FR-007**: Each built page MUST include `COOKIEBOT_DIALOG_SCRIPT` in `<head>`, after the Cookiebot, whitespace, and
+  focus scripts, so Cookiebot's dialog elements end up at the end of `<body>` and never in front of the page's own first
+  element. A unit test covers its behavior.
 
-## Open problem
+## Open problem, fixed
 
-`/privacy-policy` renders blank for a first-time visitor in automatic mode, in both the raw `next build` output and the
-formatted build. The page has the `<script id="CookieDeclaration">` element (spec 078 and 081) in its HTML. With that
-element removed the page loads, and in manual mode it loads. `data-cookieconsent="ignore"` on the element did not help.
-The likely fix is to add the Declaration script from the browser after hydration. Until then, automatic mode should not
-go to production without a decision on this page.
+`/privacy-policy` rendered blank for a first-time visitor in automatic mode, with React error #418 in the console. It
+happens only when the Cookiebot cookie is not set yet (only then does Cookiebot add its dialog), and it showed on this
+page because the page is large, so hydration starts late. There were two causes, and both had to be fixed. Testing the
+built page with only one fixed failed 8 of 8 loads.
+
+**Cause 1: Cookiebot's dialog goes in front of the page's first element.** Next.js puts a hidden `<div hidden>` first in
+`<body>` for the page's metadata (every page has it). Cookiebot adds its dialog and the dialog's underlay, two `<div>`
+elements, at the start of `<body>`. If that happens before React hydrates, React matches Cookiebot's first `<div>` to the
+metadata `<div>`, finds no `hidden` attribute, and throws #418. React then rebuilds the page, which drops the class on
+`<html>` that the font script added, and `body { visibility: hidden }` stays, so the page looks blank.
+The full message came from running `next dev` behind a small proxy that put the Cookiebot element first in `<head>`:
+`<div> + hidden={true} - hidden={null}`, and a log of `<body>`'s children at that moment showed the two Cookiebot
+elements first, then `DIV[hidden]`, then `DIV#top`. Next.js 15.5 offers no build setting to remove the metadata `<div>`
+from a static export.
+
+- **Fix**: a small inline script, `COOKIEBOT_DIALOG_SCRIPT` in `scripts/format-html.ts`, added to `<head>` after the focus
+  script. It watches `<body>` and moves Cookiebot's elements (ids starting `CybotCookiebot`) to the end of `<body>` as
+  soon as they are added, before React runs. It moves only a run of Cookiebot elements that leads the body, so two of them
+  never move each other. (A first version without that check made two elements move each other forever and froze the
+  tab.)
+
+**Cause 2: the Cookie Declaration script in the page HTML.** The page had
+`<script id="CookieDeclaration" src=".../cd.js" async>` inside the article. Cookiebot's `cd.js` writes the declaration
+into the page beside its own element, and that can happen before React hydrates the page, so React finds a different
+article than the server sent.
+
+- **Fix**: the page HTML holds an empty slot, `<div id="cookie-declaration-slot" data-src="...cd.js">`, and a small client
+  component, `src/components/content/CookieDeclaration.tsx`, adds the script element to the slot after hydration. This is
+  the way Cookiebot documents loading the declaration in single-page apps. Cookiebot finds the element by its id,
+  `CookieDeclaration`, as before. `data-cookieconsent="ignore"` on the element did not help.
+
+**Checked**: on `localhost:8787` (`bun run preview`) with all cookies cleared before each load, `/privacy-policy`,
+`/`, and `/web-development` loaded every time (7 of 7), with the metadata `<div>` first in `<body>` and the dialog last.
+The failure itself was reproduced only in `next dev`, where React names the element.
 
 ## Success Criteria
 
 - **SC-001**: Fresh-visitor loads of `/`, a content page, and `/nope` hydrate every time in automatic mode.
-- **SC-002**: The same for `/privacy-policy` (open).
+- **SC-002**: The same for `/privacy-policy`, which also shows the Cookie Declaration.

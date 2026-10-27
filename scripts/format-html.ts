@@ -80,6 +80,45 @@ export const COOKIEBOT_FOCUS_SCRIPT = `<script>
 </script>`;
 
 /**
+ * Injected after the focus script (spec 082). Cookiebot adds its dialog to the start of <body>, ahead of the hidden
+ * <div> Next.js puts first for the page's metadata. If that happens before React hydrates the page, React matches
+ * Cookiebot's <div> to the metadata <div>, sees a different `hidden` attribute, and throws error #418, which blanks the
+ * page. The longer the page is to hydrate (the Privacy Policy), the likelier that is, and it needs a visitor with no
+ * saved choice, because only then is the dialog added. This moves Cookiebot's elements to the end of <body> as soon as
+ * they are added, a microtask later, before React can look at the page. Only the run of Cookiebot elements at the
+ * start of <body> moves, so two of them cannot keep moving each other.
+ */
+export const COOKIEBOT_DIALOG_SCRIPT = `<script>
+(function () {
+    function isCookiebot(node) {
+        return node.nodeType === 1 && /^CybotCookiebot/.test(node.id);
+    }
+    function isBlank(node) {
+        return node.nodeType === 3 && !node.data.trim();
+    }
+    function leadsBody(node) {
+        for (var before = node.previousSibling; before; before = before.previousSibling) {
+            if (!isCookiebot(before) && !isBlank(before)) return false;
+        }
+        for (var after = node.nextSibling; after; after = after.nextSibling) {
+            if (!isCookiebot(after) && !isBlank(after)) return true;
+        }
+        return false;
+    }
+    new MutationObserver(function (records) {
+        var body = document.body;
+        if (!body) return;
+        records.forEach(function (record) {
+            if (record.target !== body) return;
+            record.addedNodes.forEach(function (node) {
+                if (isCookiebot(node) && node.parentNode === body && leadsBody(node)) body.appendChild(node);
+            });
+        });
+    }).observe(document.documentElement, { childList: true, subtree: true });
+})();
+</script>`;
+
+/**
  * What the script does to one text node: remove a newline and the indentation around it at the edges.
  * Spaces before a trailing newline are kept, because a trailing space in the original (as in "page. <a>")
  * is followed by the newline the formatter added, never preceded by one.
@@ -260,9 +299,13 @@ function firstDifference(expected: string[], actual: string[]): string | null {
 /** Throws unless the original page is safe to strip and the formatted page has the same DOM as the original. */
 export function assertSameDom(original: string, formatted: string, file: string): void {
     const before = extractRegions(original);
-    // The two injected scripts are the intended differences; compare without them.
+    // The injected scripts are the intended differences; compare without them.
     const after = extractRegions(
-        formatted.replace(COOKIEBOT_FOCUS_SCRIPT, "").replace(WHITESPACE_SCRIPT, "").replace(COOKIEBOT_SCRIPT, ""),
+        formatted
+            .replace(COOKIEBOT_DIALOG_SCRIPT, "")
+            .replace(COOKIEBOT_FOCUS_SCRIPT, "")
+            .replace(WHITESPACE_SCRIPT, "")
+            .replace(COOKIEBOT_SCRIPT, ""),
     );
 
     for (const token of tokenize(before.skeleton)) {
@@ -374,13 +417,13 @@ export async function formatHtml(original: string, file: string): Promise<string
     });
     formatted = await restoreRegions(formatted, regions, file);
 
-    // 6. Add the Cookiebot script and then the whitespace and focus scripts first in <head>, glued to the next tag so they add no
+    // 6. Add the Cookiebot script and then the whitespace, focus, and dialog scripts first in <head>, glued to the next tag so they add no
     // whitespace of their own.
     if (!/<head>\s*/.test(formatted))
         throw new Error(`${file}: no <head> to add the Cookiebot and whitespace scripts to`);
     formatted = formatted.replace(
         /<head>\s*/,
-        () => `<head>${COOKIEBOT_SCRIPT}${WHITESPACE_SCRIPT}${COOKIEBOT_FOCUS_SCRIPT}`,
+        () => `<head>${COOKIEBOT_SCRIPT}${WHITESPACE_SCRIPT}${COOKIEBOT_FOCUS_SCRIPT}${COOKIEBOT_DIALOG_SCRIPT}`,
     );
 
     // 7. Prove the DOM is the same.

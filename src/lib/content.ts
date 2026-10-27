@@ -207,11 +207,14 @@ function remarkTableCellLineBreaks() {
     return (tree: MdastNode) => walk(tree, false);
 }
 
-// Spec 078: the one line `<!-- cookie-declaration -->` becomes Cookiebot's Cookie Declaration script element. The element
-// is built here from the syntax tree, not copied from the page, so Markdown still cannot carry any other raw HTML.
-// Only the first marker counts; a repeat is removed. Cookiebot's script finds its element by id and adds the declaration
-// beside it, which is safe because Markdown output is not hydrated (see ContentPage).
+// Spec 078: the one line `<!-- cookie-declaration -->` becomes an empty slot for Cookiebot's Cookie Declaration, built
+// here from the syntax tree, not copied from the page, so Markdown still cannot carry any other raw HTML. Only the first
+// marker counts; a repeat is removed. The slot holds the script's address; the script element itself is added by the
+// browser after hydration (CookieDeclaration). If it were in the page HTML, Cookiebot's script, which adds the
+// declaration beside its element, could run before React hydrates the page, and in automatic blocking mode that is a
+// hydration mismatch (React error #418) that leaves the page blank (spec 082).
 export const COOKIE_DECLARATION_MARKER = "<!-- cookie-declaration -->";
+export const COOKIE_DECLARATION_SLOT = "cookie-declaration-slot";
 export const COOKIE_DECLARATION_SRC = "https://consent.cookiebot.com/ba75dc6a-d85e-4740-891e-dd0cc31a62dd/cd.js";
 
 function remarkCookieDeclaration() {
@@ -231,13 +234,8 @@ function remarkCookieDeclaration() {
                         type: "paragraph",
                         children: [],
                         data: {
-                            hName: "script",
-                            hProperties: {
-                                id: "CookieDeclaration",
-                                src: COOKIE_DECLARATION_SRC,
-                                type: "text/javascript",
-                                async: true,
-                            },
+                            hName: "div",
+                            hProperties: { id: COOKIE_DECLARATION_SLOT, dataSrc: COOKIE_DECLARATION_SRC },
                         },
                     });
                     continue;
