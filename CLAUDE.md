@@ -183,11 +183,15 @@ skips `src/components/content/`.
   strips it before hydration. A second small inline script follows it: it takes focus off Cookiebot's answer buttons
   on click, so Cookiebot's `aria-hidden` on the closing dialog does not trigger Chrome's "Blocked aria-hidden on an
   element because its descendant retained focus" warning. A third one (spec 082) moves Cookiebot's dialog elements
-  (ids starting `CybotCookiebot`), which Cookiebot adds at the start of `<body>`, to the end of it. Next.js puts a hidden
+  (ids starting `CybotCookiebot`), which Cookiebot adds at the start of `<body>`, to the end of it, once the browser has finished receiving the page. Next.js puts a hidden
   metadata `<div>` first in `<body>`, and if Cookiebot's `<div>` is there when React hydrates, React matches it to the
   metadata `<div>` and throws #418 (a blank page for a first-time visitor, most often on the long Privacy Policy). The
   formatter fails the build if the formatted page would not have the same DOM as the original
   (`scripts/format-html.ts`).
+- Puts an HTML comment directly before each of the footer's two cookie links (spec 083): `<!-- For GDPR -->` before Privacy
+  Settings and `<!-- For CCPA -->` before Do Not Sell or Share My Personal Information. React cannot write HTML comments, so
+  `addPrivacyComments` in `scripts/format-html.ts` adds them to the raw page before it is formatted, and the build fails,
+  naming the page, if either link is not found exactly once. Both links are the same `PrivacySettingsLink` component.
 - Removes the React Server Components payload Next writes beside each page (`about-us.txt` beside `about-us.html`).
   The site's links are ordinary anchors, so nothing requests them. A `.txt` file with no page of the same name
   (`robots.txt`, `.well-known/security.txt`) stays.
@@ -206,7 +210,7 @@ Rules to keep in mind:
   slot after hydration. Put in the HTML, Cookiebot's script can change the page before React hydrates it, and in
   automatic blocking mode that is React error #418 and a blank page for a visitor with no saved choice. The slot sits
   inside the page's `data-raw-html` content, so React does not touch what Cookiebot adds there. It is not in the footer
-  any more; the footer's Do Not Sell or Share link opens that section, and its Privacy Settings link reopens the banner.
+  any more; the footer's Do Not Sell or Share link and its Privacy Settings link both reopen the Cookiebot banner (spec 083).
 - Markdown-generated HTML is rendered with `dangerouslySetInnerHTML`. Give such an element `data-raw-html=""`: the
   formatter formats its content with whitespace-safe settings, and the script leaves it alone, because a newline
   between inline elements there is a visible space.

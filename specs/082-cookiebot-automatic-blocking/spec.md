@@ -114,3 +114,13 @@ The failure itself was reproduced only in `next dev`, where React names the elem
 
 - **SC-001**: Fresh-visitor loads of `/`, a content page, and `/nope` hydrate every time in automatic mode.
 - **SC-002**: The same for `/privacy-policy`, which also shows the Cookie Declaration.
+
+## Update (2026-10-27): the dialog can arrive while the page is still being received
+
+The first version of the dialog script moved Cookiebot's elements to the end of `<body>` as soon as they were added. If
+Cookiebot added them before the browser had received the rest of the page (a slow connection, a long page such as the
+Privacy Policy), the body was empty or short at that moment: the script left them where they were, or moved them to the
+end of what had arrived, and the rest of the page was then added after them. React found the dialog where it expected
+page content and threw #418, on some loads only. Reproduced by serving the page in two parts 1.5 seconds apart (3 of 3
+loads failed). The script now waits for the end of parsing (`DOMContentLoaded`) before it moves anything (5 of 5 loads
+pass with the same delay).

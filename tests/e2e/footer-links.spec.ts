@@ -40,26 +40,44 @@ async function countRenewCalls(page) {
 }
 
 test.describe("Footer links", () => {
-    test("the Do Not Sell or Share link under the copyright line opens the Cookie Declaration section of the Privacy Policy", async ({
-        page,
-    }) => {
+    test("Do Not Sell or Share reopens the cookie banner and does not move the page", async ({ page }) => {
+        await countRenewCalls(page);
         await page.goto("/");
+        const link = page
+            .locator("footer")
+            .getByRole("link", { name: "Do Not Sell or Share My Personal Information", exact: true });
+        await link.scrollIntoViewIfNeeded();
+        const before = await page.evaluate(() => window.scrollY);
+        expect(before).toBeGreaterThan(0);
+        await link.click();
+        expect(await page.evaluate(() => window.__renewCalls)).toBe(1);
+        await expect(page).toHaveURL(/\/$/);
+        expect(await page.evaluate(() => window.scrollY)).toBe(before);
+    });
+
+    test("Do Not Sell or Share works from the keyboard", async ({ page }) => {
+        await countRenewCalls(page);
+        await page.goto("/web-development");
         await page
             .locator("footer")
             .getByRole("link", { name: "Do Not Sell or Share My Personal Information", exact: true })
-            .click();
-        await expect(page).toHaveURL(/\/privacy-policy#.+$/);
-        // The fragment must name a heading on the page, so the visitor lands on the declaration and not at the top.
-        const target = await page.evaluate(() => {
-            const id = decodeURIComponent(location.hash.slice(1));
-            const element = document.getElementById(id);
-            return element ? { tag: element.tagName, text: element.textContent } : null;
-        });
-        expect(target).not.toBeNull();
-        expect(target?.tag).toBe("H2");
-        expect(target?.text).toContain("Cookie Declaration");
-        await expect(page.locator("script#CookieDeclaration")).toHaveCount(1);
+            .focus();
+        await page.keyboard.press("Enter");
+        expect(await page.evaluate(() => window.__renewCalls)).toBe(1);
+        await expect(page).toHaveURL(/\/web-development$/);
     });
+
+    // Spec 083: the built pages carry an HTML comment directly before each cookie link. The raw HTML is read, because
+    // the browser does not show comments.
+    for (const route of ["/", "/web-development", "/privacy-policy", "/nope"]) {
+        test(`${route}: has the For GDPR and For CCPA comments directly before their links`, async ({ request }) => {
+            const html = await (await request.get(route)).text();
+            expect(html).toMatch(/<!-- For GDPR -->\s*<a\b[^>]*>\s*Privacy Settings\s*<\/a>/);
+            expect(html).toMatch(
+                /<!-- For CCPA -->\s*<a\b[^>]*>\s*Do Not Sell or Share My Personal Information\s*<\/a>/,
+            );
+        });
+    }
 
     test("the Company column lists its links in order", async ({ page }) => {
         await page.goto("/");

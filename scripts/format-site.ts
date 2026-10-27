@@ -9,7 +9,7 @@
 import { readdir, readFile, unlink, writeFile } from "node:fs/promises";
 import { join, relative } from "node:path";
 import { format } from "prettier";
-import { formatHtml } from "./format-html";
+import { addPrivacyComments, formatHtml } from "./format-html";
 import { fileGroup } from "./site-files";
 
 const ROOT = join(import.meta.dir, "..");
@@ -35,11 +35,12 @@ function removeFrameworkNoindex(html: string, name: string): string {
     return html.replace(FRAMEWORK_NOINDEX, "");
 }
 
-// One built page: format it. The framework's data scripts stay inline, where Next.js wrote them: Cookiebot's automatic
-// blocking mode breaks a page whose data script is an external file (spec 041, retired).
+// One built page: add the footer comments (spec 083), then format it. The framework's data scripts stay inline, where
+// Next.js wrote them: Cookiebot's automatic blocking mode breaks a page whose data script is an external file (spec 041,
+// retired).
 async function formatPage(source: string, name: string): Promise<string> {
     const original = name === "out/404.html" ? removeFrameworkNoindex(source, name) : source;
-    return formatHtml(original, name);
+    return formatHtml(addPrivacyComments(original, name), name);
 }
 
 // Next.js writes a React Server Components payload beside each page (`about-us.txt` beside `about-us.html`) for

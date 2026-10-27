@@ -3,7 +3,13 @@
 // Author: Ed Jenkins <ed@andexor.net>
 
 import { describe, expect, it } from "vitest";
-import { WHITESPACE_SCRIPT, assertSameDom, formatHtml, plainQuotes } from "../../scripts/format-html";
+import {
+    WHITESPACE_SCRIPT,
+    addPrivacyComments,
+    assertSameDom,
+    formatHtml,
+    plainQuotes,
+} from "../../scripts/format-html";
 
 // Rules from specs/038-readable-generated-code/contracts/formatting-rules.md, applied to a small page shaped like
 // the Next.js output (one line, no whitespace between elements).
@@ -34,5 +40,34 @@ describe("plain quotes", () => {
         expect(output).toContain(`alt="it's"`);
         expect(output).not.toContain(ESCAPED_APOSTROPHE);
         expect(output).not.toContain("&quot;");
+    });
+});
+
+// Spec 083: the footer's two cookie links get a comment each, directly before the link.
+describe("addPrivacyComments", () => {
+    const PRIVACY = '<a href="#" class="an-footer__col-link">Privacy Settings</a>';
+    const DO_NOT_SELL = '<a href="#" class="an-footer__legal-link">Do Not Sell or Share My Personal Information</a>';
+    const page = (body: string) => `<html><head></head><body>${body}</body></html>`;
+    const both = page(`<footer>${DO_NOT_SELL}<ul><li>${PRIVACY}</li></ul></footer>`);
+
+    it("puts each comment directly before its link and changes nothing else", () => {
+        expect(addPrivacyComments(both, "a.html")).toBe(
+            page(`<footer><!-- For CCPA -->${DO_NOT_SELL}<ul><li><!-- For GDPR -->${PRIVACY}</li></ul></footer>`),
+        );
+    });
+
+    it("leaves the same words in the framework's data scripts alone", () => {
+        const withData = both.replace("</body>", '<script>self.__next_f.push([1,"Privacy Settings"])</script></body>');
+        expect(addPrivacyComments(withData, "a.html")).toContain(
+            '<script>self.__next_f.push([1,"Privacy Settings"])</script>',
+        );
+        expect(addPrivacyComments(withData, "a.html").match(/For GDPR/g)).toHaveLength(1);
+    });
+
+    it("stops the build, naming the page, when a link is missing or repeated", () => {
+        expect(() => addPrivacyComments(page(DO_NOT_SELL), "missing.html")).toThrow("missing.html");
+        expect(() => addPrivacyComments(page(`${DO_NOT_SELL}${PRIVACY}${PRIVACY}`), "twice.html")).toThrow(
+            "twice.html",
+        );
     });
 });

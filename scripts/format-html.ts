@@ -105,18 +105,45 @@ export const COOKIEBOT_DIALOG_SCRIPT = `<script>
         }
         return false;
     }
-    new MutationObserver(function (records) {
+    // Cookiebot can add its elements while the browser is still receiving the page. Moving them to the end of <body>
+    // then would leave them in the middle of it, because the rest of the page is added after them. So the move waits
+    // for the end of parsing and takes whatever Cookiebot has put at the start by then.
+    function move() {
         var body = document.body;
-        if (!body) return;
-        records.forEach(function (record) {
-            if (record.target !== body) return;
-            record.addedNodes.forEach(function (node) {
-                if (isCookiebot(node) && node.parentNode === body && leadsBody(node)) body.appendChild(node);
-            });
+        if (!body || document.readyState === "loading") return;
+        Array.prototype.slice.call(body.childNodes).forEach(function (node) {
+            if (isCookiebot(node) && leadsBody(node)) body.appendChild(node);
         });
+    }
+    document.addEventListener("DOMContentLoaded", move);
+    new MutationObserver(function (records) {
+        if (records.some(function (record) { return record.target === document.body; })) move();
     }).observe(document.documentElement, { childList: true, subtree: true });
 })();
 </script>`;
+
+/**
+ * Spec 083: puts `<!-- For GDPR -->` directly before the Privacy Settings link and `<!-- For CCPA -->` directly before
+ * the Do Not Sell or Share My Personal Information link, so the page source says which law each one serves. React cannot
+ * write an HTML comment, so this runs on the raw built page before it is formatted, and the DOM check in `formatHtml`
+ * then sees the comments on both sides. Only an `<a>` start tag is matched, so the same words in the framework's data
+ * scripts are left alone. Each link must be found exactly once, or the build stops and names the page.
+ */
+const PRIVACY_COMMENTS: ReadonlyArray<{ text: string; comment: string }> = [
+    { text: "Privacy Settings", comment: "<!-- For GDPR -->" },
+    { text: "Do Not Sell or Share My Personal Information", comment: "<!-- For CCPA -->" },
+];
+
+export function addPrivacyComments(html: string, file: string): string {
+    let result = html;
+    for (const { text, comment } of PRIVACY_COMMENTS) {
+        const link = new RegExp(`<a\\b[^>]*>${text}</a>`, "g");
+        const found = result.match(link)?.length ?? 0;
+        if (found !== 1) throw new Error(`${file}: expected 1 "${text}" link, found ${found}`);
+        result = result.replace(link, (match) => `${comment}${match}`);
+    }
+    return result;
+}
 
 /**
  * What the script does to one text node: remove a newline and the indentation around it at the edges.

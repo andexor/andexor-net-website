@@ -56,4 +56,20 @@ describe("Cookiebot dialog script", () => {
         await tick();
         expect(ids()).toEqual(["something-else", "div", "top", "script", "CybotCookiebotDialog"]);
     });
+
+    it("waits until the browser has finished receiving the page, then moves the dialog", async () => {
+        let state = "loading";
+        Object.defineProperty(document, "readyState", { get: () => state, configurable: true });
+        try {
+            addAtStart("CybotCookiebotDialog");
+            await tick();
+            expect(ids()[0]).toBe("CybotCookiebotDialog");
+            state = "interactive";
+            document.dispatchEvent(new Event("DOMContentLoaded"));
+            expect(ids().slice(0, 2)).toEqual(["div", "top"]);
+            expect(ids().at(-1)).toBe("CybotCookiebotDialog");
+        } finally {
+            delete (document as { readyState?: string }).readyState;
+        }
+    });
 });
