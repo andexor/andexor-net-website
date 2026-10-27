@@ -151,12 +151,6 @@ Lead Data is not a "consumer report." We do not provide it, and our clients may 
 
 <!--
 
-We qualify Lead Data by checking that it is accurate and current, removing duplicates, removing anyone who has opted out, removing records for people or businesses located in California, Oregon, Texas, or Vermont from anything we deliver to clients, and assessing fit.
-
--->
-
-<!--
-
 TODO: Review this as you do more verification over time.
 
 -->
