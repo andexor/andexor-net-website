@@ -15,9 +15,25 @@ export function CookieDeclaration() {
         const slot = document.getElementById("cookie-declaration-slot");
         const src = slot?.getAttribute("data-src");
         if (!slot || !src || document.getElementById("CookieDeclaration")) return;
+
+        const toTrustedCookieDeclarationSrc = (value: string): string | null => {
+            try {
+                const url = new URL(value, window.location.origin);
+                const isHttps = url.protocol === "https:";
+                const isTrustedHost = url.hostname === "consent.cookiebot.com";
+                const isTrustedPath = url.pathname === "/uc.js";
+                return isHttps && isTrustedHost && isTrustedPath ? url.toString() : null;
+            } catch {
+                return null;
+            }
+        };
+
+        const trustedSrc = toTrustedCookieDeclarationSrc(src);
+        if (!trustedSrc) return;
+
         const script = document.createElement("script");
         script.id = "CookieDeclaration";
-        script.src = src;
+        script.src = trustedSrc;
         script.type = "text/javascript";
         script.async = true;
         slot.appendChild(script);
