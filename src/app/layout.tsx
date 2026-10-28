@@ -5,6 +5,7 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { ContactProvider } from "@/components/contact/ContactProvider";
+import { CookiebotEscape } from "@/components/marketing/CookiebotEscape";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import "../styles/globals.css";
@@ -93,6 +94,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                 </noscript>
             </head>
             <body>
+                <CookiebotEscape />
                 <ContactProvider>{children}</ContactProvider>
             </body>
         </html>
