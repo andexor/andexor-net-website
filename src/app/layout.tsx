@@ -15,9 +15,9 @@ config.autoAddCss = false;
 
 export const metadata: Metadata = {
     // The defaults are the home page's (specs 028, 029): the title and meta
-    // description are the headline text, and the title adds " | Andexor Network".
+    // description are both the headline text.
     // The not-found page and the content pages set their own.
-    title: "Enterprise services for small business | Andexor Network",
+    title: "Enterprise services for small business",
     description: "Enterprise services for small business",
     manifest: "/site.webmanifest",
     icons: {
