@@ -6,12 +6,10 @@ import fs from "node:fs";
 import path from "node:path";
 import { expect, test } from "./fixtures";
 
-// Specs 028, 029, 030: on every page the title is the H1 text followed by
-// " | Andexor Network", the meta description is the H1 text, and only the
+// Specs 028, 029, 030: on every page the title and the meta description are the H1 text, and only the
 // not-found page tells search engines not to index it. Playwright's loader
 // here fails on TypeScript type annotations, so callbacks rely on contextual
 // typing.
-const SUFFIX = " | Andexor Network";
 const contentDir = path.join(process.cwd(), "content");
 const contentRoutes = fs
     .readdirSync(contentDir)
@@ -26,7 +24,7 @@ test.describe("Page metadata", () => {
             await page.goto(route);
             const h1 = ((await page.getByRole("heading", { level: 1 }).first().textContent()) ?? "").trim();
             expect(h1).not.toBe("");
-            await expect(page).toHaveTitle(h1 + SUFFIX);
+            await expect(page).toHaveTitle(h1);
             await expect(page.locator('meta[name="description"]')).toHaveAttribute("content", h1);
         });
 

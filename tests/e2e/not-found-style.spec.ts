@@ -14,7 +14,7 @@ test.describe("Not-found page style", () => {
         page,
     }) => {
         await page.goto("/nope");
-        await expect(page).toHaveTitle("Page not found | Andexor Network");
+        await expect(page).toHaveTitle("Page not found");
         await expect(page.getByRole("heading", { level: 1, name: "Page not found" })).toBeVisible();
         await expect(page.getByText("We could not find that page.")).toBeVisible();
         await expect(page.locator(".an-content-header").getByRole("link", { name: "Andexor Network" })).toHaveAttribute(

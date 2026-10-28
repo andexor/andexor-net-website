@@ -7,7 +7,7 @@ import { ContentPage } from "@/components/content/ContentPage";
 import { RemoveFrameworkNoindex } from "@/components/content/RemoveFrameworkNoindex";
 
 export const metadata: Metadata = {
-    title: "Page not found | Andexor Network",
+    title: "Page not found",
     description: "Page not found",
     // Every unknown address is served by this page, so keep them out of search
     // results (spec 030). Renders <meta name="robots" content="noindex, nofollow">.

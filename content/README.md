@@ -23,8 +23,8 @@ draft: true
 ---
 ```
 
-- `title`: browser tab title. Write the same text as the page's `# Heading`; the site adds
-  " | Andexor Network" after it. Defaults to the first `# Heading`, then to the file name.
+- `title`: browser tab title. Write the same text as the page's `# Heading`.
+  Defaults to the first `# Heading`, then to the file name.
 - `description`: meta description. For search results, write the same text as the page's `# Heading`.
   Optional.
 - `draft: true`: skips the page entirely until you remove the line.
