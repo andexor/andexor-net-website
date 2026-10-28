@@ -8,7 +8,7 @@ import { COOKIEBOT_DIALOG_SCRIPT } from "../../scripts/format-html";
 // Spec 082: Cookiebot adds its dialog to the start of <body>. If React has not hydrated yet, it matches that element to
 // the hidden <div> Next.js puts first and fails with error #418. The injected script moves Cookiebot's elements to the
 // end of <body> as they are added.
-const code = COOKIEBOT_DIALOG_SCRIPT.replace(/^<script>/, "").replace(/<\/script>$/, "");
+const code = COOKIEBOT_DIALOG_SCRIPT.replace(/^<script>/i, "").replace(/<\/script>$/i, "");
 
 const tick = () => new Promise((resolve) => setTimeout(resolve, 0));
 const ids = () => Array.from(document.body.children).map((element) => element.id || element.tagName.toLowerCase());
