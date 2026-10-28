@@ -11,22 +11,17 @@ import { randomExampleName } from "./example-names";
 import { LOGO_ALT } from "@/components/marketing/Logo";
 import { Button } from "@/components/ui/Button";
 import { Input, Textarea } from "@/components/ui/Input";
+import { type ContactRequest, sendContactRequest } from "@/lib/contact-service";
 
-export interface ContactRequest {
-    name: string;
-    email: string;
-    phone: string;
-    website: string;
-    help: string;
-    // Spec 071: the path of the page that opened the popup, not entered by the visitor.
-    sourcePath: string;
-}
+export type { ContactRequest };
 
 export interface ContactPopupProps {
     open: boolean;
     onClose: () => void;
     sourcePath?: string;
-    onSubmit?: (request: ContactRequest) => void;
+    // Spec 087: delivers the request. Resolving means delivered; rejecting means failed. The default posts to the
+    // contact service (specs/087-contact-form-submit/contracts/ui-contract.md).
+    onSubmit?: (request: ContactRequest) => Promise<void> | void;
 }
 
 const FOCUSABLE =
@@ -39,22 +34,73 @@ function FullNameInput() {
     return <Input name="name" label="Name" autoComplete="name" placeholder={exampleName} required autoFocus />;
 }
 
+// Spec 087: resolves once the form's Send button is drawn in its normal, unpressed state. It waits while the
+// button matches :active (mouse button or finger down) or an activation key is held, then one more frame so the
+// unpressed state has been painted before the request leaves. Chrome fires click on Enter keydown, so submit can
+// run while Enter is still held; Space fires on keyup. Resolves at once if the form is gone (the popup closed).
+function whenReleased(form: HTMLFormElement, keyHeld: () => boolean): Promise<void> {
+    return new Promise((resolve) => {
+        function check() {
+            const button = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+            if (form.isConnected && ((button !== null && button.matches(":active")) || keyHeld())) {
+                requestAnimationFrame(check);
+                return;
+            }
+            requestAnimationFrame(() => resolve());
+        }
+        requestAnimationFrame(check);
+    });
+}
+
 // Implements the props/state/behavior contract from
-// specs/001-homepage-contact-us/contracts/ui-contracts.md.
-export function ContactPopup({ open, onClose, sourcePath = "/", onSubmit }: ContactPopupProps) {
+// specs/001-homepage-contact-us/contracts/ui-contracts.md, as amended by
+// specs/087-contact-form-submit/contracts/ui-contract.md.
+export function ContactPopup({ open, onClose, sourcePath = "/", onSubmit = sendContactRequest }: ContactPopupProps) {
     const [sent, setSent] = useState(false);
     const [submitting, setSubmitting] = useState(false);
+    const [failed, setFailed] = useState(false);
     const formRef = useRef<HTMLFormElement>(null);
     const panelRef = useRef<HTMLDivElement>(null);
+    // Spec 087: set from the moment Send is activated until the send settles, so a second activation during the
+    // release wait is ignored (spec 001 FR-023 asks for no duplicate submissions).
+    const busyRef = useRef(false);
+    // The request in flight, aborted when the popup closes so a late answer changes nothing (spec 087 FR-008).
+    const controllerRef = useRef<AbortController | null>(null);
+    // Whether Enter or Space is held, for whenReleased.
+    const activationKeyDownRef = useRef(false);
 
     // FR-013: reopening the popup always resets to the empty form state.
     // FR-023: the submit control must be enabled whenever the popup opens.
+    // Spec 087: closing abandons a request in flight.
     useEffect(() => {
         if (open) {
             setSent(false);
             setSubmitting(false);
+            setFailed(false);
             formRef.current?.reset();
+            return;
         }
+        controllerRef.current?.abort();
+        controllerRef.current = null;
+        busyRef.current = false;
+    }, [open]);
+
+    useEffect(() => () => controllerRef.current?.abort(), []);
+
+    // Spec 087: tracks the activation keys while the popup is open, for whenReleased.
+    useEffect(() => {
+        if (!open) return;
+        function track(event: KeyboardEvent) {
+            if (event.key !== "Enter" && event.key !== " ") return;
+            activationKeyDownRef.current = event.type === "keydown";
+        }
+        document.addEventListener("keydown", track);
+        document.addEventListener("keyup", track);
+        return () => {
+            activationKeyDownRef.current = false;
+            document.removeEventListener("keydown", track);
+            document.removeEventListener("keyup", track);
+        };
     }, [open]);
 
     // Spec 036: when the confirmation appears, OK gets the focus. It is done here
@@ -129,13 +175,14 @@ export function ContactPopup({ open, onClose, sourcePath = "/", onSubmit }: Cont
         return null;
     }
 
-    function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    async function handleSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        // FR-023: disable the submit control immediately on a valid "Send"
-        // activation to prevent duplicate submissions.
-        setSubmitting(true);
+        if (busyRef.current) return;
+        busyRef.current = true;
+        setFailed(false);
 
-        const formData = new FormData(event.currentTarget);
+        const form = event.currentTarget;
+        const formData = new FormData(form);
         const request: ContactRequest = {
             name: String(formData.get("name") ?? ""),
             email: String(formData.get("email") ?? ""),
@@ -145,10 +192,37 @@ export function ContactPopup({ open, onClose, sourcePath = "/", onSubmit }: Cont
             sourcePath: String(formData.get("sourcePath") ?? ""),
         };
 
-        // FR-018: no network request is made; this demonstrates the full
-        // request/confirmation experience client-side only.
-        onSubmit?.(request);
-        setSent(true);
+        // Spec 087 FR-003: the visitor sees Send come back up before anything is sent. Send stays enabled and
+        // drawn normal during this wait; busyRef keeps a second activation out.
+        await whenReleased(form, () => activationKeyDownRef.current);
+        if (!form.isConnected) {
+            // Closed during the wait: nothing is sent.
+            busyRef.current = false;
+            return;
+        }
+
+        // Spec 001 FR-023: Send is disabled while the request is in flight. A disabled button never looks
+        // pressed (.an-btn:disabled sets transform: none, and the pressed rule is :not(:disabled):active).
+        setSubmitting(true);
+        const controller = new AbortController();
+        controllerRef.current = controller;
+        try {
+            // Spec 087 FR-002: the confirmation follows a 200 from the service, nothing less.
+            if (onSubmit === sendContactRequest) await sendContactRequest(request, controller.signal);
+            else await onSubmit(request);
+            if (controller.signal.aborted) return;
+            setSent(true);
+        } catch {
+            // Spec 087 FR-005: keep the form and the entries, say so, and let the visitor try again.
+            if (controller.signal.aborted) return;
+            setSubmitting(false);
+            setFailed(true);
+        } finally {
+            if (controllerRef.current === controller) {
+                controllerRef.current = null;
+                busyRef.current = false;
+            }
+        }
     }
 
     return (
@@ -228,6 +302,12 @@ export function ContactPopup({ open, onClose, sourcePath = "/", onSubmit }: Cont
                                 <FontAwesomeIcon icon={faArrowUpRightFromSquare} aria-hidden="true" />
                             </span>
                         </p>
+                        {/* Spec 087: shown only after a failed send. role="alert" announces it without moving focus. */}
+                        {failed && (
+                            <p role="alert" className="an-contact-form__note an-contact-form__error">
+                                We could not send your request. Please try again.
+                            </p>
+                        )}
                         <Button type="submit" variant="accent" size="lg" disabled={submitting}>
                             Send
                         </Button>

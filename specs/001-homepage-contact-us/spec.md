@@ -56,6 +56,14 @@
   when the popup is closed, and while the "Primary need" list is expanded the first Esc closes only
   the list.
 
+### 2026-10-28 (see `specs/087-contact-form-submit/spec.md`)
+
+- The Contact Us form now sends the Contact Request to `https://andexor.net/api/contact`, handled by a web service in a separate
+  repository, and shows "Request received" only after the service answers with status 200 (FR-018 superseded,
+  SC-003 re-verified). Send is drawn in its normal, unpressed state before the request is sent. A failed send
+  keeps the form and the visitor's entries, shows a short message, and enables Send again. FR-023 now does real
+  work.
+
 ## Clarifications
 
 ### Session 2026-09-28
