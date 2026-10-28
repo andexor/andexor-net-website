@@ -128,6 +128,18 @@ user adds and edits these files themselves; do not convert them to hand-written 
 Authoring rules are in `content/README.md`. Content pages are intentionally not linked from the
 home page or footer until the user says a page is ready.
 
+## Contact service
+
+The Contact Us form posts each valid submission to the fully-qualified address `https://andexor.net/api/contact`
+(spec 087), a web service in a separate repository. `src/lib/contact-service.ts` is the only place that spells the
+address out; the request and answer the two sides agree on are in
+`specs/087-contact-form-submit/contracts/contact-service.md`. Only a 200 answer shows "Request received"; anything
+else keeps the form, shows a message, and lets the visitor retry. Before the request leaves, the popup waits until
+Send is no longer pressed and a frame has been painted, so the visitor sees the button come back up. Tests answer the
+address themselves (`stubContactService` in `tests/e2e/fixtures.ts`, promises or a stubbed `fetch` in unit tests) and
+must never reach the live service. A send from a local run that is not under test does reach the live service and
+creates a real contact request, so use a recognizable name when testing by hand.
+
 ## Sizing FontAwesome icons
 
 FontAwesome's stylesheet (imported unmodified in `src/app/layout.tsx`) gives every icon `height: 1em` and

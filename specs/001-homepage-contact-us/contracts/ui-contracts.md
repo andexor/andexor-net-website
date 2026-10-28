@@ -62,3 +62,6 @@ Mirrors the design reference (`design/ui_kits/marketing-site/ContactUs.jsx.txt`)
 to a real destination (CRM, email, etc.). This feature ships without wiring anything to it
 (consistent with FR-018); a future feature can add a consumer of `onSubmit` without changing
 `ContactPopup`'s public contract.
+
+Spec 087 did this: `onSubmit` now delivers the request and returns a promise, with a default sender. See
+`specs/087-contact-form-submit/contracts/ui-contract.md`.

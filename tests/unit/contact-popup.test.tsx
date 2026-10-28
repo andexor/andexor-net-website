@@ -2,9 +2,9 @@
 // Copyright 2026 Andexor Network, Inc.
 // Author: Ed Jenkins <ed@andexor.net>
 
-import { createEvent, fireEvent, render, screen } from "@testing-library/react";
+import { createEvent, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { describe, expect, it, vi } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import { EXAMPLE_NAMES } from "@/components/contact/example-names";
 import { ContactPopup } from "@/components/contact/ContactPopup";
 
@@ -13,6 +13,22 @@ function fillValidForm() {
     fireEvent.change(screen.getByLabelText("Email"), { target: { value: "jordan@example.com" } });
     fireEvent.change(screen.getByLabelText("Phone"), { target: { value: "+1 212 555 0100" } });
     fireEvent.change(screen.getByLabelText("Website"), { target: { value: "example.com" } });
+}
+
+// Spec 087: Send delivers the request through onSubmit and waits for it. A test that presses Send passes one of
+// these, so no test reaches the real sender. `delivered` stands in for the service's 200.
+const delivered = () => vi.fn(() => Promise.resolve());
+const confirmation = () => screen.findByRole("heading", { name: "Request received" });
+
+// A promise the test settles itself, to look at the popup while a send is in flight.
+function deferred() {
+    let resolve!: () => void;
+    let reject!: (reason: Error) => void;
+    const promise = new Promise<void>((res, rej) => {
+        resolve = res;
+        reject = rej;
+    });
+    return { promise, resolve, reject };
 }
 
 describe("ContactPopup", () => {
@@ -32,13 +48,14 @@ describe("ContactPopup", () => {
         expect(screen.queryByLabelText("Primary need")).toBeNull();
     });
 
-    it("calls onSubmit and shows the confirmation on a valid submit, without any network request", () => {
-        const onSubmit = vi.fn();
+    it("delivers a valid submit through onSubmit and shows the confirmation once it resolves", async () => {
+        const onSubmit = delivered();
         render(<ContactPopup open onClose={vi.fn()} onSubmit={onSubmit} />);
 
         fillValidForm();
         fireEvent.click(screen.getByRole("button", { name: "Send" }));
 
+        await confirmation();
         expect(onSubmit).toHaveBeenCalledWith({
             name: "Jordan Reyes",
             email: "jordan@example.com",
@@ -47,12 +64,11 @@ describe("ContactPopup", () => {
             help: "",
             sourcePath: "/",
         });
-        expect(screen.getByRole("heading", { name: "Request received" })).toBeInTheDocument();
     });
 
     // Spec 071: a hidden field carries the path of the page that opened the popup.
-    it("sends the source path it was given, in a hidden field with no label", () => {
-        const onSubmit = vi.fn();
+    it("sends the source path it was given, in a hidden field with no label", async () => {
+        const onSubmit = delivered();
         render(<ContactPopup open onClose={vi.fn()} onSubmit={onSubmit} sourcePath="/web-development" />);
 
         const hidden = document.querySelector<HTMLInputElement>('input[name="sourcePath"]');
@@ -63,6 +79,7 @@ describe("ContactPopup", () => {
         fillValidForm();
         fireEvent.click(screen.getByRole("button", { name: "Send" }));
 
+        await confirmation();
         expect(onSubmit).toHaveBeenCalledWith(expect.objectContaining({ sourcePath: "/web-development" }));
     });
 
@@ -78,11 +95,11 @@ describe("ContactPopup", () => {
         expect(onSubmit).not.toHaveBeenCalled();
     });
 
-    it("resets to the empty form state whenever the popup (re)opens", () => {
-        const { rerender } = render(<ContactPopup open onClose={vi.fn()} />);
+    it("resets to the empty form state whenever the popup (re)opens", async () => {
+        const { rerender } = render(<ContactPopup open onClose={vi.fn()} onSubmit={delivered()} />);
         fillValidForm();
         fireEvent.click(screen.getByRole("button", { name: "Send" }));
-        expect(screen.getByRole("heading", { name: "Request received" })).toBeInTheDocument();
+        await confirmation();
 
         // Close, then reopen.
         rerender(<ContactPopup open={false} onClose={vi.fn()} />);
@@ -159,20 +176,22 @@ describe("ContactPopup", () => {
         expect(head.querySelector(".an-field__counter")).toHaveTextContent("5/250");
     });
 
-    it("sends the help text in the request, empty when left blank", () => {
-        const onSubmit = vi.fn();
+    it("sends the help text in the request, empty when left blank", async () => {
+        const onSubmit = delivered();
         render(<ContactPopup open onClose={vi.fn()} onSubmit={onSubmit} />);
         fillValidForm();
         fireEvent.change(screen.getByLabelText("How can we help you?"), { target: { value: "A new site.\nSoon." } });
         fireEvent.click(screen.getByRole("button", { name: "Send" }));
+        await confirmation();
         expect(onSubmit).toHaveBeenCalledWith(expect.objectContaining({ help: "A new site.\nSoon." }));
     });
 
-    it("sends an empty help value when the box is left blank", () => {
-        const onSubmit = vi.fn();
+    it("sends an empty help value when the box is left blank", async () => {
+        const onSubmit = delivered();
         render(<ContactPopup open onClose={vi.fn()} onSubmit={onSubmit} />);
         fillValidForm();
         fireEvent.click(screen.getByRole("button", { name: "Send" }));
+        await confirmation();
         expect(onSubmit).toHaveBeenCalledWith(expect.objectContaining({ help: "" }));
     });
 
@@ -184,15 +203,19 @@ describe("ContactPopup", () => {
         expect(screen.getByLabelText("How can we help you?")).toHaveValue("");
     });
 
-    it("disables the submit control after send and re-enables it on reopen (FR-023)", () => {
-        const { rerender } = render(<ContactPopup open onClose={vi.fn()} />);
+    it("disables the submit control while sending and re-enables it on reopen (FR-023)", async () => {
+        const pending = deferred();
+        const onSubmit = vi.fn(() => pending.promise);
+        const { rerender } = render(<ContactPopup open onClose={vi.fn()} onSubmit={onSubmit} />);
         fillValidForm();
         fireEvent.click(screen.getByRole("button", { name: "Send" }));
+        await waitFor(() => expect(screen.getByRole("button", { name: "Send" })).toBeDisabled());
 
-        rerender(<ContactPopup open={false} onClose={vi.fn()} />);
-        rerender(<ContactPopup open onClose={vi.fn()} />);
+        rerender(<ContactPopup open={false} onClose={vi.fn()} onSubmit={onSubmit} />);
+        rerender(<ContactPopup open onClose={vi.fn()} onSubmit={onSubmit} />);
 
         expect(screen.getByRole("button", { name: "Send" })).toBeEnabled();
+        pending.resolve();
     });
 
     it("calls onClose without calling onSubmit when the close control is activated", async () => {
@@ -207,8 +230,8 @@ describe("ContactPopup", () => {
     });
 
     // Spec 016: the header shows the gold logo (transparent) in both states. Spec 059: it is named.
-    it("shows the gold logo, named, in the form and the confirmation", () => {
-        render(<ContactPopup open onClose={vi.fn()} />);
+    it("shows the gold logo, named, in the form and the confirmation", async () => {
+        render(<ContactPopup open onClose={vi.fn()} onSubmit={delivered()} />);
         const logo = () => document.querySelector(".an-contact-header__logo");
         expect(logo()).toBeInstanceOf(HTMLImageElement);
         expect(logo()?.getAttribute("src")).toBe("/logo/logo-gold.svg");
@@ -216,9 +239,153 @@ describe("ContactPopup", () => {
 
         fillValidForm();
         fireEvent.click(screen.getByRole("button", { name: "Send" }));
-        expect(screen.getByRole("heading", { name: "Request received" })).toBeInTheDocument();
+        await confirmation();
         expect(logo()?.getAttribute("src")).toBe("/logo/logo-gold.svg");
         expect(logo()?.getAttribute("alt")).toBe("Andexor Network logo");
+    });
+
+    // Spec 087: the request is delivered, the confirmation waits for the answer, Send is seen to come back up
+    // first, and a failed send keeps the entries.
+    describe("Delivery", () => {
+        afterEach(() => {
+            vi.unstubAllGlobals();
+        });
+
+        it("keeps the form, with Send disabled and no confirmation, until onSubmit resolves", async () => {
+            const pending = deferred();
+            render(<ContactPopup open onClose={vi.fn()} onSubmit={vi.fn(() => pending.promise)} />);
+            fillValidForm();
+            fireEvent.click(screen.getByRole("button", { name: "Send" }));
+
+            await waitFor(() => expect(screen.getByRole("button", { name: "Send" })).toBeDisabled());
+            expect(screen.getByLabelText("Name")).toHaveValue("Jordan Reyes");
+            expect(screen.queryByRole("heading", { name: "Request received" })).not.toBeInTheDocument();
+
+            pending.resolve();
+            await confirmation();
+        });
+
+        it("sends through the default sender when no onSubmit is given", async () => {
+            const fetchMock = vi.fn().mockResolvedValue(new Response("", { status: 200 }));
+            vi.stubGlobal("fetch", fetchMock);
+            render(<ContactPopup open onClose={vi.fn()} />);
+            fillValidForm();
+            fireEvent.click(screen.getByRole("button", { name: "Send" }));
+
+            await confirmation();
+            expect(fetchMock).toHaveBeenCalledTimes(1);
+            expect(JSON.parse(fetchMock.mock.calls[0][1].body)).toMatchObject({ name: "Jordan Reyes" });
+        });
+
+        it("ignores an answer that arrives after the popup closed", async () => {
+            const pending = deferred();
+            const onSubmit = vi.fn(() => pending.promise);
+            const { rerender } = render(<ContactPopup open onClose={vi.fn()} onSubmit={onSubmit} />);
+            fillValidForm();
+            fireEvent.click(screen.getByRole("button", { name: "Send" }));
+            await waitFor(() => expect(onSubmit).toHaveBeenCalledTimes(1));
+
+            rerender(<ContactPopup open={false} onClose={vi.fn()} onSubmit={onSubmit} />);
+            rerender(<ContactPopup open onClose={vi.fn()} onSubmit={onSubmit} />);
+            pending.resolve();
+            await pending.promise;
+
+            await waitFor(() => expect(screen.getByRole("button", { name: "Send" })).toBeEnabled());
+            expect(screen.queryByRole("heading", { name: "Request received" })).not.toBeInTheDocument();
+        });
+
+        // FR-003: the button is drawn normal, with the form still shown, before the request leaves.
+        it("lets Send come back up before calling onSubmit, and sends once for two quick activations", async () => {
+            const onSubmit = delivered();
+            render(<ContactPopup open onClose={vi.fn()} onSubmit={onSubmit} />);
+            fillValidForm();
+            const send = screen.getByRole("button", { name: "Send" });
+            fireEvent.click(send);
+            fireEvent.click(send);
+
+            expect(onSubmit).not.toHaveBeenCalled();
+            expect(send).toBeEnabled();
+
+            await confirmation();
+            expect(onSubmit).toHaveBeenCalledTimes(1);
+        });
+
+        it("waits for a held activation key to be released before sending", async () => {
+            const onSubmit = delivered();
+            render(<ContactPopup open onClose={vi.fn()} onSubmit={onSubmit} />);
+            fillValidForm();
+            const send = screen.getByRole("button", { name: "Send" });
+            fireEvent.keyDown(send, { key: "Enter" });
+            fireEvent.click(send);
+
+            await new Promise((resolve) => setTimeout(resolve, 50));
+            expect(onSubmit).not.toHaveBeenCalled();
+            expect(send).toBeEnabled();
+
+            fireEvent.keyUp(send, { key: "Enter" });
+            await confirmation();
+            expect(onSubmit).toHaveBeenCalledTimes(1);
+        });
+
+        it("does not send when the popup closes during the release wait", async () => {
+            const onSubmit = delivered();
+            const { rerender } = render(<ContactPopup open onClose={vi.fn()} onSubmit={onSubmit} />);
+            fillValidForm();
+            fireEvent.click(screen.getByRole("button", { name: "Send" }));
+            rerender(<ContactPopup open={false} onClose={vi.fn()} onSubmit={onSubmit} />);
+
+            await new Promise((resolve) => setTimeout(resolve, 50));
+            expect(onSubmit).not.toHaveBeenCalled();
+        });
+
+        // FR-005 and FR-006: a failed send keeps the entries, says so, and lets the visitor try again.
+        it("keeps the entries, shows an alert, and enables Send when onSubmit rejects", async () => {
+            const onSubmit = vi.fn(() => Promise.reject(new Error("status 500")));
+            render(<ContactPopup open onClose={vi.fn()} onSubmit={onSubmit} />);
+            fillValidForm();
+            fireEvent.click(screen.getByRole("button", { name: "Send" }));
+
+            await screen.findByRole("alert");
+            expect(screen.getByLabelText("Name")).toHaveValue("Jordan Reyes");
+            expect(screen.getByLabelText("Email")).toHaveValue("jordan@example.com");
+            expect(screen.getByRole("button", { name: "Send" })).toBeEnabled();
+            expect(screen.queryByRole("heading", { name: "Request received" })).not.toBeInTheDocument();
+        });
+
+        it("removes the alert while a retry is in flight and confirms when the retry succeeds", async () => {
+            const retry = deferred();
+            const onSubmit = vi
+                .fn<() => Promise<void>>()
+                .mockImplementationOnce(() => Promise.reject(new Error("status 500")))
+                .mockImplementationOnce(() => retry.promise);
+            render(<ContactPopup open onClose={vi.fn()} onSubmit={onSubmit} />);
+            fillValidForm();
+            fireEvent.click(screen.getByRole("button", { name: "Send" }));
+            await screen.findByRole("alert");
+
+            fireEvent.click(screen.getByRole("button", { name: "Send" }));
+            await waitFor(() => expect(onSubmit).toHaveBeenCalledTimes(2));
+            expect(screen.queryByRole("alert")).not.toBeInTheDocument();
+            expect(screen.getByRole("button", { name: "Send" })).toBeDisabled();
+
+            retry.resolve();
+            await confirmation();
+        });
+
+        it("shows no alert after a failure once the popup is closed and opened again", async () => {
+            const onSubmit = vi.fn(() => Promise.reject(new Error("status 500")));
+            const { rerender } = render(<ContactPopup open onClose={vi.fn()} onSubmit={onSubmit} />);
+            fillValidForm();
+            fireEvent.click(screen.getByRole("button", { name: "Send" }));
+            await screen.findByRole("alert");
+
+            rerender(<ContactPopup open={false} onClose={vi.fn()} onSubmit={onSubmit} />);
+            rerender(<ContactPopup open onClose={vi.fn()} onSubmit={onSubmit} />);
+
+            expect(screen.queryByRole("alert")).not.toBeInTheDocument();
+            expect(screen.getByLabelText("Name")).toHaveValue("");
+            expect(screen.getByRole("button", { name: "Send" })).toBeEnabled();
+        });
     });
 
     // Spec 015: Esc is one more way to close the popup, and calls the same onClose.
@@ -230,12 +397,12 @@ describe("ContactPopup", () => {
             expect(onClose).toHaveBeenCalledTimes(1);
         });
 
-        it("closes the confirmation with one Esc", () => {
+        it("closes the confirmation with one Esc", async () => {
             const onClose = vi.fn();
-            render(<ContactPopup open onClose={onClose} />);
+            render(<ContactPopup open onClose={onClose} onSubmit={delivered()} />);
             fillValidForm();
             fireEvent.click(screen.getByRole("button", { name: "Send" }));
-            expect(screen.getByRole("heading", { name: "Request received" })).toBeInTheDocument();
+            await confirmation();
             fireEvent.keyDown(document, { key: "Escape" });
             expect(onClose).toHaveBeenCalledTimes(1);
         });
