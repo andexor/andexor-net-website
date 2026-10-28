@@ -5,6 +5,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
+import { COOKIEBOT_PRECONNECT } from "../../scripts/format-html";
 import { fileGroup, isMinified } from "../../scripts/site-files";
 
 // Spec 038 FR-002, FR-003, FR-005, FR-006: in the built site, the site's own CSS and script code are readable and
@@ -31,6 +32,16 @@ function builtFiles(): string[] {
 describe.skipIf(!fs.existsSync(OUT))("built site", () => {
     const files = fs.existsSync(OUT) ? builtFiles() : [];
     const read = (file: string) => fs.readFileSync(path.join(ROOT, file), "utf8");
+
+    // Spec 086: the browser starts connecting to Cookiebot's banner address while it reads the head.
+    it("puts the Cookiebot preconnect link before the Cookiebot script on every page", () => {
+        for (const file of files.filter((name) => name.endsWith(".html"))) {
+            const html = read(file);
+            const link = html.indexOf(COOKIEBOT_PRECONNECT);
+            expect(link, file).toBeGreaterThanOrEqual(0);
+            expect(link, file).toBeLessThan(html.indexOf('<script id="Cookiebot"'));
+        }
+    });
 
     it("keeps the site's own script code in a readable file of its own", () => {
         const siteScripts = files.filter((file) => fileGroup(file) === "built-site-js");

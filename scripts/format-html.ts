@@ -18,7 +18,14 @@ const TEXT_NEWLINE = "\uE001";
 const RAW_ELEMENTS = ["script", "style", "noscript"];
 
 /**
- * The Cookiebot consent script (spec 076). It must be the first element in <head> so that its automatic blocking runs
+ * Preconnect hint for the address the Cookiebot script fetches its banner files from (spec 086). It goes in front of
+ * the Cookiebot script so the connection starts as early as possible. `crossorigin` lets the script's cross-origin
+ * requests reuse the connection.
+ */
+export const COOKIEBOT_PRECONNECT = '<link rel="preconnect" href="https://consentcdn.cookiebot.com" crossorigin="">';
+
+/**
+ * The Cookiebot consent script (spec 076). It must be the first script in <head> so that its automatic blocking runs
  * before any other script, so it goes in front of the whitespace script. No async or defer.
  */
 export const COOKIEBOT_SCRIPT =
@@ -332,7 +339,8 @@ export function assertSameDom(original: string, formatted: string, file: string)
             .replace(COOKIEBOT_DIALOG_SCRIPT, "")
             .replace(COOKIEBOT_FOCUS_SCRIPT, "")
             .replace(WHITESPACE_SCRIPT, "")
-            .replace(COOKIEBOT_SCRIPT, ""),
+            .replace(COOKIEBOT_SCRIPT, "")
+            .replace(COOKIEBOT_PRECONNECT, ""),
     );
 
     for (const token of tokenize(before.skeleton)) {
@@ -444,13 +452,14 @@ export async function formatHtml(original: string, file: string): Promise<string
     });
     formatted = await restoreRegions(formatted, regions, file);
 
-    // 6. Add the Cookiebot script and then the whitespace, focus, and dialog scripts first in <head>, glued to the next tag so they add no
+    // 6. Add the Cookiebot preconnect link, the Cookiebot script, and then the whitespace, focus, and dialog scripts first in <head>, glued to the next tag so they add no
     // whitespace of their own.
     if (!/<head>\s*/.test(formatted))
         throw new Error(`${file}: no <head> to add the Cookiebot and whitespace scripts to`);
     formatted = formatted.replace(
         /<head>\s*/,
-        () => `<head>${COOKIEBOT_SCRIPT}${WHITESPACE_SCRIPT}${COOKIEBOT_FOCUS_SCRIPT}${COOKIEBOT_DIALOG_SCRIPT}`,
+        () =>
+            `<head>${COOKIEBOT_PRECONNECT}${COOKIEBOT_SCRIPT}${WHITESPACE_SCRIPT}${COOKIEBOT_FOCUS_SCRIPT}${COOKIEBOT_DIALOG_SCRIPT}`,
     );
 
     // 7. Prove the DOM is the same.

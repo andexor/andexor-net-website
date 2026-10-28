@@ -178,7 +178,8 @@ skips `src/components/content/`.
 - Formats every built HTML page, the site stylesheet, and the site's own script chunk. The vendor chunks (React,
   Next.js, polyfills) stay minified.
 - Relies on `next.config.ts`, which puts all `src/` code in one `site-*.js` chunk and tells Next's minifier to skip it.
-- Adds the Cookiebot consent script (spec 076) first in each page's `<head>`, then one small inline script. React
+- Adds the Cookiebot consent script (spec 076) first in each page's `<head>`, preceded by a preconnect link for
+  `https://consentcdn.cookiebot.com` (spec 086), then one small inline script. React
   rejects the whitespace that pretty-printed HTML adds between elements (hydration error #418), so that inline script
   strips it before hydration. A second small inline script follows it: it takes focus off Cookiebot's answer buttons
   on click, so Cookiebot's `aria-hidden` on the closing dialog does not trigger Chrome's "Blocked aria-hidden on an
