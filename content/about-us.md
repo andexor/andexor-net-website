@@ -34,7 +34,7 @@ so they can meet each others needs for multiplied growth.
 
 ## What we have done
 
-The reality was a stretch of time doing consulting work
+The reality was a stretch of time doing consulting work,
 followed by a long dormant period.
 During this time, Ed worked on other projects,
 gaining more technical and leadership experience

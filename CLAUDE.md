@@ -182,26 +182,35 @@ skips `src/components/content/`.
   rejects the whitespace that pretty-printed HTML adds between elements (hydration error #418), so that inline script
   strips it before hydration. A second small inline script follows it: it takes focus off Cookiebot's answer buttons
   on click, so Cookiebot's `aria-hidden` on the closing dialog does not trigger Chrome's "Blocked aria-hidden on an
-  element because its descendant retained focus" warning. The formatter fails the build
-  if the formatted page would not have the same DOM as the original (`scripts/format-html.ts`).
+  element because its descendant retained focus" warning. A third one (spec 082) moves Cookiebot's dialog elements
+  (ids starting `CybotCookiebot`), which Cookiebot adds at the start of `<body>`, to the end of it, once the browser has finished receiving the page. Next.js puts a hidden
+  metadata `<div>` first in `<body>`, and if Cookiebot's `<div>` is there when React hydrates, React matches it to the
+  metadata `<div>` and throws #418 (a blank page for a first-time visitor, most often on the long Privacy Policy). The
+  formatter fails the build if the formatted page would not have the same DOM as the original
+  (`scripts/format-html.ts`).
+- Puts an HTML comment directly before each of the footer's two cookie links (spec 083): `<!-- For GDPR -->` before Privacy
+  Settings and `<!-- For CCPA -->` before Do Not Sell or Share My Personal Information. React cannot write HTML comments, so
+  `addPrivacyComments` in `scripts/format-html.ts` adds them to the raw page before it is formatted, and the build fails,
+  naming the page, if either link is not found exactly once. Both links are the same `PrivacySettingsLink` component.
 - Removes the React Server Components payload Next writes beside each page (`about-us.txt` beside `about-us.html`).
   The site's links are ordinary anchors, so nothing requests them. A `.txt` file with no page of the same name
   (`robots.txt`, `.well-known/security.txt`) stays.
 
 Rules to keep in mind:
 
-- The framework's data for each page, a dozen or more small inline scripts at the end of the body, is combined into one
-  script and moved to `out/_next/static/data/<hash>.js` (`scripts/combine-scripts.ts`, spec 041). The file is
-  formatted, named by the hash of its content, and referred to by one plain script element at the end of the body, with
-  a preload hint first in the head (it costs about 30 ms on a slow connection, without the hint about 60 ms). The
-  build runs the original scripts and the new one in a sandbox and fails, naming the page, if the data differs. The
-  head's inline scripts (the whitespace script and the font loader) stay inline and first, and the framework's script
-  files are not touched. The site's links are ordinary links, so every click loads a page fully with its own data file.
-- The Cookie Declaration (specs 078 and 081) is the last section of the Privacy Policy, `/privacy-policy`: the line
-  `<!-- cookie-declaration -->` in `content/privacy-policy.md` is turned into Cookiebot's script element by
-  `src/lib/content.ts`, built from the syntax tree because raw HTML in Markdown is still dropped. It sits inside the
-  page's `data-raw-html` content, so React does not hydrate what Cookiebot adds beside it. It is not in the footer any
-  more; the footer's Do Not Sell or Share link opens that section, and its Privacy Settings link reopens the banner.
+- The framework's data for each page, a dozen or more small inline scripts at the end of the body, stays inline, as
+  Next.js writes it. Do not combine those scripts or move them to an external file (spec 041, retired): with
+  Cookiebot's automatic blocking mode (`data-blockingmode="auto"`, spec 076) an external data script runs after the
+  framework has closed its data stream, React starts with no page data ("Connection closed"), and the page goes blank.
+  `tests/unit/build-output.test.ts` fails if a built page refers to `/_next/static/data/`.
+- The Cookie Declaration (specs 078, 081, and 082) is the last section of the Privacy Policy, `/privacy-policy`: the line
+  `<!-- cookie-declaration -->` in `content/privacy-policy.md` is turned into an empty slot,
+  `<div id="cookie-declaration-slot" data-src="...cd.js">`, by `src/lib/content.ts`, built from the syntax tree because raw
+  HTML in Markdown is still dropped. The script element is NOT in the page HTML: `CookieDeclaration.tsx` adds it to the
+  slot after hydration. Put in the HTML, Cookiebot's script can change the page before React hydrates it, and in
+  automatic blocking mode that is React error #418 and a blank page for a visitor with no saved choice. The slot sits
+  inside the page's `data-raw-html` content, so React does not touch what Cookiebot adds there. It is not in the footer
+  any more; the footer's Do Not Sell or Share link and its Privacy Settings link both reopen the Cookiebot banner (spec 083).
 - Markdown-generated HTML is rendered with `dangerouslySetInnerHTML`. Give such an element `data-raw-html=""`: the
   formatter formats its content with whitespace-safe settings, and the script leaves it alone, because a newline
   between inline elements there is a visible space.

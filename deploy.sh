@@ -4,5 +4,4 @@
 # Copyright 2026 Andexor Network, Inc.
 # Author: Ed Jenkins <ed@andexor.net>
 
-time bun run build
-time bun run deploy
+time bun run build && time bun run deploy

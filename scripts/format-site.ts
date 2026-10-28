@@ -6,11 +6,10 @@
 // Run after `next build` by `bun run build`. Formats the HTML pages, the site stylesheet, and the
 // site's own script chunk. Third-party chunks are left minified.
 
-import { mkdir, readdir, readFile, unlink, writeFile } from "node:fs/promises";
+import { readdir, readFile, unlink, writeFile } from "node:fs/promises";
 import { join, relative } from "node:path";
 import { format } from "prettier";
-import { combineDataScripts, externalizeDataScript } from "./combine-scripts";
-import { formatHtml } from "./format-html";
+import { addPrivacyComments, formatHtml } from "./format-html";
 import { fileGroup } from "./site-files";
 
 const ROOT = join(import.meta.dir, "..");
@@ -26,9 +25,6 @@ async function* walk(directory: string): AsyncGenerator<string> {
     }
 }
 
-// The data files moved out of the pages, by path (relative to `out/`) and content.
-const dataFiles = new Map<string, string>();
-
 // Next.js adds its own plain `noindex` robots tag to the not-found page. The page sets "noindex, nofollow" itself
 // (spec 030), so the plain one is removed and the page keeps exactly one robots tag.
 const FRAMEWORK_NOINDEX = /<meta name="robots" content="noindex"\s*\/?>/g;
@@ -39,21 +35,12 @@ function removeFrameworkNoindex(html: string, name: string): string {
     return html.replace(FRAMEWORK_NOINDEX, "");
 }
 
-// One built page: combine the framework's data scripts into one and move it to a file (spec 041), then format the page.
+// One built page: add the footer comments (spec 083), then format it. The framework's data scripts stay inline, where
+// Next.js wrote them: Cookiebot's automatic blocking mode breaks a page whose data script is an external file (spec 041,
+// retired).
 async function formatPage(source: string, name: string): Promise<string> {
     const original = name === "out/404.html" ? removeFrameworkNoindex(source, name) : source;
-    const combined = combineDataScripts(original, name);
-    if (combined.note) {
-        console.log(combined.note);
-        return formatHtml(combined.html, name);
-    }
-    const moved = await externalizeDataScript(combined.html, combined.bodies, name);
-    const existing = dataFiles.get(moved.file.path);
-    if (existing !== undefined && existing !== moved.file.content) {
-        throw new Error(`${name}: two different data scripts have the same file name (${moved.file.path})`);
-    }
-    dataFiles.set(moved.file.path, moved.file.content);
-    return formatHtml(moved.html, name);
+    return formatHtml(addPrivacyComments(original, name), name);
 }
 
 // Next.js writes a React Server Components payload beside each page (`about-us.txt` beside `about-us.html`) for
@@ -92,10 +79,6 @@ async function main(): Promise<void> {
         if (formatted === original) throw new Error(`${name}: formatting changed nothing`);
         await writeFile(path, formatted);
         changed[group] = (changed[group] ?? 0) + 1;
-    }
-    for (const [path, content] of dataFiles) {
-        await mkdir(join(OUT, path, ".."), { recursive: true });
-        await writeFile(join(OUT, path), content);
     }
     for (const group of ["built-html", "built-site-css", "built-site-js"]) {
         if (!changed[group]) throw new Error(`No ${group} files were found in out/; did next build run?`);

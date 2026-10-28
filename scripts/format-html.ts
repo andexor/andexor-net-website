@@ -23,7 +23,7 @@ const RAW_ELEMENTS = ["script", "style", "noscript"];
  */
 export const COOKIEBOT_SCRIPT =
     '<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" ' +
-    'data-cbid="ba75dc6a-d85e-4740-891e-dd0cc31a62dd" type="text/javascript"></script>';
+    'data-cbid="ba75dc6a-d85e-4740-891e-dd0cc31a62dd" data-blockingmode="auto" type="text/javascript"></script>';
 
 /** The script injected in <head>, right after the Cookiebot script. It must match `stripAddedWhitespace` below. */
 export const WHITESPACE_SCRIPT = `<script>
@@ -78,6 +78,72 @@ export const COOKIEBOT_FOCUS_SCRIPT = `<script>
     );
 })();
 </script>`;
+
+/**
+ * Injected after the focus script (spec 082). Cookiebot adds its dialog to the start of <body>, ahead of the hidden
+ * <div> Next.js puts first for the page's metadata. If that happens before React hydrates the page, React matches
+ * Cookiebot's <div> to the metadata <div>, sees a different `hidden` attribute, and throws error #418, which blanks the
+ * page. The longer the page is to hydrate (the Privacy Policy), the likelier that is, and it needs a visitor with no
+ * saved choice, because only then is the dialog added. This moves Cookiebot's elements to the end of <body> as soon as
+ * they are added, a microtask later, before React can look at the page. Only the run of Cookiebot elements at the
+ * start of <body> moves, so two of them cannot keep moving each other.
+ */
+export const COOKIEBOT_DIALOG_SCRIPT = `<script>
+(function () {
+    function isCookiebot(node) {
+        return node.nodeType === 1 && /^CybotCookiebot/.test(node.id);
+    }
+    function isBlank(node) {
+        return node.nodeType === 3 && !node.data.trim();
+    }
+    function leadsBody(node) {
+        for (var before = node.previousSibling; before; before = before.previousSibling) {
+            if (!isCookiebot(before) && !isBlank(before)) return false;
+        }
+        for (var after = node.nextSibling; after; after = after.nextSibling) {
+            if (!isCookiebot(after) && !isBlank(after)) return true;
+        }
+        return false;
+    }
+    // Cookiebot can add its elements while the browser is still receiving the page. Moving them to the end of <body>
+    // then would leave them in the middle of it, because the rest of the page is added after them. So the move waits
+    // for the end of parsing and takes whatever Cookiebot has put at the start by then.
+    function move() {
+        var body = document.body;
+        if (!body || document.readyState === "loading") return;
+        Array.prototype.slice.call(body.childNodes).forEach(function (node) {
+            if (isCookiebot(node) && leadsBody(node)) body.appendChild(node);
+        });
+    }
+    document.addEventListener("DOMContentLoaded", move);
+    new MutationObserver(function (records) {
+        if (records.some(function (record) { return record.target === document.body; })) move();
+    }).observe(document.documentElement, { childList: true, subtree: true });
+})();
+</script>`;
+
+/**
+ * Spec 083: puts `<!-- For GDPR -->` directly before the Privacy Settings link and `<!-- For CCPA -->` directly before
+ * the Do Not Sell or Share My Personal Information link, so the page source says which law each one serves. React cannot
+ * write an HTML comment, so this runs on the raw built page before it is formatted, and the DOM check in `formatHtml`
+ * then sees the comments on both sides. Only an `<a>` start tag is matched, so the same words in the framework's data
+ * scripts are left alone. Each link must be found exactly once, or the build stops and names the page.
+ */
+const PRIVACY_COMMENTS: ReadonlyArray<{ text: string; comment: string }> = [
+    { text: "Privacy Settings", comment: "<!-- For GDPR -->" },
+    { text: "Do Not Sell or Share My Personal Information", comment: "<!-- For CCPA -->" },
+];
+
+export function addPrivacyComments(html: string, file: string): string {
+    let result = html;
+    for (const { text, comment } of PRIVACY_COMMENTS) {
+        const link = new RegExp(`<a\\b[^>]*>${text}</a>`, "g");
+        const found = result.match(link)?.length ?? 0;
+        if (found !== 1) throw new Error(`${file}: expected 1 "${text}" link, found ${found}`);
+        result = result.replace(link, (match) => `${comment}${match}`);
+    }
+    return result;
+}
 
 /**
  * What the script does to one text node: remove a newline and the indentation around it at the edges.
@@ -260,9 +326,13 @@ function firstDifference(expected: string[], actual: string[]): string | null {
 /** Throws unless the original page is safe to strip and the formatted page has the same DOM as the original. */
 export function assertSameDom(original: string, formatted: string, file: string): void {
     const before = extractRegions(original);
-    // The two injected scripts are the intended differences; compare without them.
+    // The injected scripts are the intended differences; compare without them.
     const after = extractRegions(
-        formatted.replace(COOKIEBOT_FOCUS_SCRIPT, "").replace(WHITESPACE_SCRIPT, "").replace(COOKIEBOT_SCRIPT, ""),
+        formatted
+            .replace(COOKIEBOT_DIALOG_SCRIPT, "")
+            .replace(COOKIEBOT_FOCUS_SCRIPT, "")
+            .replace(WHITESPACE_SCRIPT, "")
+            .replace(COOKIEBOT_SCRIPT, ""),
     );
 
     for (const token of tokenize(before.skeleton)) {
@@ -374,13 +444,13 @@ export async function formatHtml(original: string, file: string): Promise<string
     });
     formatted = await restoreRegions(formatted, regions, file);
 
-    // 6. Add the Cookiebot script and then the whitespace and focus scripts first in <head>, glued to the next tag so they add no
+    // 6. Add the Cookiebot script and then the whitespace, focus, and dialog scripts first in <head>, glued to the next tag so they add no
     // whitespace of their own.
     if (!/<head>\s*/.test(formatted))
         throw new Error(`${file}: no <head> to add the Cookiebot and whitespace scripts to`);
     formatted = formatted.replace(
         /<head>\s*/,
-        () => `<head>${COOKIEBOT_SCRIPT}${WHITESPACE_SCRIPT}${COOKIEBOT_FOCUS_SCRIPT}`,
+        () => `<head>${COOKIEBOT_SCRIPT}${WHITESPACE_SCRIPT}${COOKIEBOT_FOCUS_SCRIPT}${COOKIEBOT_DIALOG_SCRIPT}`,
     );
 
     // 7. Prove the DOM is the same.

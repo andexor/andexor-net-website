@@ -6,6 +6,9 @@
 
 **Status**: Draft. The owner answered four questions on 2026-10-26; see Decisions.
 
+> **Note (2026-10-27):** spec 083 changed the Do Not Sell or Share My Personal Information link. It no longer links to the
+> Cookie Declaration section; it reopens the Cookiebot banner, the same as Privacy Settings.
+
 **Input**: User description: "Rename Company files using git mv (privacy.md -> privacy-policy.md, terms.md ->
 terms-of-service.md, security.md -> security-policy.md). Update the link text in the Company column of the footer
 (Privacy -> Privacy Policy, Terms -> Terms Of Service, Security -> Security Policy). Move the contents of cookies.md into

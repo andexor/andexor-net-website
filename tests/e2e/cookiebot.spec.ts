@@ -29,7 +29,7 @@ test.describe("Cookiebot script", () => {
             expect(attributes).toContain('id="Cookiebot"');
             expect(attributes).toContain('src="https://consent.cookiebot.com/uc.js"');
             expect(attributes).toContain('data-cbid="ba75dc6a-d85e-4740-891e-dd0cc31a62dd"');
-            expect(attributes).not.toContain("data-blockingmode");
+            expect(attributes).toContain('data-blockingmode="auto"');
             expect(attributes).toContain('type="text/javascript"');
             expect(attributes).not.toMatch(/\b(async|defer)\b/);
         });

@@ -4,6 +4,7 @@
 
 import type { CardsLayout } from "@/lib/content";
 import { ContentCTABand } from "@/components/content/ContentCTABand";
+import { CookieDeclaration } from "@/components/content/CookieDeclaration";
 import { Footer } from "@/components/marketing/Footer";
 import { Logo } from "@/components/marketing/Logo";
 
@@ -23,6 +24,7 @@ export function ContentPage({ html, cards }: ContentPageProps) {
     const hasCards = Boolean(cards && cards.cardsHtml);
     return (
         <div id="top">
+            <CookieDeclaration />
             <header role="banner" className="an-content-header">
                 <div className="an-content-header__inner">
                     <Logo href="/" />
