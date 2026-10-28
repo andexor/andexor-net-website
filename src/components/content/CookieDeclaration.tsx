@@ -21,7 +21,7 @@ export function CookieDeclaration() {
                 const url = new URL(value, window.location.origin);
                 const isHttps = url.protocol === "https:";
                 const isTrustedHost = url.hostname === "consent.cookiebot.com";
-                const isTrustedPath = url.pathname === "/uc.js";
+                const isTrustedPath = url.pathname.endsWith("/cd.js");
                 return isHttps && isTrustedHost && isTrustedPath ? url.toString() : null;
             } catch {
                 return null;
