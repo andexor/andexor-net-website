@@ -11,7 +11,7 @@ const SOCIAL_LINKS = [
     {
         key: "linkedin",
         label: "LinkedIn logo, Andexor profile, opens in new tab",
-        href: "https://www.linkedin.com/in/ejenkins/",
+        href: "https://www.linkedin.com/company/andexor/",
         icon: faSquareLinkedin,
     },
     {
