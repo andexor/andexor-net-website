@@ -1,0 +1,67 @@
+/* SPDX-License-Identifier: Apache-2.0
+ * Copyright 2026 Andexor Network, Inc.
+ * Author: Ed Jenkins <ed@andexor.net>
+ *
+ * The site's stylesheet as the design sync ships it to Claude Design. It imports the same token and component CSS as
+ * src/styles/globals.css, with three differences, because a design has no page loader and no /public folder:
+ * - The fonts are declared with relative paths, so the bundler inlines them, and the font variables name them
+ *   unconditionally. The site's fonts.css hides <body> until a loader script runs, which would leave designs blank.
+ * - The logo image, which the Logo component loads from /logo/logo-gold.svg, is supplied by CSS.
+ * - content.css (the Markdown article pages) is left out. cards.css is kept for the card-layout pages; its
+ *   business-section backdrop points at /images/city-grid.svg, an absolute path the bundler cannot resolve, so
+ *   the build command (buildCmd in config.json) first writes a copy to .cache/cards.css with that path made relative.
+ */
+@import "../src/styles/tokens/colors.css";
+@import "../src/styles/tokens/typography.css";
+@import "../src/styles/tokens/spacing.css";
+@import "../src/styles/tokens/elevation.css";
+@import "../src/styles/tokens/base.css";
+@import "../src/styles/components.css";
+@import "../src/styles/marketing.css";
+@import "./.cache/cards.css";
+
+@font-face {
+    font-family: "Play";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("../public/fonts/play-400.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Play";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url("../public/fonts/play-700.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400 700;
+    font-display: swap;
+    src: url("../public/fonts/roboto-variable.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Source Code Pro";
+    font-style: normal;
+    font-weight: 400 600;
+    font-display: swap;
+    src: url("../public/fonts/source-code-pro-variable.woff2") format("woff2");
+}
+
+:root {
+    --font-display: "Play", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-sans: "Roboto", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-mono: "Source Code Pro", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+
+body {
+    margin: 0;
+}
+
+.an-logo-mark {
+    content: url("../public/logo/logo-gold.svg");
+}
