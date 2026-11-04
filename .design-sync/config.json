@@ -1,0 +1,61 @@
+{
+    "projectId": "4f5d037e-daa8-4ef9-9064-016a6daebecc",
+    "shape": "package",
+    "pkg": "andexor-net-website",
+    "globalName": "AndexorNetwork",
+    "entry": ".design-sync/entry.tsx",
+    "tsconfig": "tsconfig.json",
+    "componentSrcMap": {
+        "Badge": "src/components/ui/Badge.tsx",
+        "Button": "src/components/ui/Button.tsx",
+        "Card": "src/components/ui/Card.tsx",
+        "Input": "src/components/ui/Input.tsx",
+        "Textarea": "src/components/ui/Input.tsx",
+        "CTABand": "src/components/marketing/CTABand.tsx",
+        "Footer": "src/components/marketing/Footer.tsx",
+        "Hero": "src/components/marketing/Hero.tsx",
+        "Logo": "src/components/marketing/Logo.tsx",
+        "Services": "src/components/marketing/Services.tsx"
+    },
+    "docsMap": {
+        "Badge": ".design-sync/docs/ui-group.md",
+        "Button": ".design-sync/docs/ui-group.md",
+        "Card": ".design-sync/docs/ui-group.md",
+        "Input": ".design-sync/docs/ui-group.md",
+        "Textarea": ".design-sync/docs/ui-group.md"
+    },
+    "dtsPropsFor": {
+        "Badge": "/** Color tone. Default \"neutral\". */ tone?: \"neutral\" | \"brand\" | \"accent\" | \"success\" | \"warning\" | \"danger\" | \"solid\"; /** Show a leading status dot. */ dot?: boolean; children?: React.ReactNode; className?: string; id?: string; style?: React.CSSProperties; ",
+        "Button": "/** Default \"primary\". \"accent\" is the gold call-to-action. */ variant?: \"primary\" | \"accent\" | \"secondary\" | \"ghost\" | \"danger\"; /** Default \"md\". */ size?: \"sm\" | \"md\" | \"lg\"; /** Full width. */ block?: boolean; /** Light treatment for use on the dark ink surfaces (hero, CTA band). */ onInk?: boolean; leftIcon?: React.ReactNode; rightIcon?: React.ReactNode; /** Element to render, e.g. \"a\" with href for a link that looks like a button. Default \"button\". */ as?: React.ElementType; href?: string; children?: React.ReactNode; onClick?: React.MouseEventHandler; type?: \"button\" | \"submit\" | \"reset\"; disabled?: boolean; className?: string; id?: string; style?: React.CSSProperties; ",
+        "Card": "/** Inner padding. Default true. */ pad?: boolean; /** Lift and highlight on hover, for cards that are links. */ hover?: boolean; /** Dark ink surface variant. */ ink?: boolean; /** Element to render, e.g. \"a\" with href for a card that is one link. Default \"div\". */ as?: React.ElementType; href?: string; children?: React.ReactNode; className?: string; id?: string; style?: React.CSSProperties; ",
+        "Input": "/** Visible label; also derives the id when none is given. */ label?: string; /** Help line under the field. */ hint?: string; /** Error line under the field; marks the field invalid and replaces the hint. */ error?: string; required?: boolean; type?: string; name?: string; placeholder?: string; value?: string; defaultValue?: string; disabled?: boolean; autoComplete?: string; onChange?: React.ChangeEventHandler<HTMLInputElement>; className?: string; id?: string; style?: React.CSSProperties; ",
+        "Textarea": "/** Visible label; also derives the id when none is given. */ label?: string; /** Help line under the field. */ hint?: string; /** Error line under the field; marks the field invalid and replaces the hint. */ error?: string; /** With maxLength the label strip shows \"X/maxLength\" and fills like a progress bar. */ maxLength?: number; required?: boolean; name?: string; placeholder?: string; rows?: number; value?: string; defaultValue?: string; disabled?: boolean; onChange?: React.ChangeEventHandler<HTMLTextAreaElement>; className?: string; id?: string; style?: React.CSSProperties; ",
+        "CTABand": "/** Called when the Contact Us button is pressed. */ onContactClick: () => void; /** Band heading. Defaults to the home page text. */ heading?: string;",
+        "Footer": "/** No props: the site footer with logo, copyright, social links, and the Technical Services, Business Services, and Company link columns. */",
+        "Hero": "/** No props: the home page hero with the large logo, headline, and subhead on the dark grid background. */",
+        "Logo": "/** Light wordmark for dark backgrounds. */ light?: boolean; /** \"hero\" is the large home page lockup. Default \"default\". */ size?: \"default\" | \"hero\"; /** With href the lockup is a link (content page headers link to \"/\"); without, a plain block. */ href?: string;",
+        "Services": "/** No props: the Technical services and Business services sections, each a heading, lede, and grid of service cards that link to their pages. */"
+    },
+    "overrides": {
+        "Services": {
+            "cardMode": "single",
+            "viewport": "1280x1500"
+        },
+        "Footer": {
+            "cardMode": "single",
+            "viewport": "1280x420"
+        },
+        "Hero": {
+            "cardMode": "single",
+            "viewport": "1280x620"
+        },
+        "CTABand": {
+            "cardMode": "column"
+        },
+        "Logo": {
+            "cardMode": "column"
+        }
+    },
+    "readmeHeader": ".design-sync/conventions.md",
+    "buildCmd": "mkdir -p .design-sync/.cache && sed \"s|url(\\\"/images/|url(\\\"../../public/images/|\" src/styles/cards.css > .design-sync/.cache/cards.css"
+}
