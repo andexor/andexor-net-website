@@ -4,12 +4,14 @@
 
 import { describe, expect, it } from "vitest";
 import {
+    COOKIEBOT_SCRIPT,
     WHITESPACE_SCRIPT,
     addPrivacyComments,
     assertSameDom,
     formatHtml,
     plainQuotes,
 } from "../../scripts/format-html";
+import organization from "../../src/lib/schema/organization.json";
 
 // Rules from specs/038-readable-generated-code/contracts/formatting-rules.md, applied to a small page shaped like
 // the Next.js output (one line, no whitespace between elements).
@@ -69,5 +71,29 @@ describe("addPrivacyComments", () => {
         expect(() => addPrivacyComments(page(`${DO_NOT_SELL}${PRIVACY}${PRIVACY}`), "twice.html")).toThrow(
             "twice.html",
         );
+    });
+});
+
+// Spec 090: the home page's head carries the Organization structured data, between the Cookiebot script and the
+// whitespace script, and only when the formatter is asked for it.
+describe("organization structured data", () => {
+    const JSON_LD_OPEN = '<script type="application/ld+json">';
+    const page =
+        '<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><title>T</title></head><body><p>Hi</p></body></html>';
+    const countBlocks = (html: string) => html.split(JSON_LD_OPEN).length - 1;
+
+    it("adds one block after the Cookiebot script and before the whitespace script, with the source data", async () => {
+        const output = await formatHtml(page, "index.html", { jsonLd: true });
+        expect(countBlocks(output)).toBe(1);
+        const block = output.indexOf(JSON_LD_OPEN);
+        expect(output.indexOf(COOKIEBOT_SCRIPT)).toBeLessThan(block);
+        expect(block).toBeLessThan(output.indexOf(WHITESPACE_SCRIPT));
+        const start = block + JSON_LD_OPEN.length;
+        expect(JSON.parse(output.slice(start, output.indexOf("</script>", start)))).toEqual(organization);
+    });
+
+    it("adds no block when the option is not given, and the page still passes the DOM check", async () => {
+        const output = await formatHtml(page, "about.html");
+        expect(countBlocks(output)).toBe(0);
     });
 });

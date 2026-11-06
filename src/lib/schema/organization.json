@@ -1,0 +1,48 @@
+{
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://andexor.net/#organization",
+    "description": "Enterprise services for small business",
+    "name": "Andexor Network",
+    "url": "https://andexor.net/",
+    "areaServed": "Atlanta",
+    "contactPoint": {
+        "@type": "ContactPoint",
+        "name": "Ed Jenkins",
+        "description": "CEO",
+        "jobTitle": "CEO",
+        "email": "ed@andexor.net",
+        "telephone": "+14043511440",
+        "url": "https://www.linkedin.com/in/ejenkins/",
+        "availableLanguage": {
+            "@type": "Language",
+            "name": "English",
+            "alternateName": "en"
+        }
+    },
+    "email": "ed@andexor.net",
+    "founder": {
+        "@type": "Person",
+        "name": "Ed Jenkins",
+        "description": "CEO",
+        "jobTitle": "CEO",
+        "email": "ed@andexor.net",
+        "telephone": "+14043511440",
+        "url": "https://www.linkedin.com/in/ejenkins/",
+        "availableLanguage": {
+            "@type": "Language",
+            "name": "English",
+            "alternateName": "en"
+        }
+    },
+    "foundingDate": "2010-01-02",
+    "legalName": "Andexor Network, Inc.",
+    "logo": "https://andexor.net/logo/logo-gold.svg",
+    "sameAs": [
+        "https://www.linkedin.com/company/andexor/",
+        "https://x.com/andexor",
+        "https://github.com/andexor"
+    ],
+    "slogan": "We help small businesses in the Atlanta area grow with services normally found in larger organizations.",
+    "telephone": "+14043511440"
+}

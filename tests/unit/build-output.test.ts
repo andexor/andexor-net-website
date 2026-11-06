@@ -7,6 +7,7 @@ import path from "node:path";
 import { describe, expect, it } from "vitest";
 import { COOKIEBOT_PRECONNECT } from "../../scripts/format-html";
 import { fileGroup, isMinified } from "../../scripts/site-files";
+import organization from "../../src/lib/schema/organization.json";
 
 // Spec 038 FR-002, FR-003, FR-005, FR-006: in the built site, the site's own CSS and script code are readable and
 // separate from the third-party code. This reads `out/`, so it runs only after `bun run build`.
@@ -40,6 +41,26 @@ describe.skipIf(!fs.existsSync(OUT))("built site", () => {
             const link = html.indexOf(COOKIEBOT_PRECONNECT);
             expect(link, file).toBeGreaterThanOrEqual(0);
             expect(link, file).toBeLessThan(html.indexOf('<script id="Cookiebot"'));
+        }
+    });
+
+    // Spec 090: the home page's head carries the Organization structured data right after the Cookiebot script.
+    it("puts the Organization structured data in the home page head, right after the Cookiebot script", () => {
+        const html = read("out/index.html");
+        const open = '<script type="application/ld+json">';
+        expect(html.split(open).length - 1, "one block").toBe(1);
+        const cookiebot = html.indexOf('<script id="Cookiebot"');
+        const cookiebotEnd = html.indexOf("</script>", cookiebot) + "</script>".length;
+        expect(html.slice(cookiebotEnd).startsWith(open), "block directly after Cookiebot").toBe(true);
+        const start = cookiebotEnd + open.length;
+        const json = html.slice(start, html.indexOf("</script>", start));
+        expect(JSON.parse(json)).toEqual(organization);
+    });
+
+    // Spec 090: only the home page carries the structured data.
+    it("puts no Organization structured data on any other built page", () => {
+        for (const file of files.filter((name) => name.endsWith(".html") && name !== "out/index.html")) {
+            expect(read(file), file).not.toContain('<script type="application/ld+json">');
         }
     });
 

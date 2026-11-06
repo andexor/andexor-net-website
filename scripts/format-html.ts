@@ -9,7 +9,11 @@
 // first in <head> to strip that whitespace before React hydrates, and a gate proves that the stripped
 // result has the same DOM as the unformatted page.
 
+import { createElement } from "react";
+import { renderToStaticMarkup } from "react-dom/server";
 import { format } from "prettier";
+import { JsonLD } from "../src/components/JsonLD";
+import organization from "../src/lib/schema/organization.json";
 
 const TEXT_SPACE = "\uE000";
 const TEXT_NEWLINE = "\uE001";
@@ -31,6 +35,12 @@ export const COOKIEBOT_PRECONNECT = '<link rel="preconnect" href="https://consen
 export const COOKIEBOT_SCRIPT =
     '<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" ' +
     'data-cbid="ba75dc6a-d85e-4740-891e-dd0cc31a62dd" data-blockingmode="auto" type="text/javascript"></script>';
+
+/**
+ * The Organization structured data for the home page (spec 090). The `JsonLD` component is rendered to a string here,
+ * at build time, because a script rendered by a React page lands in the body, and this block belongs in <head>.
+ */
+export const ORGANIZATION_JSON_LD = renderToStaticMarkup(createElement(JsonLD, { data: organization }));
 
 /** The script injected in <head>, right after the Cookiebot script. It must match `stripAddedWhitespace` below. */
 export const WHITESPACE_SCRIPT = `<script>
@@ -340,7 +350,8 @@ export function assertSameDom(original: string, formatted: string, file: string)
             .replace(COOKIEBOT_FOCUS_SCRIPT, "")
             .replace(WHITESPACE_SCRIPT, "")
             .replace(COOKIEBOT_SCRIPT, "")
-            .replace(COOKIEBOT_PRECONNECT, ""),
+            .replace(COOKIEBOT_PRECONNECT, "")
+            .replace(ORGANIZATION_JSON_LD, ""),
     );
 
     for (const token of tokenize(before.skeleton)) {
@@ -410,7 +421,7 @@ async function restoreRegions(formatted: string, regions: string[], file: string
 }
 
 /** Formats one built page and returns the new HTML. Throws if the DOM would change. */
-export async function formatHtml(original: string, file: string): Promise<string> {
+export async function formatHtml(original: string, file: string, options: { jsonLd?: boolean } = {}): Promise<string> {
     // 1. Write apostrophes and quotes as plain characters, then set aside the content React does not hydrate;
     // it is formatted separately, with its whitespace kept.
     const { skeleton, regions } = extractRegions(plainQuotes(original));
@@ -456,10 +467,12 @@ export async function formatHtml(original: string, file: string): Promise<string
     // whitespace of their own.
     if (!/<head>\s*/.test(formatted))
         throw new Error(`${file}: no <head> to add the Cookiebot and whitespace scripts to`);
+    // The Organization block (spec 090) goes between the Cookiebot script and the whitespace script, only where asked.
+    const jsonLd = options.jsonLd ? ORGANIZATION_JSON_LD : "";
     formatted = formatted.replace(
         /<head>\s*/,
         () =>
-            `<head>${COOKIEBOT_PRECONNECT}${COOKIEBOT_SCRIPT}${WHITESPACE_SCRIPT}${COOKIEBOT_FOCUS_SCRIPT}${COOKIEBOT_DIALOG_SCRIPT}`,
+            `<head>${COOKIEBOT_PRECONNECT}${COOKIEBOT_SCRIPT}${jsonLd}${WHITESPACE_SCRIPT}${COOKIEBOT_FOCUS_SCRIPT}${COOKIEBOT_DIALOG_SCRIPT}`,
     );
 
     // 7. Prove the DOM is the same.
