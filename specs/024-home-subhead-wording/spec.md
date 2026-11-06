@@ -74,6 +74,8 @@ appears anywhere on the page.
 - This supersedes the wording in spec 022 (`specs/022-home-subhead-copy-width/`). That spec's width
   change (40em) stands; only its sentence changes here. Spec 022 is left as written, with a note
   pointing to this one.
+- Note: spec 089 (`specs/089-hero-subhead-copy/`) later changed this sentence again and removed the
+  40em width. This spec is left as written.
 - "Create" covers what "design" and "build" said, so the line is shorter, not narrower in meaning.
   No new claims are added.
 - The design-system files are kept in step with the site, as in specs 013 and 022. If `design/` is

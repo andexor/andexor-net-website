@@ -4,6 +4,9 @@
 
 import { Logo } from "./Logo";
 
+const subhead =
+    "We help small businesses in the Atlanta area grow with services normally found in larger organizations.";
+
 // FR-002: brand + headline value proposition. The "Contact Us" CTA lives in
 // the CTA band only.
 export function Hero() {
@@ -16,7 +19,7 @@ export function Hero() {
                     <Logo size="hero" light />
                 </div>
                 <h1 className="an-hero__headline">Enterprise services for small business</h1>
-                <p className="an-hero__subhead">We create and manage solutions to help your business grow.</p>
+                <p className="an-hero__subhead">{subhead}</p>
             </div>
         </header>
     );
