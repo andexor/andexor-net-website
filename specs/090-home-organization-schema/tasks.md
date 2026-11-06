@@ -29,7 +29,7 @@
 **CRITICAL**: No user story work can begin until this phase is complete
 
 - [X] T002 Add `ORGANIZATION_JSON_LD` to `scripts/format-html.ts`: import `createElement` from `react`, `renderToStaticMarkup` from `react-dom/server`, `JsonLD` from `src/components/JsonLD.tsx`, and `organization` from `src/lib/schema/organization.json`, and set the constant to `renderToStaticMarkup(createElement(JsonLD, { data: organization }))`
-- [X] T003 Extend `formatHtml` in `scripts/format-html.ts` with an optional third argument `{ jsonLd?: boolean }` (default `{}`). When `jsonLd` is true, insert `ORGANIZATION_JSON_LD` in step 6 after `COOKIEBOT_SCRIPT` and before `WHITESPACE_SCRIPT`, in the same head string as the other injected scripts
+- [X] T003 Extend `formatHtml` in `scripts/format-html.ts` with an optional third argument `{ jsonLD?: boolean }` (default `{}`). When `jsonLD` is true, insert `ORGANIZATION_JSON_LD` in step 6 after `COOKIEBOT_SCRIPT` and before `WHITESPACE_SCRIPT`, in the same head string as the other injected scripts
 - [X] T004 Update `assertSameDom` in `scripts/format-html.ts` so the formatted page has `ORGANIZATION_JSON_LD` removed before the comparison, as the Cookiebot scripts already are, so the DOM check passes whether or not the block was added
 
 **Checkpoint**: The formatter can add the block and still prove the DOM is unchanged. User stories can start.
@@ -44,12 +44,12 @@
 
 ### Tests for User Story 1
 
-- [X] T005 [US1] In `tests/unit/format-html.test.ts`, add a test: `formatHtml` with `{ jsonLd: true }` returns a page with exactly one `<script type="application/ld+json">` in `<head>`, placed after the Cookiebot script and before `WHITESPACE_SCRIPT`, whose parsed JSON deep-equals `src/lib/schema/organization.json`
+- [X] T005 [US1] In `tests/unit/format-html.test.ts`, add a test: `formatHtml` with `{ jsonLD: true }` returns a page with exactly one `<script type="application/ld+json">` in `<head>`, placed after the Cookiebot script and before `WHITESPACE_SCRIPT`, whose parsed JSON deep-equals `src/lib/schema/organization.json`
 - [X] T006 [US1] In `tests/unit/format-html.test.ts`, add a test: `formatHtml` without the option returns a page with no `application/ld+json` element, and the DOM check passes for it
 
 ### Implementation for User Story 1
 
-- [X] T007 [US1] In `scripts/format-site.ts`, change `formatPage` to pass `{ jsonLd: name === "out/index.html" }` as the third argument to `formatHtml`, so only the home page gets the block
+- [X] T007 [US1] In `scripts/format-site.ts`, change `formatPage` to pass `{ jsonLD: name === "out/index.html" }` as the third argument to `formatHtml`, so only the home page gets the block
 - [X] T008 [US1] In `tests/unit/build-output.test.ts`, add a built-site test (it skips when `out/` is missing): `out/index.html` has exactly one `application/ld+json` element in its head, directly after the Cookiebot script, whose parsed content deep-equals `src/lib/schema/organization.json`
 
 **Checkpoint**: The home page carries the block, and the formatter tests pass. This is the MVP.

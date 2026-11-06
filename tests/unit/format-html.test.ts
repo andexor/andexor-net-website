@@ -83,7 +83,7 @@ describe("organization structured data", () => {
     const countBlocks = (html: string) => html.split(JSON_LD_OPEN).length - 1;
 
     it("adds one block after the Cookiebot script and before the whitespace script, with the source data", async () => {
-        const output = await formatHtml(page, "index.html", { jsonLd: true });
+        const output = await formatHtml(page, "index.html", { jsonLD: true });
         expect(countBlocks(output)).toBe(1);
         const block = output.indexOf(JSON_LD_OPEN);
         expect(output.indexOf(COOKIEBOT_SCRIPT)).toBeLessThan(block);

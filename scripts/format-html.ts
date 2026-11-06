@@ -421,7 +421,7 @@ async function restoreRegions(formatted: string, regions: string[], file: string
 }
 
 /** Formats one built page and returns the new HTML. Throws if the DOM would change. */
-export async function formatHtml(original: string, file: string, options: { jsonLd?: boolean } = {}): Promise<string> {
+export async function formatHtml(original: string, file: string, options: { jsonLD?: boolean } = {}): Promise<string> {
     // 1. Write apostrophes and quotes as plain characters, then set aside the content React does not hydrate;
     // it is formatted separately, with its whitespace kept.
     const { skeleton, regions } = extractRegions(plainQuotes(original));
@@ -468,11 +468,11 @@ export async function formatHtml(original: string, file: string, options: { json
     if (!/<head>\s*/.test(formatted))
         throw new Error(`${file}: no <head> to add the Cookiebot and whitespace scripts to`);
     // The Organization block (spec 090) goes between the Cookiebot script and the whitespace script, only where asked.
-    const jsonLd = options.jsonLd ? ORGANIZATION_JSON_LD : "";
+    const jsonLD = options.jsonLD ? ORGANIZATION_JSON_LD : "";
     formatted = formatted.replace(
         /<head>\s*/,
         () =>
-            `<head>${COOKIEBOT_PRECONNECT}${COOKIEBOT_SCRIPT}${jsonLd}${WHITESPACE_SCRIPT}${COOKIEBOT_FOCUS_SCRIPT}${COOKIEBOT_DIALOG_SCRIPT}`,
+            `<head>${COOKIEBOT_PRECONNECT}${COOKIEBOT_SCRIPT}${jsonLD}${WHITESPACE_SCRIPT}${COOKIEBOT_FOCUS_SCRIPT}${COOKIEBOT_DIALOG_SCRIPT}`,
     );
 
     // 7. Prove the DOM is the same.

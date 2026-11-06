@@ -41,7 +41,7 @@ function removeFrameworkNoindex(html: string, name: string): string {
 async function formatPage(source: string, name: string): Promise<string> {
     const original = name === "out/404.html" ? removeFrameworkNoindex(source, name) : source;
     // The Organization structured data (spec 090) goes in the home page's head only.
-    return formatHtml(addPrivacyComments(original, name), name, { jsonLd: name === "out/index.html" });
+    return formatHtml(addPrivacyComments(original, name), name, { jsonLD: name === "out/index.html" });
 }
 
 // Next.js writes a React Server Components payload beside each page (`about-us.txt` beside `about-us.html`) for
