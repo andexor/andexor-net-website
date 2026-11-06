@@ -20,8 +20,8 @@ function Hero({ onProposal }) {
         <h1 style={{ position:'relative', color:'#FFF', fontSize:'clamp(38px, 5vw, 60px)', lineHeight:1.04, letterSpacing:'-0.02em', margin:'40px 0 0', textWrap:'balance' }}>
           Enterprise services for small business
         </h1>
-        <p style={{ color:'var(--blue-200)', fontSize:'19px', lineHeight:1.55, maxWidth:'40em', margin:'20px 0 0' }}>
-          We create and manage solutions to help your business grow.
+        <p style={{ color:'var(--blue-200)', fontSize:'19px', lineHeight:1.55, margin:'20px 0 0' }}>
+          We help small businesses in the Atlanta area grow with services normally found in larger organizations.
         </p>
         <div style={{ display:'flex', gap:'12px', marginTop:'30px', flexWrap:'wrap' }}>
           <Button variant="accent" size="lg" rightIcon={<Icon name="arrow-right" size={18} />} onClick={onProposal}>Contact Us</Button>

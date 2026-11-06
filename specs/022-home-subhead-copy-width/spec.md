@@ -99,4 +99,4 @@ one line. At 375 pixels wide it wraps between words and does not cause horizonta
   may need the same edit again.
 - Specs 001 to 022 that mention the old sentence only as history are changed only where they
   describe what the page shows; this spec is not a rewrite of history.
-- The sentence in this spec was later changed to "We create and manage solutions to help your business grow." by spec 024 (`specs/024-home-subhead-wording/`). The 40em width here stands.
+- The sentence in this spec was later changed to "We create and manage solutions to help your business grow." by spec 024 (`specs/024-home-subhead-wording/`). The 40em width here stands until spec 089 (`specs/089-hero-subhead-copy/`) removed it and set a new sentence.

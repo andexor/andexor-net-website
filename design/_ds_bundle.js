@@ -1568,10 +1568,9 @@ function Hero({
       color: 'var(--blue-200)',
       fontSize: '19px',
       lineHeight: 1.55,
-      maxWidth: '22em',
       margin: '20px 0 0'
     }
-  }, "We create and manage solutions to help your business grow."), /*#__PURE__*/React.createElement("div", {
+  }, "We help small businesses in the Atlanta area grow with services normally found in larger organizations."), /*#__PURE__*/React.createElement("div", {
     style: {
       display: 'flex',
       gap: '12px',
