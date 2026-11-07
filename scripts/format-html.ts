@@ -14,6 +14,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { format } from "prettier";
 import { JsonLD } from "../src/components/JsonLD";
 import organization from "../src/lib/schema/organization.json";
+import person from "../src/lib/schema/ed.json";
 
 const TEXT_SPACE = "\uE000";
 const TEXT_NEWLINE = "\uE001";
@@ -41,6 +42,9 @@ export const COOKIEBOT_SCRIPT =
  * at build time, because a script rendered by a React page lands in the body, and this block belongs in <head>.
  */
 export const ORGANIZATION_JSON_LD = renderToStaticMarkup(createElement(JsonLD, { data: organization }));
+
+/** The Person structured data for the home page (spec 091), built the same way and placed right after the Organization block. */
+export const PERSON_JSON_LD = renderToStaticMarkup(createElement(JsonLD, { data: person }));
 
 /** The script injected in <head>, right after the Cookiebot script. It must match `stripAddedWhitespace` below. */
 export const WHITESPACE_SCRIPT = `<script>
@@ -351,7 +355,8 @@ export function assertSameDom(original: string, formatted: string, file: string)
             .replace(WHITESPACE_SCRIPT, "")
             .replace(COOKIEBOT_SCRIPT, "")
             .replace(COOKIEBOT_PRECONNECT, "")
-            .replace(ORGANIZATION_JSON_LD, ""),
+            .replace(ORGANIZATION_JSON_LD, "")
+            .replace(PERSON_JSON_LD, ""),
     );
 
     for (const token of tokenize(before.skeleton)) {
@@ -467,8 +472,9 @@ export async function formatHtml(original: string, file: string, options: { json
     // whitespace of their own.
     if (!/<head>\s*/.test(formatted))
         throw new Error(`${file}: no <head> to add the Cookiebot and whitespace scripts to`);
-    // The Organization block (spec 090) goes between the Cookiebot script and the whitespace script, only where asked.
-    const jsonLD = options.jsonLD ? ORGANIZATION_JSON_LD : "";
+    // The Organization block (spec 090) and the Person block (spec 091) go between the Cookiebot script and the
+    // whitespace script, only where asked.
+    const jsonLD = options.jsonLD ? ORGANIZATION_JSON_LD + PERSON_JSON_LD : "";
     formatted = formatted.replace(
         /<head>\s*/,
         () =>

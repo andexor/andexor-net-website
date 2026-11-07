@@ -8,6 +8,7 @@ import { describe, expect, it } from "vitest";
 import { COOKIEBOT_PRECONNECT } from "../../scripts/format-html";
 import { fileGroup, isMinified } from "../../scripts/site-files";
 import organization from "../../src/lib/schema/organization.json";
+import person from "../../src/lib/schema/ed.json";
 
 // Spec 038 FR-002, FR-003, FR-005, FR-006: in the built site, the site's own CSS and script code are readable and
 // separate from the third-party code. This reads `out/`, so it runs only after `bun run build`.
@@ -45,16 +46,21 @@ describe.skipIf(!fs.existsSync(OUT))("built site", () => {
     });
 
     // Spec 090: the home page's head carries the Organization structured data right after the Cookiebot script.
-    it("puts the Organization structured data in the home page head, right after the Cookiebot script", () => {
+    // Specs 090 and 091: the home page's head carries the Organization and Person structured data right after the
+    // Cookiebot script, in that order.
+    it("puts the Organization and Person structured data in the home page head, right after the Cookiebot script", () => {
         const html = read("out/index.html");
         const open = '<script type="application/ld+json">';
-        expect(html.split(open).length - 1, "one block").toBe(1);
+        expect(html.split(open).length - 1, "two blocks").toBe(2);
         const cookiebot = html.indexOf('<script id="Cookiebot"');
         const cookiebotEnd = html.indexOf("</script>", cookiebot) + "</script>".length;
         expect(html.slice(cookiebotEnd).startsWith(open), "block directly after Cookiebot").toBe(true);
-        const start = cookiebotEnd + open.length;
-        const json = html.slice(start, html.indexOf("</script>", start));
-        expect(JSON.parse(json)).toEqual(organization);
+        const [organizationBlock, personBlock] = html
+            .split(open)
+            .slice(1)
+            .map((rest) => rest.slice(0, rest.indexOf("</script>")));
+        expect(JSON.parse(organizationBlock)).toEqual(organization);
+        expect(JSON.parse(personBlock)).toEqual(person);
     });
 
     // Spec 090: only the home page carries the structured data.

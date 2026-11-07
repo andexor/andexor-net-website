@@ -12,6 +12,7 @@ import {
     plainQuotes,
 } from "../../scripts/format-html";
 import organization from "../../src/lib/schema/organization.json";
+import person from "../../src/lib/schema/ed.json";
 
 // Rules from specs/038-readable-generated-code/contracts/formatting-rules.md, applied to a small page shaped like
 // the Next.js output (one line, no whitespace between elements).
@@ -82,14 +83,17 @@ describe("organization structured data", () => {
         '<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><title>T</title></head><body><p>Hi</p></body></html>';
     const countBlocks = (html: string) => html.split(JSON_LD_OPEN).length - 1;
 
-    it("adds one block after the Cookiebot script and before the whitespace script, with the source data", async () => {
+    it("adds the Organization and Person blocks after the Cookiebot script and before the whitespace script, with the source data", async () => {
         const output = await formatHtml(page, "index.html", { jsonLD: true });
-        expect(countBlocks(output)).toBe(1);
-        const block = output.indexOf(JSON_LD_OPEN);
-        expect(output.indexOf(COOKIEBOT_SCRIPT)).toBeLessThan(block);
-        expect(block).toBeLessThan(output.indexOf(WHITESPACE_SCRIPT));
-        const start = block + JSON_LD_OPEN.length;
-        expect(JSON.parse(output.slice(start, output.indexOf("</script>", start)))).toEqual(organization);
+        expect(countBlocks(output)).toBe(2);
+        const [organizationBlock, personBlock] = output
+            .split(JSON_LD_OPEN)
+            .slice(1)
+            .map((rest) => rest.slice(0, rest.indexOf("</script>")));
+        expect(output.indexOf(COOKIEBOT_SCRIPT)).toBeLessThan(output.indexOf(JSON_LD_OPEN));
+        expect(JSON.parse(organizationBlock)).toEqual(organization);
+        expect(JSON.parse(personBlock)).toEqual(person);
+        expect(output.indexOf(personBlock)).toBeLessThan(output.indexOf(WHITESPACE_SCRIPT));
     });
 
     it("adds no block when the option is not given, and the page still passes the DOM check", async () => {
