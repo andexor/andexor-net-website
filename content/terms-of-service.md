@@ -167,7 +167,7 @@ If you have questions about these Terms, or need to send us a legal notice or co
 
 Email: legal@andexor.net
 
-Phone: 855-ANDEXOR
+Phone: +14043511440
 
 | Mailing Address |
 | :-------------- |

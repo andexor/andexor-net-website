@@ -75,7 +75,7 @@ Sections in order: Hero → Services → CTA band → Footer. No sticky header. 
 - Header: bg `#002855`, padding 22px 24px, flex gap 12px. 260px gold radial glow top-left (offset -110px). Gold logo (`assets/logo/logo-gold.svg`, transparent) 34px, no radius (spec 016 replaced the boxed logo). Title "Contact Us" Play 700 30px/34px white. Close (x, 20px, `#C5D8EF`) at right.
 - **Form state** (padding 24px, column, gap 14px). Labels in `--blue-100` (`#E7EFF8`). Required fields end with a "*" in the label color, hidden from assistive technology; optional fields have no mark (spec 068).
   - Name (placeholder is a random example name from a list of 100, chosen each time the popup opens; required)
-  - Email (email, "you@company.com", required)
+  - Email (email, "you@example.com", required)
   - Phone (tel, "404-555-1212", optional)
   - Website ("example.com", optional)
   - How can we help you? (text area, 4 rows, id and name "help", optional, at most 250 characters; same border, hover, and focus halo as the other fields, resizable in height only. The label is only as wide as its text, with a counter "X/250" in Source Code Pro at the right of the same line. The label and counter sit in a strip whose background fills from the left X% of the way across as a progress bar: a quiet blue tint, a warm gold tint from 90%; spec 073)

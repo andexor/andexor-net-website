@@ -153,9 +153,6 @@ function rehypeWrapMarkedListItems() {
     return (tree: Root) => wrap(tree);
 }
 
-// A vanity phone number such as 855-ANDEXOR: three digits, a hyphen, then letters. It gets `an-phone` (content.css).
-const PHONE_NUMBER = /^\d{3}-\p{L}+$/u;
-
 // Wraps each hyphenated word in a span that does not wrap (see src/lib/hyphenated.tsx). Code is left alone. This runs
 // before rehypeWrapMarkedListItems: a list item that is plain text becomes text and spans here, and each piece would be
 // its own grid item in a card list, so that step must see the spans and wrap the item's content in one.
@@ -173,9 +170,7 @@ function rehypeKeepHyphenatedWordsTogether() {
                     children.push({
                         type: "element",
                         tagName: "span",
-                        properties: {
-                            className: PHONE_NUMBER.test(match[0]) ? ["an-nobreak", "an-phone"] : ["an-nobreak"],
-                        },
+                        properties: { className: ["an-nobreak"] },
                         children: [{ type: "text", value: match[0] }],
                     });
                     last = match.index + match[0].length;

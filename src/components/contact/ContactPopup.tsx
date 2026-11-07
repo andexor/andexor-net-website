@@ -261,7 +261,7 @@ export function ContactPopup({ open, onClose, sourcePath = "/", onSubmit = sendC
                             type="email"
                             inputMode="email"
                             autoComplete="email"
-                            placeholder="you@company.com"
+                            placeholder="you@example.com"
                             required
                         />
                         {/* Spec 068: optional. type="tel" brings up the keypad on phones; no format is enforced. */}
