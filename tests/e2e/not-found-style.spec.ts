@@ -26,7 +26,7 @@ test.describe("Not-found page style", () => {
         const img = page.locator(".an-cardhero__art img");
         await expect(img).toBeVisible();
         const loaded = await page.evaluate(() => {
-            const found = Array.from(document.images).find((i) => i.src.endsWith("/images/404.png"));
+            const found = Array.from(document.images).find((i) => i.src.endsWith("/static/images/404.png"));
             return Boolean(found && found.complete && found.naturalWidth > 0);
         });
         expect(loaded, "404.png loaded").toBe(true);
@@ -40,7 +40,7 @@ test.describe("Not-found page style", () => {
     });
 
     test("the Web Development page keeps its grid and eyebrow", async ({ page }) => {
-        await page.goto("/web-development");
+        await page.goto("/services/web-development");
         await expect(page.locator(".an-cardhero__pattern")).toHaveCount(1);
         await expect(page.locator(".an-cardhero__eyebrow")).toHaveCount(1);
     });
@@ -51,7 +51,7 @@ test.describe("Not-found page style", () => {
         test(`headline and tagline line up with a service page at ${width}px`, async ({ page }) => {
             await page.setViewportSize({ width, height: 900 });
             const positions = [];
-            for (const path of ["/cost-reduction", "/nope"]) {
+            for (const path of ["/services/cost-reduction", "/nope"]) {
                 await page.goto(path);
                 positions.push(
                     await page.evaluate(() => ({

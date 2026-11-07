@@ -4,7 +4,7 @@ description: Growth Marketing
 layout: cards
 section: business
 eyebrow: Business Services
-image: /images/growth-marketing.png
+image: /static/images/growth-marketing.png
 image_alt: bar chart showing a trend of sales going up
 cta_heading: Let's expand your brand awareness in all the right channels.
 ---

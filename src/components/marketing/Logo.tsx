@@ -22,7 +22,7 @@ export function Logo({ light = false, size = "default", href }: LogoProps) {
     const content = (
         <>
             {/* eslint-disable-next-line @next/next/no-img-element -- static SVG asset, no next/image optimization needed for static export */}
-            <img src="/logo/logo-gold.svg" alt={LOGO_ALT} className="an-logo-mark" />
+            <img src="/static/logo/logo-gold.svg" alt={LOGO_ALT} className="an-logo-mark" />
             <span className="an-logo-wordmark">Andexor Network</span>
         </>
     );

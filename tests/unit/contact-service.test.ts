@@ -16,7 +16,7 @@ const request: ContactRequest = {
     phone: "",
     website: "example.com",
     help: "",
-    sourcePath: "/web-development",
+    sourcePath: "/services/web-development",
 };
 
 // Spec 087, contracts/contact-service.md.

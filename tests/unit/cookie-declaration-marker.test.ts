@@ -33,7 +33,7 @@ describe("cookie declaration marker", () => {
     });
 
     it("is present in the real Privacy Policy page", async () => {
-        const page = await getContentPage(["privacy-policy"]);
+        const page = await getContentPage(["company", "privacy-policy"]);
         expect(`${page?.html}${page?.cards?.cardsHtml}`).toContain(`id="${COOKIE_DECLARATION_SLOT}"`);
     });
 });

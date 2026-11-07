@@ -4,7 +4,7 @@ description: Technical SEO
 layout: cards
 section: technical
 eyebrow: Technical Services
-image: /images/technical-seo.png
+image: /static/images/technical-seo.png
 image_alt: an SEO audit report
 cta_heading: Let's discuss how buyers are finding you now. And how to be more visible.
 ---
@@ -36,7 +36,7 @@ forms a solid foundation on which to work and be seen.
 If you don't have a domain name, we can help you get one.
 It's yours. We'll just manage it for you.
 Once you obtain your own domain name, you'll want to use it
-for [hosting your website](/web-hosting), applications, services, and agents.
+for [hosting your website](/services/web-hosting), applications, services, and agents.
 
 ## How can I obtain brand authority across the Internet?
 
@@ -68,7 +68,7 @@ to a rebranding effort.
 You may need to pick a new name that isn't
 being used anywhere and start using it everywhere.
 
-Ask our [Growth Marketing](/growth-marketing) specialist
+Ask our [Growth Marketing](/services/growth-marketing) specialist
 how we can help you make that transition.
 
 ## Have you done a Use Case Analysis?

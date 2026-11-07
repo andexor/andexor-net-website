@@ -6,7 +6,7 @@ import { expect, test } from "./fixtures";
 
 // Spec 046: a card is not a link or a button, so nothing about it changes when the pointer is over it. A link inside a
 // card still changes color on hover.
-for (const path of ["/web-development", "/about-us"]) {
+for (const path of ["/services/web-development", "/company/about-us"]) {
     test.describe(`Card hover on ${path}`, () => {
         test("a card looks the same with the pointer over it", async ({ page }) => {
             await page.goto(path);

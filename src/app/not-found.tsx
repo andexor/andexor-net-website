@@ -27,7 +27,7 @@ export default function NotFound() {
                 html=""
                 cards={{
                     image: {
-                        src: "/images/404.png",
+                        src: "/static/images/404.png",
                         alt: "laptop showing 404 next to a magnifying glass with a question mark",
                     },
                     headingHtml: "Page not found",

@@ -1,6 +1,11 @@
 <!--
 Sync Impact Report
-- Version change: 1.8.0 → 1.9.0 (MINOR: Principle V gains a limit on what tests are written. Tests are for
+- Version change: 1.9.0 → 1.10.0 (MINOR: Principle VIII gains a URL structure paragraph. The site's addresses
+  are a fixed set of prefixes with one owner each (/, /services/, /company/, /api/, /.well-known/, /_next/,
+  /static/); a new page goes under an existing prefix, a new prefix needs a spec, and a moved URL keeps a
+  permanent redirect. Owner decision, issue #118, specs/093-move-pages-static-resources. Templates in
+  .specify/templates/ checked: none name a route or a resource folder.)
+  Earlier: 1.8.0 → 1.9.0 (MINOR: Principle V gains a limit on what tests are written. Tests are for
   behavior and for rules the owner has written down; they MUST NOT assert copy or wording, exact pixel values,
   colors, or spacing, or restate what the build already checks, and tests that only check a checker are not
   written. The rule applies to generated specs and tasks too. Owner decision, after a test audit removed about
@@ -40,8 +45,8 @@ Sync Impact Report
   Earlier: 1.2.1 → 1.2.2 (PATCH: one branch per issue is now a suggestion, not a rule,
   to avoid ceremony on small changes). Earlier: 1.1.0 → 1.2.1 (MINOR for 1.2.0, then PATCH 1.2.1 for the license policy: materially expanded Development Workflow and Technology
   Constraints, based on CONTRIBUTING.md, SECURITY.md, setup.md, and NOTICE added 2026-09-29)
-- Modified principles: IV (no links to #top); earlier VIII (not-found page exception); earlier VI (no link underlines at all;
-  heading unchanged)
+- Modified principles: VIII (URL structure); earlier IV (no links to #top); earlier VIII (not-found page exception); earlier VI
+  (no link underlines at all; heading unchanged)
 - Added principles: none
 - Added guidance: issue-first workflow with commit trailer rule, sign-off meaning (Code of
   Conduct and DCO), AI-generated content rules, supported operating systems, dependency audit
@@ -154,6 +159,23 @@ address, so it stays a component, and it renders through the shared page shell. 
 MUST NOT be linked from the home page or footer until the site owner says it is ready. Authoring
 rules live in `content/README.md`.
 
+URL structure (spec 093, issue #118): the site's addresses are a fixed set of prefixes, and each prefix has one
+owner:
+
+| Prefix          | Holds                                                                                                 |
+| --------------- | ----------------------------------------------------------------------------------------------------- |
+| `/`             | Home page and the root crawler files only: robots.txt, sitemap.xml, favicons, manifest, browserconfig |
+| `/services/`    | Service pages                                                                                         |
+| `/company/`     | About Us and the policies                                                                             |
+| `/api/`         | The contact service, in its own repository                                                            |
+| `/.well-known/` | security.txt and anything RFC 8615 asks for                                                           |
+| `/_next/`       | Framework output                                                                                      |
+| `/static/`      | Static files like fonts, logos, images, etc.                                                          |
+
+A new page goes under an existing prefix, a new prefix needs a spec, and a moved URL keeps a permanent redirect
+(`public/_redirects`). Service pages are authored in `content/services/` and About Us and the policies in
+`content/company/`; nothing sits at the root of `content/` except the README and the crawler files.
+
 Rationale: The owner writes and edits page copy directly, and unlinked pages keep unfinished work
 out of customers' view.
 
@@ -261,4 +283,4 @@ MUST be explicitly justified in the relevant artifact rather than silently intro
 are companion documents for contributors; where they conflict with this constitution, this
 constitution wins until one of them is amended.
 
-**Version**: 1.9.0 | **Ratified**: 2026-09-28 | **Last Amended**: 2026-10-17
+**Version**: 1.10.0 | **Ratified**: 2026-09-28 | **Last Amended**: 2026-11-07

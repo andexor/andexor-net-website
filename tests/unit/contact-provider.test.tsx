@@ -128,14 +128,14 @@ describe("ContactProvider", () => {
     });
 
     it("reads the path again each time the popup opens", async () => {
-        mockPathname = "/web-development";
+        mockPathname = "/services/web-development";
         const { rerender } = render(
             <ContactProvider>
                 <OpenerNoArg />
             </ContactProvider>,
         );
         await userEvent.click(screen.getByRole("button", { name: "Open no arg" }));
-        expect(sourcePathValue()).toBe("/web-development");
+        expect(sourcePathValue()).toBe("/services/web-development");
         await userEvent.click(screen.getByRole("button", { name: "Close" }));
 
         mockPathname = "/about";

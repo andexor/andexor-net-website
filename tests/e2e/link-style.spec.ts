@@ -7,7 +7,14 @@ import { expect, test } from "./fixtures";
 // Spec 007: no link is underlined, at rest, on hover, or on focus. Body and
 // card links change color on hover. Exact colors are not tested (project rule). Playwright's loader here fails on TypeScript type
 // annotations, so callbacks rely on contextual typing.
-const PAGES = ["/", "/web-development", "/nope", "/privacy-policy", "/security-policy", "/terms-of-service"];
+const PAGES = [
+    "/",
+    "/services/web-development",
+    "/nope",
+    "/company/privacy-policy",
+    "/company/security-policy",
+    "/company/terms-of-service",
+];
 
 test.describe("Link style", () => {
     for (const url of PAGES) {
@@ -39,7 +46,7 @@ test.describe("Link style", () => {
     });
 
     test("every body, card, and footer link is not underlined on hover", async ({ page }) => {
-        for (const url of ["/web-development", "/nope", "/"]) {
+        for (const url of ["/services/web-development", "/nope", "/"]) {
             await page.goto(url);
             const links = page.locator(".an-prose a, .an-tile a, .an-cardhero__intro a, footer a");
             const count = await links.count();
@@ -62,7 +69,7 @@ test.describe("Link style", () => {
     });
 
     test("card links change color on hover", async ({ page }) => {
-        await page.goto("/web-development");
+        await page.goto("/services/web-development");
         const links = page.locator(".an-tile a");
         // The Web Development cards have no links today; this covers ones added later.
         test.skip((await links.count()) === 0, "no links in cards on this page yet");
@@ -74,7 +81,7 @@ test.describe("Link style", () => {
 
     test("every body and card link shows a focus ring when tabbed to", async ({ page, browserName }) => {
         test.skip(browserName === "webkit", "Safari skips links when tabbing by default");
-        for (const url of ["/nope", "/web-development"]) {
+        for (const url of ["/nope", "/services/web-development"]) {
             await page.goto(url);
             const count = await page.locator(".an-prose a, .an-tile a, .an-cardhero__intro a").count();
             for (let i = 0; i < count; i++) {

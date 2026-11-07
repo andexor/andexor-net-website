@@ -1,0 +1,32 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Andexor Network, Inc.
+# Author: Ed Jenkins <ed@andexor.net>
+
+# Cloudflare Workers Static Assets reads this file from the assets directory (out/) and does not serve it (spec 093).
+# Next.js copies public/ to out/ at build time. Rules run before _headers and before any asset is looked up. The
+# local static server (server.ts) and the tests do not honor it: an old address is a 404 there.
+
+# Pages moved from the root to a section (issue #118). One permanent redirect each. tests/unit/redirects.test.ts
+# checks this list against tests/unit/moved-pages.ts; a page added later under a section needs no rule here.
+/web-development /services/web-development 301
+/web-hosting /services/web-hosting 301
+/technical-seo /services/technical-seo 301
+/agentic-systems /services/agentic-systems 301
+/cost-reduction /services/cost-reduction 301
+/lead-generation /services/lead-generation 301
+/growth-marketing /services/growth-marketing 301
+/process-re-engineering /services/process-re-engineering 301
+/about-us /company/about-us 301
+/privacy-policy /company/privacy-policy 301
+/security-policy /company/security-policy 301
+/terms-of-service /company/terms-of-service 301
+
+# Fonts, images, and logos moved under /static/.
+/fonts/* /static/fonts/:splat 301
+/images/* /static/images/:splat 301
+/logo/* /static/logo/:splat 301
+
+# The sections have no landing page yet. Temporary (302), so a browser does not keep a cached redirect once a
+# content/services/index.md or content/company/index.md exists; remove the line when one does.
+/services / 302
+/company / 302

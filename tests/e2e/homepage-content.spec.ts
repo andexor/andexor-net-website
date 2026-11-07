@@ -7,16 +7,16 @@ import { expect, test } from "./fixtures";
 // User Story 1 Acceptance Scenarios 1-4 (spec.md).
 test.describe("Homepage content", () => {
     const TECHNICAL = [
-        ["Web Development", "/web-development"],
-        ["Web Hosting", "/web-hosting"],
-        ["Technical SEO", "/technical-seo"],
-        ["Agentic Systems", "/agentic-systems"],
+        ["Web Development", "/services/web-development"],
+        ["Web Hosting", "/services/web-hosting"],
+        ["Technical SEO", "/services/technical-seo"],
+        ["Agentic Systems", "/services/agentic-systems"],
     ];
     const BUSINESS = [
-        ["Cost Reduction", "/cost-reduction"],
-        ["Process Re-engineering", "/process-re-engineering"],
-        ["Lead Generation", "/lead-generation"],
-        ["Growth Marketing", "/growth-marketing"],
+        ["Cost Reduction", "/services/cost-reduction"],
+        ["Process Re-engineering", "/services/process-re-engineering"],
+        ["Lead Generation", "/services/lead-generation"],
+        ["Growth Marketing", "/services/growth-marketing"],
     ];
 
     // Spec 048: technical cards in one section, business cards in another, each in the footer's order.

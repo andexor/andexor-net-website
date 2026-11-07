@@ -4,7 +4,7 @@ description: About Us
 layout: cards
 section: company
 eyebrow: Company
-image: /images/about-us.png
+image: /static/images/about-us.png
 image_alt: a building with employees and a heart
 ---
 

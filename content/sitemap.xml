@@ -4,51 +4,51 @@
         <loc>https://andexor.net/</loc>
     </url>
     <url>
-        <loc>https://andexor.net/about-us</loc>
-        <lastmod>2026-10-27</lastmod>
-    </url>
-    <url>
-        <loc>https://andexor.net/agentic-systems</loc>
-        <lastmod>2026-10-23</lastmod>
-    </url>
-    <url>
-        <loc>https://andexor.net/cost-reduction</loc>
-        <lastmod>2026-10-23</lastmod>
-    </url>
-    <url>
-        <loc>https://andexor.net/growth-marketing</loc>
-        <lastmod>2026-10-23</lastmod>
-    </url>
-    <url>
-        <loc>https://andexor.net/lead-generation</loc>
-        <lastmod>2026-10-23</lastmod>
-    </url>
-    <url>
-        <loc>https://andexor.net/privacy-policy</loc>
+        <loc>https://andexor.net/company/about-us</loc>
         <lastmod>2026-11-07</lastmod>
     </url>
     <url>
-        <loc>https://andexor.net/process-re-engineering</loc>
-        <lastmod>2026-10-23</lastmod>
-    </url>
-    <url>
-        <loc>https://andexor.net/security-policy</loc>
+        <loc>https://andexor.net/company/privacy-policy</loc>
         <lastmod>2026-11-07</lastmod>
     </url>
     <url>
-        <loc>https://andexor.net/technical-seo</loc>
-        <lastmod>2026-10-23</lastmod>
-    </url>
-    <url>
-        <loc>https://andexor.net/terms-of-service</loc>
+        <loc>https://andexor.net/company/security-policy</loc>
         <lastmod>2026-11-07</lastmod>
     </url>
     <url>
-        <loc>https://andexor.net/web-development</loc>
-        <lastmod>2026-10-23</lastmod>
+        <loc>https://andexor.net/company/terms-of-service</loc>
+        <lastmod>2026-11-07</lastmod>
     </url>
     <url>
-        <loc>https://andexor.net/web-hosting</loc>
-        <lastmod>2026-10-23</lastmod>
+        <loc>https://andexor.net/services/agentic-systems</loc>
+        <lastmod>2026-11-07</lastmod>
+    </url>
+    <url>
+        <loc>https://andexor.net/services/cost-reduction</loc>
+        <lastmod>2026-11-07</lastmod>
+    </url>
+    <url>
+        <loc>https://andexor.net/services/growth-marketing</loc>
+        <lastmod>2026-11-07</lastmod>
+    </url>
+    <url>
+        <loc>https://andexor.net/services/lead-generation</loc>
+        <lastmod>2026-11-07</lastmod>
+    </url>
+    <url>
+        <loc>https://andexor.net/services/process-re-engineering</loc>
+        <lastmod>2026-11-07</lastmod>
+    </url>
+    <url>
+        <loc>https://andexor.net/services/technical-seo</loc>
+        <lastmod>2026-11-07</lastmod>
+    </url>
+    <url>
+        <loc>https://andexor.net/services/web-development</loc>
+        <lastmod>2026-11-07</lastmod>
+    </url>
+    <url>
+        <loc>https://andexor.net/services/web-hosting</loc>
+        <lastmod>2026-11-07</lastmod>
     </url>
 </urlset>

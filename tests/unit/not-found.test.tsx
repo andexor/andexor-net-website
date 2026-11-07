@@ -41,7 +41,7 @@ describe("NotFound", () => {
         );
         const img = container.querySelector(".an-cardhero__art img");
         expect(img).not.toBeNull();
-        expect(img).toHaveAttribute("src", "/images/404.png");
+        expect(img).toHaveAttribute("src", "/static/images/404.png");
         expect(img?.getAttribute("alt")?.length).toBeGreaterThan(10);
     });
 

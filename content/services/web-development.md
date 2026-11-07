@@ -4,7 +4,7 @@ description: Web Development
 layout: cards
 section: technical
 eyebrow: Technical Services
-image: /images/web-development.png
+image: /static/images/web-development.png
 image_alt: a laptop showing source code with a browser window floating beside it
 cta_heading: What do you need your site, app, or agent to do? Let's make it happen.
 ---
@@ -32,7 +32,7 @@ We can create something beautiful, usable, and accessible.
 We will build it on a strong technical foundation,
 ready to handle loads of new customers.
 
-When it's ready to go live, [we can host it too.](/web-hosting)
+When it's ready to go live, [we can host it too.](/services/web-hosting)
 We have a wide range of tools at our disposal for
 architecting, running, and monitoring websites and applications.
 
@@ -47,7 +47,7 @@ properly listed on Google Maps.
 Whether we build a new site or spruce up an existing one,
 it needs to be found by search engines and AI agents.
 Let's discuss strategies that can make your site more visible to
-[search engines](/technical-seo) and AI agents.
+[search engines](/services/technical-seo) and AI agents.
 A few small changes can attract more customers.
 
 ## Need a web application?
@@ -126,7 +126,7 @@ between real events and false alarms,
 anomalies, scheduled tasks, and bot traffic.
 
 Knowing what your applications are doing is a great starting point for
-[re-engineering complex business processes](/process-re-engineering)
+[re-engineering complex business processes](/services/process-re-engineering)
 for a smoother experience for your employees and your customers.
 
 ## Need relief from alert fatigue?
@@ -148,7 +148,7 @@ for design inspiration to get started
 and add as many features as you like.
 
 While we're at it, let's take a look at
-some [AI agents](/agentic-systems) designed
+some [AI agents](/services/agentic-systems) designed
 to help you boost sales as well.
 
 ## Want a blog?
@@ -158,7 +158,7 @@ We'll set you up with a content management system
 to publish your articles.
 
 Once you have a blog, you'll need to let your customers and prospects
-know about it. Consider complementing it with a [newsletter](/growth-marketing).
+know about it. Consider complementing it with a [newsletter](/services/growth-marketing).
 Blogs and newsletters are major gateways you can use
 to attract more customers.
 
@@ -196,7 +196,7 @@ And you get notified as well.
 over what it does and how it works.
 
 Collecting contact info from a form
-is one way to [find new leads](/lead-generation).
+is one way to [find new leads](/services/lead-generation).
 
 ## Do your apps have hidden issues causing friction?
 
@@ -272,7 +272,7 @@ towards what must be done in the wake of
 an incident.
 
 This is an easy and excellent way to
-[reduce your operating costs](/cost-reduction).
+[reduce your operating costs](/services/cost-reduction).
 
 ---
 

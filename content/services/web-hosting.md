@@ -4,7 +4,7 @@ description: Web Hosting
 layout: cards
 section: technical
 eyebrow: Technical Services
-image: /images/web-hosting.png
+image: /static/images/web-hosting.png
 image_alt: web servers running in a cloud datacenter
 cta_heading: We'll select the right infrastructure to support your needs.
 ---

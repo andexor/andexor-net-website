@@ -33,7 +33,7 @@ export const SERVICES: ServiceOffering[] = [
         icon: faCode,
         iconLabel: "source code icon",
         title: "Web Development",
-        href: "/web-development",
+        href: "/services/web-development",
         description:
             "We'll create or update your website with a strong technical foundation to support an increase in traffic and sales.",
         bullets: ["Brochure, blog, forms, shop", "Content management system", "Custom web applications"],
@@ -43,7 +43,7 @@ export const SERVICES: ServiceOffering[] = [
         icon: faServer,
         iconLabel: "web servers icon",
         title: "Web Hosting",
-        href: "/web-hosting",
+        href: "/services/web-hosting",
         description:
             "We'll host your site, services, and agents on fast, reliable servers that keep running smoothly even when traffic spikes.",
         bullets: ["Managed cloud servers", "Backups, monitoring, analytics", "Security updates"],
@@ -53,7 +53,7 @@ export const SERVICES: ServiceOffering[] = [
         icon: faMagnifyingGlass,
         iconLabel: "magnifying glass icon",
         title: "Technical SEO",
-        href: "/technical-seo",
+        href: "/services/technical-seo",
         description:
             "We'll assess your site's structure and brand identity, then routinely improve visibility in search engines and AI agents.",
         bullets: ["Site audit", "Content strategy", "Google Business Profile, maps"],
@@ -63,7 +63,7 @@ export const SERVICES: ServiceOffering[] = [
         icon: faMicrochipAi,
         iconLabel: "A.I. chip icon",
         title: "Agentic Systems",
-        href: "/agentic-systems",
+        href: "/services/agentic-systems",
         description:
             "We'll build the agents you need so you can adapt to emerging trends as AI agents handle business transactions.",
         bullets: ["Knowledge base, chatbot", "Answer calls, book meetings", "Agent-to-agent sales"],
@@ -73,7 +73,7 @@ export const SERVICES: ServiceOffering[] = [
         icon: faChartLineDown,
         iconLabel: "line chart trending down icon",
         title: "Cost Reduction",
-        href: "/cost-reduction",
+        href: "/services/cost-reduction",
         description:
             "We'll find where your business spends more than it needs to on software and cut it without compromising quality.",
         bullets: ["Spending review", "Lower cost alternatives", "Workflow automation"],
@@ -83,7 +83,7 @@ export const SERVICES: ServiceOffering[] = [
         icon: faRoute,
         iconLabel: "roadmap icon",
         title: "Process Re-engineering",
-        href: "/process-re-engineering",
+        href: "/services/process-re-engineering",
         description:
             "We'll observe and document how work gets done today, redesign it to reach your goals, and lead your team through every step.",
         bullets: ["Process analysis and design", "Leadership from start to finish", "Training, monitoring, support"],
@@ -93,7 +93,7 @@ export const SERVICES: ServiceOffering[] = [
         icon: faFilter,
         iconLabel: "sales funnel icon",
         title: "Lead Generation",
-        href: "/lead-generation",
+        href: "/services/lead-generation",
         description:
             "We'll find new sources of customers and qualify them with criteria you specify. Pause and resume when you need to.",
         bullets: ["Targeted outreach", "Landing pages and forms", "Lead tracking and follow-up"],
@@ -103,7 +103,7 @@ export const SERVICES: ServiceOffering[] = [
         icon: faChartLineUp,
         iconLabel: "line chart trending up icon",
         title: "Growth Marketing",
-        href: "/growth-marketing",
+        href: "/services/growth-marketing",
         description:
             "We'll create campaigns made for impact, from brand awareness to closed sales, with continuous monitoring.",
         bullets: ["Branded email, newsletter", "Blog and social media posts", "Reviews, ads, sponsorships"],

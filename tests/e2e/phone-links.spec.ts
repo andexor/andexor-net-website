@@ -8,7 +8,7 @@ import { expect, test } from "./fixtures";
 // JSON-LD structured data is not visible text, so script elements are skipped. Playwright's loader here fails on
 // TypeScript type annotations, so callbacks rely on contextual typing.
 const NUMBER = "+14043511440";
-const PAGES = ["/privacy-policy", "/security-policy", "/terms-of-service"];
+const PAGES = ["/company/privacy-policy", "/company/security-policy", "/company/terms-of-service"];
 
 test.describe("Phone links", () => {
     for (const url of PAGES) {
@@ -31,7 +31,7 @@ test.describe("Phone links", () => {
     }
 
     test("a phone link on the Privacy Policy is not underlined on hover or focus", async ({ page }) => {
-        await page.goto("/privacy-policy");
+        await page.goto("/company/privacy-policy");
         const link = page.locator(`a[href="tel:${NUMBER}"]`).first();
         await link.hover();
         expect(await link.evaluate((a) => getComputedStyle(a).textDecorationLine)).toBe("none");

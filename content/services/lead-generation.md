@@ -4,7 +4,7 @@ description: Lead Generation
 layout: cards
 section: business
 eyebrow: Business Services
-image: /images/lead-generation.png
+image: /static/images/lead-generation.png
 image_alt: prospective customers in a sales funnel
 cta_heading: Let's identify new sources of customers and how you can serve them.
 ---

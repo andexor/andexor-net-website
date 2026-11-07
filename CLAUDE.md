@@ -121,12 +121,19 @@ must be free, or Playwright will reuse whatever is listening there.
 
 ## Markdown content pages
 
-Pages are authored as Markdown in `content/` (path = route, e.g. `content/about.md` -> `/about`)
+Pages are authored as Markdown in `content/` (path = route, e.g. `content/company/about-us.md` -> `/company/about-us`)
 and rendered to static HTML at build time by the catch-all route `src/app/[...slug]/page.tsx`,
 using `src/lib/content.ts` (unified/remark/rehype) and styled by `src/styles/content.css`. The
 user adds and edits these files themselves; do not convert them to hand-written `.tsx` pages.
 Authoring rules are in `content/README.md`. Content pages are intentionally not linked from the
-home page or footer until the user says a page is ready.
+home page or footer until the user says a page is ready. Every page lives in a section folder (spec 093): service
+pages in `content/services/` (served under `/services/`), About Us and the policies in `content/company/` (served under
+`/company/`). Nothing sits at the root of `content/` except `README.md` and the crawler files `robots.txt` and
+`sitemap.xml`, so never add a page there. A folder's `index.md` would be that section's landing page; none exists, and
+until one does `/services` and `/company` redirect to `/` in production. Fonts, images, and logos live in
+`public/static/` and are served under `/static/`. A page or file that moves keeps a permanent redirect from its old
+address in `public/_redirects` (Cloudflare reads it from `out/`; the local server and the tests do not honor it). The
+prefix table is in the constitution, Principle VIII.
 
 ## Contact service
 
@@ -205,7 +212,7 @@ skips `src/components/content/`.
   Settings and `<!-- For CCPA -->` before Do Not Sell or Share My Personal Information. React cannot write HTML comments, so
   `addPrivacyComments` in `scripts/format-html.ts` adds them to the raw page before it is formatted, and the build fails,
   naming the page, if either link is not found exactly once. Both links are the same `PrivacySettingsLink` component.
-- Removes the React Server Components payload Next writes beside each page (`about-us.txt` beside `about-us.html`).
+- Removes the React Server Components payload Next writes beside each page (`company/about-us.txt` beside `company/about-us.html`).
   The site's links are ordinary anchors, so nothing requests them. A `.txt` file with no page of the same name
   (`robots.txt`, `.well-known/security.txt`) stays.
 
@@ -216,8 +223,8 @@ Rules to keep in mind:
   Cookiebot's automatic blocking mode (`data-blockingmode="auto"`, spec 076) an external data script runs after the
   framework has closed its data stream, React starts with no page data ("Connection closed"), and the page goes blank.
   `tests/unit/build-output.test.ts` fails if a built page refers to `/_next/static/data/`.
-- The Cookie Declaration (specs 078, 081, and 082) is the last section of the Privacy Policy, `/privacy-policy`: the line
-  `<!-- cookie-declaration -->` in `content/privacy-policy.md` is turned into an empty slot,
+- The Cookie Declaration (specs 078, 081, and 082) is the last section of the Privacy Policy, `/company/privacy-policy`: the line
+  `<!-- cookie-declaration -->` in `content/company/privacy-policy.md` is turned into an empty slot,
   `<div id="cookie-declaration-slot" data-src="...cd.js">`, by `src/lib/content.ts`, built from the syntax tree because raw
   HTML in Markdown is still dropped. The script element is NOT in the page HTML: `CookieDeclaration.tsx` adds it to the
   slot after hydration. Put in the HTML, Cookiebot's script can change the page before React hydrates it, and in

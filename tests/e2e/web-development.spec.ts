@@ -22,7 +22,7 @@ test("footer Web Development link leads to the page", async ({ page }) => {
 
 test.describe("Web Development page", () => {
     test.beforeEach(async ({ page }) => {
-        await page.goto("/web-development");
+        await page.goto("/services/web-development");
     });
 
     test("shows the hero illustration with a text alternative", async ({ page }) => {

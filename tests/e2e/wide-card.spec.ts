@@ -19,7 +19,7 @@ test.describe("Wide closing card", () => {
     for (const width of [1280, 1920]) {
         test(`spans both columns below them at ${width}px`, async ({ page }) => {
             await page.setViewportSize({ width, height: 900 });
-            await page.goto("/web-development");
+            await page.goto("/services/web-development");
             const wide = page.locator(".an-tile--wide").first();
             const cols = page.locator(".an-cards__col");
             const [w, left, right] = await Promise.all([box(wide), box(cols.nth(0)), box(cols.nth(1))]);
@@ -30,7 +30,7 @@ test.describe("Wide closing card", () => {
 
         test(`its list flows in two columns at ${width}px`, async ({ page }) => {
             await page.setViewportSize({ width, height: 900 });
-            await page.goto("/web-development");
+            await page.goto("/services/web-development");
             const items = page.locator(".an-tile--wide li");
             const first = await box(items.first());
             const last = await box(items.last());
@@ -41,7 +41,7 @@ test.describe("Wide closing card", () => {
 
     test("the list folds into one column when narrow, and back when wide", async ({ page }) => {
         await page.setViewportSize({ width: 1280, height: 900 });
-        await page.goto("/web-development");
+        await page.goto("/services/web-development");
         const items = page.locator(".an-tile--wide li");
         await page.setViewportSize({ width: 360, height: 900 });
         const narrowFirst = await box(items.first());
@@ -58,7 +58,7 @@ test.describe("Wide closing card", () => {
 
     test("is the last card when the cards stack on a phone", async ({ page }) => {
         await page.setViewportSize({ width: 360, height: 800 });
-        await page.goto("/web-development");
+        await page.goto("/services/web-development");
         const tiles = page.locator("article.an-tile");
         const wide = await box(page.locator(".an-tile--wide").first());
         const lastTile = await box(tiles.last());

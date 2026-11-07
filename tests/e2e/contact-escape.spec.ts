@@ -75,7 +75,7 @@ test.describe("Esc closes the Contact Us popup", () => {
         await expect(page.getByRole("heading", { name: "Request received" })).toHaveCount(0);
     });
 
-    for (const path of ["/", "/web-development"]) {
+    for (const path of ["/", "/services/web-development"]) {
         test(`does nothing while the popup is closed on ${path}`, async ({ page }) => {
             await page.goto(path);
             await page.keyboard.press("Escape");

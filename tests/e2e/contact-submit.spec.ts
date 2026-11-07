@@ -43,11 +43,11 @@ test.describe("Contact request delivery", () => {
 
     test("sends the path of the page that opened the popup", async ({ page }) => {
         const bodies = await stubContactService(page.context());
-        await openAndFill(page, "/web-development");
+        await openAndFill(page, "/services/web-development");
         await send(page).click();
 
         await expect(heading(page)).toBeVisible();
-        expect(bodies.map((body) => body.sourcePath)).toEqual(["/web-development"]);
+        expect(bodies.map((body) => body.sourcePath)).toEqual(["/services/web-development"]);
     });
 
     test("keeps the form, with Send disabled, until the service answers", async ({ page }) => {

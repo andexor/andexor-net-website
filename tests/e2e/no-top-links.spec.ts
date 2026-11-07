@@ -8,7 +8,7 @@ import { expect, test } from "./fixtures";
 // link anywhere goes to #top. `/nope` stands for any address the site does not
 // have. Playwright's loader here fails on TypeScript type annotations, so
 // callbacks rely on contextual typing.
-const PAGES = ["/", "/web-development", "/nope"];
+const PAGES = ["/", "/services/web-development", "/nope"];
 
 test.describe("No links to #top", () => {
     for (const url of PAGES) {
@@ -66,7 +66,7 @@ test.describe("No links to #top", () => {
     });
 
     test("the header logo on a content page still goes to the home page", async ({ page }) => {
-        await page.goto("/web-development");
+        await page.goto("/services/web-development");
         const header = page.locator(".an-content-header .an-logo-lockup");
         expect(await header.evaluate((el) => el.tagName)).toBe("A");
         await expect(header).toHaveAttribute("href", "/");

@@ -7,7 +7,7 @@ import { expect, test } from "./fixtures";
 // Spec 074: the Contact Us band at the bottom of the service pages.
 test.describe("Service page call to action", () => {
     test("the band sits between the cards and the footer and opens the popup, then returns focus", async ({ page }) => {
-        await page.goto("/web-hosting");
+        await page.goto("/services/web-hosting");
         const band = page.locator(".an-cta-band");
         const button = band.getByRole("button", { name: "Contact Us" });
         await button.scrollIntoViewIfNeeded();
@@ -27,7 +27,7 @@ test.describe("Service page call to action", () => {
     });
 
     test("a page without cta_heading has no band", async ({ page }) => {
-        await page.goto("/about-us");
+        await page.goto("/company/about-us");
         await expect(page.locator(".an-cta-band")).not.toBeVisible();
     });
 });

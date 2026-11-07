@@ -8,7 +8,7 @@ import { expect, test } from "./fixtures";
 // permanently to the system-font fallback — no visible swap/reflow once
 // that fallback is shown, even if the font finishes loading later.
 test("falls back to system fonts with no later swap when font loads are blocked", async ({ page }) => {
-    await page.route("**/fonts/*.woff2", (route) => route.abort());
+    await page.route("**/static/fonts/*.woff2", (route) => route.abort());
 
     await page.goto("/");
     await expect(page.locator("html")).toHaveClass(/fonts-fallback/, { timeout: 4000 });
