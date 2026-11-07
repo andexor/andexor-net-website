@@ -10,12 +10,6 @@ import { expect, test } from "./fixtures";
 // Note: Playwright's loader in this repo does not accept TypeScript type
 // annotations in spec files (see the other specs), so callbacks below rely on
 // contextual typing instead.
-const PAGES = [
-    ["home page", "/"],
-    ["Web Development page", "/services/web-development"],
-    ["not-found page", "/nope"],
-];
-
 const WIDTHS = [
     ["desktop", 1280],
     ["tablet", 1024],
@@ -24,9 +18,6 @@ const WIDTHS = [
 ];
 
 test.describe("Logo wordmark", () => {
-    for (const [name, url] of PAGES) {
-    }
-
     test("header logo on a content page goes to the home page", async ({ page }) => {
         await page.goto("/services/web-development");
         await page.locator(".an-content-header").getByRole("link", { name: "Andexor Network" }).click();

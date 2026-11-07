@@ -18,6 +18,7 @@ const eslintConfig = [
             "design/**",
             "ds-bundle/**",
             ".design-sync/**",
+            ".ds-sync/**",
             "playwright-report/**",
             "test-results/**",
             "next-env.d.ts",

@@ -85,8 +85,4 @@ test.describe("Homepage content", () => {
             footer.getByRole("link", { name: "GitHub logo, Andexor organization, opens in new tab", exact: true }),
         ).toBeVisible();
     });
-
-    // SC-004 / FR-014: no visual defects from 320px to 1920px wide.
-    for (const width of [320, 375, 768, 1024, 1440, 1920]) {
-    }
 });

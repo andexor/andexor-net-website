@@ -3,28 +3,9 @@
 // Author: Ed Jenkins <ed@andexor.net>
 
 import { describe, expect, it } from "vitest";
-import {
-    COOKIEBOT_SCRIPT,
-    WHITESPACE_SCRIPT,
-    addPrivacyComments,
-    assertSameDom,
-    formatHtml,
-    plainQuotes,
-} from "../../scripts/format-html";
+import { COOKIEBOT_SCRIPT, WHITESPACE_SCRIPT, addPrivacyComments, formatHtml } from "../../scripts/format-html";
 import organization from "../../src/lib/schema/organization.json";
 import person from "../../src/lib/schema/ed.json";
-
-// Rules from specs/038-readable-generated-code/contracts/formatting-rules.md, applied to a small page shaped like
-// the Next.js output (one line, no whitespace between elements).
-const LONG_TEXT =
-    "Some long paragraph text that goes on well past the print width so a formatter would normally wrap it. ".repeat(3);
-const PAGE =
-    '<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><title>Test</title>' +
-    "<noscript><style>body { visibility: visible !important; }</style></noscript></head>" +
-    '<body><div hidden=""><!--$--><!--/$--></div><section id="a" class="x"><h1>Hello world</h1>' +
-    `<p>${LONG_TEXT}<a href="/x" class="link">link</a>.</p></section>` +
-    '<article data-raw-html="" class="an-prose"><p>One <em>two</em>\nthree</p>\n<ul>\n<li>item</li>\n</ul></article>' +
-    '<script>self.__next_f.push([1,"a"])</script></body></html>';
 
 // Spec 040: apostrophes and double quotes are written as the plain characters, not as the escapes React writes.
 describe("plain quotes", () => {

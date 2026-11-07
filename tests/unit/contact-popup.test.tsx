@@ -5,7 +5,6 @@
 import { createEvent, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { EXAMPLE_NAMES } from "@/components/contact/example-names";
 import { ContactPopup } from "@/components/contact/ContactPopup";
 
 function fillValidForm() {
