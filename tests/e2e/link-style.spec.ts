@@ -7,7 +7,7 @@ import { expect, test } from "./fixtures";
 // Spec 007: no link is underlined, at rest, on hover, or on focus. Body and
 // card links change color on hover. Exact colors are not tested (project rule). Playwright's loader here fails on TypeScript type
 // annotations, so callbacks rely on contextual typing.
-const PAGES = ["/", "/web-development", "/nope"];
+const PAGES = ["/", "/web-development", "/nope", "/privacy-policy", "/security-policy", "/terms-of-service"];
 
 test.describe("Link style", () => {
     for (const url of PAGES) {
