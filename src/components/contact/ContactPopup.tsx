@@ -231,7 +231,7 @@ export function ContactPopup({ open, onClose, sourcePath = "/", onSubmit = sendC
                 <div className="an-contact-header">
                     <div aria-hidden="true" className="an-contact-header__glow" />
                     {/* eslint-disable-next-line @next/next/no-img-element -- static SVG asset, no next/image optimization needed for static export */}
-                    <img src="/logo/logo-gold.svg" alt={LOGO_ALT} className="an-contact-header__logo" />
+                    <img src="/static/logo/logo-gold.svg" alt={LOGO_ALT} className="an-contact-header__logo" />
                     <div className="an-contact-header__title">Contact Us</div>
                     <button onClick={onClose} aria-label="Close" className="an-contact-header__close">
                         <FontAwesomeIcon icon={faSquareX} aria-hidden="true" />
@@ -282,7 +282,7 @@ export function ContactPopup({ open, onClose, sourcePath = "/", onSubmit = sendC
                             <span className="an-contact-form__legal">
                                 {/* Ordinary links, opened in a new tab (spec 065) so the form stays. Each icon follows its link (spec 066). */}
                                 <a
-                                    href="/privacy-policy"
+                                    href="/company/privacy-policy"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     aria-label="Privacy, opens in new tab"
@@ -292,7 +292,7 @@ export function ContactPopup({ open, onClose, sourcePath = "/", onSubmit = sendC
                                 <FontAwesomeIcon icon={faArrowUpRightFromSquare} aria-hidden="true" />
                                 {" | "}
                                 <a
-                                    href="/terms-of-service"
+                                    href="/company/terms-of-service"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     aria-label="Terms, opens in new tab"

@@ -4,7 +4,7 @@ description: Cost Reduction
 layout: cards
 section: business
 eyebrow: Business Services
-image: /images/cost-reduction.png
+image: /static/images/cost-reduction.png
 image_alt: bar chart showing a trend of expenses going down
 cta_heading: Let's assess and reduce operating costs to raise your net revenue.
 ---
@@ -67,7 +67,7 @@ so you will have only what you need, when you need it.
 This not only makes applications far easier to maintain,
 it costs less too.
 
-See how we can [use Grafana to manage logs](/web-hosting) efficiently.
+See how we can [use Grafana to manage logs](/services/web-hosting) efficiently.
 
 ||
 
@@ -87,7 +87,7 @@ may not be realized until an entire
 cluster can be scaled down to use fewer nodes.
 We can find out if that applies to you.
 
-If we [host your applications for you](/web-hosting),
+If we [host your applications for you](/services/web-hosting),
 we will match your services to the right infrastructure
 for maximum performance and maintainability.
 We will also attempt to get the lowest cost.
@@ -113,7 +113,7 @@ at regular intervals, allowing you to keep
 more data for a longer time at a lower cost.
 
 Managing your logs, metrics, and alerts efficiently
-paves the way for [effective process re-engineering](/process-re-engineering),
+paves the way for [effective process re-engineering](/services/process-re-engineering),
 leading to further growth.
 
 ---

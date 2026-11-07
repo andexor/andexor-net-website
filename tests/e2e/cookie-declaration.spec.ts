@@ -6,8 +6,8 @@ import fs from "node:fs";
 import path from "node:path";
 import { expect, test } from "./fixtures";
 
-// Specs 078, 081, and 082: Cookiebot's Cookie Declaration is on /privacy-policy only, at the marker in
-// content/privacy-policy.md. The page HTML holds an empty slot, not the script element: the browser adds the script after
+// Specs 078, 081, and 082: Cookiebot's Cookie Declaration is on /company/privacy-policy only, at the marker in
+// content/company/privacy-policy.md. The page HTML holds an empty slot, not the script element: the browser adds the script after
 // hydration, because a script in the HTML can change the page before React hydrates it (error #418, a blank page in
 // Cookiebot's automatic blocking mode). The raw HTML is checked, because the browser's own parsing would hide the order.
 // The declaration's text is not checked: it comes from Cookiebot. Playwright's loader here fails on TypeScript type
@@ -20,7 +20,7 @@ const otherRoutes = fs
 
 test.describe("Cookie Declaration", () => {
     test("/privacy-policy: has the slot in the HTML and no script element", async ({ request }) => {
-        const html = await (await request.get("/privacy-policy")).text();
+        const html = await (await request.get("/company/privacy-policy")).text();
         const match = /<div\s+([^>]*\bid="cookie-declaration-slot"[^>]*)>/.exec(html);
         expect(match).not.toBeNull();
         expect(match ? match[1] : "").toContain(
@@ -33,7 +33,7 @@ test.describe("Cookie Declaration", () => {
     test("/privacy-policy: adds the script after the page loads, with no hydration error", async ({ page }) => {
         const errors: string[] = [];
         page.on("pageerror", (error) => errors.push(error.message));
-        await page.goto("/privacy-policy");
+        await page.goto("/company/privacy-policy");
         await expect(page.locator("script#CookieDeclaration")).toHaveCount(1);
         await expect(page.locator("#cookie-declaration-slot script#CookieDeclaration")).toHaveCount(1);
         await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
@@ -49,7 +49,7 @@ test.describe("Cookie Declaration", () => {
 
     test("/privacy-policy: does not scroll sideways on a phone, and the footer still works", async ({ page }) => {
         await page.setViewportSize({ width: 360, height: 800 });
-        await page.goto("/privacy-policy");
+        await page.goto("/company/privacy-policy");
         await page.waitForLoadState("networkidle");
         const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
         expect(overflow).toBeLessThanOrEqual(0);

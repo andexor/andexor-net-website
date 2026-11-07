@@ -13,15 +13,15 @@
 
 # Font filenames have no hash, so a changed font must be given a new filename (for example play-400-v2.woff2),
 # and the new name set in src/styles/fonts.css and src/app/layout.tsx.
-/fonts/*
+/static/fonts/*
   Cache-Control: public, max-age=31536000, immutable
 
 # Images, logos, and icons also have no hash in their filenames. 30 days, and not immutable, so a browser still
 # revalidates on a hard reload and a replaced file shows up at the latest after 30 days.
-/images/*
+/static/images/*
   Cache-Control: public, max-age=2592000
 
-/logo/*
+/static/logo/*
   Cache-Control: public, max-age=2592000
 
 /favicon*

@@ -26,7 +26,7 @@ test("provides no manual light/dark toggle control", async ({ page }) => {
 });
 
 // Spec 002 SC-003: content pages and the not-found page are also always dark.
-for (const url of ["/web-development", "/nope"]) {
+for (const url of ["/services/web-development", "/nope"]) {
     test(`${url} looks the same in light and dark OS color-scheme preferences`, async ({ page }) => {
         await page.emulateMedia({ colorScheme: "light" });
         await page.goto(url);

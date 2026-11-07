@@ -14,14 +14,14 @@ describe("Services", () => {
     const TECHNICAL = ["Web Development", "Web Hosting", "Technical SEO", "Agentic Systems"];
     const BUSINESS = ["Cost Reduction", "Process Re-engineering", "Lead Generation", "Growth Marketing"];
     const PAGES: Record<string, string> = {
-        "Web Development": "/web-development",
-        "Web Hosting": "/web-hosting",
-        "Technical SEO": "/technical-seo",
-        "Agentic Systems": "/agentic-systems",
-        "Cost Reduction": "/cost-reduction",
-        "Lead Generation": "/lead-generation",
-        "Growth Marketing": "/growth-marketing",
-        "Process Re-engineering": "/process-re-engineering",
+        "Web Development": "/services/web-development",
+        "Web Hosting": "/services/web-hosting",
+        "Technical SEO": "/services/technical-seo",
+        "Agentic Systems": "/services/agentic-systems",
+        "Cost Reduction": "/services/cost-reduction",
+        "Lead Generation": "/services/lead-generation",
+        "Growth Marketing": "/services/growth-marketing",
+        "Process Re-engineering": "/services/process-re-engineering",
     };
 
     it("renders a technical and a business section, each with its own heading and sub-heading", () => {

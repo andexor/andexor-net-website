@@ -17,7 +17,7 @@ import { expect, test } from "./fixtures";
 //
 // Playwright's loader in this repo fails on TypeScript type annotations, so
 // this file relies on contextual typing.
-const PAGES = ["/", "/web-development", "/nope"];
+const PAGES = ["/", "/services/web-development", "/nope"];
 
 // Runs in the browser: the left edge of the header (content pages) or hero
 // (home page) container, the footer grid, the first card, and the scrollbar
@@ -47,7 +47,7 @@ test.describe("Consistent left edge", () => {
         }
         const home = found.get("/");
         const context = JSON.stringify(Array.from(found));
-        expect(found.get("/web-development").top, `header ${context}`).toBe(home.top);
+        expect(found.get("/services/web-development").top, `header ${context}`).toBe(home.top);
         expect(found.get("/nope").top, `header ${context}`).toBe(home.top);
         // With overlay scrollbars the reserved gutter is 0, so the container is
         // centered in the full window: (1600 - 1320) / 2 = 140, the value before this

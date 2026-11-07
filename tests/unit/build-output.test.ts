@@ -9,6 +9,7 @@ import { COOKIEBOT_PRECONNECT } from "../../scripts/format-html";
 import { fileGroup, isMinified } from "../../scripts/site-files";
 import organization from "../../src/lib/schema/organization.json";
 import person from "../../src/lib/schema/ed.json";
+import { MOVED_PAGES } from "./moved-pages";
 
 // Spec 038 FR-002, FR-003, FR-005, FR-006: in the built site, the site's own CSS and script code are readable and
 // separate from the third-party code. This reads `out/`, so it runs only after `bun run build`.
@@ -108,5 +109,28 @@ describe.skipIf(!fs.existsSync(OUT))("built site", () => {
         const framework = files.find((file) => /chunks\/framework-[^/]+\.js$/.test(file));
         expect(framework, "a framework chunk").toBeDefined();
         expect(isMinified(read(framework!)), `${framework} should stay minified`).toBe(true);
+    });
+
+    // Spec 093 FR-005: nothing the site emits names an old address. Pages moved to /services/ and /company/ and
+    // resources to /static/ (issue #118); the old addresses only redirect, and only in production.
+    it("refers to no old page or resource address", () => {
+        const forbidden = [
+            '"/fonts/',
+            '"/images/',
+            '"/logo/',
+            'url("/fonts/',
+            'url("/images/',
+            'url("/logo/',
+            "andexor.net/fonts/",
+            "andexor.net/images/",
+            "andexor.net/logo/",
+            ...MOVED_PAGES.flatMap(({ old }) => [`href="${old}"`, `andexor.net${old}"`, `andexor.net${old}/`]),
+        ];
+        const checked = files.filter((file) => file.endsWith(".html") || fileGroup(file) === "built-site-css");
+        expect(checked, "built pages and stylesheets").not.toEqual([]);
+        for (const file of checked) {
+            const text = read(file);
+            for (const needle of forbidden) expect(text, `${file} contains ${needle}`).not.toContain(needle);
+        }
     });
 });

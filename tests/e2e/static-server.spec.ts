@@ -9,7 +9,7 @@ import { expect, test } from "./fixtures";
 // decoded the content pages never hydrate and their client components
 // do nothing. Playwright's loader here fails on
 // TypeScript type annotations, so callbacks rely on contextual typing.
-for (const path of ["/", "/web-development", "/nope"]) {
+for (const path of ["/", "/services/web-development", "/nope"]) {
     test(`every script and style on ${path} loads`, async ({ page }) => {
         const failed = Array.from({ length: 0 }, () => "");
         page.on("response", (response) => {

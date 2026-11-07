@@ -5,11 +5,20 @@ documentation and is not published.
 
 ## Routes
 
-| File                        | URL             |
-| --------------------------- | --------------- |
-| `content/about.md`          | `/about`        |
-| `content/services/web.md`   | `/services/web` |
-| `content/services/index.md` | `/services`     |
+The path is the route, and every page lives in a section folder (spec 093):
+
+| File                                      | URL                         |
+| ----------------------------------------- | --------------------------- |
+| `content/services/web-development.md`     | `/services/web-development` |
+| `content/company/about-us.md`             | `/company/about-us`         |
+| `content/services/index.md`               | `/services`                 |
+
+- `content/services/` holds the service pages. `content/company/` holds About Us and the policies.
+- Nothing else sits at the root of `content/`: only this README and the crawler files `robots.txt` and `sitemap.xml`.
+  Do not add a page at the root; a new page goes in one of the two folders. A new section (a new prefix) needs a spec.
+- A folder's `index.md` is that section's landing page. None exists yet; until one does, `/services` and `/company`
+  redirect to the home page in production (`public/_redirects`).
+- A page that moves keeps a permanent redirect from its old address in `public/_redirects`.
 
 A root `content/index.md` is ignored because `/` is the home page.
 
@@ -40,7 +49,7 @@ first `##` becomes the hero lede.
 layout: cards
 section: technical
 eyebrow: Technical Services
-image: /images/web-development.png
+image: /static/images/web-development.png
 image_alt: Describe the illustration
 cta_heading: Let's talk about your project, then plan the way forward.
 ---
@@ -56,7 +65,7 @@ Card body.
 
 - `section`: `technical`, `business`, or `company`. Picks the hero's backdrop pattern. Omit it for a plain hero.
 - `eyebrow`: small label above the hero headline.
-- `image`, `image_alt`: hero illustration from `public/`.
+- `image`, `image_alt`: hero illustration from `public/static/images/`.
 - `cta_heading`: heading of the Contact Us band at the bottom of the page, between the cards and the footer. The
   band appears only on pages that have it. The button opens the same Contact Us popup as the home page. Write one
   sentence.
@@ -100,8 +109,9 @@ no dashes in copy, "and" instead of "&", sentence case headlines with no trailin
 - GitHub-flavored Markdown works (tables, task lists, strikethrough, autolinks).
 - Raw HTML is not rendered, with one exception: `<br>` inside a table cell is a line break, for example
   `| Line one<br>Line two |`.
-- Images go in `public/` and are referenced by absolute path, for example `![Team](/images/team.jpg)`.
-- Links to other pages use the route, for example `[About Us](/about)`. Links starting with `http`
+- Images go in `public/static/images/` and are referenced by absolute path, for example
+  `![Team](/static/images/team.jpg)`.
+- Links to other pages use the route, for example `[About Us](/company/about-us)`. Links starting with `http`
   open in a new tab.
 
 ## Publishing
@@ -112,5 +122,5 @@ add links when a page is ready to be used.
 ## Cookie declaration
 
 The line `<!-- cookie-declaration -->`, alone on its own line, inserts Cookiebot's Cookie Declaration (the list of cookies and
-the control to change consent) at that spot. It is used in `privacy-policy.md`, as the last section. Use it once per page; a repeat is removed. Raw HTML
+the control to change consent) at that spot. It is used in `company/privacy-policy.md`, as the last section. Use it once per page; a repeat is removed. Raw HTML
 is still dropped everywhere else.

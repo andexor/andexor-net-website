@@ -46,7 +46,7 @@ const near = (actual, expected) => expect(Math.abs(actual - expected)).toBeLessT
 test.describe("Card grid at 1280px", () => {
     test.beforeEach(async ({ page }) => {
         await page.setViewportSize({ width: 1280, height: 900 });
-        await page.goto("/web-development");
+        await page.goto("/services/web-development");
     });
 
     test("has two equal columns on the card area's edges, with the same gutter as before", async ({ page }) => {
@@ -105,7 +105,7 @@ for (const width of [768, 360]) {
     test.describe(`Card grid at ${width}px`, () => {
         test("is one column in written order, 20px apart, on the card area's edges", async ({ page }) => {
             await page.setViewportSize({ width, height: 900 });
-            await page.goto("/web-development");
+            await page.goto("/services/web-development");
             const before = BEFORE[width];
             const area = await areaOf(page);
             const cards = await page.locator("article.an-tile").evaluateAll((els) =>

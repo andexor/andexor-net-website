@@ -4,13 +4,9 @@
 
 import { expect, test } from "./fixtures";
 
-// Spec 002 FR-017 / FR-019 / SC-006: the card page reflows from 320px to 1920px.
-for (const width of [320, 768, 1920]) {
-}
-
 test("wide viewport shows two columns side by side", async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
-    await page.goto("/web-development");
+    await page.goto("/services/web-development");
     const columns = page.locator(".an-cards__col");
     const [a, b] = await Promise.all([columns.nth(0).boundingBox(), columns.nth(1).boundingBox()]);
     expect(a && b && a.x < b.x).toBe(true);
@@ -20,7 +16,7 @@ test("wide viewport shows two columns side by side", async ({ page }) => {
 
 test("narrow viewport stacks cards in reading order at equal width", async ({ page }) => {
     await page.setViewportSize({ width: 320, height: 800 });
-    await page.goto("/web-development");
+    await page.goto("/services/web-development");
     const boxes = await page.locator("article.an-tile").evaluateAll((els) =>
         els
             .map((el) => ({
@@ -36,7 +32,7 @@ test("narrow viewport stacks cards in reading order at equal width", async ({ pa
 });
 
 test("hero fades into the page background", async ({ page }) => {
-    await page.goto("/web-development");
+    await page.goto("/services/web-development");
     const bg = await page.locator(".an-cardhero").evaluate((el) => getComputedStyle(el).backgroundImage);
     expect(bg).toContain("linear-gradient");
 });

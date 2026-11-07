@@ -8,7 +8,7 @@ import { expect, test } from "./fixtures";
 // Spec 002 SC-008 / constitution Principle III: content pages meet WCAG 2.1 AA
 // and are keyboard operable.
 for (const [name, url] of [
-    ["Web Development page", "/web-development"],
+    ["Web Development page", "/services/web-development"],
     ["not-found page", "/nope"],
 ]) {
     test(`${name} has no WCAG 2.1 AA violations`, async ({ page }) => {
@@ -20,7 +20,7 @@ for (const [name, url] of [
 
 test("Web Development page links are reachable by keyboard with visible focus", async ({ page, browserName }) => {
     test.skip(browserName === "webkit", "Safari skips links when tabbing by default");
-    await page.goto("/web-development");
+    await page.goto("/services/web-development");
     await page.waitForFunction(() => document.hasFocus(), undefined, { timeout: 5000 });
     const logo = page.getByRole("link", { name: "Andexor Network" }).first();
     await page.keyboard.press("Tab");

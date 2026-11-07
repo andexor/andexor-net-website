@@ -46,18 +46,18 @@ const COLUMNS = [
 ];
 
 const ITEM_HREFS: Record<string, string> = {
-    "Web Development": "/web-development",
-    "Web Hosting": "/web-hosting",
-    "Technical SEO": "/technical-seo",
-    "Agentic Systems": "/agentic-systems",
-    "Cost Reduction": "/cost-reduction",
-    "Lead Generation": "/lead-generation",
-    "Growth Marketing": "/growth-marketing",
-    "Process Re-engineering": "/process-re-engineering",
-    "About Us": "/about-us",
-    "Terms Of Service": "/terms-of-service",
-    "Security Policy": "/security-policy",
-    "Privacy Policy": "/privacy-policy",
+    "Web Development": "/services/web-development",
+    "Web Hosting": "/services/web-hosting",
+    "Technical SEO": "/services/technical-seo",
+    "Agentic Systems": "/services/agentic-systems",
+    "Cost Reduction": "/services/cost-reduction",
+    "Lead Generation": "/services/lead-generation",
+    "Growth Marketing": "/services/growth-marketing",
+    "Process Re-engineering": "/services/process-re-engineering",
+    "About Us": "/company/about-us",
+    "Terms Of Service": "/company/terms-of-service",
+    "Security Policy": "/company/security-policy",
+    "Privacy Policy": "/company/privacy-policy",
 };
 
 // FR-006: navigation grouped into technical/business/company categories,

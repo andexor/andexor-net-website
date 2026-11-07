@@ -4,7 +4,7 @@ description: Privacy Policy
 layout: cards
 section: company
 eyebrow: Company
-image: /images/privacy.png
+image: /static/images/privacy.png
 image_alt: Privacy Policy document
 ---
 
@@ -66,7 +66,7 @@ This is how we handle personal information. In short, three separate things happ
 
 ## 1. Who We Are
 
-Andexor Network, Inc. ("Andexor," "we," "us," or "our") operates https://andexor.net/, including every page under that address (the "Site"). This Privacy Policy explains how we handle personal information. It is incorporated into our [Terms of Service](/terms-of-service), and words defined there have the same meaning here. Sections 20 through 25 explain how we use cookies and similar technologies on the Site.
+Andexor Network, Inc. ("Andexor," "we," "us," or "our") operates https://andexor.net/, including every page under that address (the "Site"). This Privacy Policy explains how we handle personal information. It is incorporated into our [Terms of Service](/company/terms-of-service), and words defined there have the same meaning here. Sections 20 through 25 explain how we use cookies and similar technologies on the Site.
 
 Andexor is the business, or "controller," responsible for the personal information this policy covers. Our contact details are in Section 19.
 
@@ -80,7 +80,7 @@ This policy covers personal information about:
 - people who contact us, through the Contact Us form, by email, by telephone, or by mail;
 - client contacts, meaning the people who represent a business that has engaged us;
 - prospects, meaning people whose contact details we obtained from a source other than the person, as described in Section 6; and
-- security researchers who report an issue under our [Security Policy](/security-policy).
+- security researchers who report an issue under our [Security Policy](/company/security-policy).
 
 ## 3. What This Policy Does Not Cover
 
@@ -233,7 +233,7 @@ We use administrative, technical, and physical safeguards designed to protect pe
 
 If we learn of a security incident that affects your personal information, we will notify you and the appropriate authorities as the law requires.
 
-If you believe you have found a security problem, please report it as our [Security Policy](/security-policy) describes, by email to [security@andexor.net](mailto:security@andexor.net).
+If you believe you have found a security problem, please report it as our [Security Policy](/company/security-policy) describes, by email to [security@andexor.net](mailto:security@andexor.net).
 
 ## 11. Your Choices
 

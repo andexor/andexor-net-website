@@ -8,7 +8,7 @@ import { expect, test } from "./fixtures";
 // hydrates. If the formatting ever breaks hydration, React logs a minified error (#418) and re-renders the page,
 // so each page type is loaded several times and must log no console or page errors. Playwright's loader here
 // fails on TypeScript type annotations, so callbacks rely on contextual typing.
-const PAGES = ["/", "/web-development", "/about-us", "/nope"];
+const PAGES = ["/", "/services/web-development", "/company/about-us", "/nope"];
 const LOADS_PER_PAGE = 5;
 
 test.describe("Readable output keeps pages healthy", () => {

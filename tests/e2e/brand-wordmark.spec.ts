@@ -10,12 +10,6 @@ import { expect, test } from "./fixtures";
 // Note: Playwright's loader in this repo does not accept TypeScript type
 // annotations in spec files (see the other specs), so callbacks below rely on
 // contextual typing instead.
-const PAGES = [
-    ["home page", "/"],
-    ["Web Development page", "/web-development"],
-    ["not-found page", "/nope"],
-];
-
 const WIDTHS = [
     ["desktop", 1280],
     ["tablet", 1024],
@@ -24,11 +18,8 @@ const WIDTHS = [
 ];
 
 test.describe("Logo wordmark", () => {
-    for (const [name, url] of PAGES) {
-    }
-
     test("header logo on a content page goes to the home page", async ({ page }) => {
-        await page.goto("/web-development");
+        await page.goto("/services/web-development");
         await page.locator(".an-content-header").getByRole("link", { name: "Andexor Network" }).click();
         await expect(page).toHaveURL(/\/$/);
     });
@@ -37,8 +28,8 @@ test.describe("Logo wordmark", () => {
         test(`fits on one line with a 38px mark and 26px wordmark at ${label} width (${width}px)`, async ({ page }) => {
             await page.setViewportSize({ width: Number(width), height: 800 });
             const checks = [
-                ["/web-development", ".an-content-header .an-logo-lockup"],
-                ["/web-development", "footer .an-logo-lockup"],
+                ["/services/web-development", ".an-content-header .an-logo-lockup"],
+                ["/services/web-development", "footer .an-logo-lockup"],
                 ["/", "footer .an-logo-lockup"],
             ];
             for (const [url, selector] of checks) {

@@ -75,10 +75,10 @@ const FONT_LOADER_SCRIPT = `
 // Preloaded so the browser fetches the fonts in parallel with the stylesheet
 // instead of waiting for it to be parsed. Keep in step with src/styles/fonts.css.
 const FONT_FILES = [
-    "/fonts/play-400.woff2",
-    "/fonts/play-700.woff2",
-    "/fonts/roboto-variable.woff2",
-    "/fonts/source-code-pro-variable.woff2",
+    "/static/fonts/play-400.woff2",
+    "/static/fonts/play-700.woff2",
+    "/static/fonts/roboto-variable.woff2",
+    "/static/fonts/source-code-pro-variable.woff2",
 ];
 
 export default function RootLayout({ children }: { children: ReactNode }) {

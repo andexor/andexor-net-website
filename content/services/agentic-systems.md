@@ -4,7 +4,7 @@ description: Agentic Systems
 layout: cards
 section: technical
 eyebrow: Technical Services
-image: /images/agentic-systems.png
+image: /static/images/agentic-systems.png
 image_alt: a team of AI agents working together
 cta_heading: Delegating tasks to AI agents will help you grow faster. Find out how.
 ---

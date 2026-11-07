@@ -14,28 +14,28 @@ import { listContentSlugs } from "@/lib/content";
 // nine footer pages in spec 010, the service card pages in spec 011, and the Privacy Policy, Terms Of Service, and Security Policy pages in spec 062, issue 33, and spec 081. Since spec 048 there is a card
 // for each of the eight service pages, in the footer's order.
 const CARD_PAGES = [
-    "/web-development",
-    "/web-hosting",
-    "/technical-seo",
-    "/agentic-systems",
-    "/cost-reduction",
-    "/lead-generation",
-    "/growth-marketing",
-    "/process-re-engineering",
+    "/services/web-development",
+    "/services/web-hosting",
+    "/services/technical-seo",
+    "/services/agentic-systems",
+    "/services/cost-reduction",
+    "/services/lead-generation",
+    "/services/growth-marketing",
+    "/services/process-re-engineering",
 ];
 const FOOTER_PAGES = [
-    "/about-us",
-    "/agentic-systems",
-    "/cost-reduction",
-    "/growth-marketing",
-    "/lead-generation",
-    "/privacy-policy",
-    "/process-re-engineering",
-    "/security-policy",
-    "/technical-seo",
-    "/terms-of-service",
-    "/web-development",
-    "/web-hosting",
+    "/company/about-us",
+    "/services/agentic-systems",
+    "/services/cost-reduction",
+    "/services/growth-marketing",
+    "/services/lead-generation",
+    "/company/privacy-policy",
+    "/services/process-re-engineering",
+    "/company/security-policy",
+    "/services/technical-seo",
+    "/company/terms-of-service",
+    "/services/web-development",
+    "/services/web-hosting",
 ];
 const APPROVED = [...new Set([...CARD_PAGES, ...FOOTER_PAGES])].sort();
 

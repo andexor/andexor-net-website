@@ -30,7 +30,7 @@ describe("fileGroup", () => {
 
     it("leaves the design system, content, specs, and Markdown out of scope", () => {
         expect(fileGroup("design/tokens/colors.css")).toBe("out-of-scope");
-        expect(fileGroup("content/about-us.md")).toBe("out-of-scope");
+        expect(fileGroup("content/company/about-us.md")).toBe("out-of-scope");
         expect(fileGroup("specs/038-readable-generated-code/spec.md")).toBe("out-of-scope");
         expect(fileGroup("README.md")).toBe("out-of-scope");
         expect(fileGroup("next-env.d.ts")).toBe("out-of-scope");

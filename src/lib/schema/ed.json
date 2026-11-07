@@ -51,12 +51,12 @@
         "Business Intelligence"
     ],
     "telephone": "+14043511440",
-    "url": "https://andexor.net/about-us",
+    "url": "https://andexor.net/company/about-us",
     "worksFor": {
         "@type": "Organization",
         "@id": "https://andexor.net/#organization",
         "name": "Andexor Network",
-        "logo": "https://andexor.net/logo/logo-gold.svg",
+        "logo": "https://andexor.net/static/logo/logo-gold.svg",
         "sameAs": [
             "https://www.linkedin.com/company/andexor/",
             "https://x.com/andexor",

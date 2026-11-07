@@ -5,7 +5,6 @@
 import { createEvent, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { EXAMPLE_NAMES } from "@/components/contact/example-names";
 import { ContactPopup } from "@/components/contact/ContactPopup";
 
 function fillValidForm() {
@@ -69,7 +68,7 @@ describe("ContactPopup", () => {
     // Spec 071: a hidden field carries the path of the page that opened the popup.
     it("sends the source path it was given, in a hidden field with no label", async () => {
         const onSubmit = delivered();
-        render(<ContactPopup open onClose={vi.fn()} onSubmit={onSubmit} sourcePath="/web-development" />);
+        render(<ContactPopup open onClose={vi.fn()} onSubmit={onSubmit} sourcePath="/services/web-development" />);
 
         const hidden = document.querySelector<HTMLInputElement>('input[name="sourcePath"]');
         expect(hidden).not.toBeNull();
@@ -80,7 +79,7 @@ describe("ContactPopup", () => {
         fireEvent.click(screen.getByRole("button", { name: "Send" }));
 
         await confirmation();
-        expect(onSubmit).toHaveBeenCalledWith(expect.objectContaining({ sourcePath: "/web-development" }));
+        expect(onSubmit).toHaveBeenCalledWith(expect.objectContaining({ sourcePath: "/services/web-development" }));
     });
 
     it("does not transition to confirmation when required fields are empty", () => {
@@ -234,13 +233,13 @@ describe("ContactPopup", () => {
         render(<ContactPopup open onClose={vi.fn()} onSubmit={delivered()} />);
         const logo = () => document.querySelector(".an-contact-header__logo");
         expect(logo()).toBeInstanceOf(HTMLImageElement);
-        expect(logo()?.getAttribute("src")).toBe("/logo/logo-gold.svg");
+        expect(logo()?.getAttribute("src")).toBe("/static/logo/logo-gold.svg");
         expect(logo()?.getAttribute("alt")).toBe("Andexor Network logo");
 
         fillValidForm();
         fireEvent.click(screen.getByRole("button", { name: "Send" }));
         await confirmation();
-        expect(logo()?.getAttribute("src")).toBe("/logo/logo-gold.svg");
+        expect(logo()?.getAttribute("src")).toBe("/static/logo/logo-gold.svg");
         expect(logo()?.getAttribute("alt")).toBe("Andexor Network logo");
     });
 
