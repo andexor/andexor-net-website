@@ -77,11 +77,11 @@ Before you report, ask whether the attack is realistic and what its security imp
 - software version or banner disclosure, descriptive error messages, stack traces, and server headers, without a demonstrated impact;
 - broken link hijacking and tabnabbing, without a demonstrated impact. A link from our pages to an account or domain that has expired is a content problem; see the last item;
 - clickjacking on a page with no sensitive action, self-XSS, self-DoS, and other issues that require a victim to take an unlikely action against their own interests; and
-- content quality problems, such as broken links and spelling errors. We are glad to hear about those via an email sent to security@andexor.net.
+- content quality problems, such as broken links and spelling errors. We are glad to hear about those via an email sent to [security@andexor.net](mailto:security@andexor.net).
 
 ## 4. How To Report
 
-Send your report by email to security@andexor.net.
+Send your report by email to [security@andexor.net](mailto:security@andexor.net).
 
 Do not report security issues through the Contact Us form, through social media, or through a public GitHub issue, discussion, or pull request. Those channels are not private.
 
@@ -167,13 +167,13 @@ If you are unsure whether something you plan to do is covered, ask us before you
 
 ## 10. Contact
 
-Email: security@andexor.net
+Email: [security@andexor.net](mailto:security@andexor.net)
 
 Phone: [+14043511440](tel:+14043511440)
 
-For questions about this policy that are not themselves security reports, you may also use legal@andexor.net.
+For questions about this policy that are not themselves security reports, you may also use [legal@andexor.net](mailto:legal@andexor.net).
 
-If you believe we have not kept to this policy, for example by missing the times in Section 6 or by dismissing a report without a reason, write to legal@andexor.net and say so. We will review the matter separately from the report itself and reply within 10 business days.
+If you believe we have not kept to this policy, for example by missing the times in Section 6 or by dismissing a report without a reason, write to [legal@andexor.net](mailto:legal@andexor.net) and say so. We will review the matter separately from the report itself and reply within 10 business days.
 
 | Mailing Address |
 | :-------------- |

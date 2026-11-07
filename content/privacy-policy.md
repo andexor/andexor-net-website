@@ -169,7 +169,7 @@ Anyone, wherever they live, may ask us at any time to:
 - delete it; or
 - stop using it and stop delivering it to clients.
 
-Send your request to privacy@andexor.net with the word "Leads" in the subject line. We will act on it within 45 days, free of charge. When you opt out or ask us to delete, we keep the minimum needed on a suppression list, such as your email address or phone number, so that we do not acquire or use your information again, and we pass your request on to any client that received your information from us. Every marketing email we send also contains a one-click unsubscribe link.
+Send your request to [privacy@andexor.net](mailto:privacy@andexor.net) with the word "Leads" in the subject line. We will act on it within 45 days, free of charge. When you opt out or ask us to delete, we keep the minimum needed on a suppression list, such as your email address or phone number, so that we do not acquire or use your information again, and we pass your request on to any client that received your information from us. Every marketing email we send also contains a one-click unsubscribe link.
 
 ## 7. How We Use Information
 
@@ -198,7 +198,7 @@ We do not use personal information to make decisions about you by solely automat
 **Two practices that some laws treat as a "sale," "sharing," or "targeted advertising."** Some privacy laws define these terms broadly enough to cover the following, so we describe them plainly and give you a way to opt out of each:
 
 - **Advertising technologies.** If you allow advertising in the cookie banner, the Meta Pixel discloses identifiers and Site activity to Meta, as described in Section 5. Opt out through the **Do Not Sell or Share My Personal Information** link or a Global Privacy Control signal.
-- **Lead Data delivered to clients.** As described in Section 6, and never about people or businesses located in California, Oregon, Texas, or Vermont. Opt out by writing to privacy@andexor.net.
+- **Lead Data delivered to clients.** As described in Section 6, and never about people or businesses located in California, Oregon, Texas, or Vermont. Opt out by writing to [privacy@andexor.net](mailto:privacy@andexor.net).
 
 **Other disclosures.** We disclose personal information to:
 
@@ -233,7 +233,7 @@ We use administrative, technical, and physical safeguards designed to protect pe
 
 If we learn of a security incident that affects your personal information, we will notify you and the appropriate authorities as the law requires.
 
-If you believe you have found a security problem, please report it as our [Security Policy](/security-policy) describes, by email to security@andexor.net.
+If you believe you have found a security problem, please report it as our [Security Policy](/security-policy) describes, by email to [security@andexor.net](mailto:security@andexor.net).
 
 ## 11. Your Choices
 
@@ -241,7 +241,7 @@ If you believe you have found a security problem, please report it as our [Secur
 - **Marketing email.** Use the one-click unsubscribe link in any marketing email, or write to us. We may still send you messages about an inquiry or engagement you started.
 - **Telephone calls.** Our calls are placed manually by a person; we do not use an autodialer or prerecorded or artificial-voice messages. Tell us on the call, or write to us, and we will stop, and we will add your number to our internal do-not-call list.
 - **Lead Data.** See Section 6.
-- **Everything else.** Write to privacy@andexor.net.
+- **Everything else.** Write to [privacy@andexor.net](mailto:privacy@andexor.net).
 
 ## 12. Your Privacy Rights
 
@@ -257,7 +257,7 @@ You may ask us to:
 - opt out of the sale or sharing of your personal information, of targeted advertising, and of profiling that produces legal or similarly significant effects (we do not engage in that kind of profiling); and
 - appeal a decision we make about your request.
 
-**How to make a request.** Write to privacy@andexor.net, call [+14043511440](tel:+14043511440), or write to the mailing address in Section 19. To opt out of advertising technologies, you can also use the **Do Not Sell or Share My Personal Information** link or a Global Privacy Control signal; those do not require you to identify yourself.
+**How to make a request.** Write to [privacy@andexor.net](mailto:privacy@andexor.net), call [+14043511440](tel:+14043511440), or write to the mailing address in Section 19. To opt out of advertising technologies, you can also use the **Do Not Sell or Share My Personal Information** link or a Global Privacy Control signal; those do not require you to identify yourself.
 
 **How we verify.** To protect you, we need to confirm that a request to access, correct, or delete comes from the person the information is about. We usually do that by replying to the email address we have on file for you, and we may ask for a small amount of additional information if what we hold is sensitive. We use what you give us for verification only. We do not verify opt-out requests.
 
@@ -311,7 +311,7 @@ We collect and use each category for the purposes in Section 7, disclose each ca
 
 This Section applies to you if you are in the European Economic Area (EEA), the United Kingdom (UK), or Switzerland, and the General Data Protection Regulation (GDPR), the UK GDPR, or the Swiss Federal Act on Data Protection applies to our handling of your personal information.
 
-**Controller.** Andexor Network, Inc., at the address in Section 19, is the controller. You can reach us about any data protection matter at privacy@andexor.net.
+**Controller.** Andexor Network, Inc., at the address in Section 19, is the controller. You can reach us about any data protection matter at [privacy@andexor.net](mailto:privacy@andexor.net).
 
 **Legal bases.** We rely on the following:
 
@@ -326,7 +326,7 @@ This Section applies to you if you are in the European Economic Area (EEA), the 
 
 Where we rely on legitimate interests, we have weighed them against your interests and rights. You may ask us for more information about that assessment.
 
-**Your rights.** You have the right to ask us for access to your personal information; to have it corrected or erased; to have our use of it restricted; to receive the information you gave us in a portable format; and to object to our use of it where we rely on legitimate interests. **You may object to direct marketing at any time, and we will stop.** Where we rely on consent, you may withdraw it at any time, which does not affect what we did before you withdrew it. To use any of these rights, write to privacy@andexor.net. We respond within one month, and will tell you if a complex request needs up to two more.
+**Your rights.** You have the right to ask us for access to your personal information; to have it corrected or erased; to have our use of it restricted; to receive the information you gave us in a portable format; and to object to our use of it where we rely on legitimate interests. **You may object to direct marketing at any time, and we will stop.** Where we rely on consent, you may withdraw it at any time, which does not affect what we did before you withdrew it. To use any of these rights, write to [privacy@andexor.net](mailto:privacy@andexor.net). We respond within one month, and will tell you if a complex request needs up to two more.
 
 **Complaints.** You may complain to the data protection authority where you live or work or where you believe a violation occurred. In the UK, that is the Information Commissioner's Office. We would appreciate the chance to address your concern first.
 
@@ -336,7 +336,7 @@ Where we rely on legitimate interests, we have weighed them against your interes
 
 ## 15. Children
 
-The Site is not directed to anyone under 18, and we do not knowingly collect personal information from them. If you are under 18 and use the Site anyway, you may do so only with the consent of a parent or guardian, as the Terms of Service say. We do not knowingly sell or share the personal information of anyone under 18, or use it for targeted advertising. If you believe someone under 18 has given us personal information, write to legal@andexor.net and we will delete it.
+The Site is not directed to anyone under 18, and we do not knowingly collect personal information from them. If you are under 18 and use the Site anyway, you may do so only with the consent of a parent or guardian, as the Terms of Service say. We do not knowingly sell or share the personal information of anyone under 18, or use it for targeted advertising. If you believe someone under 18 has given us personal information, write to [legal@andexor.net](mailto:legal@andexor.net) and we will delete it.
 
 ## 16. Where We Process Information
 
@@ -354,11 +354,11 @@ We may revise this policy at any time by posting a revised version on this page 
 
 If you have a question about this policy, or want to use any of the rights or choices it describes, contact us anytime. That includes a question about cookies, or a cookie choice you cannot make work.
 
-Email: privacy@andexor.net
+Email: [privacy@andexor.net](mailto:privacy@andexor.net)
 
 Phone: [+14043511440](tel:+14043511440)
 
-If you believe we have not kept to this policy, for example by missing the times in Section 12 or by not acting on an opt-out, write to legal@andexor.net and say so. Include everything you sent to privacy@andexor.net, such as your original request, the date you sent it, and any reply you received, so that the review can start without hunting for them, which would add further delay. We will review the matter separately from the request itself and reply within 10 business days.
+If you believe we have not kept to this policy, for example by missing the times in Section 12 or by not acting on an opt-out, write to [legal@andexor.net](mailto:legal@andexor.net) and say so. Include everything you sent to [privacy@andexor.net](mailto:privacy@andexor.net), such as your original request, the date you sent it, and any reply you received, so that the review can start without hunting for them, which would add further delay. We will review the matter separately from the request itself and reply within 10 business days.
 
 | Mailing Address |
 | :-------------- |
