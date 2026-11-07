@@ -169,7 +169,7 @@ If you are unsure whether something you plan to do is covered, ask us before you
 
 Email: security@andexor.net
 
-Phone: +14043511440
+Phone: [+14043511440](tel:+14043511440)
 
 For questions about this policy that are not themselves security reports, you may also use legal@andexor.net.
 

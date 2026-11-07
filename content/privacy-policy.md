@@ -257,7 +257,7 @@ You may ask us to:
 - opt out of the sale or sharing of your personal information, of targeted advertising, and of profiling that produces legal or similarly significant effects (we do not engage in that kind of profiling); and
 - appeal a decision we make about your request.
 
-**How to make a request.** Write to privacy@andexor.net, call +14043511440, or write to the mailing address in Section 19. To opt out of advertising technologies, you can also use the **Do Not Sell or Share My Personal Information** link or a Global Privacy Control signal; those do not require you to identify yourself.
+**How to make a request.** Write to privacy@andexor.net, call [+14043511440](tel:+14043511440), or write to the mailing address in Section 19. To opt out of advertising technologies, you can also use the **Do Not Sell or Share My Personal Information** link or a Global Privacy Control signal; those do not require you to identify yourself.
 
 **How we verify.** To protect you, we need to confirm that a request to access, correct, or delete comes from the person the information is about. We usually do that by replying to the email address we have on file for you, and we may ask for a small amount of additional information if what we hold is sensitive. We use what you give us for verification only. We do not verify opt-out requests.
 
@@ -356,7 +356,7 @@ If you have a question about this policy, or want to use any of the rights or ch
 
 Email: privacy@andexor.net
 
-Phone: +14043511440
+Phone: [+14043511440](tel:+14043511440)
 
 If you believe we have not kept to this policy, for example by missing the times in Section 12 or by not acting on an opt-out, write to legal@andexor.net and say so. Include everything you sent to privacy@andexor.net, such as your original request, the date you sent it, and any reply you received, so that the review can start without hunting for them, which would add further delay. We will review the matter separately from the request itself and reply within 10 business days.
 
