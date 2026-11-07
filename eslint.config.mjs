@@ -16,10 +16,19 @@ const eslintConfig = [
             ".next/**",
             "out/**",
             "design/**",
+            "ds-bundle/**",
+            ".design-sync/**",
             "playwright-report/**",
             "test-results/**",
             "next-env.d.ts",
         ],
+    },
+    {
+        // Playwright tests hold no React. The hooks rule mistakes a fixture's `use` callback for a React hook.
+        files: ["tests/e2e/**"],
+        rules: {
+            "react-hooks/rules-of-hooks": "off",
+        },
     },
 ];
 
