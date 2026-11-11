@@ -11,6 +11,8 @@ import { join, relative } from "node:path";
 import { format } from "prettier";
 import { addPrivacyComments, formatHtml } from "./format-html";
 import { fileGroup } from "./site-files";
+import { listContentSlugs } from "../src/lib/content";
+import { getContentStructuredData } from "../src/lib/structured-data";
 
 const ROOT = join(import.meta.dir, "..");
 const OUT = join(ROOT, "out");
@@ -38,10 +40,21 @@ function removeFrameworkNoindex(html: string, name: string): string {
 // One built page: add the footer comments (spec 083), then format it. The framework's data scripts stay inline, where
 // Next.js wrote them: Cookiebot's automatic blocking mode breaks a page whose data script is an external file (spec 041,
 // retired).
-async function formatPage(source: string, name: string): Promise<string> {
+async function formatPage(source: string, name: string, contentData: Map<string, object[]>): Promise<string> {
     const original = name === "out/404.html" ? removeFrameworkNoindex(source, name) : source;
-    // The Organization structured data (spec 090) goes in the home page's head only.
-    return formatHtml(addPrivacyComments(original, name), name, { jsonLD: name === "out/index.html" });
+    // The home page's head carries the Organization, Person, WebSite, and WebPage structured data (specs 090 and 091),
+    // and a content page's head carries its own Service, BreadcrumbList, and FAQPage data.
+    const jsonLD = name === "out/index.html" ? true : contentData.get(name);
+    return formatHtml(addPrivacyComments(original, name), name, { jsonLD });
+}
+
+// The structured data of every content page, keyed by the built page's path (`out/services/web-hosting.html`).
+async function readContentData(): Promise<Map<string, object[]>> {
+    const data = new Map<string, object[]>();
+    for (const slug of listContentSlugs()) {
+        data.set(`out/${slug.join("/")}.html`, await getContentStructuredData(slug));
+    }
+    return data;
 }
 
 // Next.js writes a React Server Components payload beside each page (`about-us.txt` beside `about-us.html`) for
@@ -62,6 +75,7 @@ async function main(): Promise<void> {
     const changed: Record<string, number> = {};
     const pages = new Set<string>();
     const textFiles: string[] = [];
+    const contentData = await readContentData();
     for await (const path of walk(OUT)) {
         if (path.endsWith(".html")) pages.add(path.slice(0, -".html".length));
         else if (path.endsWith(".txt")) textFiles.push(path);
@@ -72,7 +86,7 @@ async function main(): Promise<void> {
         const original = await readFile(path, "utf8");
         const formatted =
             group === "built-html"
-                ? await formatPage(original, name)
+                ? await formatPage(original, name, contentData)
                 : // The ignore files are not read by the API, so `out/` (which .gitignore lists) is formatted.
                   await format(original, { ...PRETTIER_OPTIONS, parser: group === "built-site-css" ? "css" : "babel" });
 

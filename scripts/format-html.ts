@@ -54,6 +54,14 @@ export const WEBSITE_JSON_LD = renderToStaticMarkup(createElement(JsonLD, { data
 /** The WebPage structured data for the home page, placed right after the WebSite block. */
 export const WEB_PAGE_JSON_LD = renderToStaticMarkup(createElement(JsonLD, { data: webPage }));
 
+/** The home page's structured data blocks, in the order they appear in its head. */
+const HOME_JSON_LD = [ORGANIZATION_JSON_LD, PERSON_JSON_LD, WEBSITE_JSON_LD, WEB_PAGE_JSON_LD];
+
+/** One structured data block as the script element written into <head>. */
+export function renderJsonLD(data: object): string {
+    return renderToStaticMarkup(createElement(JsonLD, { data }));
+}
+
 /** The script injected in <head>, right after the Cookiebot script. It must match `stripAddedWhitespace` below. */
 export const WHITESPACE_SCRIPT = `<script>
 (function () {
@@ -353,21 +361,16 @@ function firstDifference(expected: string[], actual: string[]): string | null {
 }
 
 /** Throws unless the original page is safe to strip and the formatted page has the same DOM as the original. */
-export function assertSameDom(original: string, formatted: string, file: string): void {
+export function assertSameDom(original: string, formatted: string, file: string, jsonLD: string[] = []): void {
     const before = extractRegions(original);
     // The injected scripts are the intended differences; compare without them.
-    const after = extractRegions(
-        formatted
-            .replace(COOKIEBOT_DIALOG_SCRIPT, "")
-            .replace(COOKIEBOT_FOCUS_SCRIPT, "")
-            .replace(WHITESPACE_SCRIPT, "")
-            .replace(COOKIEBOT_SCRIPT, "")
-            .replace(COOKIEBOT_PRECONNECT, "")
-            .replace(ORGANIZATION_JSON_LD, "")
-            .replace(PERSON_JSON_LD, "")
-            .replace(WEBSITE_JSON_LD, "")
-            .replace(WEB_PAGE_JSON_LD, ""),
-    );
+    const withoutAdded = formatted
+        .replace(COOKIEBOT_DIALOG_SCRIPT, "")
+        .replace(COOKIEBOT_FOCUS_SCRIPT, "")
+        .replace(WHITESPACE_SCRIPT, "")
+        .replace(COOKIEBOT_SCRIPT, "")
+        .replace(COOKIEBOT_PRECONNECT, "");
+    const after = extractRegions(jsonLD.reduce((html, block) => html.replace(block, ""), withoutAdded));
 
     for (const token of tokenize(before.skeleton)) {
         if (token.startsWith("<") || token.startsWith("RAW:")) continue;
@@ -436,7 +439,11 @@ async function restoreRegions(formatted: string, regions: string[], file: string
 }
 
 /** Formats one built page and returns the new HTML. Throws if the DOM would change. */
-export async function formatHtml(original: string, file: string, options: { jsonLD?: boolean } = {}): Promise<string> {
+export async function formatHtml(
+    original: string,
+    file: string,
+    options: { jsonLD?: boolean | object[] } = {},
+): Promise<string> {
     // 1. Write apostrophes and quotes as plain characters, then set aside the content React does not hydrate;
     // it is formatted separately, with its whitespace kept.
     const { skeleton, regions } = extractRegions(plainQuotes(original));
@@ -482,9 +489,10 @@ export async function formatHtml(original: string, file: string, options: { json
     // whitespace of their own.
     if (!/<head>\s*/.test(formatted))
         throw new Error(`${file}: no <head> to add the Cookiebot and whitespace scripts to`);
-    // The Organization block (spec 090) and the Person block (spec 091) go between the Cookiebot script and the
-    // whitespace script, only where asked.
-    const jsonLD = options.jsonLD ? ORGANIZATION_JSON_LD + PERSON_JSON_LD + WEBSITE_JSON_LD + WEB_PAGE_JSON_LD : "";
+    // Structured data blocks go between the Cookiebot script and the whitespace script, only where asked: `true`
+    // is the home page's blocks (specs 090 and 091), and a list is the data of the blocks for a content page.
+    const blocks = options.jsonLD === true ? HOME_JSON_LD : (options.jsonLD || []).map(renderJsonLD);
+    const jsonLD = blocks.join("");
     formatted = formatted.replace(
         /<head>\s*/,
         () =>
@@ -492,6 +500,6 @@ export async function formatHtml(original: string, file: string, options: { json
     );
 
     // 7. Prove the DOM is the same.
-    assertSameDom(original, formatted, file);
+    assertSameDom(original, formatted, file, blocks);
     return formatted;
 }

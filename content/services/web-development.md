@@ -215,7 +215,7 @@ Employees maintain a sense of job security,
 but it comes at the cost of customer loyalty.
 
 Without a clear, written set of requirements,
-customers can fall into so-called "edge cases"
+customers can fall into edge cases
 where two or more events outside their control
 happen to collide and make a process fail.
 Broken processes leave work incomplete

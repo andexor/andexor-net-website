@@ -68,10 +68,26 @@ describe.skipIf(!fs.existsSync(OUT))("built site", () => {
         expect(JSON.parse(websiteBlock)).toEqual(website);
     });
 
-    // Spec 090: only the home page carries the structured data.
-    it("puts no Organization structured data on any other built page", () => {
+    // Spec 090: the home blocks are on the home page only. A content page carries its own blocks, and any other
+    // page carries none.
+    it("puts structured data only on the home page and the content pages, each block parsing as JSON-LD", () => {
+        const open = '<script type="application/ld+json">';
         for (const file of files.filter((name) => name.endsWith(".html") && name !== "out/index.html")) {
-            expect(read(file), file).not.toContain('<script type="application/ld+json">');
+            const html = read(file);
+            const blocks = html
+                .split(open)
+                .slice(1)
+                .map((rest) => JSON.parse(rest.slice(0, rest.indexOf("</script>"))));
+            const types = blocks.map((block) => block["@type"]);
+            for (const block of blocks) expect(block["@context"], file).toBe("https://schema.org");
+            for (const home of ["Organization", "Person", "WebSite", "WebPage"])
+                expect(types, file).not.toContain(home);
+            if (blocks.length > 0) {
+                expect(types, file).toContain("BreadcrumbList");
+                const cookiebot = html.indexOf('<script id="Cookiebot"');
+                const cookiebotEnd = html.indexOf("</script>", cookiebot) + "</script>".length;
+                expect(html.slice(cookiebotEnd).startsWith(open), file).toBe(true);
+            }
         }
     });
 
