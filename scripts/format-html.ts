@@ -15,6 +15,8 @@ import { format } from "prettier";
 import { JsonLD } from "../src/components/JsonLD";
 import organization from "../src/lib/schema/organization.json";
 import person from "../src/lib/schema/ed.json";
+import website from "../src/lib/schema/website.json";
+import webPage from "../src/lib/schema/webpage.json";
 
 const TEXT_SPACE = "\uE000";
 const TEXT_NEWLINE = "\uE001";
@@ -45,6 +47,12 @@ export const ORGANIZATION_JSON_LD = renderToStaticMarkup(createElement(JsonLD, {
 
 /** The Person structured data for the home page (spec 091), built the same way and placed right after the Organization block. */
 export const PERSON_JSON_LD = renderToStaticMarkup(createElement(JsonLD, { data: person }));
+
+/** The WebSite structured data for the home page, built the same way and placed right after the Person block. */
+export const WEBSITE_JSON_LD = renderToStaticMarkup(createElement(JsonLD, { data: website }));
+
+/** The WebPage structured data for the home page, placed right after the WebSite block. */
+export const WEB_PAGE_JSON_LD = renderToStaticMarkup(createElement(JsonLD, { data: webPage }));
 
 /** The script injected in <head>, right after the Cookiebot script. It must match `stripAddedWhitespace` below. */
 export const WHITESPACE_SCRIPT = `<script>
@@ -356,7 +364,9 @@ export function assertSameDom(original: string, formatted: string, file: string)
             .replace(COOKIEBOT_SCRIPT, "")
             .replace(COOKIEBOT_PRECONNECT, "")
             .replace(ORGANIZATION_JSON_LD, "")
-            .replace(PERSON_JSON_LD, ""),
+            .replace(PERSON_JSON_LD, "")
+            .replace(WEBSITE_JSON_LD, "")
+            .replace(WEB_PAGE_JSON_LD, ""),
     );
 
     for (const token of tokenize(before.skeleton)) {
@@ -474,7 +484,7 @@ export async function formatHtml(original: string, file: string, options: { json
         throw new Error(`${file}: no <head> to add the Cookiebot and whitespace scripts to`);
     // The Organization block (spec 090) and the Person block (spec 091) go between the Cookiebot script and the
     // whitespace script, only where asked.
-    const jsonLD = options.jsonLD ? ORGANIZATION_JSON_LD + PERSON_JSON_LD : "";
+    const jsonLD = options.jsonLD ? ORGANIZATION_JSON_LD + PERSON_JSON_LD + WEBSITE_JSON_LD + WEB_PAGE_JSON_LD : "";
     formatted = formatted.replace(
         /<head>\s*/,
         () =>

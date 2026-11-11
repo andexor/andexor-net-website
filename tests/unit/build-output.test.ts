@@ -9,6 +9,8 @@ import { COOKIEBOT_PRECONNECT } from "../../scripts/format-html";
 import { fileGroup, isMinified } from "../../scripts/site-files";
 import organization from "../../src/lib/schema/organization.json";
 import person from "../../src/lib/schema/ed.json";
+import website from "../../src/lib/schema/website.json";
+import webPage from "../../src/lib/schema/webpage.json";
 import { MOVED_PAGES } from "./moved-pages";
 
 // Spec 038 FR-002, FR-003, FR-005, FR-006: in the built site, the site's own CSS and script code are readable and
@@ -52,16 +54,18 @@ describe.skipIf(!fs.existsSync(OUT))("built site", () => {
     it("puts the Organization and Person structured data in the home page head, right after the Cookiebot script", () => {
         const html = read("out/index.html");
         const open = '<script type="application/ld+json">';
-        expect(html.split(open).length - 1, "two blocks").toBe(2);
+        expect(html.split(open).length - 1, "four blocks").toBe(4);
         const cookiebot = html.indexOf('<script id="Cookiebot"');
         const cookiebotEnd = html.indexOf("</script>", cookiebot) + "</script>".length;
         expect(html.slice(cookiebotEnd).startsWith(open), "block directly after Cookiebot").toBe(true);
-        const [organizationBlock, personBlock] = html
+        const [organizationBlock, personBlock, websiteBlock, webPageBlock] = html
             .split(open)
             .slice(1)
             .map((rest) => rest.slice(0, rest.indexOf("</script>")));
         expect(JSON.parse(organizationBlock)).toEqual(organization);
         expect(JSON.parse(personBlock)).toEqual(person);
+        expect(JSON.parse(webPageBlock)).toEqual(webPage);
+        expect(JSON.parse(websiteBlock)).toEqual(website);
     });
 
     // Spec 090: only the home page carries the structured data.

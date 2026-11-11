@@ -1,0 +1,12 @@
+{
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://andexor.net/#website",
+    "url": "https://andexor.net/",
+    "name": "Andexor Network",
+    "description": "Enterprise services for small business",
+    "publisher": {
+        "@id": "https://andexor.net/#organization"
+    },
+    "inLanguage": "en"
+}
