@@ -27,7 +27,7 @@ beforeAll(() => {
             "\n# Web work\n\nWe build sites.\n\n## Need a site?\n\nYes. We do R&D and build them\nand host them.\n\n- fast\n- safe\n\n## Plain card\n\nNot a question.\n",
     );
     write("services/none.md", card() + "\n# None\n\nIntro.\n\n## Plain card\n\nNot a question.\n");
-    write("company/about.md", "---\ntitle: About\n---\n\n# About\n\nText.\n");
+    write("company/about-us.md", "---\ntitle: About\n---\n\n# About\n\nText.\n");
     write("company/index.md", "---\ntitle: Company\n---\n\n# Company\n");
 });
 
@@ -46,6 +46,7 @@ interface Block {
     areaServed: string;
     provider: { "@id": string };
     about: { "@id": string };
+    isPartOf: { "@id": string };
     itemListElement: Crumb[];
     mainEntity: { name: string; acceptedAnswer: { text: string } }[];
 }
@@ -63,14 +64,22 @@ describe("getContentStructuredData", () => {
         expect(service.category).toBe("Technical Services");
     });
 
+    it("types the About Us page as an AboutPage that is about the Organization, and gives other pages no such block", async () => {
+        const about = byType(await getContentStructuredData(["company", "about-us"], dir), "AboutPage")!;
+        expect(about.about["@id"]).toBe("https://andexor.net/#organization");
+        expect(about.isPartOf["@id"]).toBe("https://andexor.net/#website");
+        expect(about.url).toBe("https://andexor.net/company/about-us");
+        expect(byType(await getContentStructuredData(["services", "web"], dir), "AboutPage")).toBeUndefined();
+    });
+
     it("gives a page outside the services section no Service", async () => {
-        expect(byType(await getContentStructuredData(["company", "about"], dir), "Service")).toBeUndefined();
+        expect(byType(await getContentStructuredData(["company", "about-us"], dir), "Service")).toBeUndefined();
     });
 
     it("leaves a section with no landing page out of the breadcrumb, and names one that has a page", async () => {
         const services = byType(await getContentStructuredData(["services", "web"], dir), "BreadcrumbList")!;
         expect(services.itemListElement.map((item: Crumb) => item.position)).toEqual([1, 2]);
-        const company = byType(await getContentStructuredData(["company", "about"], dir), "BreadcrumbList")!;
+        const company = byType(await getContentStructuredData(["company", "about-us"], dir), "BreadcrumbList")!;
         expect(company.itemListElement.map((item: Crumb) => item.position)).toEqual([1, 2, 3]);
         expect(company.itemListElement[1].item).toBe("https://andexor.net/company");
         // Only the last crumb may leave out its address.

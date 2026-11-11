@@ -1,6 +1,6 @@
 ---
 title: About Us
-description: About Us
+description: Andexor Network was founded in Atlanta in 2010 by Ed Jenkins to help small businesses with web development, hosting, SEO, lead generation, and marketing.
 layout: cards
 section: company
 eyebrow: Company

@@ -4,6 +4,7 @@
 
 import { CONTENT_DIR, getContentPage, type ContentPage } from "@/lib/content";
 import organization from "@/lib/schema/organization.json";
+import website from "@/lib/schema/website.json";
 
 // Structured data (JSON-LD) for the Markdown content pages, built from each page and from the Organization data.
 // The home page's blocks are the JSON files beside this one; these are made per page at build time and put in the
@@ -17,6 +18,25 @@ export const pageUrl = (slug: string[]): string => `${SITE}/${slug.join("/")}`;
 
 // Pages under /services/ describe a service Andexor sells.
 const SERVICE_SECTION = "services";
+
+// Pages that are a more specific kind of WebPage than the home page's, by route.
+const PAGE_TYPES: Record<string, string> = { "company/about-us": "AboutPage" };
+
+// The page itself, typed by its route. It is about the Organization and part of the WebSite, both named inline.
+function typedPage(page: ContentPage, url: string, type: string): object {
+    return {
+        "@context": CONTEXT,
+        "@type": type,
+        "@id": `${url}#webpage`,
+        url,
+        name: page.title,
+        ...(page.description ? { description: page.description } : {}),
+        about: { "@type": "Organization", "@id": organization["@id"], name: organization.name, url: organization.url },
+        isPartOf: { "@type": "WebSite", "@id": website["@id"], name: website.name, url: website.url },
+        breadcrumb: { "@id": `${url}#breadcrumb` },
+        inLanguage: website.inLanguage,
+    };
+}
 
 function service(page: ContentPage, url: string): object {
     return {
@@ -78,7 +98,9 @@ export async function getContentStructuredData(slug: string[], dir: string = CON
     const url = pageUrl(slug);
     const section = slug.length > 1 ? await getContentPage(slug.slice(0, -1), dir) : null;
     const isService = slug[0] === SERVICE_SECTION && slug.length > 1;
+    const type = PAGE_TYPES[slug.join("/")];
     return [
+        ...(type ? [typedPage(page, url, type)] : []),
         ...(isService ? [service(page, url)] : []),
         breadcrumb(page, section ?? undefined),
         faqPage(page, url, isService),
