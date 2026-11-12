@@ -25,7 +25,7 @@
         "@fortawesome/react-fontawesome": "^3.5.0",
         "@higgsfield/cli": "^1.2.2",
         "gray-matter": "^4.0.3",
-        "next": "^15.5.29",
+        "next": "^16.4.6",
         "react": "^19.3.1",
         "react-dom": "^19.3.1",
         "rehype-external-links": "^3.0.0",
