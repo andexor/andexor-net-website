@@ -1,0 +1,108 @@
+{
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "@id": "https://andexor.net/#webpage",
+            "url": "https://andexor.net/",
+            "name": "Enterprise services for small business",
+            "isPartOf": {
+                "@id": "https://andexor.net/#website"
+            },
+            "primaryImageOfPage": {
+                "@id": "https://andexor.net/#logo"
+            },
+            "image": {
+                "@id": "https://andexor.net/#logo"
+            },
+            "description": "Enterprise services for small business",
+            "about": {
+                "@id": "https://andexor.net/#organization"
+            },
+            "breadcrumb": {
+                "@id": "https://andexor.net/#breadcrumb"
+            },
+            "inLanguage": "en",
+            "potentialAction": [
+                {
+                    "@type": "ReadAction",
+                    "target": ["https://andexor.net/"]
+                }
+            ]
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "@id": "https://andexor.net/#breadcrumb",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home"
+                }
+            ]
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "@id": "https://andexor.net/#organization",
+            "name": "Andexor Network",
+            "legalName": "Andexor Network, Inc.",
+            "url": "https://andexor.net/",
+            "logo": {
+                "@id": "https://andexor.net/#logo"
+            },
+            "image": {
+                "@id": "https://andexor.net/#logo"
+            },
+            "founder": {
+                "@id": "https://andexor.net/#person"
+            },
+            "sameAs": [
+                "https://www.linkedin.com/company/andexor/",
+                "https://x.com/andexor",
+                "https://github.com/andexor"
+            ]
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "ImageObject",
+            "@id": "https://andexor.net/#logo",
+            "inLanguage": "en",
+            "url": "https://andexor.net/static/logo/logo-gold.svg",
+            "contentUrl": "https://andexor.net/static/logo/logo-gold.svg",
+            "name": "Andexor Network logo",
+            "caption": "Andexor Network",
+            "description": "A single logic gate that merges the AND body with the XOR double-curve back, in solid Old Gold on a transparent background.",
+            "encodingFormat": "image/svg+xml",
+            "width": 96,
+            "height": 96,
+            "representativeOfPage": true,
+            "dateCreated": "2026-09-28",
+            "dateModified": "2026-09-28",
+            "creator": {
+                "@id": "https://andexor.net/#organization"
+            },
+            "copyrightHolder": {
+                "@id": "https://andexor.net/#organization"
+            },
+            "creditText": "Andexor Network, Inc.",
+            "copyrightNotice": "© 2026 Andexor Network, Inc. All rights reserved.",
+            "copyrightYear": 2026,
+            "license": "https://andexor.net/company/terms-of-service#4-intellectual-property"
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "@id": "https://andexor.net/#person",
+            "name": "Ed Jenkins",
+            "jobTitle": "CEO",
+            "url": "https://www.linkedin.com/in/ejenkins/",
+            "worksFor": {
+                "@id": "https://andexor.net/#organization"
+            },
+            "sameAs": ["https://www.linkedin.com/in/ejenkins/", "https://github.com/ejenkins"]
+        }
+    ]
+}

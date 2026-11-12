@@ -1,15 +1,16 @@
 #!/bin/bash
 
-# SPDX-License-Identifier: Apache-2.0
-# Copyright 2026 Andexor Network, Inc.
-# Author: Ed Jenkins <ed@andexor.net>
-
 # Copied from https://github.com/github/spec-kit
 
 # NOTE: If you have not done so already, run install-uv.sh first.
 
 # Install Spec Kit.
-uv tool install specify-cli --from git+https://github.com/github/spec-kit.git@v1.0.12
+uv tool install specify-cli --from git+https://github.com/github/spec-kit.git@v1.4.0
+
+# Upgrade Spec Kit.
+# If specify-cli is already installed,
+# you can upgrade it to the latest version with this command:
+uv tool upgrade specify-cli
 
 # Initialize the project.
 specify init --here --force --non-interactive --script sh --integration claude

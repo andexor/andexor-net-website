@@ -6,6 +6,8 @@ section: business
 eyebrow: Business Services
 image: /static/images/process-re-engineering.png
 image_alt: a roadmap showing how to get from point "A" to point "B"
+image_created: 2026-09-30
+image_modified: 2026-09-30
 cta_heading: You need a leader who can untangle complex business processes. Let's do this.
 ---
 

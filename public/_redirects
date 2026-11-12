@@ -21,12 +21,13 @@
 /security-policy /company/security-policy 301
 /terms-of-service /company/terms-of-service 301
 
+# The sections have no landing page yet. Temporary (302), so a browser does not keep a cached redirect once a
+# content/services/index.md or content/company/index.md exists; remove the line when one does. Kept above the
+# splat rules below, because Wrangler warns when a plain rule comes after one.
+/services / 302
+/company / 302
+
 # Fonts, images, and logos moved under /static/.
 /fonts/* /static/fonts/:splat 301
 /images/* /static/images/:splat 301
 /logo/* /static/logo/:splat 301
-
-# The sections have no landing page yet. Temporary (302), so a browser does not keep a cached redirect once a
-# content/services/index.md or content/company/index.md exists; remove the line when one does.
-/services / 302
-/company / 302

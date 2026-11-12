@@ -6,6 +6,8 @@ section: technical
 eyebrow: Technical Services
 image: /static/images/agentic-systems.png
 image_alt: a team of AI agents working together
+image_created: 2026-09-30
+image_modified: 2026-09-30
 cta_heading: Delegating tasks to AI agents will help you grow faster. Find out how.
 ---
 

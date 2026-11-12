@@ -6,6 +6,8 @@ section: technical
 eyebrow: Technical Services
 image: /static/images/web-development.png
 image_alt: a laptop showing source code with a browser window floating beside it
+image_created: 2026-09-29
+image_modified: 2026-10-23
 cta_heading: What do you need your site, app, or agent to do? Let's make it happen.
 ---
 
@@ -215,7 +217,7 @@ Employees maintain a sense of job security,
 but it comes at the cost of customer loyalty.
 
 Without a clear, written set of requirements,
-customers can fall into so-called "edge cases"
+customers can fall into edge cases
 where two or more events outside their control
 happen to collide and make a process fail.
 Broken processes leave work incomplete

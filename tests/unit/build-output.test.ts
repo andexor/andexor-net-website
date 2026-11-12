@@ -9,10 +9,12 @@ import { COOKIEBOT_PRECONNECT } from "../../scripts/format-html";
 import { fileGroup, isMinified } from "../../scripts/site-files";
 import organization from "../../src/lib/schema/organization.json";
 import person from "../../src/lib/schema/ed.json";
+import website from "../../src/lib/schema/website.json";
+import webPage from "../../src/lib/schema/webpage.json";
 import { MOVED_PAGES } from "./moved-pages";
 
 // Spec 038 FR-002, FR-003, FR-005, FR-006: in the built site, the site's own CSS and script code are readable and
-// separate from the third-party code. This reads `out/`, so it runs only after `bun run build`.
+// separate from the third-party code. This reads `out/`, so it runs only after `npm run build`.
 const ROOT = path.resolve(__dirname, "../..");
 const OUT = path.join(ROOT, "out");
 
@@ -52,22 +54,42 @@ describe.skipIf(!fs.existsSync(OUT))("built site", () => {
     it("puts the Organization and Person structured data in the home page head, right after the Cookiebot script", () => {
         const html = read("out/index.html");
         const open = '<script type="application/ld+json">';
-        expect(html.split(open).length - 1, "two blocks").toBe(2);
+        expect(html.split(open).length - 1, "four blocks").toBe(4);
         const cookiebot = html.indexOf('<script id="Cookiebot"');
         const cookiebotEnd = html.indexOf("</script>", cookiebot) + "</script>".length;
         expect(html.slice(cookiebotEnd).startsWith(open), "block directly after Cookiebot").toBe(true);
-        const [organizationBlock, personBlock] = html
+        const [organizationBlock, personBlock, websiteBlock, webPageBlock] = html
             .split(open)
             .slice(1)
             .map((rest) => rest.slice(0, rest.indexOf("</script>")));
         expect(JSON.parse(organizationBlock)).toEqual(organization);
         expect(JSON.parse(personBlock)).toEqual(person);
+        expect(JSON.parse(webPageBlock)).toEqual(webPage);
+        expect(JSON.parse(websiteBlock)).toEqual(website);
     });
 
-    // Spec 090: only the home page carries the structured data.
-    it("puts no Organization structured data on any other built page", () => {
+    // Spec 090: the home blocks are on the home page only. A content page carries its own blocks, and any other
+    // page carries none.
+    it("puts structured data only on the home page and the content pages, each block parsing as JSON-LD", () => {
+        const open = '<script type="application/ld+json">';
         for (const file of files.filter((name) => name.endsWith(".html") && name !== "out/index.html")) {
-            expect(read(file), file).not.toContain('<script type="application/ld+json">');
+            const html = read(file);
+            const blocks = html
+                .split(open)
+                .slice(1)
+                .map((rest) => JSON.parse(rest.slice(0, rest.indexOf("</script>"))));
+            const types = blocks.map((block) => block["@type"]);
+            for (const block of blocks) expect(block["@context"], file).toBe("https://schema.org");
+            for (const home of ["Organization", "Person", "WebSite", "WebPage"])
+                expect(types, file).not.toContain(home);
+            // The Page not found page is not indexed and has no address of its own, so it carries only its image.
+            if (file === "out/404.html") expect(types, file).toEqual(["ImageObject"]);
+            else if (blocks.length > 0) expect(types, file).toContain("BreadcrumbList");
+            if (blocks.length > 0) {
+                const cookiebot = html.indexOf('<script id="Cookiebot"');
+                const cookiebotEnd = html.indexOf("</script>", cookiebot) + "</script>".length;
+                expect(html.slice(cookiebotEnd).startsWith(open), file).toBe(true);
+            }
         }
     });
 

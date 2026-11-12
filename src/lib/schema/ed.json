@@ -26,10 +26,7 @@
         "Kubernetes",
         "Claude"
     ],
-    "sameAs": [
-        "https://www.linkedin.com/in/ejenkins/",
-        "https://github.com/ejenkins"
-    ],
+    "sameAs": ["https://www.linkedin.com/in/ejenkins/", "https://github.com/ejenkins"],
     "skills": [
         "Team Leadership",
         "Business Analysis",
@@ -51,17 +48,13 @@
         "Business Intelligence"
     ],
     "telephone": "+14043511440",
-    "url": "https://andexor.net/company/about-us",
+    "url": "https://www.linkedin.com/in/ejenkins/",
     "worksFor": {
         "@type": "Organization",
         "@id": "https://andexor.net/#organization",
         "name": "Andexor Network",
         "logo": "https://andexor.net/static/logo/logo-gold.svg",
-        "sameAs": [
-            "https://www.linkedin.com/company/andexor/",
-            "https://x.com/andexor",
-            "https://github.com/andexor"
-        ],
+        "sameAs": ["https://www.linkedin.com/company/andexor/", "https://x.com/andexor", "https://github.com/andexor"],
         "url": "https://andexor.net/"
     },
     "availableLanguage": {

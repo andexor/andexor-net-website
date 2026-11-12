@@ -4,14 +4,14 @@
 
 // Writes content/sitemap.xml (spec 075): the home page plus every published content page, each with a `lastmod`
 // taken from git (the date of the page file's last commit, or today if the file has uncommitted changes).
-// Run on the host by build.sh before the Docker build, because the image build has no .git directory.
+// Run by hand with `npm run sitemap` (it needs the git history, so it is not part of the build), then commit the file.
 
 import { execFileSync } from "node:child_process";
 import { writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { listContentSlugs } from "../src/lib/content";
 
-const ROOT = join(import.meta.dir, "..");
+const ROOT = process.cwd();
 const BASE = "https://andexor.net";
 
 function git(...args: string[]): string {

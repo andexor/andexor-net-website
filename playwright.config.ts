@@ -15,10 +15,10 @@ export default defineConfig({
         trace: "on-first-retry",
     },
     // Tests run against the production build (static export served by
-    // server.ts), the same output Docker serves. `next dev` cannot serve the
+    // server.ts), the same output Cloudflare serves. `next dev` cannot serve the
     // not-found page under `output: "export"`, and it compiles pages lazily.
     webServer: {
-        command: "bun run build && bun run server.ts",
+        command: "npm run build && node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON server.ts",
         url: "http://localhost:3000",
         reuseExistingServer: !process.env.CI,
         timeout: 180_000,

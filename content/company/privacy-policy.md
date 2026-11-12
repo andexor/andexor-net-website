@@ -6,6 +6,8 @@ section: company
 eyebrow: Company
 image: /static/images/privacy.png
 image_alt: Privacy Policy document
+image_created: 2026-10-08
+image_modified: 2026-10-08
 ---
 
 <!--

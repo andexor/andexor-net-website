@@ -66,6 +66,9 @@ Card body.
 - `section`: `technical`, `business`, or `company`. Picks the hero's backdrop pattern. Omit it for a plain hero.
 - `eyebrow`: small label above the hero headline.
 - `image`, `image_alt`: hero illustration from `public/static/images/`.
+- `image_created`, `image_modified`: optional. When the image was made and last changed, as an ISO 8601 date such as
+  `2026-11-07` or a date and time such as `2026-11-07T10:30:00Z`. They become `dateCreated` and `dateModified` in the
+  image's structured data. A value that is not a date stops the build and names the file.
 - `cta_heading`: heading of the Contact Us band at the bottom of the page, between the cards and the footer. The
   band appears only on pages that have it. The button opens the same Contact Us popup as the home page. Write one
   sentence.
@@ -116,7 +119,7 @@ no dashes in copy, "and" instead of "&", sentence case headlines with no trailin
 
 ## Publishing
 
-Rebuild with `./build.sh`. Pages are not linked from the home page or footer automatically;
+Rebuild with `npm run build`, or run `./run.sh` to build the site and preview it locally. Pages are not linked from the home page or footer automatically;
 add links when a page is ready to be used.
 
 ## Cookie declaration

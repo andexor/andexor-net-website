@@ -6,6 +6,8 @@ section: company
 eyebrow: Company
 image: /static/images/security.png
 image_alt: Security Policy document with a shield
+image_created: 2026-10-10
+image_modified: 2026-10-10
 ---
 
 <!--

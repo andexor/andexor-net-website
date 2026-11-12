@@ -6,6 +6,8 @@ section: business
 eyebrow: Business Services
 image: /static/images/lead-generation.png
 image_alt: prospective customers in a sales funnel
+image_created: 2026-09-30
+image_modified: 2026-09-30
 cta_heading: Let's identify new sources of customers and how you can serve them.
 ---
 

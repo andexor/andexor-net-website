@@ -44,18 +44,37 @@ export interface CardsLayout {
     ctaHeading?: string;
 }
 
+// A card whose heading is a question is a question and answer. The answer is the card's text as plain sentences,
+// built at build time for the page's FAQPage data.
+export interface Faq {
+    question: string;
+    answer: string;
+}
+
 export interface ContentPage {
     slug: string[];
     title: string;
     description?: string;
     html: string;
     cards?: CardsLayout;
+    // The text between a card page's headline and its first card, for the page's structured data.
+    lede?: string;
+    faqs?: Faq[];
+    imageDates?: ImageDates;
+}
+
+// When the hero image was made and last changed, from `image_created` and `image_modified`, each an ISO 8601 date or
+// date and time. They are for the image's structured data and metadata, not for the page.
+export interface ImageDates {
+    created?: string;
+    modified?: string;
 }
 
 interface CardsOptions {
     eyebrow?: string;
     section?: CardsSection;
     image?: { src: string; alt: string };
+    imageDates?: ImageDates;
     ctaHeading?: string;
 }
 
@@ -98,8 +117,35 @@ function humanize(segment: string): string {
     return words.charAt(0).toUpperCase() + words.slice(1);
 }
 
+const ISO_DATE = /^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}(:\d{2}(\.\d+)?)?(Z|[+-]\d{2}:\d{2})?)?$/;
+
+// YAML turns an unquoted `2026-11-07` into a Date at midnight UTC, so a Date at midnight is a plain date.
+function isoDate(value: unknown, field: string): string | undefined {
+    if (value === undefined || value === null || value === "") return undefined;
+    if (value instanceof Date && !Number.isNaN(value.getTime())) {
+        const iso = value.toISOString();
+        return iso.endsWith("T00:00:00.000Z") ? iso.slice(0, 10) : iso.replace(".000Z", "Z");
+    }
+    if (typeof value === "string" && ISO_DATE.test(value.trim()) && !Number.isNaN(Date.parse(value.trim()))) {
+        return value.trim();
+    }
+    throw new Error(`${field} must be an ISO 8601 date, such as 2026-11-07 or 2026-11-07T10:30:00Z`);
+}
+
+function readImageDates(data: Record<string, unknown>, file: string): ImageDates | undefined {
+    try {
+        const created = isoDate(data.image_created, "image_created");
+        const modified = isoDate(data.image_modified, "image_modified");
+        return created || modified ? { created, modified } : undefined;
+    } catch (error) {
+        // Name the page, so the build says which file to fix.
+        throw new Error(`${file}: ${error instanceof Error ? error.message : error}`);
+    }
+}
+
 function readRaw(dir: string, slug: string[]): RawPage {
-    const { data, content } = matter(fs.readFileSync(fileFor(dir, slug), "utf8"));
+    const file = fileFor(dir, slug);
+    const { data, content } = matter(fs.readFileSync(file, "utf8"));
     const h1 = /^#\s+(.+?)\s*#*\s*$/m.exec(content)?.[1];
     const str = (v: unknown) => (typeof v === "string" ? v : undefined);
     const cards: CardsOptions | undefined =
@@ -109,6 +155,7 @@ function readRaw(dir: string, slug: string[]): RawPage {
                   section: CARDS_SECTIONS.find((x) => x === data.section),
                   image: str(data.image) ? { src: str(data.image)!, alt: str(data.image_alt) ?? "" } : undefined,
                   ctaHeading: str(data.cta_heading)?.trim() || undefined,
+                  imageDates: readImageDates(data, file),
               }
             : undefined;
     return {
@@ -335,6 +382,34 @@ function readRows(events: (number | "row" | "column")[], titles: string[]): Row[
     return rows;
 }
 
+// Text for structured data: whitespace collapsed to single spaces, and "and" in place of an ampersand (the site's
+// copy rule, design/README.md).
+const squeeze = (text: string): string =>
+    text
+        .replace(/\s*&\s*/g, " and ")
+        .replace(/\s+/g, " ")
+        .trim();
+
+// The text of a card's body as plain sentences, with no markup, so that a reader of the structured data, whether a
+// person or a language model, sees ordinary text. Paragraphs are joined with a space. A list becomes one sentence,
+// its items joined with semicolons.
+function answerOf(nodes: ElementContent[]): string {
+    const parts: string[] = [];
+    for (const node of nodes.filter(isElement)) {
+        if (node.tagName === "ul" || node.tagName === "ol") {
+            const items = node.children
+                .filter(isElement)
+                .map((li) => squeeze(textOf(li)))
+                .filter(Boolean);
+            if (items.length > 0) parts.push(`${items.join("; ")}.`);
+        } else {
+            const text = squeeze(textOf(node));
+            if (text) parts.push(text);
+        }
+    }
+    return parts.join(" ");
+}
+
 // Splits a rendered page into the `#` heading, the intro before the first `##`, and the cards laid out in rows.
 export function splitCards(tree: Root) {
     const nodes = tree.children.filter((n) => !(n.type === "text" && !n.value.trim()));
@@ -358,10 +433,14 @@ export function splitCards(tree: Root) {
     const titles = sections.map(([head]) => textOf(head as Element).trim());
     const rows = readRows(events, titles);
     const wide = new Set(rows.filter((row) => row.breakAt === undefined).flatMap((row) => row.cards));
+    const faqs: Faq[] = [];
     const cards = sections.map(([head, ...body], idx): Element => {
         const title = head as Element;
         const rest = body as ElementContent[];
         const eyebrow = takeEyebrow(rest);
+        const question = squeeze(textOf(title));
+        const answer = answerOf(rest);
+        if (question.endsWith("?") && answer) faqs.push({ question, answer });
         title.properties = { ...title.properties, className: ["an-tile__title"] };
         return {
             type: "element",
@@ -397,15 +476,15 @@ export function splitCards(tree: Root) {
             ? row.cards.map((i) => cards[i])
             : [column(row.cards.slice(0, row.breakAt)), column(row.cards.slice(row.breakAt))],
     );
-    return { heading: heading?.children ?? [], intro, columns };
+    return { heading: heading?.children ?? [], intro, columns, faqs };
 }
 
-async function renderCards(markdown: string, options: CardsOptions): Promise<CardsLayout> {
+async function renderCards(markdown: string, options: CardsOptions) {
     const proc = markdownProcessor();
     const tree = (await proc.run(proc.parse(markdown))) as Root;
-    const { heading, intro, columns } = splitCards(tree);
+    const { heading, intro, columns, faqs } = splitCards(tree);
     const html = (children: RootContent[]) => String(proc.stringify({ type: "root", children }));
-    return {
+    const cards: CardsLayout = {
         eyebrow: options.eyebrow,
         section: options.section,
         image: options.image,
@@ -414,6 +493,7 @@ async function renderCards(markdown: string, options: CardsOptions): Promise<Car
         introHtml: html(intro),
         cardsHtml: html(columns),
     };
+    return { cards, faqs, lede: squeeze(intro.map(textOf).join(" ")) || undefined };
 }
 
 export async function getContentPage(slug: string[], dir: string = CONTENT_DIR): Promise<ContentPage | null> {
@@ -421,7 +501,8 @@ export async function getContentPage(slug: string[], dir: string = CONTENT_DIR):
     const { title, description, body, cards } = readRaw(dir, slug);
     if (cards) {
         try {
-            return { slug, title, description, html: "", cards: await renderCards(body, cards) };
+            const { cards: layout, faqs, lede } = await renderCards(body, cards);
+            return { slug, title, description, html: "", cards: layout, lede, faqs, imageDates: cards.imageDates };
         } catch (error) {
             // Name the page, so the build says which file to fix.
             throw new Error(`${fileFor(dir, slug)}: ${error instanceof Error ? error.message : error}`);

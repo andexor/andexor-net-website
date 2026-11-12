@@ -1,6 +1,27 @@
 <!--
 Sync Impact Report
-- Version change: 1.9.0 → 1.10.0 (MINOR: Principle VIII gains a URL structure paragraph. The site's addresses
+- Version change: 3.0.0 → 3.1.0 (MINOR: the Technology Constraints Dependency audit rule changes. The license report
+  moves from `./setup.sh` to `./run.sh`: after `npm update`, `run.sh` rewrites the report when the hash of
+  `package-lock.json` differs from the one the report records on its second line, and a copyleft license stops
+  `run.sh` before the build. `update.sh` is removed, and `setup.sh` only adds the FontAwesome packages. The report is
+  still written only by that one script and never by hand, and it has no test. Owner decision,
+  specs/096-license-report-in-run-sh. Templates in .specify/templates/ checked: none mention the report.)
+  Earlier: 2.0.0 → 3.0.0 (MAJOR: the project no longer builds or runs in Docker, because the site is served by
+  Cloudflare Workers. Principle VII (Graceful Container Shutdown) is retired, with its number kept so that the other
+  principles keep theirs; the Technology Constraints "Docker workflow" bullet is removed; and the `Dockerfile`,
+  `.dockerignore`, `build.sh`, and `debug.sh` are deleted. `preview.sh` is renamed `run.sh` and is now the local
+  check (`npm update && npm run build && npm run preview`, http://localhost:8787). `server.ts` stays, for the Playwright tests
+  only. `install-docker.sh` and the Docker section of `setup.md` are deleted too. Owner decision,
+  specs/095-remove-docker. Templates in .specify/templates/ checked: none mention Docker.)
+  Earlier: 1.10.0 → 2.0.0 (MAJOR: the Technology Constraints "Runtime and tooling" rule is reversed. It said
+  Bun, not Node.js, npm, or yarn; it now says Node.js and npm. Package management is npm (`package-lock.json`
+  replaces `bun.lock`), TypeScript scripts run with `tsx`, `server.ts` runs on Node's own TypeScript support in a
+  `node:slim` Docker image, and `install-bun.sh` and `install-cf.sh` are removed. The Docker workflow, the graceful
+  shutdown principle, the formatting and quote rules, and the license rules are unchanged except that the commands
+  they name are the npm ones. Owner decision, specs/094-node-instead-of-bun. Templates in .specify/templates/
+  checked: none name a package manager or a runtime. Earlier specs under specs/ keep the Bun commands they were
+  written with; they are a record of what was done at the time.)
+  Earlier: 1.9.0 → 1.10.0 (MINOR: Principle VIII gains a URL structure paragraph. The site's addresses
   are a fixed set of prefixes with one owner each (/, /services/, /company/, /api/, /.well-known/, /_next/,
   /static/); a new page goes under an existing prefix, a new prefix needs a spec, and a moved URL keeps a
   permanent redirect. Owner decision, issue #118, specs/093-move-pages-static-resources. Templates in
@@ -45,7 +66,7 @@ Sync Impact Report
   Earlier: 1.2.1 → 1.2.2 (PATCH: one branch per issue is now a suggestion, not a rule,
   to avoid ceremony on small changes). Earlier: 1.1.0 → 1.2.1 (MINOR for 1.2.0, then PATCH 1.2.1 for the license policy: materially expanded Development Workflow and Technology
   Constraints, based on CONTRIBUTING.md, SECURITY.md, setup.md, and NOTICE added 2026-09-29)
-- Modified principles: VIII (URL structure); earlier IV (no links to #top); earlier VIII (not-found page exception); earlier VI
+- Modified principles: Technology Constraints, runtime and tooling (Bun replaced by Node.js and npm); earlier VIII (URL structure); earlier IV (no links to #top); earlier VIII (not-found page exception); earlier VI
   (no link underlines at all; heading unchanged)
 - Added principles: none
 - Added guidance: issue-first workflow with commit trailer rule, sign-off meaning (Code of
@@ -138,17 +159,11 @@ visible rendering flicker, and footer-style links without underlines look cleane
 styles. Removing the underline only passes accessibility if body links differ enough in color
 from the text.
 
-### VII. Graceful Container Shutdown
-Any app run in a Docker container MUST stop on the first `Ctrl+C` (SIGINT) and on `docker stop`
-(SIGTERM), and with `--rm` the container MUST be removed. The app itself MUST install handlers
-for both signals, stop accepting new connections, let requests in progress finish, and exit with
-status 0. It MUST ignore repeated signals during shutdown and MUST force an exit after about five
-seconds as a fallback. This MUST NOT be worked around in `run.sh` or `debug.sh`. A Docker setup is
-not done until it is verified by sending one SIGINT and confirming the shutdown log line and that
-`docker ps -a` shows no leftover container.
-
-Rationale: The app is PID 1 in its container, and Linux ignores SIGINT and SIGTERM for PID 1
-unless the process handles them.
+### VII. (Retired in 3.0.0)
+This principle was Graceful Container Shutdown: an app run in a Docker container had to stop on the first `Ctrl+C`
+and on `docker stop`. The project no longer builds or runs in Docker (specs/095-remove-docker), so the rule has
+nothing to govern here and is not in force. The number stays so that the other principles keep theirs. If an app in
+this repository is ever run in a container again, the rule is to be restored with a spec.
 
 ### VIII. Markdown-Authored Content Pages
 Pages other than the home page MUST be authored as Markdown files under `content/`, where the path
@@ -183,53 +198,54 @@ out of customers' view.
 
 - Framework: Next.js (React) using Static Site Generation (`output: "export"`). Server-side
   rendering, ISR, and API routes MUST NOT be used.
-- Runtime and tooling: Bun, not Node.js, npm, or yarn, for package management, scripts, and the
-  production runtime. The built static `out/` directory is served by a small `Bun.serve` static
-  file server (`server.ts`), built and run through the root `Dockerfile`.
-- Docker workflow: `build.sh`, `run.sh`, and `debug.sh`, with images tagged
-  `andexor/<repo-dir-basename>:<VERSION>`. Alternate `docker build` or `docker run` invocations
-  MUST NOT be invented.
+- Runtime and tooling: Node.js and npm, not Bun or yarn, for package management, scripts, and the
+  runtime. Packages are installed with `npm ci` from `package-lock.json`, TypeScript scripts are run with `tsx`,
+  and `engines` in `package.json` records the oldest Node.js release that can run the site's TypeScript files without
+  a flag. The built static
+  `out/` directory is served by a small `node:http` static file server (`server.ts`, run by Node's own TypeScript
+  support, with no packages), which only the Playwright tests use. Production is Cloudflare Workers serving `out/`,
+  so the site is not built or run in Docker. `run.sh` builds the site and previews it locally the way Cloudflare
+  serves it.
 - Formatting: code written for the site (`.ts`, `.tsx`, `.js`, `.mjs`, `.css`) and the built site (HTML, the site
   stylesheet, and the site's own script chunk) MUST be formatted with Prettier: 4 spaces per indent level, no tabs.
   Lines SHOULD stay under about 120 characters; this is a guideline, not a rule, and no test checks it. The site's own CSS and
   JavaScript MUST stay in files separate from third-party code and MUST NOT be minified. Third-party CSS and JavaScript MAY be combined and minified. Formatting
   MUST NOT change what a visitor sees or how a page behaves, and any step that adds whitespace to built HTML MUST
-  prove the DOM is unchanged (the React hydration rule). `bun run test` MUST fail, naming the file, when a file breaks
+  prove the DOM is unchanged (the React hydration rule). `npm test` MUST fail, naming the file, when a file breaks
   these rules.
 - Quotes: no file in the repository MAY contain a curly, smart, or typographic quote, whether as a character or as an
   HTML character reference. Only the straight apostrophe and the straight double quote are used, and built pages write
   them as plain characters rather than escapes. The one exception is third-party text the owner has said not to alter
-  (`CODE_OF_CONDUCT.md` and `CODE_OF_CONDUCT.adoc`), which MUST NOT be changed and is not checked. `bun run test` MUST
+  (`CODE_OF_CONDUCT.md` and `CODE_OF_CONDUCT.adoc`), which MUST NOT be changed and is not checked. `npm test` MUST
   fail, naming the file and line, when the rule is broken (`tests/unit/straight-quotes.test.ts`).
-- License header: every generated source file (`.ts`, `.tsx`, `.js`, `.css`, `Dockerfile`, shell
-  scripts, and similar) MUST start with the SPDX header (`SPDX-License-Identifier: Apache-2.0`,
+- License header: every generated source file (`.ts`, `.tsx`, `.js`, `.css`, shell scripts,
+  and similar) MUST start with the SPDX header (`SPDX-License-Identifier: Apache-2.0`,
   `Copyright 2026 Andexor Network, Inc.`, `Author: Ed Jenkins <ed@andexor.net>`) in that
-  language's comment syntax. In a `Dockerfile` it follows the `# syntax=` directive, which stays
-  on line 1. Markdown files are exempt.
+  language's comment syntax. Markdown files are exempt.
 - No backend/database complexity MUST be introduced unless a spec explicitly requires
   server-side logic beyond static content and simple form handling.
 - Third-party services (analytics, forms, CMS, etc.) MUST be justified in the relevant spec or
   plan before being added as a dependency.
 - Supported operating systems (from `CONTRIBUTING.md`): open-source Linux for development,
   testing, and production, preferably the latest Ubuntu LTS. Alpine SHOULD also work when that
-  takes very little effort. Docker images SHOULD use the `scratch` base image when possible; the
-  Bun runtime image is the justified exception for this site. macOS is discouraged. Windows is
+  takes very little effort. Docker images, for any project that has them, SHOULD use the `scratch` base image when
+  possible. macOS is discouraged. Windows is
   prohibited unless building a native app that requires it.
-- Setup: prerequisites are installed with the scripts described in `setup.md` (`install-bun.sh`,
-  `install-docker.sh`, `install-spec-kit.sh`, and Playwright system dependencies).
-- Dependency audit: the license report is produced by running `./setup.sh`, which replaces
+- Setup: prerequisites are installed as described in `setup.md` (Node.js with nvm,
+  `install-spec-kit.sh`, and Playwright system dependencies).
+- Dependency audit: the license report is produced by `./run.sh`, which, after `npm update`, replaces
   `reports/license-report.md` with one dated section listing the installed packages and their licenses,
-  using `license-checker-rseidelsohn`. The report describes the current dependency set only; earlier
-  sets are in version history. `./setup.sh` is the only thing that writes the report, and the report
-  MUST NOT be edited by hand or by any other script. Dependencies added without a requirement in a
+  using `license-checker-rseidelsohn`, whenever the hash of `package-lock.json` is not the one the report records.
+  The report describes the current dependency set only; earlier sets are in version history. `./run.sh` is the only
+  thing that writes the report, and the report MUST NOT be edited by hand or by any other script. Dependencies added without a requirement in a
   spec or plan MUST be justified (Principle I).
 - Licenses: the project is Apache-2.0 (`package.json`, `LICENSE`, `NOTICE`) and is NOT marked
   `"private"`, so tools report its license correctly. Nothing is excluded from the license report.
-  Dependencies MUST NOT use strong copyleft licenses (GPL, AGPL, LGPL); `./setup.sh` fails, and
+  Dependencies MUST NOT use strong copyleft licenses (GPL, AGPL, LGPL); `./run.sh` stops, and
   leaves the report unchanged, when one is found. Weak file-level copyleft (MPL-2.0) is
   accepted for development-only tools that are never shipped, such as `axe-core`. The optional
   `sharp` dependency of Next.js, whose libvips binaries are LGPL, is replaced by an empty local
-  stub (`stubs/sharp`, wired through `overrides` in `package.json`). This is safe because the site
+  stub (`stubs/sharp`, a root dependency that `overrides` in `package.json` points every `sharp` at). This is safe because the site
   is a static export with unoptimized images; the stub MUST be revisited if image optimization is
   ever needed.
 
@@ -283,4 +299,4 @@ MUST be explicitly justified in the relevant artifact rather than silently intro
 are companion documents for contributors; where they conflict with this constitution, this
 constitution wins until one of them is amended.
 
-**Version**: 1.10.0 | **Ratified**: 2026-09-28 | **Last Amended**: 2026-11-07
+**Version**: 3.1.0 | **Ratified**: 2026-09-28 | **Last Amended**: 2026-11-12

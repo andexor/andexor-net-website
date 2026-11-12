@@ -6,6 +6,8 @@ import { describe, expect, it } from "vitest";
 import { COOKIEBOT_SCRIPT, WHITESPACE_SCRIPT, addPrivacyComments, formatHtml } from "../../scripts/format-html";
 import organization from "../../src/lib/schema/organization.json";
 import person from "../../src/lib/schema/ed.json";
+import website from "../../src/lib/schema/website.json";
+import webPage from "../../src/lib/schema/webpage.json";
 
 // Spec 040: apostrophes and double quotes are written as the plain characters, not as the escapes React writes.
 describe("plain quotes", () => {
@@ -66,15 +68,17 @@ describe("organization structured data", () => {
 
     it("adds the Organization and Person blocks after the Cookiebot script and before the whitespace script, with the source data", async () => {
         const output = await formatHtml(page, "index.html", { jsonLD: true });
-        expect(countBlocks(output)).toBe(2);
-        const [organizationBlock, personBlock] = output
+        expect(countBlocks(output)).toBe(4);
+        const [organizationBlock, personBlock, websiteBlock, webPageBlock] = output
             .split(JSON_LD_OPEN)
             .slice(1)
             .map((rest) => rest.slice(0, rest.indexOf("</script>")));
         expect(output.indexOf(COOKIEBOT_SCRIPT)).toBeLessThan(output.indexOf(JSON_LD_OPEN));
         expect(JSON.parse(organizationBlock)).toEqual(organization);
         expect(JSON.parse(personBlock)).toEqual(person);
-        expect(output.indexOf(personBlock)).toBeLessThan(output.indexOf(WHITESPACE_SCRIPT));
+        expect(JSON.parse(webPageBlock)).toEqual(webPage);
+        expect(JSON.parse(websiteBlock)).toEqual(website);
+        expect(output.indexOf(webPageBlock)).toBeLessThan(output.indexOf(WHITESPACE_SCRIPT));
     });
 
     it("adds no block when the option is not given, and the page still passes the DOM check", async () => {

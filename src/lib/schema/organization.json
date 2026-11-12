@@ -8,10 +8,12 @@
     "areaServed": "Atlanta",
     "contactPoint": {
         "@type": "ContactPoint",
+        "@id": "https://andexor.net/#person",
         "name": "Ed Jenkins",
         "description": "CEO",
         "email": "ed@andexor.net",
         "jobTitle": "CEO",
+        "sameAs": ["https://www.linkedin.com/in/ejenkins/", "https://github.com/ejenkins"],
         "telephone": "+14043511440",
         "url": "https://www.linkedin.com/in/ejenkins/",
         "availableLanguage": {
@@ -23,10 +25,12 @@
     "email": "ed@andexor.net",
     "founder": {
         "@type": "Person",
+        "@id": "https://andexor.net/#person",
         "name": "Ed Jenkins",
         "description": "CEO",
         "email": "ed@andexor.net",
         "jobTitle": "CEO",
+        "sameAs": ["https://www.linkedin.com/in/ejenkins/", "https://github.com/ejenkins"],
         "telephone": "+14043511440",
         "url": "https://www.linkedin.com/in/ejenkins/",
         "availableLanguage": {
@@ -39,11 +43,7 @@
     "legalName": "Andexor Network, Inc.",
     "logo": "https://andexor.net/static/logo/logo-gold.svg",
     "naics": "541613",
-    "sameAs": [
-        "https://www.linkedin.com/company/andexor/",
-        "https://x.com/andexor",
-        "https://github.com/andexor"
-    ],
+    "sameAs": ["https://www.linkedin.com/company/andexor/", "https://x.com/andexor", "https://github.com/andexor"],
     "slogan": "We help small businesses in the Atlanta area grow with services normally found in larger organizations.",
     "telephone": "+14043511440"
 }
