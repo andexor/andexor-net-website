@@ -6,6 +6,8 @@ section: business
 eyebrow: Business Services
 image: /static/images/cost-reduction.png
 image_alt: bar chart showing a trend of expenses going down
+image_created: 2026-09-30
+image_modified: 2026-09-30
 cta_heading: Let's assess and reduce operating costs to raise your net revenue.
 ---
 

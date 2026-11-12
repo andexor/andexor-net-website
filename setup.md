@@ -8,15 +8,10 @@ Author: Ed Jenkins <ed@andexor.net>
 
 Most projects have certain pre-requisites that are required for development, testing, or running in production. Install the ones that are needed.
 
-## TypeScript
+## Node.js and npm
 
-For projects written in TypeScript, you need to use Bun for package management, builds, and execution. It needs to be installed from this script.
-
-> Run `install-bun.sh`
-
-## NodeJS
-
-Until now, we have been using Bun and NextJS, never using NodeJS, npm, etc. This is a little challenging because nearly all documentation for anything expects to use NodeJS and npm, prompting a translation to bun for every new dependency added. This has become exponentially more complex as we prepare to deploy to Cloudflare. Cloudflare fully expects NodeJS. It does not support Bun. What's more, there is a compatibility issue between NextJS 15 and Cloudflare. I'm going to attempt to upgrade to NextJS 16, but I also expect we will need NodeJS as well.
+The site is written in TypeScript and runs on Node.js with npm: package management, builds, scripts, tests, the
+and Cloudflare deployment (spec 094). Install Node.js with nvm, then install the packages.
 
 The following script was copied from
 [Node.js — Download Node.js®](https://nodejs.org/en/download/current).
@@ -38,16 +33,12 @@ The following script was copied from
 
 > `npm -v`
 
-## Docker
+### Install the packages:
 
-For projects that are built in Docker or run in Docker, you need to have Docker properly installed.
+> `npm ci`
 
-> Run `install-docker.sh`
-
-This script requires a reboot, so the system will be rebooted automatically.
-After rebooting, run this to verify that it is working:
-
-> Run `docker run hello-world`
+`npm ci` installs exactly what `package-lock.json` lists. To add packages, edit and run `./setup.sh`, or use `npm install`. `./run.sh` runs `npm update`, and then rewrites
+`reports/license-report.md` if the lockfile changed.
 
 ## Spec Kit
 
@@ -60,18 +51,18 @@ If you have not installed uv yet, install it first.
 
 ## License Checker
 
-> Run `bunx license-checker-rseidelsohn`
+> Run `npx license-checker-rseidelsohn`
 
 ## Playwright System Dependencies
 
-> Run `bunx playwright install-deps webkit`
+> Run `npx playwright install-deps webkit`
 
 Here are some additional optional dependencies
 you can install if you want, but Firefox is low priority,
 so it is not included by default.
 
-> Run `bunx playwright install firefox`<br/>
-> Run `bunx playwright install-deps firefox`
+> Run `npx playwright install firefox`<br/>
+> Run `npx playwright install-deps firefox`
 
 Likewise, if you want to run tests for iPhone and iPad,
 you can install these optional dependencies.
@@ -80,8 +71,8 @@ so they are not included by default at this time.
 In the mean time, I use the device browser
 in Chrome Dev Tools.
 
-> Run `bunx playwright install webkit`<br/>
-> Run `bunx playwright install-deps webkit`
+> Run `npx playwright install webkit`<br/>
+> Run `npx playwright install-deps webkit`
 
 ## FontAwesome
 
@@ -92,7 +83,7 @@ subscription held by Andexor Network, Inc.
 
 - Purchased: 08/25/2026.
 - Expires, or must be renewed: 08/25/2027. Renew before that date and update both dates here. After it lapses, a new install of the Pro icons fails, and so does the build.
-- The license file is `.npmrc`. It is excluded from GitHub by `.gitignore`. `build.sh` passes it to the Docker builder stage as a BuildKit secret, so it is not stored in the image.
+- The license file is `.npmrc`. It is excluded from GitHub by `.gitignore`.
 - NOTICE says the Pro icons are commercially licensed. It gives no dates.
 
 ## Higgsfield
@@ -112,12 +103,12 @@ Then
 The site deploys to Cloudflare Workers as static assets. Wrangler uploads the built `out/` directory and
 Cloudflare serves it; there is no Worker code and no OpenNext. The settings are in `wrangler.jsonc`, and the
 `preview`, `deploy`, and `undeploy` scripts in `package.json` run Wrangler. Wrangler is a dev dependency,
-installed by `bun install`; its `workerd` package has a trusted install script. Wrangler runs on Node, so install
-Node (above) before using it. Bun still builds the site.
+installed by `npm ci`; its `workerd` package has an install script that `allowScripts` in `package.json` allows.
+Wrangler runs on Node, so install Node (above) before using it.
 
-> Run `bunx wrangler login`
+> Run `npx wrangler login`
 
-Then `bun run deploy`. See the README for the commands.
+Then `npm run deploy`. See the README for the commands.
 
 ### www redirect
 
@@ -135,21 +126,13 @@ then open Claud Code and paste this text into the prompt.
 > https://developers.cloudflare.com/agent-setup/prompt.md
 
 This will install everything but the CLI.
-I told Claude Code this:
 
-> Install the CLI, using bun instead of npm.
+The Cloudflare CLI, `cf`, is installed globally with npm. Run the same command to upgrade it.
 
-Then I told him to create a BASH script that I can run every time the CLI gets updated.
-He created install-cf.sh.
+> Run `npm install -g cf@latest`
 
-The Cloudflare CLI, `cf`, is installed globally with Bun. Its launcher expects Node, which is not installed, so the
-script wraps it to run with Bun. Run the same script again to upgrade `cf`; a plain `bun install -g cf` undoes the
-wrappers.
-
-> Run `install-cf.sh`
-
-Then log in. Use the browser-callback flow, not the default device-code flow: under Bun the device-code polling
-stops after about forty seconds and the command hangs silently, so an approval made after that is never seen.
+Then log in. Use the browser-callback flow, not the default device-code flow. The device-code polling stopped after
+about forty seconds and hung silently when `cf` ran under Bun, and it has not been tried again under Node.
 
 > Run `cf auth login --no-device`
 

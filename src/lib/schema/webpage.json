@@ -2,6 +2,7 @@
     "@context": "https://schema.org",
     "@graph": [
         {
+            "@context": "https://schema.org",
             "@type": "WebPage",
             "@id": "https://andexor.net/#webpage",
             "url": "https://andexor.net/",
@@ -31,6 +32,7 @@
             ]
         },
         {
+            "@context": "https://schema.org",
             "@type": "BreadcrumbList",
             "@id": "https://andexor.net/#breadcrumb",
             "itemListElement": [
@@ -42,6 +44,7 @@
             ]
         },
         {
+            "@context": "https://schema.org",
             "@type": "Organization",
             "@id": "https://andexor.net/#organization",
             "name": "Andexor Network",
@@ -63,14 +66,34 @@
             ]
         },
         {
+            "@context": "https://schema.org",
             "@type": "ImageObject",
             "@id": "https://andexor.net/#logo",
             "inLanguage": "en",
             "url": "https://andexor.net/static/logo/logo-gold.svg",
             "contentUrl": "https://andexor.net/static/logo/logo-gold.svg",
-            "caption": "Andexor Network"
+            "name": "Andexor Network logo",
+            "caption": "Andexor Network",
+            "description": "A single logic gate that merges the AND body with the XOR double-curve back, in solid Old Gold on a transparent background.",
+            "encodingFormat": "image/svg+xml",
+            "width": 96,
+            "height": 96,
+            "representativeOfPage": true,
+            "dateCreated": "2026-09-28",
+            "dateModified": "2026-09-28",
+            "creator": {
+                "@id": "https://andexor.net/#organization"
+            },
+            "copyrightHolder": {
+                "@id": "https://andexor.net/#organization"
+            },
+            "creditText": "Andexor Network, Inc.",
+            "copyrightNotice": "© 2026 Andexor Network, Inc. All rights reserved.",
+            "copyrightYear": 2026,
+            "license": "https://andexor.net/company/terms-of-service#4-intellectual-property"
         },
         {
+            "@context": "https://schema.org",
             "@type": "Person",
             "@id": "https://andexor.net/#person",
             "name": "Ed Jenkins",

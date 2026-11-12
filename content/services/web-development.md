@@ -6,6 +6,8 @@ section: technical
 eyebrow: Technical Services
 image: /static/images/web-development.png
 image_alt: a laptop showing source code with a browser window floating beside it
+image_created: 2026-09-29
+image_modified: 2026-10-23
 cta_heading: What do you need your site, app, or agent to do? Let's make it happen.
 ---
 

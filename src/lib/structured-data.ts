@@ -6,6 +6,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { CONTENT_DIR, getContentPage, type ContentPage } from "@/lib/content";
 import { COPYRIGHT_NOTICE, COPYRIGHT_YEAR, IMAGE_LICENSE_URL, IMAGE_OWNER } from "@/lib/image-rights";
+import { NOT_FOUND_IMAGE } from "@/lib/not-found-image";
 import organization from "@/lib/schema/organization.json";
 import website from "@/lib/schema/website.json";
 
@@ -48,25 +49,31 @@ const IMAGE_TYPES: Record<string, string> = { ".png": "image/png", ".jpg": "imag
 
 // The page's hero image, with who made it and owns it. The size is read from the file, so it is the file's own size
 // even where the page shows it smaller.
-function image(page: ContentPage, url: string, publicDir: string): object | null {
-    const hero = page.cards?.image;
-    if (!hero) return null;
-    const file = path.join(publicDir, hero.src);
+interface ImageSource {
+    src: string;
+    alt?: string;
+    name: string;
+    created?: string;
+    modified?: string;
+}
+
+function imageObject(source: ImageSource, id: string | null, publicDir: string): object {
+    const file = path.join(publicDir, source.src);
     const size = path.extname(file) === ".png" && fs.existsSync(file) ? pngSize(file) : null;
-    const contentUrl = `${SITE}${hero.src}`;
+    const contentUrl = `${SITE}${source.src}`;
     return {
         "@context": CONTEXT,
         "@type": "ImageObject",
-        "@id": `${url}#image`,
+        ...(id ? { "@id": id } : {}),
         url: contentUrl,
         contentUrl,
-        name: page.title,
-        ...(hero.alt ? { description: hero.alt } : {}),
+        name: source.name,
+        ...(source.alt ? { description: source.alt } : {}),
         ...(IMAGE_TYPES[path.extname(file)] ? { encodingFormat: IMAGE_TYPES[path.extname(file)] } : {}),
         ...(size ?? {}),
         representativeOfPage: true,
-        ...(page.imageDates?.created ? { dateCreated: page.imageDates.created } : {}),
-        ...(page.imageDates?.modified ? { dateModified: page.imageDates.modified } : {}),
+        ...(source.created ? { dateCreated: source.created } : {}),
+        ...(source.modified ? { dateModified: source.modified } : {}),
         creator: ORGANIZATION,
         copyrightHolder: ORGANIZATION,
         creditText: IMAGE_OWNER,
@@ -74,6 +81,42 @@ function image(page: ContentPage, url: string, publicDir: string): object | null
         copyrightYear: COPYRIGHT_YEAR,
         license: IMAGE_LICENSE_URL,
     };
+}
+
+function image(page: ContentPage, url: string, publicDir: string): object | null {
+    const hero = page.cards?.image;
+    if (!hero) return null;
+    return imageObject(
+        {
+            src: hero.src,
+            alt: hero.alt,
+            name: page.title,
+            created: page.imageDates?.created,
+            modified: page.imageDates?.modified,
+        },
+        `${url}#image`,
+        publicDir,
+    );
+}
+
+/**
+ * The Page not found page's blocks: only its image. The page is not indexed and answers every unknown address, so it
+ * has no address of its own for a WebPage or BreadcrumbList, and the image has no @id.
+ */
+export function getNotFoundStructuredData(publicDir: string = PUBLIC_DIR): object[] {
+    return [
+        imageObject(
+            {
+                src: NOT_FOUND_IMAGE.src,
+                alt: NOT_FOUND_IMAGE.alt,
+                name: "Page not found",
+                created: NOT_FOUND_IMAGE.created,
+                modified: NOT_FOUND_IMAGE.modified,
+            },
+            null,
+            publicDir,
+        ),
+    ];
 }
 
 // Pages that are a more specific kind of WebPage than the home page's, by route.

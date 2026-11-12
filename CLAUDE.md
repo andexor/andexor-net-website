@@ -14,8 +14,8 @@ Spec-Driven Development (SDD).
 
 This project is driven by Spec Kit's slash-command workflow rather than ad-hoc coding. Order: constitution,
 specify, clarify (before plan unless the user skips it), plan, tasks, analyze and checklist (optional), implement
-(or taskstoissues instead), converge. Read `.specify/memory/constitution.md` (currently v1.9.0) before specifying
-or planning; it holds the always-dark, no-link-underline, no-#top-link, graceful-shutdown, Markdown-content,
+(or taskstoissues instead), converge. Read `.specify/memory/constitution.md` (currently v3.1.0) before specifying
+or planning; it holds the always-dark, no-link-underline, no-#top-link, Markdown-content,
 toolchain, license-header, and spec-policy rules.
 
 Feature branches and directories are numbered sequentially (`feature_numbering: sequential` in
@@ -80,42 +80,60 @@ asked for this firmly, more than once. Do not ask again.
 ## Toolchain
 
 The site is built with Next.js using Static Site Generation (SSG, `output: "export"`) — no
-server-side rendering, ISR, or API routes. Use Bun (not Node.js/npm/yarn) for package
-management, running scripts, and as the production runtime. Build and run the app inside Docker
-via the root `Dockerfile` (2 stages: Bun installs deps and runs `next build` to produce the
-static `out/` directory, then a minimal Bun runtime image serves that output via `server.ts` — a
-small `Bun.serve` static file server, not a Next.js server process). See
-`specs/001-homepage-contact-us/research.md` and `plan.md` for the rationale.
+server-side rendering, ISR, or API routes. Use Node.js and npm (not Bun or yarn; spec 094) for
+package management, running scripts, and the runtime. Packages are installed with `npm ci` from
+`package-lock.json`. `npm run build` runs `next build` to produce the static `out/` directory. There is no Docker
+(spec 095): the Dockerfile, `.dockerignore`, `build.sh`, and `debug.sh` are gone, and the site is served by Cloudflare.
+`server.ts` is a small `node:http` static file server that only the Playwright tests use, run by Node directly with its
+own TypeScript support, with no packages. Specs 001 to 093 were written when the toolchain was Bun and the site ran
+in Docker, and they keep the commands they used (`bun run X` is `npm run X`, `bunx X` is `npx X`, and the Docker
+`./build.sh`, `./run.sh`, and `./debug.sh` are gone; `./run.sh` is now the local preview); they are a record, not
+instructions. See
+`specs/001-homepage-contact-us/research.md` and `plan.md` for why a static export, `specs/094-node-instead-of-bun/`
+for why Node, and `specs/095-remove-docker/` for why not Docker.
 
-Local Docker workflow uses three standard scripts (the user's convention across their apps —
-don't invent alternate `docker build`/`docker run` invocations):
-- `build.sh` — builds the image, tagged `andexor/<repo-dir-basename>:<VERSION>` (currently
-  `andexor/andexor-net-website:1`); removes any existing image with that tag first.
-- `run.sh` — `docker run --rm -p 3000:3000 <image>`, runs the app normally.
-- `debug.sh` — same image and port mapping, but runs `/bin/bash` instead of the app, for
-  poking around inside the container.
+The TypeScript scripts in `scripts/` run with `tsx`, always with `--tsconfig tsconfig.scripts.json` (the `npm`
+scripts do this). Next.js needs `"jsx": "preserve"` in `tsconfig.json`, and without the scripts' own tsconfig `tsx`
+compiles `src/components/JsonLD.tsx` the old way and fails with "React is not defined". Write a script as a CommonJS
+module would be loaded: no top-level `await` (end with `main().catch(...)`), no `import.meta.dir` (use
+`process.cwd()`, because the `npm` scripts run from the repository root), and no `Bun` globals. `server.ts` is the
+exception: it has no imports but `node:` modules, so Node runs it directly (`node server.ts`), and the
+`--disable-warning=MODULE_TYPELESS_PACKAGE_JSON` flag only hides Node's notice that the file has no module type.
+Do not add `"type": "module"` to `package.json`: `next.config.ts`, `vitest.config.ts`, and several tests use
+`__dirname`.
+
+Shell scripts at the repository root run the standard commands: `run.sh` runs `npm update`, rewrites the
+license report if the lockfile changed (below), builds the site, and runs `npm run preview`, a local check that serves
+`out/` the way Cloudflare will (http://localhost:8787), so new package versions are tried locally before a deploy; `deploy.sh` runs `npm run sitemap` (the `lastmod` dates come
+from git, and `content/sitemap.xml` changes, so commit it), then builds and deploys, and never updates packages; and
+`setup.sh` adds the FontAwesome packages (edit it and run it to add dependencies).
 
 Production hosting is Cloudflare Workers with static assets: `wrangler.jsonc` names the Worker
 (`andexor-net-website`) and points `assets.directory` at `out/`, with no `main` and no Worker code. OpenNext and
 vinext are not used and must not be added: the site is a static export, and the readable-output pipeline below depends
-on `next build` writing `out/`. `bun run preview` runs `wrangler dev` on the built `out/` (port 8787),
-`bun run deploy` builds and runs `wrangler deploy`, and `bun run undeploy` runs `wrangler delete`. The Custom Domain
+on `next build` writing `out/`. `npm run preview` runs `wrangler dev` on the built `out/` (port 8787),
+`npm run deploy` builds and runs `wrangler deploy`, and `npm run undeploy` runs `wrangler delete`. The Custom Domain
 `andexor.net` is a route in `wrangler.jsonc`: deploy makes Cloudflare create its DNS record and certificate, and delete
 removes them, so there is no separate DNS command and no A record to manage. Wrangler is a
-dev dependency and runs on Node (installed with nvm, see `setup.md`); Bun still builds the site. Because the project
+dev dependency and runs on Node (installed with nvm, see `setup.md`), as does everything else. Because the project
 has a Wrangler configuration file, use Wrangler, not the `cf` CLI, for dev, build, and deploy.
 
 The project is Apache-2.0 (`license` in `package.json`, which is deliberately not marked
 `"private"` so tools report the license correctly). No copyleft dependencies: the optional `sharp`
 dependency of Next.js (LGPL libvips) is replaced by the empty stub in `stubs/sharp` through
-`overrides` in `package.json`. The Dockerfile copies `stubs/` before `bun install
---frozen-lockfile`, so keep that line. Update the license report by running `./setup.sh`, which
-replaces `reports/license-report.md` with one dated section for the installed packages (earlier
-sets are in git history; do not edit the report by hand or add another script that writes it)
-and fails, leaving the report unchanged, if a GPL, LGPL, or AGPL license is found. Nothing is
-excluded from the report. The report is information for people; it has no tests.
+`overrides` in `package.json`. npm resolves a `file:` override relative to the package that asks for `sharp`, not
+the repository root, so the stub is also a root dependency (`"sharp": "file:./stubs/sharp"`) and the override is
+`"sharp": "$sharp"`. npm 12 blocks dependency
+install scripts unless `allowScripts` in `package.json` allows them (`workerd` and `@higgsfield/cli` are allowed,
+`esbuild` is denied); add an entry with `npm install-scripts approve <package>` if a new package needs one.
+The license report, `reports/license-report.md`, is written only by `run.sh` (spec 096). After `npm update`, `run.sh`
+writes it again when the hash of `package-lock.json` is not the one the report records on its second line, so a run
+that changes nothing leaves it alone. The report is one dated section for the installed packages (earlier sets are in
+git history; do not edit the report by hand or add another script that writes it). `run.sh` stops, leaving the report
+unchanged, if a GPL, LGPL, or AGPL license is found. Nothing is excluded from the report. The report is information
+for people; it has no tests.
 
-Playwright e2e tests (`bun run test:e2e`) build the site and serve `out/` with `server.ts`
+Playwright e2e tests (`npm run test:e2e`) build the site and serve `out/` with `server.ts`
 (production mode), not `next dev`, because dev cannot serve the static-export 404 page. Port 3000
 must be free, or Playwright will reuse whatever is listening there.
 
@@ -168,9 +186,8 @@ Read `CONTRIBUTING.md` and `setup.md` (companions to the constitution, with `SEC
 - Commit with `git commit -s`, and end the subject with `Closes #N.` (or `Fixes #N.` for a bug
   fix), for example `Updated copy for Web Development. Closes #9.`
 - Open a PR only when asked. Reviewer `andexor/write`, assigned to the user.
-- Prerequisites come from the scripts in `setup.md`. Bun, Docker, and Spec Kit are installed with
-  `install-bun.sh`, `install-docker.sh`, and `install-spec-kit.sh`. Playwright needs
-  `bunx playwright install-deps webkit`, though WebKit still hangs on the owner's machine.
+- Prerequisites come from `setup.md`. Node.js is installed with nvm, and Spec Kit with `install-spec-kit.sh`. Playwright needs
+  `npx playwright install-deps webkit`, though WebKit still hangs on the owner's machine.
 - Development targets Linux, preferably the latest Ubuntu LTS.
 - AI-generated code and text are reviewed before acceptance: no tests that pass but prove
   nothing, and no machine-sounding prose.
@@ -187,12 +204,12 @@ because the wording changed, delete the test. The owner has said the suite had f
 ## Formatting
 
 All code written for this site is formatted with Prettier: 4 spaces per indent level, no tabs, lines under about 120
-characters as a guideline, not a hard rule, with no test for it (`.prettierrc.json`). Use `bun run format` and `bun run format:check`. This applies to the
+characters as a guideline, not a hard rule, with no test for it (`.prettierrc.json`). Use `npm run format` and `npm run format:check`. This applies to the
 source (`.ts`, `.tsx`, `.js`, `.mjs`, `.css`) and to the built site in `out/`. `design/`, `content/`, `specs/`,
 and Markdown are not formatted. Anchor `.prettierignore` patterns with a leading `/`: an unanchored `content/` also
 skips `src/components/content/`.
 
-`bun run build` runs `next build` and then `scripts/format-site.ts`, which:
+`npm run build` runs `next build` and then `scripts/copy-crawler-files.ts`, and then `scripts/format-site.ts`, which:
 
 - Formats every built HTML page, the site stylesheet, and the site's own script chunk. The vendor chunks (React,
   Next.js, polyfills) stay minified.
@@ -240,7 +257,7 @@ Rules to keep in mind:
 
 ## License header
 
-Every generated source code file (`.ts`/`.tsx`/`.js`/`.css`, `Dockerfile`, shell scripts, etc.)
+Every generated source code file (`.ts`/`.tsx`/`.js`/`.css`, shell scripts, etc.)
 MUST start with this header, using that language's comment syntax:
 
 ```
@@ -249,6 +266,4 @@ Copyright 2026 Andexor Network, Inc.
 Author: Ed Jenkins <ed@andexor.net>
 ```
 
-Documentation/spec files (Markdown) are not source code and do not need this header. For a
-Dockerfile, the header goes after the `# syntax=...` parser directive on line 1 (that directive
-must remain the very first line).
+Documentation/spec files (Markdown) are not source code and do not need this header.

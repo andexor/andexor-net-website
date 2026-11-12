@@ -3,7 +3,7 @@
 // Author: Ed Jenkins <ed@andexor.net>
 
 // Writes ownership metadata (XMP and IPTC) into the hero image of every content page, using exiftool.
-// Run it by hand: `npx tsx scripts/image-metadata.ts [--out DIR] [--dry-run]`. It is not part of the build.
+// Run it by hand: `npx tsx --tsconfig tsconfig.scripts.json scripts/image-metadata.ts [--out DIR] [--dry-run]`. It is not part of the build.
 //
 // The images in public/ are never changed. Each one is copied, with the metadata added, into the output
 // folder (image-metadata-out/ by default), so the results can be inspected before anything is used:
@@ -36,7 +36,7 @@ function readOptions(argv: string[]): { out: string; dryRun: boolean } {
         else if (argv[index] === "--out" && argv[index + 1]) out = argv[++index];
         else
             throw new Error(
-                `Unknown argument: ${argv[index]}\nUsage: npx tsx scripts/image-metadata.ts [--out DIR] [--dry-run]`,
+                `Unknown argument: ${argv[index]}\nUsage: npx tsx --tsconfig tsconfig.scripts.json scripts/image-metadata.ts [--out DIR] [--dry-run]`,
             );
     }
     return { out, dryRun };

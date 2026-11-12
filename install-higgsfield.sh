@@ -4,6 +4,6 @@
 # Copyright 2026 Andexor Network, Inc.
 # Author: Ed Jenkins <ed@andexor.net>
 
-bun add @higgsfield/cli
-bunx skills add higgsfield-ai/skills
-bun add skills
+npm install @higgsfield/cli
+npx skills add higgsfield-ai/skills
+npm install skills

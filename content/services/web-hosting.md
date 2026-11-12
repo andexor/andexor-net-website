@@ -6,6 +6,8 @@ section: technical
 eyebrow: Technical Services
 image: /static/images/web-hosting.png
 image_alt: web servers running in a cloud datacenter
+image_created: 2026-09-30
+image_modified: 2026-09-30
 cta_heading: We'll select the right infrastructure to support your needs.
 ---
 

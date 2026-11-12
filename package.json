@@ -1,67 +1,71 @@
 {
-  "name": "andexor-net-website",
-  "version": "0.1.0",
-  "license": "Apache-2.0",
-  "scripts": {
-    "dev": "next dev",
-    "sitemap": "bun scripts/generate-sitemap.ts",
-    "build": "next build && bun scripts/copy-crawler-files.ts && bun scripts/format-site.ts",
-    "preview": "wrangler dev",
-    "deploy": "bun run build && wrangler deploy",
-    "undeploy": "wrangler delete",
-    "lint": "eslint .",
-    "format": "prettier --write \"**/*.{ts,tsx,js,mjs,css,html}\"",
-    "format:check": "prettier --check \"**/*.{ts,tsx,js,mjs,css,html}\"",
-    "test": "vitest run",
-    "test:watch": "vitest",
-    "test:e2e": "playwright test"
-  },
-  "dependencies": {
-    "@awesome.me/kit-0a6c11d394": "^1.0.23",
-    "@fortawesome/fontawesome-svg-core": "^7.3.1",
-    "@fortawesome/react-fontawesome": "^3.5.0",
-    "@higgsfield/cli": "^1.2.2",
-    "gray-matter": "^4.0.3",
-    "next": "^15.5.29",
-    "react": "^19.3.1",
-    "react-dom": "^19.3.1",
-    "rehype-external-links": "^3.0.0",
-    "rehype-slug": "^6.0.0",
-    "rehype-stringify": "^10.0.1",
-    "remark-gfm": "^4.0.1",
-    "remark-parse": "^11.0.0",
-    "remark-rehype": "^11.1.2",
-    "skills": "^1.8.1",
-    "unified": "^11.0.5"
-  },
-  "devDependencies": {
-    "@axe-core/playwright": "^4.14.0",
-    "@eslint/eslintrc": "^3.3.7",
-    "@playwright/test": "^1.65.0",
-    "@testing-library/jest-dom": "^6.10.0",
-    "@testing-library/react": "^16.3.3",
-    "@testing-library/user-event": "^14.6.9",
-    "@types/bun": "^1.4.4",
-    "@types/node": "^22.20.5",
-    "@types/react": "^19.3.0",
-    "@types/react-dom": "^19.3.0",
-    "@vitejs/plugin-react": "^6.3.0",
-    "eslint": "^9.39.5",
-    "eslint-config-next": "^15.5.29",
-    "jsdom": "^25.0.1",
-    "license-checker-rseidelsohn": "^5.0.1",
-    "prettier": "^3.9.10",
-    "typescript": "^5.9.3",
-    "vite": "^8.3.7",
-    "vitest": "^4.1.12",
-    "wrangler": "^4.160.0"
-  },
-  "trustedDependencies": [
-    "@higgsfield/cli",
-    "unrs-resolver",
-    "workerd"
-  ],
-  "overrides": {
-    "sharp": "file:./stubs/sharp"
-  }
+    "name": "andexor-net-website",
+    "version": "1.0.0",
+    "license": "Apache-2.0",
+    "engines": {
+        "node": ">=22.18.0"
+    },
+    "scripts": {
+        "dev": "next dev",
+        "sitemap": "tsx --tsconfig tsconfig.scripts.json scripts/generate-sitemap.ts",
+        "build": "next build && tsx --tsconfig tsconfig.scripts.json scripts/copy-crawler-files.ts && tsx --tsconfig tsconfig.scripts.json scripts/format-site.ts && tsx --tsconfig tsconfig.scripts.json scripts/generate-sitemap.ts",
+        "preview": "wrangler dev",
+        "deploy": "npm run build && wrangler deploy",
+        "undeploy": "wrangler delete",
+        "lint": "eslint .",
+        "format": "prettier --write \"**/*.{ts,tsx,js,mjs,css,html}\"",
+        "format:check": "prettier --check \"**/*.{ts,tsx,js,mjs,css,html}\"",
+        "test": "vitest run",
+        "test:watch": "vitest",
+        "test:e2e": "playwright test"
+    },
+    "dependencies": {
+        "@awesome.me/kit-0a6c11d394": "^1.0.23",
+        "@fortawesome/fontawesome-svg-core": "^7.3.1",
+        "@fortawesome/react-fontawesome": "^3.5.0",
+        "@higgsfield/cli": "^1.2.2",
+        "gray-matter": "^4.0.3",
+        "next": "^15.5.29",
+        "react": "^19.3.1",
+        "react-dom": "^19.3.1",
+        "rehype-external-links": "^3.0.0",
+        "rehype-slug": "^6.0.0",
+        "rehype-stringify": "^10.0.1",
+        "remark-gfm": "^4.0.1",
+        "remark-parse": "^11.0.0",
+        "remark-rehype": "^11.1.2",
+        "sharp": "file:./stubs/sharp",
+        "skills": "^1.8.1",
+        "unified": "^11.0.5"
+    },
+    "devDependencies": {
+        "@axe-core/playwright": "^4.14.0",
+        "@eslint/eslintrc": "^3.3.7",
+        "@playwright/test": "^1.65.0",
+        "@testing-library/jest-dom": "^7.0.1",
+        "@testing-library/react": "^16.3.3",
+        "@testing-library/user-event": "^14.6.9",
+        "@types/node": "^22.20.5",
+        "@types/react": "^19.3.0",
+        "@types/react-dom": "^19.3.0",
+        "@vitejs/plugin-react": "^6.3.0",
+        "eslint": "^9.39.5",
+        "eslint-config-next": "^15.5.29",
+        "jsdom": "^25.0.1",
+        "license-checker-rseidelsohn": "^5.0.1",
+        "prettier": "^3.9.10",
+        "tsx": "^4.23.15",
+        "typescript": "^5.9.3",
+        "vite": "^8.3.7",
+        "vitest": "^4.1.12",
+        "wrangler": "^4.160.0"
+    },
+    "overrides": {
+        "sharp": "$sharp"
+    },
+    "allowScripts": {
+        "@higgsfield/cli": true,
+        "workerd": true,
+        "esbuild": false
+    }
 }

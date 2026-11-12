@@ -119,7 +119,7 @@ no dashes in copy, "and" instead of "&", sentence case headlines with no trailin
 
 ## Publishing
 
-Rebuild with `./build.sh`. Pages are not linked from the home page or footer automatically;
+Rebuild with `npm run build`, or run `./run.sh` to build the site and preview it locally. Pages are not linked from the home page or footer automatically;
 add links when a page is ready to be used.
 
 ## Cookie declaration

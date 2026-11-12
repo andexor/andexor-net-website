@@ -8,6 +8,6 @@
 /playwright-report/
 /test-results/
 /stubs/
-bun.lock
+package-lock.json
 tsconfig.tsbuildinfo
 *.md

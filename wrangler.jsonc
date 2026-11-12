@@ -4,7 +4,7 @@
 
 // Cloudflare Workers deployment. The site is a static export (next.config.ts, output: "export"), so the
 // Worker has no code of its own: Workers Static Assets serves the built out/ directory. Build with
-// "bun run build" first; "wrangler dev" and "wrangler deploy" read out/ as it is.
+// "npm run build" first; "wrangler dev" and "wrangler deploy" read out/ as it is.
 {
     "$schema": "./node_modules/wrangler/config-schema.json",
     "name": "andexor-net-website",

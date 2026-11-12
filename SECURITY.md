@@ -44,15 +44,15 @@ vulnerability from a design choice.
 
 - The site is generated at build time by Next.js with static export. There is no server-side rendering, no API
   route, no database, and no user account. The only server-side code is `server.ts`, a small static file server
-  that serves the built `out/` directory from a Docker container.
+  that serves the built `out/` directory to the end-to-end tests. Production serves the same directory from Cloudflare.
 - The site stores no personal information. The Contact Us form has no backend yet; nothing it collects leaves the
   visitor's browser.
 - Every page is public. There is nothing to authenticate to and no privileged role.
 - The site runs in the visitor's browser with the privileges of any web page. Scripts come from this repository's
-  build and from the pinned dependencies in `bun.lock`; the site loads no third-party scripts at run time.
+  build and from the pinned dependencies in `package-lock.json`; the site loads no third-party scripts at run time.
 - Content pages are Markdown files in `content/`, written by the site's owner and rendered at build time. Raw HTML in
   them is not rendered. They are trusted input, not user input.
-- The build runs in Docker from the root `Dockerfile` and installs dependencies with a frozen lockfile.
+- The build installs dependencies with `npm ci`, which uses only what `package-lock.json` lists.
 
 ## Behaviors That Are Not Vulnerabilities
 
@@ -80,8 +80,8 @@ The following categories **are** considered security vulnerabilities when they a
 - **Content injection or cross-site scripting (XSS)**: any way for a page to run script or render markup that the
   Markdown source or the components did not intend
 - **Path traversal or information disclosure in `server.ts`**: serving a file outside `out/`, or exposing the
-  container's file system or environment
-- **Supply chain**: a build script, dependency override, or Dockerfile step that could fetch or run code from an
+  machine's file system or environment
+- **Supply chain**: a build script or dependency override that could fetch or run code from an
   untrusted source, or that bypasses the frozen lockfile
 - **Build-time code execution**: a Markdown file, front matter, or asset that causes the build to run code
 - **Denial of service in `server.ts`** from a single malformed request, such as a crash or a hang, as distinct from

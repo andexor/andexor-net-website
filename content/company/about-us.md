@@ -6,6 +6,8 @@ section: company
 eyebrow: Company
 image: /static/images/about-us.png
 image_alt: a building with employees and a heart
+image_created: 2026-09-30
+image_modified: 2026-09-30
 ---
 
 <!--

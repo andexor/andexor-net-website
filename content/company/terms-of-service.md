@@ -6,6 +6,8 @@ section: company
 eyebrow: Company
 image: /static/images/terms.png
 image_alt: Terms Of Service document
+image_created: 2026-10-08
+image_modified: 2026-10-08
 ---
 
 <!--

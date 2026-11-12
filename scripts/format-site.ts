@@ -3,7 +3,7 @@
 // Author: Ed Jenkins <ed@andexor.net>
 
 // Post-build pass: makes the built site readable (specs/038-readable-generated-code).
-// Run after `next build` by `bun run build`. Formats the HTML pages, the site stylesheet, and the
+// Run after `next build` by `npm run build`. Formats the HTML pages, the site stylesheet, and the
 // site's own script chunk. Third-party chunks are left minified.
 
 import { readdir, readFile, unlink, writeFile } from "node:fs/promises";
@@ -12,9 +12,9 @@ import { format } from "prettier";
 import { addPrivacyComments, formatHtml } from "./format-html";
 import { fileGroup } from "./site-files";
 import { listContentSlugs } from "../src/lib/content";
-import { getContentStructuredData } from "../src/lib/structured-data";
+import { getContentStructuredData, getNotFoundStructuredData } from "../src/lib/structured-data";
 
-const ROOT = join(import.meta.dir, "..");
+const ROOT = process.cwd();
 const OUT = join(ROOT, "out");
 
 const PRETTIER_OPTIONS = { tabWidth: 4, useTabs: false, printWidth: 120 } as const;
@@ -54,6 +54,7 @@ async function readContentData(): Promise<Map<string, object[]>> {
     for (const slug of listContentSlugs()) {
         data.set(`out/${slug.join("/")}.html`, await getContentStructuredData(slug));
     }
+    data.set("out/404.html", getNotFoundStructuredData());
     return data;
 }
 
@@ -106,7 +107,8 @@ async function main(): Promise<void> {
     );
 }
 
-await main().catch((error) => {
+// Not awaited at the top level: Node may load a TypeScript file as a CommonJS module, where that is an error.
+main().catch((error) => {
     console.error(error instanceof Error ? error.message : error);
     process.exit(1);
 });

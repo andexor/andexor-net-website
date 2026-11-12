@@ -14,7 +14,7 @@ import webPage from "../../src/lib/schema/webpage.json";
 import { MOVED_PAGES } from "./moved-pages";
 
 // Spec 038 FR-002, FR-003, FR-005, FR-006: in the built site, the site's own CSS and script code are readable and
-// separate from the third-party code. This reads `out/`, so it runs only after `bun run build`.
+// separate from the third-party code. This reads `out/`, so it runs only after `npm run build`.
 const ROOT = path.resolve(__dirname, "../..");
 const OUT = path.join(ROOT, "out");
 
@@ -82,8 +82,10 @@ describe.skipIf(!fs.existsSync(OUT))("built site", () => {
             for (const block of blocks) expect(block["@context"], file).toBe("https://schema.org");
             for (const home of ["Organization", "Person", "WebSite", "WebPage"])
                 expect(types, file).not.toContain(home);
+            // The Page not found page is not indexed and has no address of its own, so it carries only its image.
+            if (file === "out/404.html") expect(types, file).toEqual(["ImageObject"]);
+            else if (blocks.length > 0) expect(types, file).toContain("BreadcrumbList");
             if (blocks.length > 0) {
-                expect(types, file).toContain("BreadcrumbList");
                 const cookiebot = html.indexOf('<script id="Cookiebot"');
                 const cookiebotEnd = html.indexOf("</script>", cookiebot) + "</script>".length;
                 expect(html.slice(cookiebotEnd).startsWith(open), file).toBe(true);

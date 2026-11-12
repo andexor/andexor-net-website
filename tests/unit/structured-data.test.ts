@@ -6,7 +6,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
-import { getContentStructuredData } from "@/lib/structured-data";
+import { getContentStructuredData, getNotFoundStructuredData } from "@/lib/structured-data";
 
 // Structured data for content pages: the Service, BreadcrumbList, and FAQPage blocks made from a page.
 let dir: string;
@@ -182,5 +182,18 @@ describe("getContentStructuredData", () => {
 
     it("returns nothing for a slug that is not a page", async () => {
         expect(await getContentStructuredData(["nope"], dir)).toEqual([]);
+    });
+});
+
+describe("getNotFoundStructuredData", () => {
+    it("is only the image, owned by the Organization, and has no page address to name", () => {
+        const blocks = getNotFoundStructuredData() as Record<string, unknown>[];
+        expect(blocks.map((block) => block["@type"])).toEqual(["ImageObject"]);
+        expect(blocks[0]["@id"]).toBeUndefined();
+        expect(blocks[0].contentUrl).toBe("https://andexor.net/static/images/404.png");
+        expect(blocks[0].creator).toMatchObject({ "@type": "Organization" });
+        expect(blocks[0].copyrightHolder).toMatchObject({ "@type": "Organization" });
+        expect(blocks[0].copyrightNotice).toEqual(expect.stringContaining("Andexor Network, Inc."));
+        expect(blocks[0].width).toBeGreaterThan(0);
     });
 });
