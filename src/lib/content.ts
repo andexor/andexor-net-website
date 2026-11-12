@@ -60,12 +60,21 @@ export interface ContentPage {
     // The text between a card page's headline and its first card, for the page's structured data.
     lede?: string;
     faqs?: Faq[];
+    imageDates?: ImageDates;
+}
+
+// When the hero image was made and last changed, from `image_created` and `image_modified`, each an ISO 8601 date or
+// date and time. They are for the image's structured data and metadata, not for the page.
+export interface ImageDates {
+    created?: string;
+    modified?: string;
 }
 
 interface CardsOptions {
     eyebrow?: string;
     section?: CardsSection;
     image?: { src: string; alt: string };
+    imageDates?: ImageDates;
     ctaHeading?: string;
 }
 
@@ -108,8 +117,35 @@ function humanize(segment: string): string {
     return words.charAt(0).toUpperCase() + words.slice(1);
 }
 
+const ISO_DATE = /^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}(:\d{2}(\.\d+)?)?(Z|[+-]\d{2}:\d{2})?)?$/;
+
+// YAML turns an unquoted `2026-11-07` into a Date at midnight UTC, so a Date at midnight is a plain date.
+function isoDate(value: unknown, field: string): string | undefined {
+    if (value === undefined || value === null || value === "") return undefined;
+    if (value instanceof Date && !Number.isNaN(value.getTime())) {
+        const iso = value.toISOString();
+        return iso.endsWith("T00:00:00.000Z") ? iso.slice(0, 10) : iso.replace(".000Z", "Z");
+    }
+    if (typeof value === "string" && ISO_DATE.test(value.trim()) && !Number.isNaN(Date.parse(value.trim()))) {
+        return value.trim();
+    }
+    throw new Error(`${field} must be an ISO 8601 date, such as 2026-11-07 or 2026-11-07T10:30:00Z`);
+}
+
+function readImageDates(data: Record<string, unknown>, file: string): ImageDates | undefined {
+    try {
+        const created = isoDate(data.image_created, "image_created");
+        const modified = isoDate(data.image_modified, "image_modified");
+        return created || modified ? { created, modified } : undefined;
+    } catch (error) {
+        // Name the page, so the build says which file to fix.
+        throw new Error(`${file}: ${error instanceof Error ? error.message : error}`);
+    }
+}
+
 function readRaw(dir: string, slug: string[]): RawPage {
-    const { data, content } = matter(fs.readFileSync(fileFor(dir, slug), "utf8"));
+    const file = fileFor(dir, slug);
+    const { data, content } = matter(fs.readFileSync(file, "utf8"));
     const h1 = /^#\s+(.+?)\s*#*\s*$/m.exec(content)?.[1];
     const str = (v: unknown) => (typeof v === "string" ? v : undefined);
     const cards: CardsOptions | undefined =
@@ -119,6 +155,7 @@ function readRaw(dir: string, slug: string[]): RawPage {
                   section: CARDS_SECTIONS.find((x) => x === data.section),
                   image: str(data.image) ? { src: str(data.image)!, alt: str(data.image_alt) ?? "" } : undefined,
                   ctaHeading: str(data.cta_heading)?.trim() || undefined,
+                  imageDates: readImageDates(data, file),
               }
             : undefined;
     return {
@@ -465,7 +502,7 @@ export async function getContentPage(slug: string[], dir: string = CONTENT_DIR):
     if (cards) {
         try {
             const { cards: layout, faqs, lede } = await renderCards(body, cards);
-            return { slug, title, description, html: "", cards: layout, lede, faqs };
+            return { slug, title, description, html: "", cards: layout, lede, faqs, imageDates: cards.imageDates };
         } catch (error) {
             // Name the page, so the build says which file to fix.
             throw new Error(`${fileFor(dir, slug)}: ${error instanceof Error ? error.message : error}`);

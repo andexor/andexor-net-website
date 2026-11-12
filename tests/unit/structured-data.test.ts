@@ -10,6 +10,7 @@ import { getContentStructuredData } from "@/lib/structured-data";
 
 // Structured data for content pages: the Service, BreadcrumbList, and FAQPage blocks made from a page.
 let dir: string;
+let publicDir: string;
 
 function write(file: string, text: string) {
     const full = path.join(dir, file);
@@ -17,21 +18,51 @@ function write(file: string, text: string) {
     fs.writeFileSync(full, text);
 }
 
+// A file that starts like a PNG with the given size, which is all that is read of it.
+function writePng(file: string, width: number, height: number) {
+    const header = Buffer.alloc(24);
+    header.writeUInt32BE(0x89504e47, 0);
+    header.writeUInt32BE(width, 16);
+    header.writeUInt32BE(height, 20);
+    fs.mkdirSync(path.dirname(file), { recursive: true });
+    fs.writeFileSync(file, header);
+}
+
 const card = (extra = "") => `---\ntitle: Web work\nlayout: cards\neyebrow: Technical Services\n${extra}---\n`;
 
 beforeAll(() => {
     dir = fs.mkdtempSync(path.join(os.tmpdir(), "structured-data-"));
+    publicDir = path.join(dir, "public");
+    writePng(path.join(publicDir, "static/images/web.png"), 2048, 2048);
     write(
         "services/web.md",
-        card() +
+        card(
+            "image: /static/images/web.png\nimage_alt: a laptop\nimage_created: 2026-11-05\nimage_modified: 2026-11-07T10:30:00Z\n",
+        ) +
             "\n# Web work\n\nWe build sites.\n\n## Need a site?\n\nYes. We do R&D and build them\nand host them.\n\n- fast\n- safe\n\n## Plain card\n\nNot a question.\n",
     );
     write("services/none.md", card() + "\n# None\n\nIntro.\n\n## Plain card\n\nNot a question.\n");
     write("company/about-us.md", "---\ntitle: About\n---\n\n# About\n\nText.\n");
+    write("services/undated.md", card("image: /static/images/web.png\nimage_alt: a laptop\n") + "\n# Undated\n");
     write("company/index.md", "---\ntitle: Company\n---\n\n# Company\n");
 });
 
 afterAll(() => fs.rmSync(dir, { recursive: true, force: true }));
+
+interface Rights {
+    "@id": string;
+    name: string;
+    description: string;
+    width: number;
+    height: number;
+    copyrightNotice: string;
+    license: string;
+    creator: { "@id": string };
+    copyrightHolder: { "@id": string };
+    representativeOfPage: boolean;
+    dateCreated?: string;
+    dateModified?: string;
+}
 
 interface Crumb {
     position: number;
@@ -46,6 +77,7 @@ interface Block {
     areaServed: string;
     provider: { "@id": string };
     about: { "@id": string };
+    image: { "@id": string };
     isPartOf: { "@id": string };
     itemListElement: Crumb[];
     mainEntity: { name: string; acceptedAnswer: { text: string } }[];
@@ -70,6 +102,52 @@ describe("getContentStructuredData", () => {
         expect(about.isPartOf["@id"]).toBe("https://andexor.net/#website");
         expect(about.url).toBe("https://andexor.net/company/about-us");
         expect(byType(await getContentStructuredData(["services", "web"], dir), "AboutPage")).toBeUndefined();
+    });
+
+    it("describes the hero image with its alt text, its own size, and the Organization as creator and owner", async () => {
+        const blocks = await getContentStructuredData(["services", "web"], dir, publicDir);
+        const picture = byType(blocks, "ImageObject") as unknown as Rights;
+        expect(picture["@id"]).toBe("https://andexor.net/services/web#image");
+        expect(picture.description).toBe("a laptop");
+        expect([picture.width, picture.height]).toEqual([2048, 2048]);
+        expect(picture.creator["@id"]).toBe("https://andexor.net/#organization");
+        expect(picture.copyrightHolder["@id"]).toBe("https://andexor.net/#organization");
+        expect(picture.copyrightNotice).toMatch(/^© \d{4} Andexor Network, Inc\. All rights reserved\.$/);
+        expect(picture.license).toMatch(/^https:\/\/andexor\.net\/company\/terms-of-service#/);
+        expect(byType(blocks, "Service")!.image["@id"]).toBe(picture["@id"]);
+    });
+
+    it("gives the image the dates from the front matter, and none when the page has none", async () => {
+        const dated = byType(await getContentStructuredData(["services", "web"], dir, publicDir), "ImageObject");
+        expect((dated as unknown as Rights).dateCreated).toBe("2026-11-05");
+        expect((dated as unknown as Rights).dateModified).toBe("2026-11-07T10:30:00Z");
+        const undated = byType(await getContentStructuredData(["services", "undated"], dir, publicDir), "ImageObject");
+        expect(undated).toBeDefined();
+        expect(undated).not.toHaveProperty("dateCreated");
+        expect(undated).not.toHaveProperty("dateModified");
+    });
+
+    it("stops with the file's name when an image date is not a date", async () => {
+        // Its own folder: a bad date anywhere stops the whole build, so it cannot sit beside the other pages.
+        const bad = fs.mkdtempSync(path.join(os.tmpdir(), "structured-data-bad-"));
+        try {
+            fs.mkdirSync(path.join(bad, "services"));
+            fs.writeFileSync(
+                path.join(bad, "services/bad-date.md"),
+                card("image: /static/images/web.png\nimage_created: last week\n") + "\n# Bad\n",
+            );
+            await expect(getContentStructuredData(["services", "bad-date"], bad, publicDir)).rejects.toThrow(
+                /bad-date\.md: image_created must be an ISO 8601 date/,
+            );
+        } finally {
+            fs.rmSync(bad, { recursive: true, force: true });
+        }
+    });
+
+    it("gives a page with no image no ImageObject", async () => {
+        expect(
+            byType(await getContentStructuredData(["services", "none"], dir, publicDir), "ImageObject"),
+        ).toBeUndefined();
     });
 
     it("gives a page outside the services section no Service", async () => {

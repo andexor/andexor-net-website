@@ -152,3 +152,9 @@ Then log in. Use the browser-callback flow, not the default device-code flow: un
 stops after about forty seconds and the command hangs silently, so an approval made after that is never seen.
 
 > Run `cf auth login --no-device`
+
+## exiftool
+
+Install exiftool with
+
+> `sudo apt-get -y install libimage-exiftool-perl`
